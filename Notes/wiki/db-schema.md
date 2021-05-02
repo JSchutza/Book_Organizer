@@ -3,6 +3,7 @@
 | column name    | data type     | details               |
 |----------------|---------------|-----------------------|
 | id             | int           | not null, primary key |
+| search_id      | string(5)     | not null, unique      |
 | user_name      | string(45)    | not null,             |
 | email          | string()      | not null, unique      |
 | hashed_password| string(255)   | not null,             |

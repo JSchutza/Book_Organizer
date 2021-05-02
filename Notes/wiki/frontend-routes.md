@@ -7,6 +7,7 @@
 
 # Profile
 `/profile`
+`/profile/:search_id`
 
 
 

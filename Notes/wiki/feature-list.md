@@ -7,7 +7,9 @@
 ### Account creation log in/log out
 	• Users can sign up and log in/ out
 	• demo user available
-		• BONUS: user supplied avatars
+	• Users are given a unique search_id
+            * created by appending there pk to a random string and then hashed to create the value
+
 
 
 ### PublicCharcters
