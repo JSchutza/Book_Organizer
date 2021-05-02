@@ -10,26 +10,46 @@
 		• BONUS: user supplied avatars
 
 
-### Images
-      • Users can post images
-      • Users can update posts
-      • Users can view their posts
-### Likes
-      • Users can like other users posts
-      • Users can unlike other users posts
-      • Users can view their liked posts
+### PublicCharcters
+      • Users can create characters
+      • Users can update their characters
+      • Users can view their characters and other users characters on the site
+### Following
+      • Users can follow other users
+      • Users can unfollow other users
+      • Users can view their followed users books
+
+
+### Books
+      • Users can create books
+      • Users can update books
+      • Users can delete books
+### PrivateCharacters
+      • Users can create / assign characters to a book
+      • Users can update assigned characters in a book
+      • Users can delete assigned characters in a book
+### Pages
+      • Users can create / assign pages to a book
+      • Users can update assigned pages in a book
+      • Users can delete assigned pages in a book
+
+
+
+
+
+
+### Polls
+      • Users can create polls
+      • Users can delete polls
+      • Users can update polls
 
 ### Comments
-      • Users can create comments on their own posts and other users posts
-      • Users can delete their comments from a post
-      • Users can view their comments on a post
+      • Users can create comments on a poll
+      • Users can delete comments on a poll
 
-### Following
-### Photo feed
+
 
 # BONUS
 ---------------
 
 ### direct messages
-
-### hashtags
