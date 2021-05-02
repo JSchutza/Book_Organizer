@@ -166,75 +166,84 @@ As a logged-in user, I want to be able to be able to view the users I am followi
 
 
 ------------
+# Books
+As a logged-in user, I want to be able to create books
+As a logged-in user, I want to be able to update books
+As a logged-in user, I want to be able to delete books
+
+As a logged-in user, I want to be able to create characters for a book
+As a logged-in user, I want to be able to update characters for a book
+As a logged-in user, I want to be able to delete characters for a book
+
+As a logged-in user, I want to be able to create pages for a book
+As a logged-in user, I want to be able to update pages for a book
+As a logged-in user, I want to be able to delete pages for a book
 
 ## Questions
- * How ?
-   -
+ * How can a logged-in user create books?
+   - By navigating to /books and clicking the create book button at the top
+ * How can a logged-in user update books?
+   - By navigating to /books looking at their current books and clicking the update button next to it
+ * How can a logged-in user delete books?
+   - By navigating to /books looking at their current books and clicking the delete button next to it
 
- * Where ?
-   -
 
- * Will ?
-   -
+ * How can a logged-in user create characters for a book?
+   - By navigating to /books and looking at their current books and clicking the title which will take them to the individual book page
+    here they can then click the create character button which will create a character for that book
+ * How can a logged-in user update characters for a book?
+   - By navigating to /books and looking at their current books and clicking the title which will take them to the individual book page
+    here they can then click the update character button which will update a character for that book
+ * How can a logged-in user delete characters for a book?
+   - By navigating to /books and looking at their current books and clicking the title which will take them to the individual book page
+    here they can then click the delete character button which will delete a character for that book
+
+
+   * How can a logged-in user create pages for a book?
+   - By navigating to /books and looking at their current books and clicking the title which will take them to the individual book page
+    here they can then click the create page button which will create a page for that book
+ * How can a logged-in user update pages for a book?
+   - By navigating to /books and looking at their current books and clicking the title which will take them to the individual book page
+    here they can then click the update page button which will update a page for that book
+ * How can a logged-in user delete pages for a book?
+   - By navigating to /books and looking at their current books and clicking the title which will take them to the individual book page
+    here they can then click the delete page button which will delete a page for that book
+
 
 
  ## Acceptance Criteria
- * Given that I am a Logged in user when I
-    - Then I will
+ * Given that I am a Logged in user when I navigate to /books
+    - Then I will be able to create, delete, and update books, characters and pages.
 
 
 ------------
+
 ------------
+# Polls
+As a logged-in user, I want to be able to create, update and delete polls.
+As a logged-in user, I want to be able to create, and delete comments on a specific poll.
+
 ## Questions
- * How ?
-   -
+ * How can a logged-in user create a poll?
+   - By navigating to /polls they can then click the create poll button at the top of the page
+ * How can a logged-in user update a poll?
+   - By navigating to /polls they can type in the search input at the top of the page and if the search_id the entered matches the one
+      associated with their personal account the search results that show will have a update button by each of the titles
+ * How can a logged-in user delete a poll?
+   - By navigating to /polls they can type in the search input at the top of the page and if the search_id the entered matches the one
+      associated with their personal account the search results that show will have a delete button by each of the titles
+ * How can a logged-in user create a comment on a specific poll?
+   - By clicking on a poll title which will take them to /polls/:pollId there they can click the create comment button at the bottom of the comments
+    feed
+ * How can a logged-in user delete a comment on a specific poll?
+   - By clicking on a poll title which will take them to /polls/:pollId there they can click the delete comment button that shows by a comment they
+    created
 
- * Where ?
-   -
-
- * Will ?
-   -
 
 
  ## Acceptance Criteria
- * Given that I am a Logged in user when I
-    - Then I will
-
-
-------------
-------------
-## Questions
- * How ?
-   -
-
- * Where ?
-   -
-
- * Will ?
-   -
-
-
- ## Acceptance Criteria
- * Given that I am a Logged in user when I
-    - Then I will
-
-
-------------
-------------
-## Questions
- * How ?
-   -
-
- * Where ?
-   -
-
- * Will ?
-   -
-
-
- ## Acceptance Criteria
- * Given that I am a Logged in user when I
-    - Then I will
+ * Given that I am a Logged in user when I navigate to /polls
+    - Then I will be able to create, update and delete polls, as well as create and delete comments on a specific poll.
 
 
 ------------

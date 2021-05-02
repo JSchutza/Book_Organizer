@@ -1,20 +1,22 @@
 # Home
-`/`
+* `/`
 
 # Characters
-`/characters`
+* `/characters`
 
 
 # Profile
-`/profile`
-`/profile/:search_id`
+* `/profile`
+* `/profile/:search_id`
 
 
 
 # Polls
-`/polls`
+* `/polls`
+* `/polls/:pollId`
 
 
 
 # Books
-`/books`
+* `/books`
+* `/books/:bookId`
