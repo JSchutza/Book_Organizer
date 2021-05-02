@@ -13,6 +13,7 @@
 ### PublicCharcters
       • Users can create characters
       • Users can update their characters
+      • Users can delete their characters
       • Users can view their characters and other users characters on the site
 ### Following
       • Users can follow other users
