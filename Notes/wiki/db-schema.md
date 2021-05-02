@@ -17,6 +17,7 @@
 | column name    | data type     | details               |
 |----------------|---------------|-----------------------|
 | id             | int           | not null, primary key |
+| avatar         | string()      | null,                 |
 | character_name | string(100)   | not null,             |
 | character_label| string(100)   | not null,             |
 | pub_date       | datetime      | not null,             |
@@ -40,6 +41,7 @@
 | column name    | data type     | details               |
 |----------------|---------------|-----------------------|
 | id             | int           | not null, primary key |
+| avatar         | string()      | null,                 |
 | character_name | string(100)   | not null,             |
 | character_label| string(100)   | not null,             |
 | book_id        | int           | not null, FK          |
