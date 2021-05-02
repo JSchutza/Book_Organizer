@@ -1,17 +1,19 @@
-#Home
+# Home
 `/`
 
-#Feed
-`/feed`
+# Characters
+`/characters`
 
-#User
-`/user/:id`
 
-#Post
-`/post/:id`
+# Profile
+`/profile`
 
-#Search
-`/search`
 
-#Browse
-`/browse`
+
+# Polls
+`/polls`
+
+
+
+# Books
+`/books`
