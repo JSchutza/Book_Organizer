@@ -9,12 +9,14 @@ Book_Organizer is a app to help authors create and organize books they are curre
     - Hosting on Heroku
     - New Account Creation, Login and Logout
     - PublicCharcters
-    - Following
     - Books
     - PrivateCharacters
     - Pages
-    - Polls
-    - Comments
+  --------------------
+# BONUS:
+    * Polls
+    * Comments
+    * Following
 
 
 
