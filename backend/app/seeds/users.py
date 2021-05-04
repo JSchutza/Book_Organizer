@@ -1,6 +1,7 @@
-# from werkzeug.security import generate_password_hash
 from app.models import db, User
+from app.hash import gen_search_id
 from faker import Faker
+from random import randint
 
 
 fake = Faker()
@@ -211,14 +212,20 @@ def seed_users():
         "everybodydrain"
     ]
 
-    demo = User(username='Demo', email='demo@aa.io', password='password')
+
+    demo = User(user_name='Demo', email='demo@aa.io', password='password')
     db.session.add(demo)
     db.session.commit()
 
     result = []
+    tracker = set()
     for each in user_names:
-        result.append(
-            User(username=each, email=fake.company_email(), password='password'))
+        new_id = gen_search_id(f'{randint(1, 100)}{randint(1, 10000000000)}')
+        if new_id in tracker:
+            continue
+        tracker.add(new_id)
+        result.append(User(search_id=new_id, user_name=each, email=fake.company_email(), password='password'))
+
 
     for user in result:
         db.session.add(user)
