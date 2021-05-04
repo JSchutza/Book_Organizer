@@ -1,10 +1,12 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { usersReducer } from './reducers/session.js';
+import { characterPageReducer } from "./reducers/characters.js";
 
 
 const rootReducer = combineReducers({
   usersReducer,
+  characterPageReducer,
 
 });
 

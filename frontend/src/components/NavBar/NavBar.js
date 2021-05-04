@@ -4,7 +4,8 @@ import LoginForm from "../LoginForm";
 import SignUpForm from "../SignupForm"
 import LogoutButton from "../LogoutButton"
 import styles from "./navbar.module.css";
-
+import { useDispatch } from "react-redux"
+import { thunk_getAllCharacters } from "../../store/thunks/characters.js"
 
 
 
@@ -14,7 +15,7 @@ const NavBar = ({ userStatus }) => {
 
   const [ clickLogin, setClickLogin ] = useState(0);
   const [ clickSignup, setClickSignup ] = useState(0);
-
+  const dispatch = useDispatch();
 
 
 
@@ -42,7 +43,9 @@ const NavBar = ({ userStatus }) => {
 
 
 
-
+  const handleCharacterClick = async () => {
+    await dispatch(thunk_getAllCharacters());
+  }
 
 
 
@@ -86,7 +89,7 @@ const NavBar = ({ userStatus }) => {
     <>
     <div>
       <nav className={styles.nav}>
-          <li> <NavLink to="/characters" exact> Characters </NavLink></li>
+          <li> <NavLink to="/characters" exact onClick={() => handleCharacterClick()} > Characters </NavLink></li>
           <li> <NavLink to="/profile" exact> Profile </NavLink></li>
           <li> <NavLink to="/books" exact> Books </NavLink></li>
           <li> <LogoutButton /> </li>
