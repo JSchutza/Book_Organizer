@@ -3,7 +3,16 @@ import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
 const ProtectedRoute = (props) => {
-  const user = useSelector((state) => state.session.user);
+  const user = useSelector((store) => store.userReducer);
+
+  if (user === null){
+    return (
+      <div>
+        <Redirect to="/" />
+      </div>
+    )
+  }
+
 
   return (
     <Route {...props}>{user ? props.children : <Redirect to="/" />}</Route>

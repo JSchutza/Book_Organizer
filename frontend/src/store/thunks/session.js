@@ -33,7 +33,7 @@ const login = (email, password) => async (dispatch) => {
   });
   const data = await response.json();
   if (data.errors) {
-    return data;
+    return;
   }
   dispatch(setUser(data));
   return {};

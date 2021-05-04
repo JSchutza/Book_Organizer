@@ -4,6 +4,7 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+
 import { authenticate } from "./store/thunks/session.js";
 
 
@@ -30,11 +31,11 @@ function App() {
 
 
 
-  if (user == null) {
+  if (user === null) {
     // the cool card loading component will go here *****
     return (
       <BrowserRouter>
-        <NavBar />
+        <NavBar userStatus={false} />
       </BrowserRouter>
     );
   }
@@ -44,7 +45,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar userStatus={true} />
         <Switch>
           <ProtectedRoute path="/" exact={true}>
             <h1>Home</h1>
