@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import {FiLogOut} from 'react-icons/fi'
@@ -11,9 +11,10 @@ const LogoutButton = () => {
     await dispatch(logout());
   };
 
+
   return (
     <>
-      <a onClick={(event) => onLogout(event)}><FiLogOut className='import-id'/></a>
+      <a onClick={(event) => onLogout(event)}><FiLogOut/></a>
     </>
   );
 };

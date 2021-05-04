@@ -1,12 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
-const GET_FOLLOWERS = "session/GET_FOLLOWERS";
 
-const getFollowers = (followers) => ({
-  type: GET_FOLLOWERS,
-  payload: followers,
-});
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -32,6 +27,8 @@ export const authenticate = () => async (dispatch) => {
   dispatch(setUser(data));
 };
 
+
+
 export const login = (email, password) => async (dispatch) => {
   const response = await fetch("/api/auth/login", {
     method: "POST",
@@ -51,6 +48,7 @@ export const login = (email, password) => async (dispatch) => {
   return {};
 };
 
+
 export const logout = () => async (dispatch) => {
   await fetch("/api/auth/logout", {
     headers: {
@@ -59,6 +57,7 @@ export const logout = () => async (dispatch) => {
   });
   dispatch(removeUser());
 };
+
 
 export const signUp = (username, email, password) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
@@ -76,19 +75,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
   dispatch(setUser(data));
 };
 
-export const thunk_getFollowers = () => async (dispatch) => {
-  const response = await fetch(`/api/users/followers`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  });
-  const data = await response.json();
-  if (data.errors) {
-    return;
-  }
-  dispatch(getFollowers(data));
-};
+
 
 export const resetUser = () => async (dispatch) => {
   const response = await fetch(`/api/users/reset`, { credentials: "include" });
@@ -97,22 +84,12 @@ export const resetUser = () => async (dispatch) => {
   dispatch(setUser(data));
 };
 
+
+
+
 // reducers
 
-export const getFollowersReducer = (state = null, action) => {
-  switch (action.type) {
-    case GET_FOLLOWERS:
-      return { ...state, [action.payload.id]: action.payload };
-    default:
-      return state;
-  }
-};
-
-const initialState = { user: null };
-
-// useSelector(state => state.session.user)
-
-export default function reducer(state = initialState, action) {
+export default function reducer(state = { user: null }, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload };
