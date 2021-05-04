@@ -30,8 +30,13 @@ class User(db.Model, UserMixin):
     birthday = db.Column(db.DateTime)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
+    public_characters = db.relationship("PublicCharacter", backref="users", cascade="all, delete")
+    books = db.relationship("Book", backref="users", cascade="all, delete")
+
+
+
+
     # posts = db.relationship("Post", backref="users", cascade="all, delete")
-    # likes = db.relationship("Like", backref="users", cascade="all, delete")
     # comments = db.relationship(
     #     "Comment", backref="users", cascade="all, delete")
 
@@ -74,10 +79,6 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-
-
-    # def get_users_id(self):
-    #     return self.id
 
 
 
@@ -129,6 +130,19 @@ class User(db.Model, UserMixin):
         }
 
 
+    def get_users_public_characters(self):
+        return {
+            "public_characters": [pub_char.to_dict() for pub_char in self.public_characters],
+        }
+
+
+
+    def get_users_books(self):
+        return {
+            "books": [book.to_dict() for book in self.books],
+        }
+
+
 
     def to_dict(self):
         return {
@@ -145,7 +159,6 @@ class User(db.Model, UserMixin):
 
 
 
-            # "posts": [post.to_dict() for post in self.posts],
+
             # "followers": [follower.id for follower in self.followers],
             # "comments": [comment.to_dict() for comment in self.comments],
-            # "likes": [like.to_dict() for like in self.likes],
