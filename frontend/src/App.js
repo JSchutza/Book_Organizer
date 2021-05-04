@@ -4,7 +4,7 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-import { authenticate } from "./store/session";
+import { authenticate } from "./store/thunks/session.js";
 
 
 
@@ -13,7 +13,7 @@ import { authenticate } from "./store/session";
 function App() {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
-  const user = useSelector((store) => store.session.user);
+  const user = useSelector((store) => store.usersReducer.user);
 
   useEffect(() => {
     (async () => {

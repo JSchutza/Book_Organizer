@@ -1,19 +1,10 @@
-// constants
-const SET_USER = "session/SET_USER";
-const REMOVE_USER = "session/REMOVE_USER";
+
+import { setUser, removeUser,  } from '../actions/session.js';
 
 
-const setUser = (user) => ({
-  type: SET_USER,
-  payload: user,
-});
-
-const removeUser = () => ({
-  type: REMOVE_USER,
-});
 
 // thunks
-export const authenticate = () => async (dispatch) => {
+const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/", {
     headers: {
       "Content-Type": "application/json",
@@ -29,7 +20,7 @@ export const authenticate = () => async (dispatch) => {
 
 
 
-export const login = (email, password) => async (dispatch) => {
+const login = (email, password) => async (dispatch) => {
   const response = await fetch("/api/auth/login", {
     method: "POST",
     headers: {
@@ -49,7 +40,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 
-export const logout = () => async (dispatch) => {
+const logout = () => async (dispatch) => {
   await fetch("/api/auth/logout", {
     headers: {
       "Content-Type": "application/json",
@@ -59,7 +50,7 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password) => async (dispatch) => {
+const signUp = (username, email, password) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: {
@@ -77,7 +68,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
 
 
 
-export const resetUser = () => async (dispatch) => {
+const resetUser = () => async (dispatch) => {
   const response = await fetch(`/api/users/reset`, { credentials: "include" });
   const data = await response.json();
 
@@ -87,15 +78,11 @@ export const resetUser = () => async (dispatch) => {
 
 
 
-// reducers
 
-export default function reducer(state = { user: null }, action) {
-  switch (action.type) {
-    case SET_USER:
-      return { user: action.payload };
-    case REMOVE_USER:
-      return { user: null };
-    default:
-      return state;
-  }
+export {
+  authenticate,
+  login,
+  logout,
+  signUp,
+  resetUser
 }
