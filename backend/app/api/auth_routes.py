@@ -3,6 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from random import randint
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -63,11 +64,8 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        user = User(
-            username=form.data['username'],
-            email=form.data['email'],
-            password=form.data['password']
-        )
+        user = User(the_search_id=f'{randint(1, 100)}{randint(1, 10000000000)}',
+                    user_name=form.data['username'], email=form.data['email'], password=form.data['password'])
         db.session.add(user)
         db.session.commit()
         login_user(user)
