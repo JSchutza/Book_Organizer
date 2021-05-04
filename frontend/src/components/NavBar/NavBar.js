@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import LoginForm from "../LoginForm";
+import SignUpForm from "../SignupForm"
 import styles from "./navbar.module.css";
 
 
@@ -63,8 +64,9 @@ const NavBar = ({ userStatus }) => {
         <p></p>
         }
 
+
         { toggleSignup ? <div>
-          <LoginForm />
+          <SignUpForm />
         </div>
         :
         <p></p>
