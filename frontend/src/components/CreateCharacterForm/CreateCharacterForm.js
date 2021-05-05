@@ -27,13 +27,25 @@ const CreateCharacterForm = () => {
   }, [urlpreview]);
 
 
-  const onSubmit = e => {
+  const onSubmit = async (e) => {
   e.preventDefault();
   // history.push('/books');
     const formData = new FormData();
     formData.append("image", urlpreview);
     formData.append("charactername", charname);
     formData.append("characterlabel", charlabel);
+
+    const res = await fetch("/api/characters", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (res.ok) {
+      // await res.json();
+
+    } else {
+      console.log("error");
+    }
 
     // send formData to dispatch
   };
