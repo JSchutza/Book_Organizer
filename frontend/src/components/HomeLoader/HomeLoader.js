@@ -119,7 +119,7 @@ const HomeLoader = () => {
 
   useEffect(() => {
     triggerSlideShow()
-  },[]);
+  }, []);
 
 
   if (next_card === null) {
@@ -131,7 +131,7 @@ const HomeLoader = () => {
 
   return (
     <>
-      <img src={next_card} />
+      <img src={next_card} alt='slide show' />
     </>
   )
 };

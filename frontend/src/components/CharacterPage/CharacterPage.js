@@ -14,7 +14,7 @@ const CharacterPage = () => {
 
   useEffect(() => {
     dispatch(thunk_getAllCharacters());
-  }, [specificChar]);
+  }, [specificChar, dispatch]);
 
 
   const showSpecificChar = (event, the_char_id) => {
@@ -45,14 +45,14 @@ const CharacterPage = () => {
     return (
       <>
       <div>
-          <a onClick={(event) => hideSpecificChar(event) }>
+          <a href='/' onClick={(event) => hideSpecificChar(event) }>
           <h1> {allChars[charId].username} </h1>
             <li key={charId} >
               {allChars[charId].character_name}
               <br/>
               {allChars[charId].character_label}
             </li>
-            <img src={allChars[charId].avatar} />
+            <img src={allChars[charId].avatar} alt={allChars[charId].character_name} />
           </a>
       </div>
       </>
@@ -70,7 +70,7 @@ const CharacterPage = () => {
     <div>
     {Object.values(allChars).map(eachChar => (
       <>
-        <a onClick={(event) => showSpecificChar(event, eachChar.id) }>
+        <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
         <li key={eachChar.id}>
           By: {eachChar.username}
           <br/>
@@ -78,7 +78,7 @@ const CharacterPage = () => {
           <br/>
           {eachChar.character_label}
         </li>
-        <img src={eachChar.avatar}/>
+        <img src={eachChar.avatar} alt={eachChar.character_name} />
       </a>
       </>
       ))}

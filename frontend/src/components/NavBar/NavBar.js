@@ -55,8 +55,8 @@ const NavBar = ({ userStatus }) => {
       <>
       <div>
         <nav className={styles.nav}>
-            <li> <a onClick={(event) => showLoginForm(event)}> Log-in </a> </li>
-            <li> <a onClick={(event) => showSignupForm(event)}> Sign-up </a> </li>
+            <li> <a href='/' onClick={(event) => showLoginForm(event)}> Log-in </a> </li>
+            <li> <a href='/' onClick={(event) => showSignupForm(event)}> Sign-up </a> </li>
         </nav>
       </div>
 
