@@ -43,8 +43,8 @@ const NavBar = ({ userStatus }) => {
 
 
 
-  const handleCharacterClick = async () => {
-    await dispatch(thunk_getAllCharacters());
+  const handleCharacterClick = () => {
+    dispatch(thunk_getAllCharacters());
   }
 
 

@@ -17,10 +17,8 @@ function App() {
   const user = useSelector((store) => store.usersReducer.user);
 
   useEffect(() => {
-    (async () => {
-      await dispatch(authenticate());
+      dispatch(authenticate());
       setLoaded(true);
-    })();
   }, [dispatch]);
 
 
