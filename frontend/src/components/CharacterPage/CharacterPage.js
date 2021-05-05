@@ -9,13 +9,16 @@ const CharacterPage = () => {
   if(allChars === null) {
     return (
       <>
+      <h1>Loading characters .... </h1>
       </>
     )
   }
 
   return (
     <>
-
+    <div>
+      <h1> Characters </h1>
+    </div>
     </>
 
   )

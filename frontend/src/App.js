@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import ProtectedRoute from "./components/ProtectedRoute";
+import CharacterPage from "./components/CharacterPage";
+
 
 
 import { authenticate } from "./store/thunks/session.js";
@@ -45,17 +46,21 @@ function App() {
     <BrowserRouter>
       <NavBar userStatus={true} />
         <Switch>
-          <ProtectedRoute path="/" exact={true}>
+          <Route path="/" exact>
             <h1>Home</h1>
-          </ProtectedRoute>
+          </Route>
 
-          <ProtectedRoute path="/profile" exact={true}>
+          <Route path="/profile" exact={true}>
             <h1>Profile</h1>
-          </ProtectedRoute>
+          </Route>
 
-          <ProtectedRoute path="/profile/:id">
+          <Route path="/profile/:id">
             <h1>Each individual users profile page</h1>
-          </ProtectedRoute>
+          </Route>
+
+          <Route path="/characters" exact={true}>
+            <CharacterPage />
+          </Route>
         </Switch>
     </BrowserRouter>
   );
