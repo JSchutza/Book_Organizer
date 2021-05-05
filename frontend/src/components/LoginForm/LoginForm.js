@@ -13,9 +13,9 @@ const LoginForm = () => {
   const history = useHistory();
 
 
-  const onSubmit = async (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
-    await dispatch(login(email, password));
+    dispatch(login(email, password));
     history.push('/profile');
   }
 
