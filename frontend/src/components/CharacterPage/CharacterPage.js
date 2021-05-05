@@ -1,12 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
+import CreateCharacterForm from "../CreateCharacterForm";
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 
 
 const CharacterPage = () => {
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
+  const [ openModal, setOpenModal ] = useState(false);
   const allChars = useSelector((store) => store.characterPageReducer.characters)
   const dispatch = useDispatch();
 
@@ -30,6 +32,16 @@ const CharacterPage = () => {
     setSpecificChar(false);
   }
 
+
+  const createCharactersClick = (event) => {
+    event.preventDefault();
+    setOpenModal(true);
+  }
+
+  const closeModalModal = (event) => {
+    event.preventDefault();
+    setOpenModal(false);
+  }
 
 
   if(allChars === null) {
@@ -61,6 +73,16 @@ const CharacterPage = () => {
 
 
 
+  if(openModal === true){
+    return(
+      <>
+        <a href='/' onClick={(event) => closeModalModal(event)}>
+          <h1> Create a Character </h1>
+        </a>
+        <CreateCharacterForm />
+      </>
+    )
+  }
 
 
   return (
@@ -68,6 +90,11 @@ const CharacterPage = () => {
     <div>
       <h1> Characters </h1>
     <div>
+
+    <div>
+      <a href='/' onClick={(event) => createCharactersClick(event)}> Create Character </a>
+    </div>
+
     {Object.values(allChars).map(eachChar => (
       <>
         <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
@@ -83,7 +110,6 @@ const CharacterPage = () => {
       </>
       ))}
       </div>
-
 
     </div>
     </>
