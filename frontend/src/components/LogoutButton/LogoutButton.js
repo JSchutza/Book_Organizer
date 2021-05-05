@@ -23,7 +23,7 @@ const LogoutButton = () => {
 
   return (
     <>
-      <a onClick={(event) => onLogout(event)}><FiLogOut/></a>
+      <a href='/' onClick={(event) => onLogout(event)}><FiLogOut/></a>
     </>
   );
 };

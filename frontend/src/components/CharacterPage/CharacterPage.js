@@ -1,12 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
+import CreateCharacterForm from "../CreateCharacterForm";
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 
 
 const CharacterPage = () => {
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
+  const [ openModal, setOpenModal ] = useState(false);
   const allChars = useSelector((store) => store.characterPageReducer.characters)
   const dispatch = useDispatch();
 
@@ -14,7 +16,7 @@ const CharacterPage = () => {
 
   useEffect(() => {
     dispatch(thunk_getAllCharacters());
-  }, [specificChar]);
+  }, [specificChar, dispatch]);
 
 
   const showSpecificChar = (event, the_char_id) => {
@@ -31,6 +33,16 @@ const CharacterPage = () => {
   }
 
 
+  const createCharactersClick = (event) => {
+    event.preventDefault();
+    setOpenModal(true);
+  }
+
+  const closeModalModal = (event) => {
+    event.preventDefault();
+    setOpenModal(false);
+  }
+
 
   if(allChars === null) {
     return (
@@ -45,14 +57,14 @@ const CharacterPage = () => {
     return (
       <>
       <div>
-          <a onClick={(event) => hideSpecificChar(event) }>
+          <a href='/' onClick={(event) => hideSpecificChar(event) }>
           <h1> {allChars[charId].username} </h1>
             <li key={charId} >
               {allChars[charId].character_name}
               <br/>
               {allChars[charId].character_label}
             </li>
-            <img src={allChars[charId].avatar} />
+            <img src={allChars[charId].avatar} alt={allChars[charId].character_name} />
           </a>
       </div>
       </>
@@ -61,6 +73,16 @@ const CharacterPage = () => {
 
 
 
+  if(openModal === true){
+    return(
+      <>
+        <a href='/' onClick={(event) => closeModalModal(event)}>
+          <h1> Create a Character </h1>
+        </a>
+        <CreateCharacterForm />
+      </>
+    )
+  }
 
 
   return (
@@ -68,9 +90,14 @@ const CharacterPage = () => {
     <div>
       <h1> Characters </h1>
     <div>
+
+    <div>
+      <a href='/' onClick={(event) => createCharactersClick(event)}> Create Character </a>
+    </div>
+
     {Object.values(allChars).map(eachChar => (
       <>
-        <a onClick={(event) => showSpecificChar(event, eachChar.id) }>
+        <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
         <li key={eachChar.id}>
           By: {eachChar.username}
           <br/>
@@ -78,12 +105,11 @@ const CharacterPage = () => {
           <br/>
           {eachChar.character_label}
         </li>
-        <img src={eachChar.avatar}/>
+        <img src={eachChar.avatar} alt={eachChar.character_name} />
       </a>
       </>
       ))}
       </div>
-
 
     </div>
     </>
