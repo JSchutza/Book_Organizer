@@ -5,6 +5,8 @@ import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 
 
 const CharacterPage = () => {
+  const [ specificChar, setSpecificChar ] = useState(false);
+  const [ charId, setCharId ] = useState(false);
   const allChars = useSelector((store) => store.characterPageReducer.characters)
   const dispatch = useDispatch();
 
@@ -12,9 +14,21 @@ const CharacterPage = () => {
 
   useEffect(() => {
     dispatch(thunk_getAllCharacters());
-  }, []);
+  }, [specificChar]);
 
 
+  const showSpecificChar = (event, the_char_id) => {
+    event.preventDefault();
+    setCharId(the_char_id);
+    setSpecificChar(true);
+  }
+
+
+  const hideSpecificChar = (event) => {
+    event.preventDefault();
+    setCharId(false);
+    setSpecificChar(false);
+  }
 
 
 
@@ -27,6 +41,28 @@ const CharacterPage = () => {
   }
 
 
+  if(specificChar === true){
+    return (
+      <>
+      <div>
+          <a onClick={(event) => hideSpecificChar(event) }>
+          <h1> {allChars[charId].username} </h1>
+            <li key={charId} >
+              {allChars[charId].character_name}
+              <br/>
+              {allChars[charId].character_label}
+            </li>
+            <img src={allChars[charId].avatar} />
+          </a>
+      </div>
+      </>
+      )
+  }
+
+
+
+
+
   return (
     <>
     <div>
@@ -34,7 +70,7 @@ const CharacterPage = () => {
     <div>
     {Object.values(allChars).map(eachChar => (
       <>
-      <a>
+        <a onClick={(event) => showSpecificChar(event, eachChar.id) }>
         <li key={eachChar.id}>
           By: {eachChar.username}
           <br/>
