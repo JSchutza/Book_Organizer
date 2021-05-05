@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import CharacterPage from "./components/CharacterPage";
-
+import HomeLoader from "./components/HomeLoader";
 
 
 import { authenticate } from "./store/thunks/session.js";
@@ -35,6 +35,7 @@ function App() {
     return (
       <BrowserRouter>
         <NavBar userStatus={false} />
+        <HomeLoader />
       </BrowserRouter>
     );
   }
