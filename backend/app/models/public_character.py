@@ -72,3 +72,7 @@ class PublicCharacter(db.Model):
       "username": User.query.get(self.user_id).user_name,
       "created_at": self.created_at,
   }
+
+
+  def get_url(self):
+    return self.avatar

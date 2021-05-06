@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
-import { searchTriggered } from "../../store/actions/characters.js";
+import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
 
+import DeletePubCharButton from "../DeletePubCharButton";
 
 
 const CharacterSearch = () => {
   const [ searchId, setSearchId ] = useState("");
-  const [specificChar, setSpecificChar] = useState(false);
-  const [charId, setCharId] = useState(false);
+  const [ specificChar, setSpecificChar ] = useState(false);
+  const [ charId, setCharId ] = useState(false);
   const dispatch = useDispatch();
   const searchedChar = useSelector((store) => store.searchCharacterPageReducer.characters)
   const char = useSelector((store) => store.searchCharacterPageReducer)
+
 
 
 
@@ -22,11 +24,48 @@ const CharacterSearch = () => {
   }
 
 
+  const hideSpecificChar = (event) => {
+    event.preventDefault();
+    setCharId(false);
+    setSpecificChar(false);
+  }
+
+
   const handleSearch = (event) => {
     event.preventDefault();
     dispatch(thunk_searchForUsersPubChars(searchId))
     dispatch(searchTriggered({ search: true }))
   }
+
+
+
+  const clearSearch = (event) => {
+    event.preventDefault();
+    dispatch(clearSearchResults({ characters: null }))
+    dispatch(searchTriggered({ search: null }))
+  }
+
+
+
+  if(specificChar === true) {
+    return (
+        <div>
+          <h1>Search Results</h1>
+
+          <a href='/' onClick={(event) => hideSpecificChar(event)}>
+            <h1> {char[charId].username} </h1>
+            <li key={charId} >
+              {char[charId].character_name}
+              <br />
+              {char[charId].character_label}
+            </li>
+            <img src={char[charId].avatar} alt={char[charId].character_name} />
+          </a>
+        </div>
+
+    )
+  }
+
 
 
   if (searchedChar !== null && char) {
@@ -35,6 +74,8 @@ const CharacterSearch = () => {
       <>
       <div>
         <h1>Search Results</h1>
+
+          <a href='/' onClick={(event) => clearSearch(event)} > Back </a>
 
       <div>
             {Object.values(char).map(eachChar => (
@@ -49,29 +90,11 @@ const CharacterSearch = () => {
                   </li>
                   <img src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
+
+                <DeletePubCharButton charId={eachChar.id} />
               </>
             ))}
       </div>
-
-{/*  if(specificChar === true){
-    return (
-      <>
-      <div>
-          <a href='/' onClick={(event) => hideSpecificChar(event) }>
-          <h1> {allChars[charId].username} </h1>
-            <li key={charId} >
-              {allChars[charId].character_name}
-              <br/>
-              {allChars[charId].character_label}
-            </li>
-            <img src={allChars[charId].avatar} alt={allChars[charId].character_name} />
-          </a>
-      </div>
-      </>
-      )
-      }
-  */}
-
       </div>
       </>
     )
