@@ -1,5 +1,5 @@
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import User
 
@@ -9,26 +9,22 @@ user_routes = Blueprint('users', __name__)
 
 
 
-@user_routes.route('/')
+
+#  /api/users/:searchId
+@user_routes.route('/<int:searchId>')
 @login_required
-def users():
-    users = User.query.all()
-    return {"users": [user.to_dict() for user in users]}
+def search_for_user(searchId):
+    if int(current_user.the_search_id) == int(searchId):
+        result = current_user.get_users_public_characters()
+        public_characters = { each["id"]: each   for each in result["public_characters"] }
+
+        return {"public_characters": public_characters}
+
+    return { "Error": "You entered the wrong search_id" }
 
 
-@user_routes.route('/<int:id>')
-@login_required
-def user(id):
-    user = User.query.get(id)
-    return user.to_dict()
 
 
-@user_routes.route('/reset')
-@login_required
-def reset():
-    user_id = int(current_user.get_id())
-    user = User.query.get(user_id)
-    return {'user': user.to_dict()}
 
 
 
