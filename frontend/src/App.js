@@ -5,7 +5,8 @@ import NavBar from "./components/NavBar";
 import CharacterSearch from "./components/CharacterSearch";
 import CharacterPage from "./components/CharacterPage";
 import HomeLoader from "./components/HomeLoader";
-
+import Profile from "./components/Profile";
+import { EachBook } from "./components/Book";
 
 import { authenticate } from "./store/thunks/session.js";
 
@@ -55,6 +56,7 @@ function App() {
 
           <Route path="/profile" exact={true}>
             <h1>Profile</h1>
+            <Profile />
           </Route>
 
           <Route path="/profile/:id">
@@ -70,6 +72,11 @@ function App() {
           }
 
           </Route>
+
+          <Route path='/books/:bookId' exact={true}>
+            <EachBook />
+          </Route>
+
         </Switch>
     </BrowserRouter>
   );
