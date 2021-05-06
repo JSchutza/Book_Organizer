@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
-import { searchTriggered } from "../../store/actions/characters.js";
+import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
 
 
 
@@ -38,6 +38,13 @@ const CharacterSearch = () => {
 
 
 
+  const clearSearch = (event) => {
+    event.preventDefault();
+    dispatch(clearSearchResults({ characters: null }))
+    dispatch(searchTriggered({ search: null }))
+  }
+
+
 
   if(specificChar === true) {
     return (
@@ -66,6 +73,8 @@ const CharacterSearch = () => {
       <>
       <div>
         <h1>Search Results</h1>
+
+          <a href='/' onClick={(event) => clearSearch(event)} > Back </a>
 
       <div>
             {Object.values(char).map(eachChar => (
