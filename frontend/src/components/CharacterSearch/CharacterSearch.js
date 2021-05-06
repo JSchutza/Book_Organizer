@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
 
+import DeletePubCharButton from "../DeletePubCharButton";
 
 
 const CharacterSearch = () => {
@@ -89,6 +90,8 @@ const CharacterSearch = () => {
                   </li>
                   <img src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
+
+                <DeletePubCharButton charId={eachChar.id} />
               </>
             ))}
       </div>
