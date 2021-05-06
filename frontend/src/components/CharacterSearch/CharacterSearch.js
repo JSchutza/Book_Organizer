@@ -7,11 +7,12 @@ import { searchTriggered } from "../../store/actions/characters.js";
 
 const CharacterSearch = () => {
   const [ searchId, setSearchId ] = useState("");
-  const [specificChar, setSpecificChar] = useState(false);
-  const [charId, setCharId] = useState(false);
+  const [ specificChar, setSpecificChar ] = useState(false);
+  const [ charId, setCharId ] = useState(false);
   const dispatch = useDispatch();
   const searchedChar = useSelector((store) => store.searchCharacterPageReducer.characters)
   const char = useSelector((store) => store.searchCharacterPageReducer)
+
 
 
 
@@ -22,11 +23,41 @@ const CharacterSearch = () => {
   }
 
 
+  const hideSpecificChar = (event) => {
+    event.preventDefault();
+    setCharId(false);
+    setSpecificChar(false);
+  }
+
+
   const handleSearch = (event) => {
     event.preventDefault();
     dispatch(thunk_searchForUsersPubChars(searchId))
     dispatch(searchTriggered({ search: true }))
   }
+
+
+
+
+  if(specificChar === true) {
+    return (
+        <div>
+          <h1>Search Results</h1>
+
+          <a href='/' onClick={(event) => hideSpecificChar(event)}>
+            <h1> {char[charId].username} </h1>
+            <li key={charId} >
+              {char[charId].character_name}
+              <br />
+              {char[charId].character_label}
+            </li>
+            <img src={char[charId].avatar} alt={char[charId].character_name} />
+          </a>
+        </div>
+
+    )
+  }
+
 
 
   if (searchedChar !== null && char) {
@@ -52,26 +83,6 @@ const CharacterSearch = () => {
               </>
             ))}
       </div>
-
-{/*  if(specificChar === true){
-    return (
-      <>
-      <div>
-          <a href='/' onClick={(event) => hideSpecificChar(event) }>
-          <h1> {allChars[charId].username} </h1>
-            <li key={charId} >
-              {allChars[charId].character_name}
-              <br/>
-              {allChars[charId].character_label}
-            </li>
-            <img src={allChars[charId].avatar} alt={allChars[charId].character_name} />
-          </a>
-      </div>
-      </>
-      )
-      }
-  */}
-
       </div>
       </>
     )
