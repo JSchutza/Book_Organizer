@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import { usersReducer } from './reducers/session.js';
 import { characterPageReducer, searchCharacterPageReducer, searchTriggeredReducer } from "./reducers/characters.js";
 import { cardLoaderReducer, singleCardReducer } from "./reducers/cardloader.js";
-import { booksReducer, priCharReducer } from "./reducers/books.js";
+import { booksReducer, priCharReducer, pageReducer } from "./reducers/books.js";
 
 const rootReducer = combineReducers({
   usersReducer,
@@ -14,6 +14,7 @@ const rootReducer = combineReducers({
   searchTriggeredReducer,
   booksReducer,
   priCharReducer,
+  pageReducer,
 
 });
 
