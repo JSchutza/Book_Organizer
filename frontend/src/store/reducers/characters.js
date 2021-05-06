@@ -2,7 +2,7 @@
 
 
 
-import { ALL_CHARACTERS, SEARCH_PUB_CHARACTERS } from '../types'
+import { ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, SEARCH_TRIGGERED } from '../types'
 
 
 
@@ -28,9 +28,21 @@ const searchCharacterPageReducer = (state = { characters: null }, action) => {
 }
 
 
+const searchTriggeredReducer = (state = { search: null }, action) => {
+  switch (action.type) {
+    case SEARCH_TRIGGERED:
+      return { ...action.search }
+    default:
+      return state;
+  }
+}
+
+
 
 export {
   characterPageReducer,
   searchCharacterPageReducer,
+  searchTriggeredReducer,
+
 
 }

@@ -1,31 +1,85 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
-
+import { searchTriggered } from "../../store/actions/characters.js";
 
 
 
 const CharacterSearch = () => {
   const [ searchId, setSearchId ] = useState("");
+  const [specificChar, setSpecificChar] = useState(false);
+  const [charId, setCharId] = useState(false);
   const dispatch = useDispatch();
   const searchedChar = useSelector((store) => store.searchCharacterPageReducer.characters)
+  const char = useSelector((store) => store.searchCharacterPageReducer)
+
+
+
+  const showSpecificChar = (event, the_char_id) => {
+    event.preventDefault();
+    setCharId(the_char_id);
+    setSpecificChar(true);
+  }
 
 
   const handleSearch = (event) => {
     event.preventDefault();
     dispatch(thunk_searchForUsersPubChars(searchId))
+    dispatch(searchTriggered({ search: true }))
   }
 
 
-  if (searchedChar !== null) {
+  if (searchedChar !== null && char) {
+
     return(
       <>
       <div>
         <h1>Search Results</h1>
+
+      <div>
+            {Object.values(char).map(eachChar => (
+              <>
+                <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id)}>
+                  <li key={eachChar.id}>
+                    By: {eachChar.username}
+                    <br />
+                    {eachChar.character_name}
+                    <br />
+                    {eachChar.character_label}
+                  </li>
+                  <img src={eachChar.avatar} alt={eachChar.character_name} />
+                </a>
+              </>
+            ))}
+      </div>
+
+{/*  if(specificChar === true){
+    return (
+      <>
+      <div>
+          <a href='/' onClick={(event) => hideSpecificChar(event) }>
+          <h1> {allChars[charId].username} </h1>
+            <li key={charId} >
+              {allChars[charId].character_name}
+              <br/>
+              {allChars[charId].character_label}
+            </li>
+            <img src={allChars[charId].avatar} alt={allChars[charId].character_name} />
+          </a>
+      </div>
+      </>
+      )
+      }
+  */}
+
       </div>
       </>
     )
   }
+
+
+
+
 
 
 
