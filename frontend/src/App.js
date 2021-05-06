@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
+import CharacterSearch from "./components/CharacterSearch";
 import CharacterPage from "./components/CharacterPage";
 import HomeLoader from "./components/HomeLoader";
 
@@ -16,6 +17,7 @@ function App() {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   const user = useSelector((store) => store.usersReducer.user);
+  const isSearch = useSelector((store) => store.searchTriggeredReducer.search)
 
   useEffect(() => {
       dispatch(authenticate());
@@ -60,7 +62,13 @@ function App() {
           </Route>
 
           <Route path="/characters" exact={true}>
+            <CharacterSearch />
+          { isSearch === null ?
             <CharacterPage />
+            :
+            <p></p>
+          }
+
           </Route>
         </Switch>
     </BrowserRouter>

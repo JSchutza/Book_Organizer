@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import CreateCharacterForm from "../CreateCharacterForm";
-import CharacterSearch from "../CharacterSearch";
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 
 
@@ -91,10 +90,6 @@ const CharacterPage = () => {
     <div>
       <h1> Characters </h1>
     <div>
-
-    <div>
-      <CharacterSearch />
-    </div>
 
     <div>
       <a href='/' onClick={(event) => createCharactersClick(event)}> Create Character </a>

@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { usersReducer } from './reducers/session.js';
-import { characterPageReducer, searchCharacterPageReducer } from "./reducers/characters.js";
+import { characterPageReducer, searchCharacterPageReducer, searchTriggeredReducer } from "./reducers/characters.js";
 import { cardLoaderReducer, singleCardReducer } from "./reducers/cardloader.js";
 
 
@@ -11,6 +11,7 @@ const rootReducer = combineReducers({
   cardLoaderReducer,
   singleCardReducer,
   searchCharacterPageReducer,
+  searchTriggeredReducer,
 
 });
 

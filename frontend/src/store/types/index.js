@@ -6,7 +6,7 @@ const NEXT_CARD = "loader/NEXT_CARD";
 const RESET_CARDS = "loader/RESET_CARDS";
 const GET_SINGLE_CARD = "loader/GET_SINGLE_CARD";
 const SEARCH_PUB_CHARACTERS = "characters/SEARCH_PUB_CHARACTERS"
-
+const SEARCH_TRIGGERED = "characters/SEARCH_TRIGGERED"
 
 
 
@@ -18,6 +18,7 @@ export {
   RESET_CARDS,
   GET_SINGLE_CARD,
   SEARCH_PUB_CHARACTERS,
+  SEARCH_TRIGGERED,
 
 
 }
