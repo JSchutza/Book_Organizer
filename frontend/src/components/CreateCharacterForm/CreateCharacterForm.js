@@ -41,13 +41,11 @@ const CreateCharacterForm = () => {
     });
 
     if (res.ok) {
-      // await res.json();
 
     } else {
       console.log("error");
     }
 
-    // send formData to dispatch
   };
 
 

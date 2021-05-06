@@ -1,4 +1,4 @@
-import { ALL_CHARACTERS } from '../types'
+import { ALL_CHARACTERS, SEARCH_PUB_CHARACTERS } from '../types'
 
 
 
@@ -7,10 +7,14 @@ const getAllCharacters = (characters) => ({
   characters
 });
 
-
+const searchForUsersPubChars = (characters) => ({
+  type: SEARCH_PUB_CHARACTERS,
+  characters
+})
 
 
 export {
   getAllCharacters,
+  searchForUsersPubChars,
 
 }
