@@ -34,8 +34,7 @@ def seed_pri_chars():
     'https://i.imgur.com/OFHXRI4.jpg',
   ]
 
-  # count = 1000
-  # count -= 1
+
   result = []
   for each in each_icon:
     result.append(PrivateCharacter(avatar=each, character_name=fake.name(), character_label="default label here", book_id=randint(1, 100)))
@@ -43,6 +42,20 @@ def seed_pri_chars():
   for character in result:
     db.session.add(character)
     db.session.commit()
+
+  count = 0
+  temp = []
+  while count < 10:
+    temp.append(PrivateCharacter(avatar=each, character_name=fake.name(),
+      character_label="default label here", book_id=int(f'10{count}')
+    ))
+    count += 1
+
+
+  for demo in temp:
+    db.session.add(demo)
+    db.session.commit()
+
 
 
 

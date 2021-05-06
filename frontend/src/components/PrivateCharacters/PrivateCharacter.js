@@ -31,6 +31,7 @@ const PrivateCharacter = () => {
   return (
     <>
     <div>
+      <h1>Your Characters</h1>
         {Object.values(charInfo).map(eachChar => (
             <>
               <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id)}>

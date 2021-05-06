@@ -27,9 +27,13 @@ const Profile = () => {
       <div>
         {Object.values(userInfo).map(each => (
           <>
-            {each.user_name}
-            <br/>
-            {each.email}
+            <img src={each.avatar} alt='avatar' />
+            <p>Search Id: {each.search_id} </p>
+            <p>Username: {each.user_name}</p>
+            <p>Email: {each.email}</p>
+            <p>Bio: {each.bio} </p>
+            <p>Birthday: {each.birthday} </p>
+            <p>Address: {each.location} </p>
           </>
         ))}
       </div>

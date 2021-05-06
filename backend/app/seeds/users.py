@@ -1,3 +1,4 @@
+import requests
 from app.models import db, User
 from app.hash import gen_search_id
 from faker import Faker
@@ -5,6 +6,22 @@ from random import randint
 
 
 fake = Faker()
+
+
+def get_avatars():
+    count = 0
+    result = []
+    while count < 5:
+        data = requests.get('https://randomuser.me/api/?inc=picture')
+        json_result = data.json()
+        json_result = json_result["results"][0]
+        json_result = json_result["picture"]['large']
+        result.append(json_result)
+        count += 1
+    return result
+
+
+
 
 
 # Adds a demo user, you can add other users here if you want
@@ -212,8 +229,13 @@ def seed_users():
         "everybodydrain"
     ]
 
+    images = get_avatars()
+    address = fake.profile()["address"]
+    birthday = fake.profile()["birthdate"]
 
-    demo = User(user_name='Demo', email='demo@aa.io', password='password')
+    demo = User(user_name='Demo', email='demo@aa.io', password='password', bio='is my awesome bio', avatar=images[randint(1, 4)],
+        location=address, birthday=birthday
+    )
     db.session.add(demo)
     db.session.commit()
 
@@ -224,7 +246,11 @@ def seed_users():
         if new_id in tracker:
             continue
         tracker.add(new_id)
-        result.append(User(search_id=new_id, user_name=each, email=fake.company_email(), password='password'))
+        address = fake.profile()["address"]
+        birthday = fake.profile()["birthdate"]
+        result.append(User(search_id=new_id, user_name=each, email=fake.company_email(), password='password',
+            bio='is my awesome bio', avatar=images[randint(1, 4)], location=address, birthday=birthday
+        ))
 
 
     for user in result:

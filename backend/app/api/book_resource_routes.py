@@ -15,3 +15,13 @@ def get_all_private_chars(bookId):
   all_characters = PrivateCharacter.query.filter_by(book_id=bookId).all()
   normalized = {each.to_dict()["id"]: each.to_dict()   for each in all_characters}
   return { "private_characters": normalized }
+
+
+
+# GET /api/book/:bookId/pages
+@resource_routes.route('/<int:bookId>/pages', methods=['GET'])
+@login_required
+def get_all_pages(bookId):
+  all_pages = Page.query.filter_by(book_id=bookId).all()
+  normalized = {each.to_dict()["id"]: each.to_dict()   for each in all_pages}
+  return { "pages": normalized }

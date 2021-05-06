@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import PrivateCharacter from "../PrivateCharacters";
-import { thunk_getAllPriChars } from "../../store/thunks/books.js";
+import Pages from "../Pages";
+import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
 
 
 const EachBook = () => {
@@ -11,7 +12,8 @@ const EachBook = () => {
 
 
   useEffect(() => {
-    dispatch(thunk_getAllPriChars(bookId))
+    dispatch(thunk_getAllPriChars(bookId));
+    dispatch(thunk_getAllPages(bookId));
   }, [dispatch])
 
 
@@ -19,7 +21,10 @@ const EachBook = () => {
   return (
     <>
     <div>
-        <PrivateCharacter />
+      <PrivateCharacter />
+    </div>
+    <div>
+      <Pages/>
     </div>
     </>
   )
