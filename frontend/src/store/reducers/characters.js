@@ -1,5 +1,7 @@
 
-import { ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, SEARCH_TRIGGERED, CLEAR_SEARCH_PUB_CHARS } from '../types'
+import {
+  ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, SEARCH_TRIGGERED, CLEAR_SEARCH_PUB_CHARS, DELETE_USERS_PUB_CHARS
+} from '../types'
 
 
 
@@ -8,6 +10,10 @@ const characterPageReducer = (state = { characters: null }, action) => {
   switch (action.type) {
     case ALL_CHARACTERS:
       return { ...action.characters };
+    case DELETE_USERS_PUB_CHARS:
+      const id = action.character.id;
+      delete state[id];
+      return { ...state };
     default:
       return state;
   }

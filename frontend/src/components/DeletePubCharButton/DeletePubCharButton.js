@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
 
 
 const DeletePubCharButton = ({ charId }) => {
@@ -8,20 +9,19 @@ const DeletePubCharButton = ({ charId }) => {
   const dispatch = useDispatch();
 
 
-
-
-
   const showConfirmation = event => {
     event.preventDefault();
     setConfirmPopUp(true);
   }
 
+
+
+
   const handle = (event, choice) => {
     event.preventDefault();
     if (choice === true) {
       // send the thunk to delete
-
-
+      dispatch(thunk_deleteUsersPubChars(charId));
     }
     setConfirmPopUp(choice);
   }

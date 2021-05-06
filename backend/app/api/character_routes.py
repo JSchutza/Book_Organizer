@@ -68,4 +68,4 @@ def delete_char(characterId):
     purge_aws_resource(key)
   db.session.delete(the_character)
   db.session.commit()
-  return {"message": "success"}
+  return { "characterId": characterId }

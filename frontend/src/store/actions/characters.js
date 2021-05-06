@@ -1,4 +1,6 @@
-import { ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, SEARCH_TRIGGERED, CLEAR_SEARCH_PUB_CHARS } from '../types'
+import {
+  ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, SEARCH_TRIGGERED, CLEAR_SEARCH_PUB_CHARS, DELETE_USERS_PUB_CHARS
+} from '../types'
 
 
 
@@ -27,6 +29,11 @@ const clearSearchResults = (characters) => ({
 });
 
 
+const deleteUsersPubChars = (character) => ({
+  type: DELETE_USERS_PUB_CHARS,
+  character
+});
+
 
 
 
@@ -37,6 +44,7 @@ export {
   searchForUsersPubChars,
   searchTriggered,
   clearSearchResults,
+  deleteUsersPubChars,
 
 
 }
