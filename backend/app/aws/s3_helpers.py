@@ -9,6 +9,8 @@ S3_LOCATION = f"https://{BUCKET}.s3.amazonaws.com/"
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
 
+def get_s3_location():
+  return S3_LOCATION
 
 
 def allowed_file(filename):
@@ -32,3 +34,7 @@ def upload_file(file, acl="public-read"):
     return {"errors": str(error)}
 
   return {"url": f"{S3_LOCATION}{file.filename}"}
+
+
+def purge_aws_resource(the_key):
+  s3.delete_object(Bucket=BUCKET, Key=the_key)

@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, request
 from app.models import db, PublicCharacter
 from flask_login import login_required, current_user
-from app.aws import allowed_file, get_unique_filename, upload_file
+from app.aws import allowed_file, get_unique_filename, upload_file, get_s3_location, purge_aws_resource
 # from app.forms import CreatePostForm, CreateCommentForm
 
 
@@ -51,3 +51,21 @@ def new_pub_char():
   db.session.add(new_char)
   db.session.commit()
   return {"url": url}
+
+
+
+
+
+
+# /api/characters/:characterId
+@character_routes.route("/<int:characterId>", methods=["DELETE"])
+@login_required
+def delete_char(characterId):
+  the_character = PublicCharacter.query.get(characterId)
+  key = the_character.get_url()
+  if(key.startswith(get_s3_location())):
+    key = key[39:]
+    purge_aws_resource(key)
+  db.session.delete(the_character)
+  db.session.commit()
+  return {"message": "success"}
