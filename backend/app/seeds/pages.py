@@ -21,6 +21,15 @@ def seed_pages():
     db.session.commit()
 
 
+  amount = 0
+  temp = []
+  while amount < 10:
+    temp.append(Page(title=fake.text(max_nb_chars=50), text=fake.text(max_nb_chars=100), book_id=int(f'10{amount}')))
+    amount += 1
+
+  for demo in temp:
+    db.session.add(demo)
+    db.session.commit()
 
 
 
