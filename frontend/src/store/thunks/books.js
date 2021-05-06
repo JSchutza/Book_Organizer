@@ -1,6 +1,6 @@
 
 
-import { getAllBooks } from "../actions/books.js";
+import { getAllBooks, getAllPriChars } from "../actions/books.js";
 
 
 
@@ -40,9 +40,26 @@ const thunk_getAllBooks = () => async (dispatch) => {
 
 
 
+const thunk_getAllPriChars = (bookId) => async (dispatch) => {
+  const response = await fetch(`/api/book/${bookId}/characters`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    return;
+  }
+  dispatch(getAllPriChars(data));
+};
+
+
+
 
 export {
   thunk_getAllBooks,
+  thunk_getAllPriChars,
 
 
 }

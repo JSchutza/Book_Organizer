@@ -1,5 +1,5 @@
 
-import { GET_USERS_BOOKS } from '../types'
+import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS } from '../types'
 
 
 
@@ -15,11 +15,19 @@ const booksReducer = (state = { books: null }, action) => {
 }
 
 
-
+const priCharReducer = (state = { characters: null }, action) => {
+  switch (action.type) {
+    case GET_USERS_PRI_CHARS:
+      return { ...action.characters };
+    default:
+      return state;
+  }
+}
 
 
 
 export {
   booksReducer,
+  priCharReducer,
 
 }
