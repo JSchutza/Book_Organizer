@@ -10,9 +10,23 @@ const CreateBookForm = () => {
   const dispatch = useDispatch();
 
 
-  const onSubmit = event => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     // dispatch thunk to make a book
+    const formData = new FormData();
+    formData.append("title", title);
+
+    const res = await fetch("/api/books", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (res.ok) {
+
+    } else {
+      console.log("error");
+    }
+
   }
 
 
