@@ -69,3 +69,41 @@ def delete_char(characterId):
   db.session.delete(the_character)
   db.session.commit()
   return { "characterId": characterId }
+
+
+
+
+# /api/characters/:characterId
+@character_routes.route("<int:characterId>", methods=["PUT"])
+@login_required
+def update_pub_char(characterId):
+  if "image" not in request.files:
+    return {"errors": "image required"}, 400
+
+  image = request.files["image"]
+  charactername = request.form['charactername']
+  characterlabel = request.form['characterlabel']
+
+  if not allowed_file(image.filename):
+      return {"errors": "file type not permitted"}, 400
+
+  image.filename = get_unique_filename(image.filename)
+
+  upload = upload_file(image)
+
+  if "url" not in upload:
+    return upload, 400
+
+  url = upload["url"]
+
+  old_char = PublicCharacter.query.get(characterId)
+  key = old_char.get_url()
+
+  if(key.startswith(get_s3_location())):
+    key = key[39:]
+    purge_aws_resource(key)
+
+  old_char.update_character_data(url, charactername, characterlabel)
+  db.session.add(old_char)
+  db.session.commit()
+  return {"url": url}
