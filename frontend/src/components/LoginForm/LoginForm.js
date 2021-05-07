@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/thunks/session.js';
 
+import styles from "./loginform.module.css"
 
 
 const LoginForm = () => {
@@ -22,7 +23,7 @@ const LoginForm = () => {
 
 
   return(
-    <div>
+    <div className={styles.login_containter}>
       <form className='' onSubmit={onSubmit}>
         <label>
           Email
