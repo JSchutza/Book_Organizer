@@ -9,7 +9,7 @@ import { thunk_getAllCharacters } from "../../store/thunks/characters.js"
 
 
 
-const NavBar = ({ userStatus }) => {
+const NavBar = ({ userStatus, setHideLoader }) => {
   const [ toggleLogin, setToggleLogin ] = useState(false);
   const [ toggleSignup, setToggleSignup ] = useState(false);
 
@@ -22,9 +22,11 @@ const NavBar = ({ userStatus }) => {
   const showLoginForm = (event) => {
     event.preventDefault();
     if (clickLogin === 0){
+      setHideLoader(true);
       setToggleLogin(true);
       setClickLogin(1);
     } else if (clickLogin === 1){
+      setHideLoader(false);
       setToggleLogin(false);
       setClickLogin(0);
     }
@@ -33,9 +35,11 @@ const NavBar = ({ userStatus }) => {
   const showSignupForm = (event) => {
     event.preventDefault();
     if (clickSignup === 0){
+      setHideLoader(true);
       setToggleSignup(true);
       setClickSignup(1);
     } else if (clickSignup === 1){
+      setHideLoader(false);
       setToggleSignup(false);
       setClickSignup(0);
     }
@@ -61,7 +65,8 @@ const NavBar = ({ userStatus }) => {
       </div>
 
 
-        { toggleLogin ? <div>
+        { toggleLogin ?
+        <div className={styles.log_in_wrap}>
           <LoginForm />
         </div>
         :
@@ -69,7 +74,8 @@ const NavBar = ({ userStatus }) => {
         }
 
 
-        { toggleSignup ? <div>
+        { toggleSignup ?
+        <div className={styles.sign_in_wrap}>
           <SignUpForm />
         </div>
         :

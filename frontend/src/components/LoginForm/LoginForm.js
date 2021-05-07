@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/thunks/session.js';
 
+import styles from "./loginform.module.css"
 
 
 const LoginForm = () => {
@@ -22,8 +23,8 @@ const LoginForm = () => {
 
 
   return(
-    <div>
-      <form className='' onSubmit={onSubmit}>
+    <div className={styles.login_containter}>
+      <form className={styles.the_form} onSubmit={onSubmit}>
         <label>
           Email
         <input
@@ -33,7 +34,7 @@ const LoginForm = () => {
           onChange={(event) => setEmail(event.target.value)}
           />
         </label>
-
+        <br />
         <label>
           Password
         <input

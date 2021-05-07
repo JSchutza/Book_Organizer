@@ -9,6 +9,7 @@ import {
   seventeen, eightteen, nineteen, twenty, twentyone, twentytwo, twentythree
 } from "./index.js";
 
+import styles from "./homeloader.module.css";
 
 
 
@@ -235,13 +236,16 @@ const HomeLoader = () => {
   return (
     <>
     {next_card ?
-    <div>
+        <div className={styles.main_box}>
         { toggleSlides ?
-        // individual card slide show view
+        // individual card view
         <div>
           {each_card ?
             <a href = '/' onClick = { (event) => handleClick(event) }>
-              <img src={each_card} alt='individual card' />
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              <img className={styles.card_view} src={each_card} alt='individual card' />
             </a>
              :
               <h1> Loading... </h1>
@@ -250,9 +254,15 @@ const HomeLoader = () => {
 
         :
         // slide show view
+
+        <div>
           <a href='/' onClick={(event) => pauseSlideShow(event, next_card.cardId)}>
-            <img src={next_card.cards} alt='slide show' />
+              <span></span>
+              <span></span>
+              <span></span>
+            <img className={styles.card_view} src={next_card.cards} alt='slide show' />
           </a>
+        </div>
         }
     </div>
     :

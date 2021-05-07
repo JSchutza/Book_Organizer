@@ -16,14 +16,22 @@ import { authenticate } from "./store/thunks/session.js";
 
 function App() {
   const dispatch = useDispatch();
-  const [loaded, setLoaded] = useState(false);
+  const [ loaded, setLoaded ] = useState(false);
+  const [ hideLoader, setHideLoader ] = useState(false);
   const user = useSelector((store) => store.usersReducer.user);
   const isSearch = useSelector((store) => store.searchTriggeredReducer.search)
+
+
+
+
 
   useEffect(() => {
       dispatch(authenticate());
       setLoaded(true);
   }, [dispatch]);
+
+
+
 
 
 
@@ -37,8 +45,10 @@ function App() {
     // the cool card loading component will go here *****
     return (
       <BrowserRouter>
-        <NavBar userStatus={false} />
-        <HomeLoader />
+        <NavBar userStatus={false} setHideLoader={setHideLoader}/>
+        { hideLoader ? <p></p> :
+          <HomeLoader />
+        }
       </BrowserRouter>
     );
   }
