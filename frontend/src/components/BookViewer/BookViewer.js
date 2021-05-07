@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks, thunk_getAllPriChars, thunk_getAllPages  } from "../../store/thunks/books";
-
+import CreateBookForm from "../CreateBookForm";
 
 
 
@@ -10,6 +10,7 @@ import { thunk_getAllBooks, thunk_getAllPriChars, thunk_getAllPages  } from "../
 
 
 const BookViewer = () => {
+  const [ showBookForm, setShowBookForm ] = useState(false);
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const dispatch = useDispatch();
 
@@ -20,11 +21,22 @@ const BookViewer = () => {
   },[dispatch]);
 
 
+
   const handleBookClick = (event, bookId) => {
     event.preventDefault();
     dispatch(thunk_getAllPriChars(bookId));
     dispatch(thunk_getAllPages(bookId));
   }
+
+
+
+  const createBookClick = event => {
+    event.preventDefault();
+
+  }
+
+
+
 
 
   if (bookInfo === null){
@@ -40,6 +52,22 @@ const BookViewer = () => {
 
   return (
     <>
+    <div>
+        <a href='/' onClick={(event) => createBookClick(event)}>
+          Create
+        </a>
+    </div>
+
+    <div>
+        {showBookForm ?
+          <CreateBookForm />
+        :
+          <p></p>
+        }
+    </div>
+
+
+
     <div>
       {Object.values(bookInfo).map(eachBook => (
         <>
