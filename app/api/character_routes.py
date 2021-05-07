@@ -2,8 +2,8 @@ from flask import Blueprint, redirect, request
 from app.models import db, PublicCharacter
 from flask_login import login_required, current_user
 from app.aws import allowed_file, get_unique_filename, upload_file, get_s3_location, purge_aws_resource
-# from app.forms import CreatePostForm, CreateCommentForm
 
+# from app.forms import CreatePostForm, CreateCommentForm
 
 
 character_routes = Blueprint("characters", __name__)

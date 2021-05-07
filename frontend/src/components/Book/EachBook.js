@@ -46,7 +46,7 @@ const EachBook = () => {
     <div>
       <PrivateCharacter />
         {showcharform ?
-          <CreatePriCharForm />
+          <CreatePriCharForm bookId={bookId} />
           :
           <p></p>
         }

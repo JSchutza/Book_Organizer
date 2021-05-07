@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
-const CreatePriCharForm = () => {
+const CreatePriCharForm = ({ bookId }) => {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [charname, setCharname] = useState("");
   const [charlabel, setCharlabel] = useState("");
@@ -29,19 +29,18 @@ const CreatePriCharForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    // history.push('/books');
     const formData = new FormData();
     formData.append("image", urlpreview);
     formData.append("charactername", charname);
     formData.append("characterlabel", charlabel);
 
-    const res = await fetch("/api/characters", {
+    const res = await fetch(`/api/book/${bookId}/character`, {
       method: "POST",
       body: formData,
     });
 
     if (res.ok) {
-
+// call a dispatch here to rerender page?
     } else {
       console.log("error");
     }
