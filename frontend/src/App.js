@@ -6,6 +6,7 @@ import CharacterSearch from "./components/CharacterSearch";
 import CharacterPage from "./components/CharacterPage";
 import HomeLoader from "./components/HomeLoader";
 import Profile from "./components/Profile";
+import BookViewer from "./components/BookViewer";
 import { EachBook } from "./components/Book";
 
 import { authenticate } from "./store/thunks/session.js";
@@ -81,6 +82,11 @@ function App() {
             <p></p>
           }
 
+          </Route>
+
+
+          <Route path='/books' exact={true}>
+            <BookViewer />
           </Route>
 
           <Route path='/books/:bookId' exact={true}>
