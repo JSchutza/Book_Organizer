@@ -27,9 +27,8 @@ const CreateCharacterForm = () => {
   }, [urlpreview]);
 
 
-  const onSubmit = async (e) => {
-  e.preventDefault();
-  // history.push('/books');
+  const onSubmit = async (event) => {
+    event.preventDefault();
     const formData = new FormData();
     formData.append("image", urlpreview);
     formData.append("charactername", charname);

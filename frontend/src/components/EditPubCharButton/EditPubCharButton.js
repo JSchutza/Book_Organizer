@@ -9,10 +9,10 @@ import { useDispatch } from 'react-redux';
 
 const EditPubCharButton = ({ charId }) => {
   const [ showForm, setShowForm ] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState("");
-  const [charname, setCharname] = useState("");
-  const [charlabel, setCharlabel] = useState("");
-  const [urlpreview, setUrlPreview] = useState(null);
+  const [ avatarUrl, setAvatarUrl ] = useState("");
+  const [ charname, setCharname ] = useState("");
+  const [ charlabel, setCharlabel ] = useState("");
+  const [ urlpreview, setUrlPreview ] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -31,9 +31,29 @@ const EditPubCharButton = ({ charId }) => {
 
 
 
-  const onSubmit = event => {
+  const onSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("image", urlpreview);
+    formData.append("charactername", charname);
+    formData.append("characterlabel", charlabel);
+
+    const res = await fetch(`/api/characters/${charId}`, {
+      method: "PUT",
+      body: formData,
+    });
+
+    if (res.ok) {
+
+    } else {
+      console.log("error");
+    }
+
   }
+
+
+
+
 
 
   const cancelImgChoice = () => {
