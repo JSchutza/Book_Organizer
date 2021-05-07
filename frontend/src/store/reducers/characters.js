@@ -10,8 +10,6 @@ const characterPageReducer = (state = { characters: null }, action) => {
   switch (action.type) {
     case ALL_CHARACTERS:
       return { ...action.characters };
-    case DELETE_USERS_PUB_CHARS:
-      return state;
     default:
       return state;
   }
@@ -28,6 +26,10 @@ const searchCharacterPageReducer = (state = { characters: null }, action) => {
       return { ...action.characters.public_characters };
     case CLEAR_SEARCH_PUB_CHARS:
       return { characters: null };
+    case DELETE_USERS_PUB_CHARS:
+      const id = action.character;
+      delete state[id];
+      return { ...state};
     default:
       return state;
   }
