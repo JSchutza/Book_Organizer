@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { signUp } from "../../store/thunks/session.js";
 
 
+import styles from "./signupform.module.css"
 
 
 const SignUpForm = () => {
@@ -40,9 +41,9 @@ const SignUpForm = () => {
 
 
   return (
-    <div className="">
+    <div className={styles.signup_containter}>
 
-      <form onSubmit={onSignUp}>
+      <form className={styles.the_form} onSubmit={onSignUp}>
 
         <div className="">
           <label>User Name</label>

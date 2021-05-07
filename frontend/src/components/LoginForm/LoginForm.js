@@ -24,7 +24,7 @@ const LoginForm = () => {
 
   return(
     <div className={styles.login_containter}>
-      <form className='' onSubmit={onSubmit}>
+      <form className={styles.the_form} onSubmit={onSubmit}>
         <label>
           Email
         <input
@@ -34,7 +34,7 @@ const LoginForm = () => {
           onChange={(event) => setEmail(event.target.value)}
           />
         </label>
-
+        <br />
         <label>
           Password
         <input

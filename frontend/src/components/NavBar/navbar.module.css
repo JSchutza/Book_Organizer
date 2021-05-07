@@ -1,61 +1,30 @@
-@media all and (min-width: 960px) {
+/* @media all and (min-width: 960px) { */
   .nav {
     background-color: #fefefe;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid black;
-    margin: 0 5px;
+    margin: 10% 15%;
   }
 
-  .nav_div_logoutbutton {
+
+  .log_in_wrap {
     display: flex;
-    justify-content: flex-end;
-    padding: 10px;
-    list-style: none;
-    color: blue;
-    background-color: white;
-    width: fit-content;
-  }
-
-  .nav_div_createpostbutton {
-    display: flex;
-    list-style: none;
-  }
-
-  .nav_div_profile_link {
-    justify-content: flex-start;
-    list-style: none;
-    color: blue;
-    width: fit-content;
-  }
-
-  .nav_div_home_link {
-    padding-right: 10px;
-    list-style: none;
-    color: blue;
-    width: fit-content;
-  }
-
-  .nav_div_search_bar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    list-style: none;
-    color: blue;
-    height: 20px;
-  }
-
-  .nav_buttons{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-  }
-
-  .log_sign {
     position: relative;
-    right: 20px;
+    width: 10%;
+    padding: 5%;
+    box-sizing: content-box;
+    left: 40%;
   }
-}
+
+  .sign_in_wrap {
+    display: flex;
+    position: relative;
+    width: 10%;
+    padding: 5%;
+    box-sizing: content-box;
+    left: 40%;
+  }
+
+/* } */

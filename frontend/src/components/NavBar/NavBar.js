@@ -35,9 +35,11 @@ const NavBar = ({ userStatus, setHideLoader }) => {
   const showSignupForm = (event) => {
     event.preventDefault();
     if (clickSignup === 0){
+      setHideLoader(true);
       setToggleSignup(true);
       setClickSignup(1);
     } else if (clickSignup === 1){
+      setHideLoader(false);
       setToggleSignup(false);
       setClickSignup(0);
     }
@@ -64,7 +66,7 @@ const NavBar = ({ userStatus, setHideLoader }) => {
 
 
         { toggleLogin ?
-        <div>
+        <div className={styles.log_in_wrap}>
           <LoginForm />
         </div>
         :
@@ -72,7 +74,8 @@ const NavBar = ({ userStatus, setHideLoader }) => {
         }
 
 
-        { toggleSignup ? <div>
+        { toggleSignup ?
+        <div className={styles.sign_in_wrap}>
           <SignUpForm />
         </div>
         :
