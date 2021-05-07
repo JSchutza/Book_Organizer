@@ -11,6 +11,8 @@ import CreateBookForm from "../CreateBookForm";
 
 const BookViewer = () => {
   const [ showBookForm, setShowBookForm ] = useState(false);
+  const [ clickShowForm, setShowForm ] = useState(0);
+
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const dispatch = useDispatch();
 
@@ -32,7 +34,13 @@ const BookViewer = () => {
 
   const createBookClick = event => {
     event.preventDefault();
-
+    if (clickShowForm === 0) {
+      setShowBookForm(true);
+      setShowForm(1);
+    } else if (clickShowForm === 1) {
+      setShowBookForm(false);
+      setShowForm(0);
+    }
   }
 
 
