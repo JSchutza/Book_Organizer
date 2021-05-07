@@ -11,9 +11,7 @@ const characterPageReducer = (state = { characters: null }, action) => {
     case ALL_CHARACTERS:
       return { ...action.characters };
     case DELETE_USERS_PUB_CHARS:
-      const id = action.character.id;
-      delete state[id];
-      return { ...state };
+      return state;
     default:
       return state;
   }

@@ -75,7 +75,7 @@ function App() {
           </Route>
 
           <Route path="/characters" exact={true}>
-            <CharacterSearch />
+          <CharacterSearch user={user} />
           { isSearch === null ?
             <CharacterPage />
             :

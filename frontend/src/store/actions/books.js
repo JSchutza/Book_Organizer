@@ -1,6 +1,6 @@
 
 
-import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS, GET_USERS_PAGES } from '../types'
+import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS, GET_USERS_PAGES, DELETE_BOOK } from '../types'
 
 
 
@@ -21,13 +21,20 @@ const getAllPriChars = (characters) => ({
 const getAllPages = (pages) => ({
   type: GET_USERS_PAGES,
   pages
-})
+});
+
+
+const deleteBook = (book) => ({
+  type: DELETE_BOOK,
+  book
+});
 
 
 export {
   getAllBooks,
   getAllPriChars,
   getAllPages,
+  deleteBook,
 
 
 

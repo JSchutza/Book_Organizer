@@ -7,7 +7,7 @@ import DeletePubCharButton from "../DeletePubCharButton";
 import EditPubCharButton from "../EditPubCharButton";
 
 
-const CharacterSearch = () => {
+const CharacterSearch = ({ user }) => {
   const [ searchId, setSearchId ] = useState("");
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
@@ -92,7 +92,7 @@ const CharacterSearch = () => {
                   <img src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
-                <DeletePubCharButton charId={eachChar.id} />
+                <DeletePubCharButton charId={eachChar.id} user={user} />
                 <EditPubCharButton charId={eachChar.id} />
               </>
             ))}
