@@ -51,3 +51,7 @@ class Book(db.Model):
         "username": User.query.get(self.creator_id).user_name,
         "created_at": self.created_at,
     }
+
+
+  def check_creator_id(self, to_check):
+    return int(self.creator_id) == int(to_check)

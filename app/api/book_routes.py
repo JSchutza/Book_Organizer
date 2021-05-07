@@ -29,3 +29,17 @@ def create_new_book():
     db.session.add(new_book)
     db.session.commit()
   return { "book": new_book.to_dict() }
+
+
+
+
+#  /api/books/:bookId
+@book_routes.route('/<int:bookId>', methods=['DELETE'])
+@login_required
+def delete_book(bookId):
+  the_book = Book.query.get(bookId)
+  if the_book.check_creator_id(current_user.get_id()):
+    db.session.delete(the_book)
+    db.session.commit()
+    return {"message": "book successfully deleted"}
+  return { "message": "Error, cannot remove a book that does not belong to the current user."}
