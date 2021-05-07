@@ -1,12 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
+import { useDispatch, useSelector } from 'react-redux';
+import { thunk_deleteUsersPubChars, thunk_getAllCharacters, thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 
 
-const DeletePubCharButton = ({ charId }) => {
+const DeletePubCharButton = ({ charId, user }) => {
   const [ confirmPopUp, setConfirmPopUp ] = useState(false);
   const dispatch = useDispatch();
+
+
+
 
 
   const showConfirmation = event => {
@@ -20,8 +23,9 @@ const DeletePubCharButton = ({ charId }) => {
   const handle = (event, choice) => {
     event.preventDefault();
     if (choice === true) {
-      // send the thunk to delete
       dispatch(thunk_deleteUsersPubChars(charId));
+      dispatch(thunk_searchForUsersPubChars(user.search_id));
+      dispatch(thunk_getAllCharacters());
     }
     setConfirmPopUp(choice);
   }

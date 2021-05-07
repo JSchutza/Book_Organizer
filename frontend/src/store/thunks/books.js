@@ -1,6 +1,6 @@
 
 
-import { getAllBooks, getAllPriChars, getAllPages } from "../actions/books.js";
+import { getAllBooks, getAllPriChars, getAllPages, deleteBook } from "../actions/books.js";
 
 
 
@@ -23,20 +23,6 @@ const thunk_getAllBooks = () => async (dispatch) => {
 
 
 
-
-
-// const thunk_deleteUsersPubChars = (characterId) => async (dispatch) => {
-//   const response = await fetch(`/api/characters/${characterId}`, {
-//     method: "DELETE",
-//     credentials: "include",
-//   });
-
-//   const data = await response.json();
-//   if (data.errors) {
-//     return;
-//   }
-//   dispatch(deleteUsersPubChars(characterId));
-// };
 
 
 
@@ -77,10 +63,31 @@ const thunk_getAllPages = (bookId) => async (dispatch) => {
 
 
 
+// /api/books/:bookId
+const thunk_deleteBook = (bookId) => async (dispatch) => {
+  const response = await fetch(`/api/books/${bookId}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    return;
+  }
+  dispatch(deleteBook(bookId));
+
+};
+
+
+
+
+
+
 export {
   thunk_getAllBooks,
   thunk_getAllPriChars,
   thunk_getAllPages,
+  thunk_deleteBook,
 
 
 }
