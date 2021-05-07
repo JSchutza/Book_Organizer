@@ -25,20 +25,6 @@ const thunk_getAllBooks = () => async (dispatch) => {
 
 
 
-// const thunk_deleteUsersPubChars = (characterId) => async (dispatch) => {
-//   const response = await fetch(`/api/characters/${characterId}`, {
-//     method: "DELETE",
-//     credentials: "include",
-//   });
-
-//   const data = await response.json();
-//   if (data.errors) {
-//     return;
-//   }
-//   dispatch(deleteUsersPubChars(characterId));
-// };
-
-
 
 const thunk_getAllPriChars = (bookId) => async (dispatch) => {
   const response = await fetch(`/api/book/${bookId}/characters`, {
@@ -89,6 +75,7 @@ const thunk_deleteBook = (bookId) => async (dispatch) => {
     return;
   }
   dispatch(deleteBook(bookId));
+
 };
 
 

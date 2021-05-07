@@ -10,7 +10,7 @@ const booksReducer = (state = { books: null }, action) => {
     case GET_USERS_BOOKS:
       return { ...action.books };
     case DELETE_BOOK:
-      const id = action.book.id;
+      const id = action.book;
       delete state[id];
       return { ...state };
     default:

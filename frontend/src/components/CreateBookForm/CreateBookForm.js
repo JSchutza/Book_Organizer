@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-
+import { thunk_getAllBooks } from "../../store/thunks/books.js";
 
 
 
@@ -22,7 +22,7 @@ const CreateBookForm = () => {
     });
 
     if (res.ok) {
-
+      dispatch(thunk_getAllBooks());
     } else {
       console.log("error");
     }
