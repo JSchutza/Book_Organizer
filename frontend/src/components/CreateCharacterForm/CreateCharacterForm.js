@@ -92,7 +92,7 @@ const CreateCharacterForm = () => {
 
 
       <label>
-      Character Name
+      Name
       <input
         type='text'
         name='character name'

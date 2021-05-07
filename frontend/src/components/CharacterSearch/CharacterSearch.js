@@ -4,6 +4,7 @@ import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
 
 import DeletePubCharButton from "../DeletePubCharButton";
+import EditPubCharButton from "../EditPubCharButton";
 
 
 const CharacterSearch = () => {
@@ -92,6 +93,7 @@ const CharacterSearch = () => {
                 </a>
 
                 <DeletePubCharButton charId={eachChar.id} />
+                <EditPubCharButton charId={eachChar.id} />
               </>
             ))}
       </div>
