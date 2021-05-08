@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import DeletePriCharButton from "../DeletePriCharButton";
 
 
 
 const PrivateCharacter = () => {
   const dispatch = useDispatch();
   const charInfo = useSelector((store) => store.priCharReducer.private_characters)
-  const [specificChar, setSpecificChar] = useState(false);
   const [charId, setCharId] = useState(false);
+  const [specificChar, setSpecificChar] = useState(false);
+
+
 
 
 
@@ -44,6 +47,7 @@ const PrivateCharacter = () => {
                 </li>
                 <img src={eachChar.avatar} alt={eachChar.character_name} />
               </a>
+            <DeletePriCharButton bookId={eachChar.book_id} charId={eachChar.id}/>
             </>
           ))
         }

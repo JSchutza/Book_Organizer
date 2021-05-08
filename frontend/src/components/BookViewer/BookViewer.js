@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { thunk_getAllBooks, thunk_getAllPriChars, thunk_getAllPages, thunk_deleteBook  } from "../../store/thunks/books";
 import CreateBookForm from "../CreateBookForm";
 
@@ -14,7 +15,7 @@ const BookViewer = () => {
   const [ clickShowForm, setShowForm ] = useState(0);
   const [ deletedBook, setDeletedBook ]  = useState(null);
   const [ clickDeleteBook, setClickDeleteBook ] = useState(0);
-
+  const history = useHistory();
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const dispatch = useDispatch();
 
@@ -30,6 +31,7 @@ const BookViewer = () => {
     event.preventDefault();
     dispatch(thunk_getAllPriChars(bookId));
     dispatch(thunk_getAllPages(bookId));
+    history.push(`/books/${bookId}`)
   }
 
 
