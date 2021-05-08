@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+
+.page_wrapper {
+  display: flex;
+  flex-flow: wrap;
+}
+
+
+
+
+.each_card {
+  position: relative;
+  box-sizing: border-box;
+  padding: 2%;
+}
+
+
+.each_img {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+}
+
+
+
+.each_detail {
+  display: flex;
+  position: absolute;
+  z-index: 1;
+  bottom: 10%;
+  right: 20%;
+}
