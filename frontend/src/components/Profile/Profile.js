@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
+import { showModal } from "../../store/actions/modal.js";
 import {Book} from "../Book";
-
+import Modal from "../Modal";
 
 
 
@@ -14,6 +15,7 @@ const Profile = () => {
 
 
   useEffect(() => {
+    dispatch(showModal(true))
     dispatch(thunk_getAllBooks());
   },[dispatch]);
 

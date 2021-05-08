@@ -1,11 +1,18 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+
+// reducer imports here
+import { modalReducer } from "./reducers/modal.js";
 import { usersReducer } from './reducers/session.js';
 import { characterPageReducer, searchCharacterPageReducer, searchTriggeredReducer } from "./reducers/characters.js";
 import { cardLoaderReducer, singleCardReducer } from "./reducers/cardloader.js";
 import { booksReducer, priCharReducer, pageReducer } from "./reducers/books.js";
 
+
+
+// root reducer here
 const rootReducer = combineReducers({
+  modalReducer,
   usersReducer,
   characterPageReducer,
   cardLoaderReducer,

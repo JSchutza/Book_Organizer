@@ -15,6 +15,11 @@ const GET_USERS_PAGES = "books/GET_USERS_PAGES";
 const DELETE_BOOK = "books/DELETE_BOOK";
 
 
+// for the modals here
+const SHOW_MODAL = 'modal/SHOW_MODAL';
+const HIDE_MODAL = 'modal/HIDE_MODAL';
+
+
 
 
 
@@ -36,6 +41,9 @@ export {
   GET_USERS_PRI_CHARS,
   GET_USERS_PAGES,
   DELETE_BOOK,
+  SHOW_MODAL,
+  HIDE_MODAL,
+
 
 
 }

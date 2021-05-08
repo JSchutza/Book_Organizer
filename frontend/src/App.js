@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import NavBar from "./components/NavBar";
 import CharacterSearch from "./components/CharacterSearch";
 import CharacterPage from "./components/CharacterPage";
@@ -47,6 +48,7 @@ function App() {
     return (
       <BrowserRouter>
         <NavBar userStatus={false} setHideLoader={setHideLoader}/>
+
         { hideLoader ? <p></p> :
           <HomeLoader />
         }

@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 const PrivateCharacter = () => {
   const dispatch = useDispatch();
   const charInfo = useSelector((store) => store.priCharReducer.private_characters)
-  const [specificChar, setSpecificChar] = useState(false);
   const [charId, setCharId] = useState(false);
+  const [specificChar, setSpecificChar] = useState(false);
 
 
 
