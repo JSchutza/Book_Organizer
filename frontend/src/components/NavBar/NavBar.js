@@ -6,7 +6,10 @@ import LogoutButton from "../LogoutButton"
 import styles from "./navbar.module.css";
 import { useDispatch } from "react-redux"
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js"
-
+import { FiLogIn } from 'react-icons/fi'
+import { ImUserPlus } from "react-icons/im";
+import { GiBookshelf, GiCardDraw } from "react-icons/gi";
+import { CgProfile } from "react-icons/cg";
 
 
 const NavBar = ({ userStatus, setHideLoader }) => {
@@ -59,8 +62,8 @@ const NavBar = ({ userStatus, setHideLoader }) => {
       <>
       <div>
         <nav className={styles.nav}>
-            <li> <a href='/' onClick={(event) => showLoginForm(event)}> Log-in </a> </li>
-            <li> <a href='/' onClick={(event) => showSignupForm(event)}> Sign-up </a> </li>
+            <li> <a href='/' onClick={(event) => showLoginForm(event)}> <FiLogIn /> </a> </li>
+            <li> <a href='/' onClick={(event) => showSignupForm(event)}> <ImUserPlus /> </a> </li>
         </nav>
       </div>
 
@@ -95,9 +98,9 @@ const NavBar = ({ userStatus, setHideLoader }) => {
     <>
     <div>
       <nav className={styles.nav}>
-          <li> <NavLink to="/characters" exact onClick={() => handleCharacterClick()} > Characters </NavLink></li>
-          <li> <NavLink to="/profile" exact> Profile </NavLink></li>
-          <li> <NavLink to="/books" exact> Books </NavLink></li>
+          <li> <NavLink to="/characters" exact onClick={() => handleCharacterClick()} > <GiCardDraw/> </NavLink></li>
+          <li> <NavLink to="/profile" exact> <CgProfile/> </NavLink></li>
+          <li> <NavLink to="/books" exact> <GiBookshelf/> </NavLink></li>
           <li> <LogoutButton /> </li>
       </nav>
     </div>

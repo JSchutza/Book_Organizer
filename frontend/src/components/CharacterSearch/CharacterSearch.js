@@ -5,6 +5,10 @@ import { searchTriggered, clearSearchResults } from "../../store/actions/charact
 
 import DeletePubCharButton from "../DeletePubCharButton";
 import EditPubCharButton from "../EditPubCharButton";
+import { IoIosArrowDropleftCircle } from "react-icons/io";
+import { BsSearch } from "react-icons/bs";
+
+
 
 
 const CharacterSearch = ({ user }) => {
@@ -76,7 +80,7 @@ const CharacterSearch = ({ user }) => {
       <div>
         <h1>Search Results</h1>
 
-          <a href='/' onClick={(event) => clearSearch(event)} > Back </a>
+          <a href='/' onClick={(event) => clearSearch(event)} > <IoIosArrowDropleftCircle/> </a>
 
       <div>
             {Object.values(char).map(eachChar => (
@@ -122,7 +126,7 @@ const CharacterSearch = ({ user }) => {
       </label>
 
       <div>
-          <a href='/' onClick={(event) => handleSearch(event) } > Search Characters </a>
+          <a href='/' onClick={(event) => handleSearch(event)} > <BsSearch/> </a>
       </div>
 
     </div>

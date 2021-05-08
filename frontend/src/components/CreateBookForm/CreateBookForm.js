@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
 
 
+import { AiOutlinePlus } from "react-icons/ai";
+
+
 
 
 const CreateBookForm = () => {
@@ -45,7 +48,7 @@ const CreateBookForm = () => {
           />
         </label>
 
-        <button> Create Book </button>
+          <button> <AiOutlinePlus/> </button>
       </form>
     </div>
     </>

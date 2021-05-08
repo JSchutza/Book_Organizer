@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_deleteUsersPrivateChars, thunk_getAllPriChars } from "../../store/thunks/books.js";
 
+import { RiDeleteBinFill } from "react-icons/ri";
+
 
 const DeletePriCharButton = ({ bookId, charId, user }) => {
   const [confirmPopUp, setConfirmPopUp] = useState(false);
@@ -34,7 +36,7 @@ const DeletePriCharButton = ({ bookId, charId, user }) => {
     <>
       { confirmPopUp === false ?
         <div>
-          <a href='/' onClick={(event) => showConfirmation(event)}> Delete </a>
+          <a href='/' onClick={(event) => showConfirmation(event)}> <RiDeleteBinFill/> </a>
         </div>
         :
         <div>

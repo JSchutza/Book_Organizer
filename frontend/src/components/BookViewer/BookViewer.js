@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { thunk_getAllBooks, thunk_getAllPriChars, thunk_getAllPages, thunk_deleteBook  } from "../../store/thunks/books";
 import CreateBookForm from "../CreateBookForm";
 
-
-
+import { BsFillPlusSquareFill } from "react-icons/bs";
+import { RiDeleteBinFill } from "react-icons/ri";
 
 
 
@@ -79,9 +79,7 @@ const BookViewer = () => {
   return (
     <>
     <div>
-        <a href='/' onClick={(event) => createBookClick(event)}>
-          Create
-        </a>
+        <a href='/' onClick={(event) => createBookClick(event)}> <BsFillPlusSquareFill/> </a>
     </div>
 
     <div>
@@ -103,7 +101,7 @@ const BookViewer = () => {
           </a>
         </li>
 
-          <li> <a href='/' onClick={(event) => handleDeleteBook(event, eachBook.id)}> Delete Book </a></li>
+          <li> <a href='/' onClick={(event) => handleDeleteBook(event, eachBook.id)}> <RiDeleteBinFill/> </a></li>
         </>
       ))}
     </div>
