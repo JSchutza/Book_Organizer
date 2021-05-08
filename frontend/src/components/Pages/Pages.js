@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-
+import DeletePageButton from "../DeletePageButton";
 
 
 const Pages = () => {
@@ -44,6 +44,7 @@ const Pages = () => {
 
               </li>
             </a>
+            <DeletePageButton bookId={eachPage.book_id} pageId={eachPage.id} />
           </>
         ))
         }

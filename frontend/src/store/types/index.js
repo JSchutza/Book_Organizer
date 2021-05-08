@@ -14,6 +14,8 @@ const GET_USERS_PRI_CHARS = "books/GET_USERS_PRI_CHARS";
 const GET_USERS_PAGES = "books/GET_USERS_PAGES";
 const DELETE_BOOK = "books/DELETE_BOOK";
 const DELETE_USERS_PRI_CHARS = 'characters/DELETE_USERS_PRI_CHARS'
+const DELETE_USERS_PAGE = 'books/DELETE_USERS_PAGE';
+
 
 // for the modals here
 const SHOW_MODAL = 'modal/SHOW_MODAL';
@@ -44,6 +46,7 @@ export {
   SHOW_MODAL,
   HIDE_MODAL,
   DELETE_USERS_PRI_CHARS,
+  DELETE_USERS_PAGE,
 
 
 
