@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import db, PrivateCharacter, Page
 from app.aws import allowed_file, get_unique_filename, upload_file, get_s3_location, purge_aws_resource
-
+from app.forms import PageForm
 # named this this way because the private characters and pages are scoped to a book --- this was faster
 
 resource_routes = Blueprint('resources', __name__)
@@ -75,3 +75,20 @@ def delete_char(bookId, characterId):
   db.session.delete(the_character)
   db.session.commit()
   return {"characterId": characterId}
+
+
+
+
+
+# /api/book/:bookId/page
+@resource_routes.route("/<int:bookId>/page", methods=["POST"])
+@login_required
+def create_page(bookId):
+  form = PageForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    new_page = Page(title=form.data['title'], text=form.data["text"], book_id=bookId)
+    db.session.add(new_page)
+    db.session.commit()
+  return { "page": new_page.to_dict() }
