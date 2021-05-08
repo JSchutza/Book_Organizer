@@ -61,3 +61,7 @@ class PrivateCharacter(db.Model):
         "book_title": Book.query.get(self.book_id).the_title,
         "created_at": self.created_at,
     }
+
+
+  def get_url(self):
+    return self.avatar

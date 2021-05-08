@@ -58,3 +58,20 @@ def create_pri_char(bookId):
   db.session.add(new_char)
   db.session.commit()
   return {"url": url}
+
+
+
+
+
+# /api/book/:bookId/character/:characterId
+@resource_routes.route("/<int:bookId>/character/<int:characterId>", methods=["DELETE"])
+@login_required
+def delete_char(bookId, characterId):
+  the_character = PrivateCharacter.query.get(characterId)
+  key = the_character.get_url()
+  if(key.startswith(get_s3_location())):
+    key = key[39:]
+    purge_aws_resource(key)
+  db.session.delete(the_character)
+  db.session.commit()
+  return {"characterId": characterId}

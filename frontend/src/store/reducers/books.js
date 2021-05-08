@@ -1,5 +1,5 @@
 
-import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS, GET_USERS_PAGES, DELETE_BOOK } from '../types'
+import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS, GET_USERS_PAGES, DELETE_BOOK, DELETE_USERS_PRI_CHARS } from '../types'
 
 
 
@@ -23,6 +23,10 @@ const priCharReducer = (state = { characters: null }, action) => {
   switch (action.type) {
     case GET_USERS_PRI_CHARS:
       return { ...action.characters };
+    case DELETE_USERS_PRI_CHARS:
+      const id = action.character
+      delete state[id];
+      return { ...state };
     default:
       return state;
   }
