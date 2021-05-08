@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux"
 import CreateCharacterForm from "../CreateCharacterForm";
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 
+import styles from "./characterpage.module.css"
+
 
 const CharacterPage = () => {
   const [ specificChar, setSpecificChar ] = useState(false);
@@ -88,28 +90,29 @@ const CharacterPage = () => {
   return (
     <>
     <div>
-      <h1> Characters </h1>
-    <div>
-
-    <div>
       <a href='/' onClick={(event) => createCharactersClick(event)}> Create Character </a>
     </div>
+    <h1> Characters </h1>
+
+
+    <div className={styles.page_wrapper}>
 
     {Object.values(allChars).map(eachChar => (
       <>
+      <div className={styles.each_card}>
         <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
-        <li key={eachChar.id}>
+        <li className={styles.each_detail} key={eachChar.id}>
           By: {eachChar.username}
           <br/>
           {eachChar.character_name}
           <br/>
           {eachChar.character_label}
         </li>
-        <img src={eachChar.avatar} alt={eachChar.character_name} />
+          <img className={styles.each_img} src={eachChar.avatar} alt={eachChar.character_name} />
       </a>
+      </div>
       </>
       ))}
-      </div>
 
     </div>
     </>

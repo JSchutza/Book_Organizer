@@ -65,17 +65,21 @@ function App() {
             <h1>Home</h1>
           </Route>
 
+
           <Route path="/profile" exact={true}>
             <h1>Profile</h1>
             <Profile />
           </Route>
 
+
           <Route path="/profile/:id">
             <h1>Each individual users profile page</h1>
           </Route>
 
+
           <Route path="/characters" exact={true}>
-          <CharacterSearch user={user} />
+            <CharacterSearch user={user} />
+
           { isSearch === null ?
             <CharacterPage />
             :
@@ -85,13 +89,16 @@ function App() {
           </Route>
 
 
+
           <Route path='/books' exact={true}>
             <BookViewer />
           </Route>
 
+
           <Route path='/books/:bookId' exact={true}>
             <EachBook />
           </Route>
+
 
         </Switch>
     </BrowserRouter>
