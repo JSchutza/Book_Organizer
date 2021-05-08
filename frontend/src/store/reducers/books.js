@@ -1,5 +1,5 @@
 
-import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS, GET_USERS_PAGES, DELETE_BOOK, DELETE_USERS_PRI_CHARS } from '../types'
+import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS, GET_USERS_PAGES, DELETE_BOOK, DELETE_USERS_PRI_CHARS, DELETE_USERS_PAGE } from '../types'
 
 
 
@@ -36,6 +36,10 @@ const pageReducer = (state = { pages: null }, action) => {
   switch (action.type) {
     case GET_USERS_PAGES:
       return { ...action.pages };
+    case DELETE_USERS_PAGE:
+      const id = action.page;
+      delete state[id];
+      return { ...state };
     default:
       return state;
   }

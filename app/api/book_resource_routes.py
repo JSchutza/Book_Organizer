@@ -92,3 +92,16 @@ def create_page(bookId):
     db.session.add(new_page)
     db.session.commit()
   return { "page": new_page.to_dict() }
+
+
+
+
+
+# /api/book/:bookId/page/:pageId
+@resource_routes.route("/<int:bookId>/page/<int:pageId>", methods=["DELETE"])
+@login_required
+def delete_page(bookId, pageId):
+  the_page = Page.query.get(pageId)
+  db.session.delete(the_page)
+  db.session.commit()
+  return { "pageId": pageId }

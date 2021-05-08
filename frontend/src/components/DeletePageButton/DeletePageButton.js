@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { thunk_deletePage, thunk_getAllPages } from "../../store/thunks/books.js";
 
 import { RiDeleteBinFill } from "react-icons/ri";
 
@@ -23,8 +23,8 @@ const DeletePageButton = ({ bookId, pageId }) => {
   const handle = (event, choice) => {
     event.preventDefault();
     if (choice === true) {
-      // dispatch(thunk_deleteUsersPrivateChars(bookId, pageId));
-      // dispatch(thunk_getAllPriChars(bookId));
+      dispatch(thunk_deletePage(bookId, pageId));
+      dispatch(thunk_getAllPages(bookId));
     }
     setConfirmPopUp(choice);
   }
