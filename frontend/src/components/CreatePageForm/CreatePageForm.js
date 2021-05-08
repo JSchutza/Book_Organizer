@@ -18,7 +18,7 @@ const CreatePageForm = ({ bookId }) => {
     formData.append("title", title);
     formData.append("text", text);
 
-    const res = await fetch(`/api/book/${bookId}/character`, {
+    const res = await fetch(`/api/book/${bookId}/page`, {
       method: "POST",
       body: formData,
     });
