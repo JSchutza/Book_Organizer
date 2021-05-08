@@ -6,6 +6,11 @@ import { signUp } from "../../store/thunks/session.js";
 import styles from "./signupform.module.css"
 
 
+import { IoIosPower } from "react-icons/io";
+
+
+
+
 const SignUpForm = () => {
   const dispatch = useDispatch();
 
@@ -94,7 +99,7 @@ const SignUpForm = () => {
           ></input>
         </div>
 
-        <button className="" type="submit">Sign Up</button>
+        <button className="" type="submit"> <IoIosPower /> </button>
 
       </form>
     </div>

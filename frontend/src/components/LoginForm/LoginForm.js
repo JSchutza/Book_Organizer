@@ -6,6 +6,11 @@ import { login } from '../../store/thunks/session.js';
 
 import styles from "./loginform.module.css"
 
+import { IoIosPower } from "react-icons/io";
+
+
+
+
 
 const LoginForm = () => {
   const [ email, setEmail ] = useState("");
@@ -46,7 +51,7 @@ const LoginForm = () => {
         />
         </label>
 
-        <button> Login </button>
+        <button> <IoIosPower/> </button>
       </form>
     </div>
   )

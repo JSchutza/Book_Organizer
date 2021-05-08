@@ -6,6 +6,9 @@ import CreatePriCharForm from "../CreatePriCharForm";
 import Pages from "../Pages";
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
 
+import { BsFillPersonPlusFill } from "react-icons/bs";
+
+
 
 const EachBook = () => {
   const [ showcharform, setShowcharform ] = useState(false);
@@ -40,7 +43,7 @@ const EachBook = () => {
   return (
     <>
     <div>
-        <a href='/' onClick={(event) => handleCreateChar(event)}> Create Character </a>
+        <a href='/' onClick={(event) => handleCreateChar(event)}> <BsFillPersonPlusFill/> </a>
     </div>
 
     <div>
