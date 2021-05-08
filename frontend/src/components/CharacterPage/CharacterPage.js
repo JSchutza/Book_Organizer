@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux"
 import CreateCharacterForm from "../CreateCharacterForm";
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 
+import ToolTip from "../ToolTip";
 
 import { BsFillPlusSquareFill } from "react-icons/bs";
-
 import styles from "./characterpage.module.css"
 
 
@@ -95,14 +95,16 @@ const CharacterPage = () => {
 
   return (
     <>
-    <div>
+    <div className={styles.create_button}>
+      <ToolTip content='Create'>
         <a href='/' onClick={(event) => createCharactersClick(event)}> <BsFillPlusSquareFill/> </a>
+      </ToolTip>
     </div>
+
     <h1> Characters </h1>
 
 
     <div className={styles.page_wrapper}>
-
     {Object.values(allChars).map(eachChar => (
       <>
       <div className={styles.each_card}>
@@ -119,8 +121,8 @@ const CharacterPage = () => {
       </div>
       </>
       ))}
-
     </div>
+
     </>
   )
 

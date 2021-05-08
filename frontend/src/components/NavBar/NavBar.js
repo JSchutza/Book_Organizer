@@ -10,6 +10,10 @@ import { FiLogIn } from 'react-icons/fi'
 import { ImUserPlus } from "react-icons/im";
 import { GiBookshelf, GiCardDraw } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
+import ToolTip from "../ToolTip";
+
+
+
 
 
 const NavBar = ({ userStatus, setHideLoader }) => {
@@ -18,6 +22,10 @@ const NavBar = ({ userStatus, setHideLoader }) => {
 
   const [ clickLogin, setClickLogin ] = useState(0);
   const [ clickSignup, setClickSignup ] = useState(0);
+
+
+
+
   const dispatch = useDispatch();
 
 
@@ -57,15 +65,29 @@ const NavBar = ({ userStatus, setHideLoader }) => {
 
 
 
+
+
   if (userStatus === false){
     return (
       <>
       <div>
         <nav className={styles.nav}>
-            <li> <a href='/' onClick={(event) => showLoginForm(event)}> <FiLogIn /> </a> </li>
-            <li> <a href='/' onClick={(event) => showSignupForm(event)}> <ImUserPlus /> </a> </li>
+
+              <ToolTip content={'Login'} >
+              <li> <a href='/' onClick={(event) => showLoginForm(event)} > <FiLogIn /> </a> </li>
+            </ToolTip>
+
+
+
+            <ToolTip content={'Signup'} >
+              <li> <a href='/' onClick={(event) => showSignupForm(event)}> <ImUserPlus /> </a> </li>
+            </ToolTip>
+
         </nav>
       </div>
+
+
+
 
 
         { toggleLogin ?
@@ -98,10 +120,22 @@ const NavBar = ({ userStatus, setHideLoader }) => {
     <>
     <div>
       <nav className={styles.nav}>
+          <ToolTip content={'Characters'} >
           <li> <NavLink to="/characters" exact onClick={() => handleCharacterClick()} > <GiCardDraw/> </NavLink></li>
+          </ToolTip>
+
+          <ToolTip content={'Profile'} >
           <li> <NavLink to="/profile" exact> <CgProfile/> </NavLink></li>
+          </ToolTip>
+
+          <ToolTip content={'Books'} >
           <li> <NavLink to="/books" exact> <GiBookshelf/> </NavLink></li>
+          </ToolTip>
+
+          <ToolTip content={'Logout'} >
           <li> <LogoutButton /> </li>
+          </ToolTip>
+
       </nav>
     </div>
     </>
