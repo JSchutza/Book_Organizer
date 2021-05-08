@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { thunk_deleteUsersPrivateChars } from "../../store/thunks/books.js";
+import { thunk_deleteUsersPrivateChars, thunk_getAllPriChars } from "../../store/thunks/books.js";
 
 
 const DeletePriCharButton = ({ bookId, charId, user }) => {
@@ -22,6 +22,7 @@ const DeletePriCharButton = ({ bookId, charId, user }) => {
     event.preventDefault();
     if (choice === true) {
       dispatch(thunk_deleteUsersPrivateChars(bookId, charId));
+      dispatch(thunk_getAllPriChars(bookId));
     }
     setConfirmPopUp(choice);
   }

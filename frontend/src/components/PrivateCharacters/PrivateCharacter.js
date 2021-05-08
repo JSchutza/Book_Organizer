@@ -12,6 +12,8 @@ const PrivateCharacter = () => {
 
 
 
+
+
   const showSpecificChar = (event, the_char_id) => {
     event.preventDefault();
     setCharId(the_char_id);
