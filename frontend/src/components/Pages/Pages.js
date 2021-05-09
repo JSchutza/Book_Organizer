@@ -5,6 +5,9 @@ import Modal from "../Modal";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 
 
+
+
+
 const Pages = () => {
   const dispatch = useDispatch();
   const pageInfo = useSelector((store) => store.pageReducer.pages)
