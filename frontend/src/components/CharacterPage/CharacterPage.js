@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
-import CreateCharacterForm from "../CreateCharacterForm";
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
+import { showModal, contentModal } from "../../store/actions/modal.js";
 
 import ToolTip from "../ToolTip";
 
@@ -16,7 +16,6 @@ import styles from "./characterpage.module.css"
 const CharacterPage = () => {
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
-  const [ openModal, setOpenModal ] = useState(false);
   const allChars = useSelector((store) => store.characterPageReducer.characters)
   const dispatch = useDispatch();
 
@@ -43,13 +42,11 @@ const CharacterPage = () => {
 
   const createCharactersClick = (event) => {
     event.preventDefault();
-    setOpenModal(true);
+    dispatch(contentModal("CreatePubChar"));
+    dispatch(showModal());
   }
 
-  const closeModalModal = (event) => {
-    event.preventDefault();
-    setOpenModal(false);
-  }
+
 
 
   if(allChars === null) {
@@ -81,16 +78,16 @@ const CharacterPage = () => {
 
 
 
-  if(openModal === true){
-    return(
-      <>
-        <a href='/' onClick={(event) => closeModalModal(event)}>
-          <h1> Create a Character </h1>
-        </a>
-        <CreateCharacterForm />
-      </>
-    )
-  }
+  // if(openModal === true){
+  //   return(
+  //     <>
+  //       <a href='/' onClick={(event) => closeModalModal(event)}>
+  //         <h1> Create a Character </h1>
+  //       </a>
+  //       <CreateCharacterForm />
+  //     </>
+  //   )
+  // }
 
 
   return (

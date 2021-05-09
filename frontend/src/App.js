@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
 import CharacterSearch from "./components/CharacterSearch";
 import CharacterPage from "./components/CharacterPage";
-
+import Modal from "./components/Modal";
 import Profile from "./components/Profile";
 import BookViewer from "./components/BookViewer";
 import { EachBook } from "./components/Book";
 import { hideLoader } from "./store/actions/loader.js";
-
+import { hideModal } from "./store/actions/modal.js";
 import { authenticate } from "./store/thunks/session.js";
 
 
@@ -27,6 +27,8 @@ function App() {
 
   useEffect(() => {
     dispatch(authenticate());
+    dispatch(hideLoader());
+    dispatch(hideModal());
     setLoaded(true);
   }, [dispatch]);
 
@@ -42,10 +44,17 @@ function App() {
 
 
   if (user === null) {
+
+
+    dispatch(hideModal());
+
     return (
+      <>
       <BrowserRouter>
         <NavBar userStatus={false}/>
       </BrowserRouter>
+      <Modal />
+      </>
     );
   }
 
@@ -53,13 +62,14 @@ function App() {
 if (user !== null) {
 
   dispatch(hideLoader());
+  dispatch(hideModal());
 
   return (
     <BrowserRouter>
       <NavBar userStatus={true} />
         <Switch>
           <Route path="/" exact>
-            <h1>Home</h1>
+            <Redirect to="/profile" />
           </Route>
 
 

@@ -9,7 +9,6 @@ import { ImUserPlus } from "react-icons/im";
 import { GiBookshelf, GiCardDraw } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import ToolTip from "../ToolTip";
-import Modal from "../Modal";
 import { showModal, contentModal } from "../../store/actions/modal.js";
 import { hideLoader } from "../../store/actions/loader.js";
 
@@ -62,7 +61,6 @@ const NavBar = ({ userStatus }) => {
         </nav>
       </div>
 
-      <Modal />
 
     </>
     );
@@ -94,6 +92,8 @@ const NavBar = ({ userStatus }) => {
 
       </nav>
     </div>
+
+
     </>
   );
 
