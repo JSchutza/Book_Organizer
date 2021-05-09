@@ -2,6 +2,7 @@
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
 import { RiDeleteBinFill } from "react-icons/ri";
+import ToolTip from "../ToolTip";
 
 import React, { useState, useEffect } from 'react';
 import Modal from "../Modal";
@@ -11,10 +12,6 @@ import { searchTriggered, clearSearchResults } from "../../store/actions/charact
 import { showModal, contentModal } from "../../store/actions/modal.js";;
 
 
-
-
-// import EditPubCharButton from "../EditPubCharButton";
-// import ToolTip from "../ToolTip";
 
 
 
@@ -67,6 +64,13 @@ const CharacterSearch = ({ user }) => {
   }
 
 
+  const handleUpdate = event => {
+    event.preventDefault();
+    dispatch(contentModal("EditPubChar"));
+    dispatch(showModal());
+  }
+
+
 
   if(specificChar === true) {
     return (
@@ -95,8 +99,9 @@ const CharacterSearch = ({ user }) => {
       <>
       <div>
         <h1>Search Results</h1>
-
-          <a href='/' onClick={(event) => clearSearch(event)} > <IoIosArrowDropleftCircle/> </a>
+          <ToolTip content={"Back"} >
+            <a href='/' onClick={(event) => clearSearch(event)} > <IoIosArrowDropleftCircle/> </a>
+          </ToolTip>
 
       <div>
             {Object.values(char).map(eachChar => (
@@ -113,8 +118,9 @@ const CharacterSearch = ({ user }) => {
                 </a>
 
                 <a href='/' onClick={(event) => handleDelete(event)}> <RiDeleteBinFill /> </a>
+                <a href='/' onClick={(event) => handleUpdate(event)}> Update </a>
                 <Modal deleteCharId={eachChar.id} user={user} />
-                {/* <EditPubCharButton charId={eachChar.id} /> */}
+                <Modal editCharId={eachChar.id} user={user} />
               </>
             ))}
       </div>
@@ -143,7 +149,9 @@ const CharacterSearch = ({ user }) => {
       </label>
 
       <div>
-          <a href='/' onClick={(event) => handleSearch(event)} > <BsSearch/> </a>
+          <ToolTip content={"Search"} >
+            <a href='/' onClick={(event) => handleSearch(event)} > <BsSearch/> </a>
+          </ToolTip>
       </div>
 
     </div>

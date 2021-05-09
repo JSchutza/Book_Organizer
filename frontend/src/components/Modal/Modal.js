@@ -8,7 +8,7 @@ import CreateCharacterForm from "../CreateCharacterForm";
 import CreatePriCharForm from "../CreatePriCharForm";
 import CreatePageForm from "../CreatePageForm";
 import DeletePubCharButton from "../DeletePubCharButton";
-
+import EditPubCharButton from "../EditPubCharButton";
 
 
 import { showLoader } from "../../store/actions/loader.js";
@@ -20,7 +20,7 @@ import styles from "./modal.module.css";
 
 
 
-const Modal = ({ bookId, deleteCharId, user }) =>  {
+const Modal = ({ bookId, deleteCharId, editCharId, user }) =>  {
   const dispatch = useDispatch();
   const display = useSelector(store => store.modalReducer.display);
   const content = useSelector(store => store.modalReducer.the_content)
@@ -86,6 +86,13 @@ const Modal = ({ bookId, deleteCharId, user }) =>  {
 
         {content === "DeletePubChar" ?
           <DeletePubCharButton charId={deleteCharId} user={user} />
+        :
+        <p></p>
+        }
+
+
+        {content === "EditPubChar" ?
+          <EditPubCharButton charId={editCharId} searchId={user.search_id} />
         :
         <p></p>
         }
