@@ -4,6 +4,7 @@ import { hideModal, contentModal } from '../../store/actions/modal.js';
 import { BsFillBackspaceFill } from "react-icons/bs";
 import LoginForm from "../LoginForm";
 import SignUpForm from "../SignupForm"
+import CreateCharacterForm from "../CreateCharacterForm";
 
 import { showLoader } from "../../store/actions/loader.js";
 
@@ -27,7 +28,11 @@ const Modal = () =>  {
       dispatch(contentModal(null))
       dispatch(hideModal());
       dispatch(showLoader());
+    } else {
+      dispatch(contentModal(null))
+      dispatch(hideModal());
     }
+
   };
 
 
@@ -52,6 +57,14 @@ const Modal = () =>  {
         :
         <p> </p>
         }
+
+
+        {content === "CreatePubChar" ?
+          <CreateCharacterForm />
+        :
+        <p></p>
+        }
+
         <a href='/' onClick={event => onClose(event)}> <BsFillBackspaceFill/> </a>
     </div>
     </>

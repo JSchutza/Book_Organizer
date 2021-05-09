@@ -9,8 +9,7 @@ import { ImUserPlus } from "react-icons/im";
 import { GiBookshelf, GiCardDraw } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import ToolTip from "../ToolTip";
-import Modal from "../Modal";
-import { showModal, contentModal } from "../../store/actions/modal.js";
+import { showModal, contentModal, hideModal } from "../../store/actions/modal.js";
 import { hideLoader } from "../../store/actions/loader.js";
 
 
@@ -36,9 +35,21 @@ const NavBar = ({ userStatus }) => {
 
   const handleCharacterClick = () => {
     dispatch(thunk_getAllCharacters());
+    dispatch(hideModal());
+    dispatch(contentModal(null))
   }
 
 
+
+  const handleProfileClick = () => {
+    dispatch(hideModal());
+    dispatch(contentModal(null))
+  }
+
+  const handleBooksClick = () => {
+    dispatch(hideModal());
+    dispatch(contentModal(null))
+  }
 
 
 
@@ -62,7 +73,6 @@ const NavBar = ({ userStatus }) => {
         </nav>
       </div>
 
-      <Modal />
 
     </>
     );
@@ -81,11 +91,11 @@ const NavBar = ({ userStatus }) => {
           </ToolTip>
 
           <ToolTip content={'Profile'} >
-          <li> <NavLink to="/profile" exact> <CgProfile/> </NavLink></li>
+            <li> <NavLink to="/profile" exact onClick={() => handleProfileClick()}> <CgProfile/> </NavLink></li>
           </ToolTip>
 
           <ToolTip content={'Books'} >
-          <li> <NavLink to="/books" exact> <GiBookshelf/> </NavLink></li>
+            <li> <NavLink to="/books" exact onClick={() => handleBooksClick()}> <GiBookshelf/> </NavLink></li>
           </ToolTip>
 
           <ToolTip content={'Logout'} >
@@ -94,6 +104,8 @@ const NavBar = ({ userStatus }) => {
 
       </nav>
     </div>
+
+
     </>
   );
 
