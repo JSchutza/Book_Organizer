@@ -79,16 +79,7 @@ const CharacterPage = () => {
 
 
 
-  // if(openModal === true){
-  //   return(
-  //     <>
-  //       <a href='/' onClick={(event) => closeModalModal(event)}>
-  //         <h1> Create a Character </h1>
-  //       </a>
-  //       <CreateCharacterForm />
-  //     </>
-  //   )
-  // }
+
 
 
   return (

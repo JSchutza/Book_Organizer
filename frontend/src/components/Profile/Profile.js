@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
-import { showModal } from "../../store/actions/modal.js";
+import { hideModal } from "../../store/actions/modal.js";
 import {Book} from "../Book";
-import Modal from "../Modal";
+
 
 
 
@@ -15,17 +15,18 @@ const Profile = () => {
 
 
   useEffect(() => {
-    dispatch(showModal(true))
+    dispatch(hideModal());
     dispatch(thunk_getAllBooks());
   },[dispatch]);
 
 
 
-  console.log(bookInfo);
+
 
   return (
     <>
     <div>
+      {/* users info here */}
       <div>
         {Object.values(userInfo).map(each => (
           <>
@@ -44,6 +45,7 @@ const Profile = () => {
         <h2>Recently Created Books</h2>
       </div>
 
+      {/* book info here */}
       <div>
         <h2>Books</h2>
           {bookInfo ?
