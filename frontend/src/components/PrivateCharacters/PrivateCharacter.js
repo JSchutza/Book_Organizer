@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import DeletePriCharButton from "../DeletePriCharButton";
+import { RiDeleteBinFill } from "react-icons/ri";
+import Modal from "../Modal";
+import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+
+
 
 
 
 const PrivateCharacter = () => {
   const dispatch = useDispatch();
   const charInfo = useSelector((store) => store.priCharReducer.private_characters)
-  const [charId, setCharId] = useState(false);
-  const [specificChar, setSpecificChar] = useState(false);
 
 
 
-
-
-  const showSpecificChar = (event, the_char_id) => {
+  const handleDelete = (event, charId) => {
     event.preventDefault();
-    setCharId(the_char_id);
-    setSpecificChar(true);
+    dispatch(contentModal("DeletePriChar"));
+    dispatch(dataModal(charId));
+    dispatch(showModal());
   }
+
 
 
 
@@ -37,7 +39,7 @@ const PrivateCharacter = () => {
       <h1>Your Characters</h1>
         {Object.values(charInfo).map(eachChar => (
             <>
-              <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id)}>
+              <a href='/' onClick={event => event.preventDefault()}>
                 <li key={eachChar.id}>
 
                   <br />
@@ -47,7 +49,10 @@ const PrivateCharacter = () => {
                 </li>
                 <img src={eachChar.avatar} alt={eachChar.character_name} />
               </a>
-            <DeletePriCharButton bookId={eachChar.book_id} charId={eachChar.id}/>
+
+
+            <a href='/' onClick={event => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </a>
+            <Modal bookId={eachChar.book_id} />
             </>
           ))
         }

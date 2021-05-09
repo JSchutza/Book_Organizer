@@ -10,7 +10,7 @@ import CreatePageForm from "../CreatePageForm";
 import DeletePubCharButton from "../DeletePubCharButton";
 import EditPubCharButton from "../EditPubCharButton";
 import DeletePageButton from "../DeletePageButton";
-
+import DeletePriCharButton from "../DeletePriCharButton";
 
 
 import { showLoader } from "../../store/actions/loader.js";
@@ -102,6 +102,13 @@ const Modal = ({ bookId, user }) =>  {
 
         {content === "DeletePage" && data ?
           <DeletePageButton bookId={bookId} pageId={data} />
+        :
+        <p></p>
+        }
+
+
+        {content === "DeletePriChar" && data ?
+          <DeletePriCharButton bookId={bookId} charId={data} />
         :
         <p></p>
         }

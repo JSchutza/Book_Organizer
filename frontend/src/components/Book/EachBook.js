@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import PrivateCharacter from "../PrivateCharacters";
 import Pages from "../Pages";
 import Modal from "../Modal";
 
-import CreatePageForm from "../CreatePageForm";
+
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
 import { showModal, contentModal } from "../../store/actions/modal.js";
 
@@ -66,7 +66,7 @@ const EachBook = () => {
     </div>
 
     <div>
-      <Pages/>
+      <Pages bookId={bookId} />
     </div>
 
 

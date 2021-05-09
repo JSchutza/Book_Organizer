@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { thunk_deletePage, thunk_getAllPages } from "../../store/thunks/books.js";
 import { hideModal, contentModal, dataModal } from "../../store/actions/modal.js";
-
+import { triggerRender } from "../../store/actions/render.js";
 
 
 const DeletePageButton = ({ bookId, pageId }) => {
@@ -18,6 +18,7 @@ const DeletePageButton = ({ bookId, pageId }) => {
       dispatch(hideModal());
       dispatch(contentModal(null));
       dispatch(dataModal(null));
+      dispatch(triggerRender(pageId));
     }
     dispatch(hideModal());
   }
