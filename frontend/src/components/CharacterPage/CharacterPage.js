@@ -5,6 +5,7 @@ import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { showModal, contentModal } from "../../store/actions/modal.js";
 
 import ToolTip from "../ToolTip";
+import Modal from "../Modal";
 
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import styles from "./characterpage.module.css"
@@ -92,6 +93,8 @@ const CharacterPage = () => {
 
   return (
     <>
+    <Modal />
+
     <div className={styles.create_button}>
       <ToolTip content='Create'>
         <a href='/' onClick={(event) => createCharactersClick(event)}> <BsFillPlusSquareFill/> </a>

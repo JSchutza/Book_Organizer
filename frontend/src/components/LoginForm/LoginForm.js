@@ -7,7 +7,7 @@ import { login } from '../../store/thunks/session.js';
 import styles from "./loginform.module.css"
 
 import { IoIosPower } from "react-icons/io";
-import { hideModal } from "../../store/actions/modal.js";
+import { hideModal, contentModal } from "../../store/actions/modal.js";
 
 
 
@@ -21,6 +21,7 @@ const LoginForm = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(hideModal());
+    dispatch(contentModal(null));
     dispatch(login(email, password));
   }
 

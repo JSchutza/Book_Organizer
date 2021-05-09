@@ -28,7 +28,11 @@ const Modal = () =>  {
       dispatch(contentModal(null))
       dispatch(hideModal());
       dispatch(showLoader());
+    } else {
+      dispatch(contentModal(null))
+      dispatch(hideModal());
     }
+
   };
 
 
