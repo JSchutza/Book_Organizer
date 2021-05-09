@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import PrivateCharacter from "../PrivateCharacters";
-import CreatePriCharForm from "../CreatePriCharForm";
 import Pages from "../Pages";
+import Modal from "../Modal";
+
 import CreatePageForm from "../CreatePageForm";
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
+import { showModal, contentModal } from "../../store/actions/modal.js";
 
+// icon imports here
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { BsFileEarmarkPlus } from "react-icons/bs";
 
@@ -18,13 +21,6 @@ import { BsFileEarmarkPlus } from "react-icons/bs";
 
 
 const EachBook = () => {
-  const [ showcharform, setShowcharform ] = useState(false);
-  const [ clickcreatechar, setClickCreateChar ] = useState(0);
-
-  const [ showpageform, setShowpageform ] = useState(false);
-  const [ clickcreatepage, setClickCreatePage ] = useState(0);
-
-
   const dispatch = useDispatch();
   const { bookId } = useParams();
 
@@ -39,25 +35,16 @@ const EachBook = () => {
 
   const handleCreateChar = event => {
     event.preventDefault();
-    if (clickcreatechar === 0) {
-      setShowcharform(true);
-      setClickCreateChar(1);
-    } else if (clickcreatechar === 1) {
-      setShowcharform(false);
-      setClickCreateChar(0);
-    }
+    dispatch(contentModal("CreatePriChar"));
+    dispatch(showModal());
   }
+
 
 
   const handleCreatePage = event => {
     event.preventDefault();
-    if (clickcreatepage === 0) {
-      setShowpageform(true);
-      setClickCreatePage(1);
-    } else if (clickcreatepage === 1) {
-      setShowpageform(false);
-      setClickCreatePage(0);
-    }
+    dispatch(contentModal("CreatePage"));
+    dispatch(showModal());
   }
 
 
@@ -74,25 +61,16 @@ const EachBook = () => {
     </div>
 
 
-
-
     <div>
       <PrivateCharacter />
-        {showcharform ?
-          <CreatePriCharForm bookId={bookId} />
-          :
-          <p></p>
-        }
     </div>
 
     <div>
       <Pages/>
-        {showpageform ?
-          <CreatePageForm bookId={bookId} />
-        :
-        <p></p>
-        }
     </div>
+
+
+      <Modal bookId={bookId} />
     </>
   )
 };

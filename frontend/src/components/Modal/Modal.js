@@ -5,6 +5,9 @@ import { BsFillBackspaceFill } from "react-icons/bs";
 import LoginForm from "../LoginForm";
 import SignUpForm from "../SignupForm"
 import CreateCharacterForm from "../CreateCharacterForm";
+import CreatePriCharForm from "../CreatePriCharForm";
+import CreatePageForm from "../CreatePageForm";
+
 
 import { showLoader } from "../../store/actions/loader.js";
 
@@ -15,7 +18,7 @@ import styles from "./modal.module.css";
 
 
 
-const Modal = () =>  {
+const Modal = ({ bookId }) =>  {
   const dispatch = useDispatch();
   const display = useSelector(store => store.modalReducer.display);
   const content = useSelector(store => store.modalReducer.the_content)
@@ -63,6 +66,20 @@ const Modal = () =>  {
           <CreateCharacterForm />
         :
         <p></p>
+        }
+
+
+        {content === "CreatePriChar" ?
+          <CreatePriCharForm bookId={bookId}/>
+          :
+          <p></p>
+        }
+
+
+        {content === "CreatePage" ?
+          <CreatePageForm bookId={bookId} />
+          :
+          <p></p>
         }
 
         <a href='/' onClick={event => onClose(event)}> <BsFillBackspaceFill/> </a>
