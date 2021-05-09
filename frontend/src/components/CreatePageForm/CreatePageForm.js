@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-
+import React, { useState } from 'react';
+import { hideModal } from "../../store/actions/modal.js";
+import { thunk_getAllPages } from "../../store/thunks/books.js";
+import { useDispatch } from "react-redux";
 
 
 
@@ -8,7 +9,7 @@ const CreatePageForm = ({ bookId }) => {
   const [ title, setTitle ] = useState('');
   const [ text, setText ] = useState('');
   const [ errors, setErrors ] = useState([]);
-  const history = useHistory();
+  const dispatch = useDispatch();
 
 
 
@@ -24,7 +25,8 @@ const CreatePageForm = ({ bookId }) => {
     });
 
     if (res.ok) {
-      // call a dispatch here to rerender page?
+      dispatch(thunk_getAllPages(bookId));
+      dispatch(hideModal());
     } else {
       console.log("error");
     }
