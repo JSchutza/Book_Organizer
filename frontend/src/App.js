@@ -9,6 +9,7 @@ import CharacterPage from "./components/CharacterPage";
 import Profile from "./components/Profile";
 import BookViewer from "./components/BookViewer";
 import { EachBook } from "./components/Book";
+import { hideLoader } from "./store/actions/loader.js";
 
 import { authenticate } from "./store/thunks/session.js";
 
@@ -49,7 +50,9 @@ function App() {
   }
 
 
+if (user !== null) {
 
+  dispatch(hideLoader());
 
   return (
     <BrowserRouter>
@@ -96,7 +99,8 @@ function App() {
 
         </Switch>
     </BrowserRouter>
-  );
+    );
+  }
 }
 
 export default App;
