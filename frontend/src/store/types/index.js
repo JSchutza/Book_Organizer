@@ -30,6 +30,8 @@ const SHOW_LOADER = "loader/SHOW_LOADER";
 const HIDE_LOADER = "loader/HIDE_LOADER";
 
 
+// for triggering rerender
+const TRIGGER_RENDER = "render/TRIGGER_RENDER";
 
 
 
@@ -56,6 +58,7 @@ export {
   DELETE_USERS_PAGE,
   SHOW_LOADER,
   HIDE_LOADER,
+  TRIGGER_RENDER,
 
 
 }

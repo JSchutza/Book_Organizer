@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
 import Modal from "../Modal";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+import { thunk_getAllPages } from "../../store/thunks/books.js";
 
 
 
 
-
-const Pages = () => {
+const Pages = ({ bookId }) => {
   const dispatch = useDispatch();
   const pageInfo = useSelector((store) => store.pageReducer.pages)
+  const rend = useSelector((store) => store.triggerRenderReducer.trigger);
+
+
+  useEffect(() => {
+    dispatch(thunk_getAllPages(bookId));
+  },[dispatch, rend]);
 
 
 
@@ -33,8 +39,10 @@ const Pages = () => {
   }
 
 
-  return (
-    <>
+
+
+    return (
+      <>
       <div>
         <h1>Your Pages</h1>
         {Object.values(pageInfo).map(eachPage => (
@@ -58,6 +66,7 @@ const Pages = () => {
       </div>
     </>
   )
+
 };
 
 
