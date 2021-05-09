@@ -20,9 +20,11 @@ const DELETE_USERS_PAGE = 'books/DELETE_USERS_PAGE';
 // for the modals here
 const SHOW_MODAL = 'modal/SHOW_MODAL';
 const HIDE_MODAL = 'modal/HIDE_MODAL';
+const CONTENT_MODAL = "modal/CONTENT_MODAL";
 
-
-
+// for the HomeLoader component
+const SHOW_LOADER = "loader/SHOW_LOADER";
+const HIDE_LOADER = "loader/HIDE_LOADER";
 
 
 
@@ -47,7 +49,9 @@ export {
   HIDE_MODAL,
   DELETE_USERS_PRI_CHARS,
   DELETE_USERS_PAGE,
-
+  SHOW_LOADER,
+  HIDE_LOADER,
+  CONTENT_MODAL,
 
 
 }

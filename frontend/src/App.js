@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import CharacterSearch from "./components/CharacterSearch";
 import CharacterPage from "./components/CharacterPage";
-import HomeLoader from "./components/HomeLoader";
+
 import Profile from "./components/Profile";
 import BookViewer from "./components/BookViewer";
 import { EachBook } from "./components/Book";
@@ -15,21 +15,18 @@ import { authenticate } from "./store/thunks/session.js";
 
 
 
-
 function App() {
   const dispatch = useDispatch();
   const [ loaded, setLoaded ] = useState(false);
-  const [ hideLoader, setHideLoader ] = useState(false);
   const user = useSelector((store) => store.usersReducer.user);
   const isSearch = useSelector((store) => store.searchTriggeredReducer.search)
 
 
 
 
-
   useEffect(() => {
-      dispatch(authenticate());
-      setLoaded(true);
+    dispatch(authenticate());
+    setLoaded(true);
   }, [dispatch]);
 
 
@@ -44,14 +41,9 @@ function App() {
 
 
   if (user === null) {
-    // the cool card loading component will go here *****
     return (
       <BrowserRouter>
-        <NavBar userStatus={false} setHideLoader={setHideLoader}/>
-
-        { hideLoader ? <p></p> :
-          <HomeLoader />
-        }
+        <NavBar userStatus={false}/>
       </BrowserRouter>
     );
   }

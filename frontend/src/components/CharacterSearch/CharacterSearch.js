@@ -5,6 +5,7 @@ import { searchTriggered, clearSearchResults } from "../../store/actions/charact
 
 import DeletePubCharButton from "../DeletePubCharButton";
 import EditPubCharButton from "../EditPubCharButton";
+import ToolTip from "../ToolTip";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
 
