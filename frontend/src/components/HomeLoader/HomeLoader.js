@@ -15,7 +15,6 @@ import styles from "./homeloader.module.css";
 
 const HomeLoader = () => {
   const [ toggleSlides, setToggleSlides ] = useState(false);
-  const [ clickSlides, setClickSlides ] = useState(0);
   const [ singleCard, setSingleCard ] = useState(null);
 
   const dispatch = useDispatch();
@@ -202,13 +201,7 @@ const HomeLoader = () => {
           break;
       }
     }
-    // if (clickSlides === 0) {
-      // setToggleSlides(true);
-      // setClickSlides(1);
-    // } else if (clickSlides === 1) {
-      // setToggleSlides(false);
-      // setClickSlides(0);
-    // }
+
   }
 
 

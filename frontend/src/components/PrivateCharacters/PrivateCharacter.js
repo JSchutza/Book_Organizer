@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
 import Modal from "../Modal";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+import { thunk_getAllPriChars } from "../../store/thunks/books.js";
 
 
 
 
-
-const PrivateCharacter = () => {
+const PrivateCharacter = ({ bookId }) => {
   const dispatch = useDispatch();
   const charInfo = useSelector((store) => store.priCharReducer.private_characters)
+  const rend = useSelector((store) => store.triggerRenderReducer.trigger);
 
+
+  useEffect(() => {
+    dispatch(thunk_getAllPriChars(bookId));
+  }, [dispatch, rend]);
 
 
   const handleDelete = (event, charId) => {

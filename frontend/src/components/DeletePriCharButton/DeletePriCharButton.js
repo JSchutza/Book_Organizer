@@ -3,6 +3,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { thunk_deleteUsersPrivateChars, thunk_getAllPriChars } from "../../store/thunks/books.js";
 import { hideModal, contentModal, dataModal } from "../../store/actions/modal.js";
+import { triggerRender } from "../../store/actions/render.js";
+
+
+
 
 
 const DeletePriCharButton = ({ bookId, charId }) => {
@@ -20,6 +24,7 @@ const DeletePriCharButton = ({ bookId, charId }) => {
       dispatch(hideModal());
       dispatch(contentModal(null));
       dispatch(dataModal(null));
+      dispatch(triggerRender(charId));
     }
     dispatch(hideModal());
   }
