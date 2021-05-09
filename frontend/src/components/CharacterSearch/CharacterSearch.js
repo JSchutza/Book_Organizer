@@ -1,13 +1,21 @@
+// icon imports here
+import { IoIosArrowDropleftCircle } from "react-icons/io";
+import { BsSearch } from "react-icons/bs";
+import { RiDeleteBinFill } from "react-icons/ri";
+
 import React, { useState, useEffect } from 'react';
+import Modal from "../Modal";
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
+import { showModal, contentModal } from "../../store/actions/modal.js";;
 
-import DeletePubCharButton from "../DeletePubCharButton";
-import EditPubCharButton from "../EditPubCharButton";
-import ToolTip from "../ToolTip";
-import { IoIosArrowDropleftCircle } from "react-icons/io";
-import { BsSearch } from "react-icons/bs";
+
+
+
+// import EditPubCharButton from "../EditPubCharButton";
+// import ToolTip from "../ToolTip";
+
 
 
 
@@ -49,6 +57,13 @@ const CharacterSearch = ({ user }) => {
     event.preventDefault();
     dispatch(clearSearchResults({ characters: null }))
     dispatch(searchTriggered({ search: null }))
+  }
+
+
+  const handleDelete = event => {
+    event.preventDefault();
+    dispatch(contentModal("DeletePubChar"));
+    dispatch(showModal());
   }
 
 
@@ -97,8 +112,9 @@ const CharacterSearch = ({ user }) => {
                   <img src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
-                <DeletePubCharButton charId={eachChar.id} user={user} />
-                <EditPubCharButton charId={eachChar.id} />
+                <a href='/' onClick={(event) => handleDelete(event)}> <RiDeleteBinFill /> </a>
+                <Modal deleteCharId={eachChar.id} user={user} />
+                {/* <EditPubCharButton charId={eachChar.id} /> */}
               </>
             ))}
       </div>
