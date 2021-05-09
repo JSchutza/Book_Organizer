@@ -5,7 +5,7 @@ import { BsFillBackspaceFill } from "react-icons/bs";
 import LoginForm from "../LoginForm";
 import SignUpForm from "../SignupForm"
 
-
+import { showLoader } from "../../store/actions/loader.js";
 
 
 
@@ -23,8 +23,11 @@ const Modal = () =>  {
 
   const onClose = event => {
     event.preventDefault();
-    dispatch(contentModal(null))
-    dispatch(hideModal());
+    if (content === "login" || content === "signin"){
+      dispatch(contentModal(null))
+      dispatch(hideModal());
+      dispatch(showLoader());
+    }
   };
 
 
