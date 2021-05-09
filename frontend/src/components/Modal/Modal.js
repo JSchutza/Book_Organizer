@@ -20,11 +20,11 @@ import styles from "./modal.module.css";
 
 
 
-const Modal = ({ bookId, deleteCharId, editCharId, user }) =>  {
+const Modal = ({ bookId, user }) =>  {
   const dispatch = useDispatch();
   const display = useSelector(store => store.modalReducer.display);
-  const content = useSelector(store => store.modalReducer.the_content)
-
+  const content = useSelector(store => store.modalReducer.the_content);
+  const data = useSelector(store => store.modalReducer.the_data)
 
 
   const onClose = event => {
@@ -84,15 +84,15 @@ const Modal = ({ bookId, deleteCharId, editCharId, user }) =>  {
           <p></p>
         }
 
-        {content === "DeletePubChar" ?
-          <DeletePubCharButton charId={deleteCharId} user={user} />
+        {content === "DeletePubChar" && data ?
+          <DeletePubCharButton charId={data} user={user} />
         :
         <p></p>
         }
 
 
-        {content === "EditPubChar" ?
-          <EditPubCharButton charId={editCharId} searchId={user.search_id} />
+        {content === "EditPubChar" && data?
+          <EditPubCharButton charId={data} searchId={user.search_id} />
         :
         <p></p>
         }

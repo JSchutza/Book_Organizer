@@ -1,7 +1,7 @@
 
 
 
-import { SHOW_MODAL, HIDE_MODAL, CONTENT_MODAL } from "../types";
+import { SHOW_MODAL, HIDE_MODAL, CONTENT_MODAL, DATA_MODAL } from "../types";
 
 
 
@@ -27,12 +27,17 @@ const contentModal = (the_content) => ({
 });
 
 
+const dataModal = (the_data) => ({
+  type: DATA_MODAL,
+  the_data
+});
 
 
 export {
   showModal,
   hideModal,
   contentModal,
+  dataModal,
 
 
 }

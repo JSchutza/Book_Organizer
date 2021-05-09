@@ -9,7 +9,7 @@ import Modal from "../Modal";
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
-import { showModal, contentModal } from "../../store/actions/modal.js";;
+import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";;
 
 
 
@@ -57,16 +57,18 @@ const CharacterSearch = ({ user }) => {
   }
 
 
-  const handleDelete = event => {
+  const handleDelete = (event, charId) => {
     event.preventDefault();
     dispatch(contentModal("DeletePubChar"));
+    dispatch(dataModal(charId));
     dispatch(showModal());
   }
 
 
-  const handleUpdate = event => {
+  const handleUpdate = (event, charId) => {
     event.preventDefault();
     dispatch(contentModal("EditPubChar"));
+    dispatch(dataModal(charId));
     dispatch(showModal());
   }
 
@@ -117,10 +119,10 @@ const CharacterSearch = ({ user }) => {
                   <img src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
-                <a href='/' onClick={(event) => handleDelete(event)}> <RiDeleteBinFill /> </a>
-                <a href='/' onClick={(event) => handleUpdate(event)}> Update </a>
-                <Modal deleteCharId={eachChar.id} user={user} />
-                <Modal editCharId={eachChar.id} user={user} />
+                <a href='/' onClick={(event) => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </a>
+                <a href='/' onClick={(event) => handleUpdate(event, eachChar.id)}> Update </a>
+
+                <Modal user={user} />
               </>
             ))}
       </div>
