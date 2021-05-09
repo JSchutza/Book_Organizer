@@ -5,14 +5,13 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import CharacterSearch from "./components/CharacterSearch";
 import CharacterPage from "./components/CharacterPage";
-import HomeLoader from "./components/HomeLoader";
+
 import Profile from "./components/Profile";
 import BookViewer from "./components/BookViewer";
 import { EachBook } from "./components/Book";
 
 import { authenticate } from "./store/thunks/session.js";
 
-import { showLoader } from "./store/actions/loader.js";
 
 
 
@@ -20,7 +19,6 @@ function App() {
   const dispatch = useDispatch();
   const [ loaded, setLoaded ] = useState(false);
   const user = useSelector((store) => store.usersReducer.user);
-  const initLoader = useSelector((store) => store.loaderReducer.display)
   const isSearch = useSelector((store) => store.searchTriggeredReducer.search)
 
 
@@ -28,7 +26,6 @@ function App() {
 
   useEffect(() => {
     dispatch(authenticate());
-    dispatch(showLoader());
     setLoaded(true);
   }, [dispatch]);
 
@@ -43,12 +40,10 @@ function App() {
 
 
 
-  if (user === null && initLoader) {
+  if (user === null) {
     return (
       <BrowserRouter>
         <NavBar userStatus={false}/>
-
-        { initLoader ?  <HomeLoader />  :  <p></p>  }
       </BrowserRouter>
     );
   }

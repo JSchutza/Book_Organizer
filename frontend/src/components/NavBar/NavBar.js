@@ -11,10 +11,10 @@ import { CgProfile } from "react-icons/cg";
 import ToolTip from "../ToolTip";
 import Modal from "../Modal";
 import { showModal, contentModal } from "../../store/actions/modal.js";
+import { hideLoader } from "../../store/actions/loader.js";
 
 
-
-const NavBar = ({ userStatus, setHideLoader }) => {
+const NavBar = ({ userStatus }) => {
   const dispatch = useDispatch();
 
 
@@ -22,12 +22,14 @@ const NavBar = ({ userStatus, setHideLoader }) => {
     event.preventDefault();
     dispatch(contentModal("login"));
     dispatch(showModal());
+    dispatch(hideLoader());
   }
 
   const showSignupForm = (event) => {
     event.preventDefault();
     dispatch(contentModal("signin"))
     dispatch(showModal());
+    dispatch(hideLoader());
   }
 
 
