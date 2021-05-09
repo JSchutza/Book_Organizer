@@ -1,0 +1,40 @@
+
+
+
+.modal_background {
+  background-color: rgba(0, 0, 0, 0.356);
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0%;
+  display: flex;
+}
+
+
+
+.modal_background a{
+  position: relative;
+  left: 60%;
+  font-size: 1.5rem;
+}
+
+
+
+.log_in_wrap {
+  display: flex;
+  position: relative;
+  width: 10%;
+  padding: 5%;
+  box-sizing: content-box;
+  left: 40%;
+}
+
+.sign_in_wrap {
+  display: flex;
+  position: relative;
+  width: 10%;
+  padding: 5%;
+  box-sizing: content-box;
+  left: 40%;
+}

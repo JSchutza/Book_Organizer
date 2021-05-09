@@ -12,24 +12,24 @@ import { EachBook } from "./components/Book";
 
 import { authenticate } from "./store/thunks/session.js";
 
-
+import { showLoader } from "./store/actions/loader.js";
 
 
 
 function App() {
   const dispatch = useDispatch();
   const [ loaded, setLoaded ] = useState(false);
-  const [ hideLoader, setHideLoader ] = useState(false);
   const user = useSelector((store) => store.usersReducer.user);
+  const initLoader = useSelector((store) => store.loaderReducer.display)
   const isSearch = useSelector((store) => store.searchTriggeredReducer.search)
 
 
 
 
-
   useEffect(() => {
-      dispatch(authenticate());
-      setLoaded(true);
+    dispatch(authenticate());
+    dispatch(showLoader());
+    setLoaded(true);
   }, [dispatch]);
 
 
@@ -43,15 +43,12 @@ function App() {
 
 
 
-  if (user === null) {
-    // the cool card loading component will go here *****
+  if (user === null && initLoader) {
     return (
       <BrowserRouter>
-        <NavBar userStatus={false} setHideLoader={setHideLoader}/>
+        <NavBar userStatus={false}/>
 
-        { hideLoader ? <p></p> :
-          <HomeLoader />
-        }
+        { initLoader ?  <HomeLoader />  :  <p></p>  }
       </BrowserRouter>
     );
   }

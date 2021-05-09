@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
-import LoginForm from "../LoginForm";
-import SignUpForm from "../SignupForm"
 import LogoutButton from "../LogoutButton"
 import styles from "./navbar.module.css";
 import { useDispatch } from "react-redux"
@@ -11,49 +9,25 @@ import { ImUserPlus } from "react-icons/im";
 import { GiBookshelf, GiCardDraw } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import ToolTip from "../ToolTip";
-
-
+import Modal from "../Modal";
+import { showModal, contentModal } from "../../store/actions/modal.js";
 
 
 
 const NavBar = ({ userStatus, setHideLoader }) => {
-  const [ toggleLogin, setToggleLogin ] = useState(false);
-  const [ toggleSignup, setToggleSignup ] = useState(false);
-
-  const [ clickLogin, setClickLogin ] = useState(0);
-  const [ clickSignup, setClickSignup ] = useState(0);
-
-
-
-
   const dispatch = useDispatch();
-
 
 
   const showLoginForm = (event) => {
     event.preventDefault();
-    if (clickLogin === 0){
-      setHideLoader(true);
-      setToggleLogin(true);
-      setClickLogin(1);
-    } else if (clickLogin === 1){
-      setHideLoader(false);
-      setToggleLogin(false);
-      setClickLogin(0);
-    }
+    dispatch(contentModal("login"));
+    dispatch(showModal());
   }
 
   const showSignupForm = (event) => {
     event.preventDefault();
-    if (clickSignup === 0){
-      setHideLoader(true);
-      setToggleSignup(true);
-      setClickSignup(1);
-    } else if (clickSignup === 1){
-      setHideLoader(false);
-      setToggleSignup(false);
-      setClickSignup(0);
-    }
+    dispatch(contentModal("signin"))
+    dispatch(showModal());
   }
 
 
@@ -73,7 +47,7 @@ const NavBar = ({ userStatus, setHideLoader }) => {
       <div>
         <nav className={styles.nav}>
 
-              <ToolTip content={'Login'} >
+            <ToolTip content={'Login'} >
               <li> <a href='/' onClick={(event) => showLoginForm(event)} > <FiLogIn /> </a> </li>
             </ToolTip>
 
@@ -86,27 +60,7 @@ const NavBar = ({ userStatus, setHideLoader }) => {
         </nav>
       </div>
 
-
-
-
-
-        { toggleLogin ?
-        <div className={styles.log_in_wrap}>
-          <LoginForm />
-        </div>
-        :
-        <p></p>
-        }
-
-
-        { toggleSignup ?
-        <div className={styles.sign_in_wrap}>
-          <SignUpForm />
-        </div>
-        :
-        <p></p>
-        }
-
+      <Modal />
 
     </>
     );
