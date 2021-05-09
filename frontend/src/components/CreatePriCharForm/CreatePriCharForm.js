@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { hideModal } from "../../store/actions/modal.js";
+import { thunk_getAllPriChars } from "../../store/thunks/books.js";
 
 
 
@@ -10,7 +12,7 @@ const CreatePriCharForm = ({ bookId }) => {
   const [charlabel, setCharlabel] = useState("");
   const [urlpreview, setUrlPreview] = useState(null);
   const [errors, setErrors] = useState([]);
-  const history = useHistory();
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
@@ -40,7 +42,9 @@ const CreatePriCharForm = ({ bookId }) => {
     });
 
     if (res.ok) {
-// call a dispatch here to rerender page?
+      dispatch(thunk_getAllPriChars(bookId));
+      dispatch(hideModal());
+
     } else {
       console.log("error");
     }

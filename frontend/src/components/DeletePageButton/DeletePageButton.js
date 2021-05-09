@@ -1,23 +1,13 @@
 
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { thunk_deletePage, thunk_getAllPages } from "../../store/thunks/books.js";
+import { hideModal, contentModal, dataModal } from "../../store/actions/modal.js";
 
-import { RiDeleteBinFill } from "react-icons/ri";
 
 
 const DeletePageButton = ({ bookId, pageId }) => {
-  const [confirmPopUp, setConfirmPopUp] = useState(false);
   const dispatch = useDispatch();
-
-
-
-  const showConfirmation = event => {
-    event.preventDefault();
-    setConfirmPopUp(true);
-  }
-
-
 
 
   const handle = (event, choice) => {
@@ -25,8 +15,11 @@ const DeletePageButton = ({ bookId, pageId }) => {
     if (choice === true) {
       dispatch(thunk_deletePage(bookId, pageId));
       dispatch(thunk_getAllPages(bookId));
+      dispatch(hideModal());
+      dispatch(contentModal(null));
+      dispatch(dataModal(null));
     }
-    setConfirmPopUp(choice);
+    dispatch(hideModal());
   }
 
 
@@ -34,21 +27,16 @@ const DeletePageButton = ({ bookId, pageId }) => {
 
   return (
     <>
-      { confirmPopUp === false ?
-        <div>
-          <a href='/' onClick={(event) => showConfirmation(event)}> <RiDeleteBinFill /> </a>
-        </div>
-        :
         <div>
           <h3>Are you sure you want to delete this page? It can not be undone. </h3>
           <a href='/' onClick={(event) => handle(event, true)}>Yes</a>
           <br />
           <a href='/' onClick={(event) => handle(event, false)}>No</a>
         </div>
-      }
     </>
   )
 };
+
 
 
 

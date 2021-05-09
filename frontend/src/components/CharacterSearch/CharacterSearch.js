@@ -2,19 +2,16 @@
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
 import { RiDeleteBinFill } from "react-icons/ri";
+import ToolTip from "../ToolTip";
 
 import React, { useState, useEffect } from 'react';
 import Modal from "../Modal";
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
-import { showModal, contentModal } from "../../store/actions/modal.js";;
+import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";;
 
 
-
-
-// import EditPubCharButton from "../EditPubCharButton";
-// import ToolTip from "../ToolTip";
 
 
 
@@ -60,9 +57,18 @@ const CharacterSearch = ({ user }) => {
   }
 
 
-  const handleDelete = event => {
+  const handleDelete = (event, charId) => {
     event.preventDefault();
     dispatch(contentModal("DeletePubChar"));
+    dispatch(dataModal(charId));
+    dispatch(showModal());
+  }
+
+
+  const handleUpdate = (event, charId) => {
+    event.preventDefault();
+    dispatch(contentModal("EditPubChar"));
+    dispatch(dataModal(charId));
     dispatch(showModal());
   }
 
@@ -95,8 +101,9 @@ const CharacterSearch = ({ user }) => {
       <>
       <div>
         <h1>Search Results</h1>
-
-          <a href='/' onClick={(event) => clearSearch(event)} > <IoIosArrowDropleftCircle/> </a>
+          <ToolTip content={"Back"} >
+            <a href='/' onClick={(event) => clearSearch(event)} > <IoIosArrowDropleftCircle/> </a>
+          </ToolTip>
 
       <div>
             {Object.values(char).map(eachChar => (
@@ -112,9 +119,10 @@ const CharacterSearch = ({ user }) => {
                   <img src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
-                <a href='/' onClick={(event) => handleDelete(event)}> <RiDeleteBinFill /> </a>
-                <Modal deleteCharId={eachChar.id} user={user} />
-                {/* <EditPubCharButton charId={eachChar.id} /> */}
+                <a href='/' onClick={(event) => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </a>
+                <a href='/' onClick={(event) => handleUpdate(event, eachChar.id)}> Update </a>
+
+                <Modal user={user} />
               </>
             ))}
       </div>
@@ -143,7 +151,9 @@ const CharacterSearch = ({ user }) => {
       </label>
 
       <div>
-          <a href='/' onClick={(event) => handleSearch(event)} > <BsSearch/> </a>
+          <ToolTip content={"Search"} >
+            <a href='/' onClick={(event) => handleSearch(event)} > <BsSearch/> </a>
+          </ToolTip>
       </div>
 
     </div>

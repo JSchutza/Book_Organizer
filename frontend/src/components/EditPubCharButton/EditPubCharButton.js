@@ -1,14 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { hideModal } from "../../store/actions/modal.js";
+import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 
 
 
 
 
-
-const EditPubCharButton = ({ charId }) => {
-  const [ showForm, setShowForm ] = useState(false);
+const EditPubCharButton = ({ charId, searchId }) => {
   const [ avatarUrl, setAvatarUrl ] = useState("");
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
@@ -16,11 +16,6 @@ const EditPubCharButton = ({ charId }) => {
 
   const dispatch = useDispatch();
 
-
-  const handleClick = event => {
-    event.preventDefault();
-    setShowForm(true);
-  }
 
 
   const updateAvatar = (e) => {
@@ -44,7 +39,8 @@ const EditPubCharButton = ({ charId }) => {
     });
 
     if (res.ok) {
-
+      dispatch(hideModal());
+      dispatch(thunk_searchForUsersPubChars(searchId));
     } else {
       console.log("error");
     }
@@ -64,7 +60,7 @@ const EditPubCharButton = ({ charId }) => {
 
 
 
-  if (showForm === true){
+
     return (
       <>
 
@@ -114,21 +110,7 @@ const EditPubCharButton = ({ charId }) => {
       </div>
       </>
     )
-  }
 
-
-
-
-
-  return (
-    <>
-    <div>
-        <a href='/' onClick={(event) => handleClick(event)}>
-        Update
-      </a>
-    </div>
-    </>
-  )
 };
 
 export default EditPubCharButton;
