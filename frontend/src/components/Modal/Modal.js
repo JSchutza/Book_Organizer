@@ -9,6 +9,8 @@ import CreatePriCharForm from "../CreatePriCharForm";
 import CreatePageForm from "../CreatePageForm";
 import DeletePubCharButton from "../DeletePubCharButton";
 import EditPubCharButton from "../EditPubCharButton";
+import DeletePageButton from "../DeletePageButton";
+
 
 
 import { showLoader } from "../../store/actions/loader.js";
@@ -91,8 +93,15 @@ const Modal = ({ bookId, user }) =>  {
         }
 
 
-        {content === "EditPubChar" && data?
+        {content === "EditPubChar" && data ?
           <EditPubCharButton charId={data} searchId={user.search_id} />
+        :
+        <p></p>
+        }
+
+
+        {content === "DeletePage" && data ?
+          <DeletePageButton bookId={bookId} pageId={data} />
         :
         <p></p>
         }
