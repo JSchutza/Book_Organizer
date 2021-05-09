@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { hideModal } from "../../store/actions/modal.js";
+import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
+
+
+
+
+
 
 
 
@@ -10,7 +17,7 @@ const CreateCharacterForm = () => {
   const [ charlabel, setCharlabel ] = useState("");
   const [ urlpreview, setUrlPreview ] = useState(null);
   const [ errors, setErrors ] = useState([]);
-  const history = useHistory();
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
@@ -40,7 +47,8 @@ const CreateCharacterForm = () => {
     });
 
     if (res.ok) {
-
+      dispatch(hideModal());
+      dispatch(thunk_getAllCharacters());
     } else {
       console.log("error");
     }
