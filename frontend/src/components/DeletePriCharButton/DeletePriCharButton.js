@@ -22,9 +22,10 @@ const DeletePriCharButton = ({ bookId, charId }) => {
       dispatch(thunk_deleteUsersPrivateChars(bookId, charId));
       dispatch(thunk_getAllPriChars(bookId));
       dispatch(hideModal());
-      dispatch(contentModal(null));
-      dispatch(dataModal(null));
-      dispatch(triggerRender(charId));
+      dispatch(triggerRender(null));
+      setTimeout(() => {
+        dispatch(triggerRender(bookId));
+      }, 100)
     }
     dispatch(hideModal());
   }
