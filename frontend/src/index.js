@@ -32,7 +32,14 @@ const Loader = () => {
   if (initLoader) {
     return (
       <>
-        { initLoader ?  <HomeLoader />  :  <p></p>  }
+        { initLoader ?
+
+        <div>
+          <HomeLoader />
+        </div>
+        :
+        <p></p>
+        }
       </>
     )
   }

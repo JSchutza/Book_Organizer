@@ -3,7 +3,7 @@ import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
 import { RiDeleteBinFill } from "react-icons/ri";
 import ToolTip from "../ToolTip";
-
+import styles from "./charactersearch.module.css";
 import React, { useState, useEffect } from 'react';
 import Modal from "../Modal";
 import { useDispatch, useSelector } from 'react-redux';
@@ -99,34 +99,40 @@ const CharacterSearch = ({ user }) => {
 
     return(
       <>
-      <div>
-        <h1>Search Results</h1>
+        <h2>Search Results</h2>
           <ToolTip content={"Back"} >
             <a href='/' onClick={(event) => clearSearch(event)} > <IoIosArrowDropleftCircle/> </a>
           </ToolTip>
 
-      <div>
+
+      <div className={styles.search_results_wrap}>
             {Object.values(char).map(eachChar => (
               <>
+              <div className={styles.search_results_each_card}>
                 <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id)}>
-                  <li key={eachChar.id}>
-                    By: {eachChar.username}
-                    <br />
-                    {eachChar.character_name}
-                    <br />
-                    {eachChar.character_label}
+                  <li className={styles.search_results_each_detail} key={eachChar.id}>
+                    <div className={styles.search_results_each_detail_text}>
+                      <b> Name </b>
+                        <p>{eachChar.character_name}</p>
+                      <b>Label</b>
+                        <p>{eachChar.character_label}</p>
+                    </div>
                   </li>
-                  <img src={eachChar.avatar} alt={eachChar.character_name} />
+                <img className={styles.search_results_each_img} src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
                 <a href='/' onClick={(event) => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </a>
                 <a href='/' onClick={(event) => handleUpdate(event, eachChar.id)}> Update </a>
 
-                <Modal user={user} />
+              </div>
               </>
             ))}
       </div>
-      </div>
+
+
+        <Modal user={user} />
+
+
       </>
     )
   }
@@ -139,7 +145,8 @@ const CharacterSearch = ({ user }) => {
 
   return (
     <>
-    <div>
+    <div className={styles.search_wrapper}>
+      <div className={styles.search_input}>
       <label>
         Search
         <input
@@ -147,15 +154,16 @@ const CharacterSearch = ({ user }) => {
           name="search"
           value={searchId}
           onChange={(event) => setSearchId(event.target.value)}
-        />
+          />
       </label>
+    </div>
 
-      <div>
+
+      <div className={styles.search_icon}>
           <ToolTip content={"Search"} >
             <a href='/' onClick={(event) => handleSearch(event)} > <BsSearch/> </a>
           </ToolTip>
       </div>
-
     </div>
     </>
   )

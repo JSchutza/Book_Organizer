@@ -1,0 +1,80 @@
+
+
+.search_wrapper {
+  display: flex;
+  position: relative;
+  left: 20%;
+}
+
+
+
+.search_input {
+  position: relative;
+  right: 1%;
+}
+
+
+.search_icon {
+  font-size: 1.1rem;
+}
+
+
+
+.search_results_wrap {
+  display: flex;
+  flex-flow: wrap;
+}
+
+
+
+
+.search_results_each_card {
+  position: relative;
+  box-sizing: border-box;
+  padding: 2%;
+}
+
+
+.search_results_each_img {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  bottom: 3%;
+  border: solid transparent 4px;
+}
+
+
+
+
+
+
+.search_results_each_detail {
+  display: flex;
+  position: absolute;
+  z-index: 1;
+  bottom: 12%;
+  right: 9%;
+  background-color: tan;
+  padding: 1%;
+  box-sizing: border-box;
+  width: 296px;
+  height: 550px;
+  border: solid black 1px;
+  border-radius: 30px;
+}
+
+
+
+.search_results_each_detail:hover {
+  opacity: 1%;
+}
+
+
+.search_results_each_detail_text {
+  display: block;
+  position: relative;
+  padding: 5%;
+  box-sizing: content-box;
+  line-height: 1.5rem;
+  top: 20%;
+}

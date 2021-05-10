@@ -101,11 +101,11 @@ const CharacterPage = () => {
       <div className={styles.each_card}>
         <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
         <li className={styles.each_detail} key={eachChar.id}>
-          By: {eachChar.username}
-          <br/>
-          {eachChar.character_name}
-          <br/>
-          {eachChar.character_label}
+          <div className={styles.each_detail_text}>
+          <b> {eachChar.username} </b>
+            <p> {eachChar.character_name} </p>
+            <p> {eachChar.character_label} </p>
+          </div>
         </li>
           <img className={styles.each_img} src={eachChar.avatar} alt={eachChar.character_name} />
       </a>
