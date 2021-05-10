@@ -22,7 +22,7 @@ import styles from "./modal.module.css";
 
 
 
-const Modal = ({ bookId, user }) =>  {
+const Modal = ({ user }) =>  {
   const dispatch = useDispatch();
   const display = useSelector(store => store.modalReducer.display);
   const content = useSelector(store => store.modalReducer.the_content);
@@ -102,14 +102,14 @@ const Modal = ({ bookId, user }) =>  {
 
 
         {content === "DeletePubChar" && data ?
-          <DeletePubCharButton charId={data} user={user} />
+          <DeletePubCharButton charId={data.charId} search_id={data.search_id} />
         :
           <></>
         }
 
 
         {content === "EditPubChar" && data ?
-          <EditPubCharButton charId={data} searchId={user.search_id} />
+          <EditPubCharButton charId={data.charId} search_id={data.search_id} />
         :
           <></>
         }

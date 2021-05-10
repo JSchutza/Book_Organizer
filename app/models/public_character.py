@@ -71,6 +71,7 @@ class PublicCharacter(db.Model):
       "user_id": self.user_id,
       "username": User.query.get(self.user_id).user_name,
       "created_at": self.created_at,
+      "search_id": User.query.get(self.user_id).search_id,
   }
 
 

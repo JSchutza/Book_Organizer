@@ -86,7 +86,7 @@ if (user !== null) {
 
 
           <Route path="/characters" exact={true}>
-            <CharacterSearch user={user} />
+            <CharacterSearch />
 
           { isSearch === null ?
             <CharacterPage />
