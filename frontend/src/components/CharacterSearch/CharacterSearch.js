@@ -17,7 +17,7 @@ import { showModal, contentModal, dataModal } from "../../store/actions/modal.js
 
 
 
-const CharacterSearch = ({ user }) => {
+const CharacterSearch = () => {
   const [ searchId, setSearchId ] = useState("");
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
@@ -57,18 +57,18 @@ const CharacterSearch = ({ user }) => {
   }
 
 
-  const handleDelete = (event, charId) => {
+  const handleDelete = (event, payload) => {
     event.preventDefault();
     dispatch(contentModal("DeletePubChar"));
-    dispatch(dataModal(charId));
+    dispatch(dataModal(payload));
     dispatch(showModal());
   }
 
 
-  const handleUpdate = (event, charId) => {
+  const handleUpdate = (event, payload) => {
     event.preventDefault();
     dispatch(contentModal("EditPubChar"));
-    dispatch(dataModal(charId));
+    dispatch(dataModal(payload));
     dispatch(showModal());
   }
 
@@ -121,17 +121,37 @@ const CharacterSearch = ({ user }) => {
                 <img className={styles.search_results_each_img} src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
-                <a href='/' onClick={(event) => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </a>
-                <a href='/' onClick={(event) => handleUpdate(event, eachChar.id)}> Update </a>
+                <a href='/' onClick={(event) => handleDelete(event, {
+                  charId: eachChar.id,
+                  avatar: eachChar.avatar,
+                  character_label: eachChar.character_label,
+                  character_name: eachChar.character_name,
+                  created_at: eachChar.created_at,
+                  pub_date: eachChar.pub_date,
+                  user_id: eachChar.user_id,
+                  username: eachChar.username,
+                  search_id: eachChar.search_id,
+
+                  })}> <RiDeleteBinFill /> </a>
+
+
+                <a href='/' onClick={(event) => handleUpdate(event, {
+                  charId: eachChar.id,
+                  avatar: eachChar.avatar,
+                  character_label: eachChar.character_label,
+                  character_name: eachChar.character_name,
+                  created_at: eachChar.created_at,
+                  pub_date: eachChar.pub_date,
+                  user_id: eachChar.user_id,
+                  username: eachChar.username,
+                  search_id: eachChar.search_id,
+
+                  })}> Update </a>
 
               </div>
               </>
             ))}
       </div>
-
-
-        <Modal user={user} />
-
 
       </>
     )

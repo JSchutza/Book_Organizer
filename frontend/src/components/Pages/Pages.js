@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
-import Modal from "../Modal";
+
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { thunk_getAllPages } from "../../store/thunks/books.js";
 
@@ -21,10 +21,10 @@ const Pages = ({ bookId }) => {
 
 
 
-  const handleDelete = (event, pageId) => {
+  const handleDelete = (event, payload) => {
     event.preventDefault();
     dispatch(contentModal("DeletePage"));
-    dispatch(dataModal(pageId));
+    dispatch(dataModal(payload));
     dispatch(showModal());
   }
 
@@ -69,10 +69,16 @@ const Pages = ({ bookId }) => {
             </a>
 
 
-            <a href='/' onClick={event => handleDelete(event, eachPage.id) }> <RiDeleteBinFill /> </a>
+            <a href='/' onClick={event => handleDelete(event, {
+              pageId: eachPage.id,
+              title: eachPage.title,
+              text: eachPage.text,
+              book_id: eachPage.book_id
+
+            }) }> <RiDeleteBinFill /> </a>
 
             <a href='/' onClick={event => handleUpdate(event, {
-              id: eachPage.id,
+              pageId: eachPage.id,
               title: eachPage.title,
               text: eachPage.text,
               book_id: eachPage.book_id
@@ -80,11 +86,11 @@ const Pages = ({ bookId }) => {
             })}> Update </a>
 
 
-            <Modal bookId={eachPage.book_id} />
           </>
         ))
-        }
+      }
       </div>
+
     </>
   )
 

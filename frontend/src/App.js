@@ -67,6 +67,7 @@ if (user !== null) {
   return (
     <BrowserRouter>
       <NavBar userStatus={true} />
+      <Modal />
         <Switch>
           <Route path="/" exact>
             <Redirect to="/profile" />
@@ -85,7 +86,7 @@ if (user !== null) {
 
 
           <Route path="/characters" exact={true}>
-            <CharacterSearch user={user} />
+            <CharacterSearch />
 
           { isSearch === null ?
             <CharacterPage />

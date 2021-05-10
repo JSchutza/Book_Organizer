@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
-import Modal from "../Modal";
+
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { thunk_getAllPriChars } from "../../store/thunks/books.js";
 
@@ -19,12 +19,23 @@ const PrivateCharacter = ({ bookId }) => {
   }, [dispatch, rend]);
 
 
-  const handleDelete = (event, charId) => {
+  const handleDelete = (event, payload) => {
     event.preventDefault();
     dispatch(contentModal("DeletePriChar"));
-    dispatch(dataModal(charId));
+    dispatch(dataModal(payload));
     dispatch(showModal());
   }
+
+
+
+
+  const handleUpdate = (event, payload) => {
+    event.preventDefault();
+    dispatch(contentModal("UpdatePriChar"));
+    dispatch(dataModal(payload));
+    dispatch(showModal());
+  }
+
 
 
 
@@ -56,12 +67,28 @@ const PrivateCharacter = ({ bookId }) => {
               </a>
 
 
-            <a href='/' onClick={event => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </a>
-            <Modal bookId={eachChar.book_id} />
+            <a href='/' onClick={event => handleDelete(event, {
+              charId: eachChar.id,
+              avatar: eachChar.avatar,
+              character_name: eachChar.character_name,
+              character_label: eachChar.character_label,
+              book_id: bookId
+            })}> <RiDeleteBinFill /> </a>
+
+            <a href='/' onClick={event => handleUpdate(event, {
+              charId: eachChar.id,
+              avatar: eachChar.avatar,
+              character_name: eachChar.character_name,
+              character_label: eachChar.character_label,
+              book_id: bookId
+            })}> Update </a>
+
             </>
           ))
         }
+
     </div>
+
     </>
   )
 };

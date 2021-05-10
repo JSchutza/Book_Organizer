@@ -8,7 +8,7 @@ import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 
 
 
-const EditPubCharButton = ({ charId, searchId }) => {
+const EditPubCharButton = ({ charId, search_id }) => {
   const [ avatarUrl, setAvatarUrl ] = useState("");
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
@@ -40,7 +40,7 @@ const EditPubCharButton = ({ charId, searchId }) => {
 
     if (res.ok) {
       dispatch(hideModal());
-      dispatch(thunk_searchForUsersPubChars(searchId));
+      dispatch(thunk_searchForUsersPubChars(search_id));
     } else {
       console.log("error");
     }

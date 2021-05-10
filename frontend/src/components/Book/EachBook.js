@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import PrivateCharacter from "../PrivateCharacters";
 import Pages from "../Pages";
-import Modal from "../Modal";
+
 
 
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
-import { showModal, contentModal } from "../../store/actions/modal.js";
+import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 
 // icon imports here
 import { BsFillPersonPlusFill } from "react-icons/bs";
@@ -35,6 +35,7 @@ const EachBook = () => {
 
   const handleCreateChar = event => {
     event.preventDefault();
+    dispatch(dataModal({ book_id: bookId }));
     dispatch(contentModal("CreatePriChar"));
     dispatch(showModal());
   }
@@ -43,6 +44,7 @@ const EachBook = () => {
 
   const handleCreatePage = event => {
     event.preventDefault();
+    dispatch(dataModal({ book_id: bookId }));
     dispatch(contentModal("CreatePage"));
     dispatch(showModal());
   }
@@ -70,7 +72,7 @@ const EachBook = () => {
     </div>
 
 
-      <Modal bookId={bookId} />
+
     </>
   )
 };
