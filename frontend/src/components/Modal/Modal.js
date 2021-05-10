@@ -86,6 +86,14 @@ const Modal = ({ bookId, user }) =>  {
           <p></p>
         }
 
+
+        {content === "UpdatePage" && data?
+          <CreatePageForm bookId={bookId} update={true} data={data} />
+          :
+          <p></p>
+        }
+
+
         {content === "DeletePubChar" && data ?
           <DeletePubCharButton charId={data} user={user} />
         :
