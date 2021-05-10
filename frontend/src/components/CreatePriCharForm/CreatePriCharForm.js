@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { hideModal } from "../../store/actions/modal.js";
 import { thunk_getAllPriChars } from "../../store/thunks/books.js";
-
+import { processFile } from "../../services/protectedFileUpload.js";
 
 
 
@@ -60,13 +60,12 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
 
   const updateAvatar = (e) => {
-    if (e.target.files.length === 0){
-      return;
-    } else if (e.target.files.length > 0) {
-      const file = e.target.files[0];
-      setUrlPreview(file);
-      setAvatarUrl(URL.createObjectURL(file));
-    }
+    const result = processFile(e.target.files);
+    if (result) {
+        setUrlPreview(result);
+        setAvatarUrl(URL.createObjectURL(result));
+    } else return;
+
   };
 
 
@@ -74,10 +73,10 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
 
 
-  // const cancelImgChoice = () => {
-  //   setUrlPreview(null);
-  //   setAvatarUrl('');
-  // }
+  const cancelImgChoice = () => {
+    setUrlPreview(null);
+    setAvatarUrl('');
+  }
 
 
 
@@ -147,7 +146,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
     <>
 
       {/* for previewing the image before it is sent to backend */}
-      {/* <div>
+      <div>
         {urlpreview === null ?
           <p></p>
           :
@@ -156,7 +155,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
             <button onClick={cancelImgChoice}> Cancel </button>
           </>
         }
-      </div> */}
+      </div>
 
 
       <div>

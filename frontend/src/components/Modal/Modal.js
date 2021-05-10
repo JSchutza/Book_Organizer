@@ -53,7 +53,7 @@ const Modal = ({ bookId, user }) =>  {
             <LoginForm />
           </div>
         :
-        <p> </p>
+        <></>
       }
 
 
@@ -62,70 +62,70 @@ const Modal = ({ bookId, user }) =>  {
             <SignUpForm />
           </div>
         :
-        <p> </p>
+          <></>
         }
 
 
         {content === "CreatePubChar" ?
           <CreateCharacterForm />
         :
-        <p></p>
+          <></>
         }
 
 
-        {content === "CreatePriChar" ?
-          <CreatePriCharForm bookId={bookId}/>
+        {content === "CreatePriChar" && data ?
+          <CreatePriCharForm bookId={data.book_id}/>
           :
-          <p></p>
+          <></>
         }
 
 
         {content === "UpdatePriChar" && data ?
-          <CreatePriCharForm bookId={bookId} update={true} data={data} />
+          <CreatePriCharForm bookId={data.book_id} update={true} data={data} />
         :
-        <p></p>
+          <></>
         }
 
 
-        {content === "CreatePage" ?
-          <CreatePageForm bookId={bookId} />
+        {content === "CreatePage" && data?
+          <CreatePageForm bookId={data.book_id} />
           :
-          <p></p>
+          <></>
         }
 
 
         {content === "UpdatePage" && data?
-          <CreatePageForm bookId={bookId} update={true} data={data} />
+          <CreatePageForm bookId={data.book_id} update={true} data={data} />
           :
-          <p></p>
+          <></>
         }
 
 
         {content === "DeletePubChar" && data ?
           <DeletePubCharButton charId={data} user={user} />
         :
-        <p></p>
+          <></>
         }
 
 
         {content === "EditPubChar" && data ?
           <EditPubCharButton charId={data} searchId={user.search_id} />
         :
-        <p></p>
+          <></>
         }
 
 
         {content === "DeletePage" && data ?
-          <DeletePageButton bookId={bookId} pageId={data} />
+          <DeletePageButton bookId={data.book_id} pageId={data.pageId} />
         :
-        <p></p>
+          <></>
         }
 
 
         {content === "DeletePriChar" && data ?
-          <DeletePriCharButton bookId={bookId} charId={data} />
+          <DeletePriCharButton bookId={data.book_id} charId={data.charId} />
         :
-        <p></p>
+          <></>
         }
 
         <a href='/' onClick={event => onClose(event)}> <BsFillBackspaceFill/> </a>

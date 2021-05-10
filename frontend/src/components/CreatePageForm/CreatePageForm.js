@@ -9,13 +9,15 @@ const CreatePageForm = ({ bookId, update=false, data }) => {
   const [ title, setTitle ] = useState('');
   const [ text, setText ] = useState('');
 
-  const [ pageId, setPageId ] = useState(data.id);
-  const [ updateTitle, setUpdateTitle ] = useState(data.title);
-  const [ updateText, setUpdateText ] = useState(data.text);
+
+  const [ updateTitle, setUpdateTitle ] = useState();
+  const [ updateText, setUpdateText ] = useState();
 
 
   const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
+
+
 
 
 
@@ -46,7 +48,7 @@ const CreatePageForm = ({ bookId, update=false, data }) => {
     formData.append("title", updateTitle);
     formData.append("text", updateText);
 
-    const res = await fetch(`/api/book/${bookId}/page/${pageId}`, {
+    const res = await fetch(`/api/book/${bookId}/page/${data.pageId}`, {
       method: "PUT",
       body: formData,
     });

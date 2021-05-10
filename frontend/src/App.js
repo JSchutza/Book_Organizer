@@ -67,6 +67,7 @@ if (user !== null) {
   return (
     <BrowserRouter>
       <NavBar userStatus={true} />
+      <Modal />
         <Switch>
           <Route path="/" exact>
             <Redirect to="/profile" />
