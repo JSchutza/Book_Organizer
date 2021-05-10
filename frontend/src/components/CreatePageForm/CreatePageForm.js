@@ -42,6 +42,21 @@ const CreatePageForm = ({ bookId, update=false, data }) => {
 
   const onUpdate = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("title", updateTitle);
+    formData.append("text", updateText);
+
+    const res = await fetch(`/api/book/${bookId}/page/${pageId}`, {
+      method: "PUT",
+      body: formData,
+    });
+
+    if (res.ok) {
+      dispatch(thunk_getAllPages(bookId));
+      dispatch(hideModal());
+    } else {
+      console.log("error");
+    }
   }
 
 
