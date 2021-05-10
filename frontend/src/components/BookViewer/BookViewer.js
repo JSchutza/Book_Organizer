@@ -17,6 +17,9 @@ const BookViewer = () => {
   const [ clickShowForm, setShowForm ] = useState(0);
   const [ deletedBook, setDeletedBook ]  = useState(null);
   const [ clickDeleteBook, setClickDeleteBook ] = useState(0);
+  const [ showUpdateForm, setShowUpdateForm ] = useState(false);
+  const [ toUpdate, setToUpdate ] = useState(null);
+
   const history = useHistory();
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const dispatch = useDispatch();
@@ -65,6 +68,11 @@ const BookViewer = () => {
   }
 
 
+  const handleUpdate = async (event, bookId) => {
+    event.preventDefault();
+    setToUpdate(bookInfo[bookId]);
+    setShowUpdateForm(true);
+  }
 
 
   if (bookInfo === null){
@@ -86,11 +94,21 @@ const BookViewer = () => {
       </ToolTip>
     </div>
 
+
     <div>
         {showBookForm ?
           <CreateBookForm />
-        :
+          :
           <p></p>
+        }
+    </div>
+
+
+    <div>
+        {showUpdateForm ?
+          <CreateBookForm isUpdate={true} data={toUpdate} />
+        :
+        <p></p>
         }
     </div>
 
@@ -112,7 +130,7 @@ const BookViewer = () => {
 
 
         <ToolTip content={"Update"} >
-          <li> <a href='/' onClick={event => event.preventDefault()} > Update </a> </li>
+            <li> <a href='/' onClick={event => handleUpdate(event, eachBook.id)} > Update </a> </li>
         </ToolTip>
         </>
       ))}
