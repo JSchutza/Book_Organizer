@@ -68,6 +68,15 @@ const PrivateCharacter = ({ bookId }) => {
 
 
             <a href='/' onClick={event => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </a>
+
+            <a href='/' onClick={event => handleUpdate(event, {
+              id: eachChar.id,
+              avatar: eachChar.avatar,
+              character_name: eachChar.character_name,
+              character_label: eachChar.character_label,
+              book_id: bookId
+            })}> Update </a>
+
             <Modal bookId={eachChar.book_id} />
             </>
           ))

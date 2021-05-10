@@ -6,6 +6,7 @@ import { thunk_getAllPriChars } from "../../store/thunks/books.js";
 
 
 
+
 const CreatePriCharForm = ({ bookId, update=false, data }) => {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [charname, setCharname] = useState("");
@@ -59,16 +60,24 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
 
   const updateAvatar = (e) => {
-    const file = e.target.files[0];
-    setUrlPreview(file);
-    setAvatarUrl(URL.createObjectURL(file));
+    if (e.target.files.length === 0){
+      return;
+    } else if (e.target.files.length > 0) {
+      const file = e.target.files[0];
+      setUrlPreview(file);
+      setAvatarUrl(URL.createObjectURL(file));
+    }
   };
 
 
-  const cancelImgChoice = () => {
-    setUrlPreview(null);
-    setAvatarUrl('');
-  }
+
+
+
+
+  // const cancelImgChoice = () => {
+  //   setUrlPreview(null);
+  //   setAvatarUrl('');
+  // }
 
 
 
@@ -81,12 +90,8 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
   if (update) {
     return (
       <>
-        {/* <ul className=''>
-      {errors.map(error => ( <li key={error}> { error } </li> )) }
-      </ul> */}
-
         {/* for previewing the image before it is sent to backend */}
-        <div>
+        {/* <div>
           {urlpreview === null ?
             <p></p>
             :
@@ -95,7 +100,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
               <button onClick={cancelImgChoice}> Cancel </button>
             </>
           }
-        </div>
+        </div> */}
 
 
         <div>
@@ -140,12 +145,9 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
   return (
     <>
-      {/* <ul className=''>
-      {errors.map(error => ( <li key={error}> { error } </li> )) }
-      </ul> */}
 
       {/* for previewing the image before it is sent to backend */}
-      <div>
+      {/* <div>
         {urlpreview === null ?
           <p></p>
           :
@@ -154,7 +156,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
             <button onClick={cancelImgChoice}> Cancel </button>
           </>
         }
-      </div>
+      </div> */}
 
 
       <div>
