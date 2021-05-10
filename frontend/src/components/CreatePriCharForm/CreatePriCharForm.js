@@ -82,6 +82,24 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
   const onUpdate = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("image", urlpreview);
+    formData.append("charactername", charname);
+    formData.append("characterlabel", charlabel);
+
+    const res = await fetch(`/api/book/${bookId}/character/${data.charId}`, {
+      method: "PUT",
+      body: formData,
+    });
+
+    if (res.ok) {
+      dispatch(thunk_getAllPriChars(bookId));
+      dispatch(hideModal());
+
+    } else {
+      console.log("error");
+    }
+
   }
 
 
@@ -90,7 +108,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
     return (
       <>
         {/* for previewing the image before it is sent to backend */}
-        {/* <div>
+        <div>
           {urlpreview === null ?
             <p></p>
             :
@@ -99,11 +117,11 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
               <button onClick={cancelImgChoice}> Cancel </button>
             </>
           }
-        </div> */}
+        </div>
 
 
         <div>
-          <form className='' onSubmit={onSubmit}>
+          <form className='' onSubmit={onUpdate}>
 
             <label className="">
               Pick an Avatar
@@ -130,7 +148,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
               />
             </label>
 
-            <button type='submit'> Create </button>
+            <button type='submit'> Update </button>
           </form>
         </div>
       </>

@@ -76,7 +76,7 @@ const PrivateCharacter = ({ bookId }) => {
             })}> <RiDeleteBinFill /> </a>
 
             <a href='/' onClick={event => handleUpdate(event, {
-              id: eachChar.id,
+              charId: eachChar.id,
               avatar: eachChar.avatar,
               character_name: eachChar.character_name,
               character_label: eachChar.character_label,

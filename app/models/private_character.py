@@ -65,3 +65,10 @@ class PrivateCharacter(db.Model):
 
   def get_url(self):
     return self.avatar
+
+
+
+  def update_character_data(self, new_avatar, new_character_name, new_character_label):
+    self.avatar = new_avatar
+    self.character_name = new_character_name
+    self.character_label = new_character_label
