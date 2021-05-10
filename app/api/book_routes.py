@@ -43,3 +43,24 @@ def delete_book(bookId):
     db.session.commit()
     return {"message": "book successfully deleted"}
   return { "message": "Error, cannot remove a book that does not belong to the current user."}
+
+
+
+
+
+
+
+
+# /api/books/:bookId
+@book_routes.route('/<int:bookId>', methods=['PUT'])
+@login_required
+def update_book(bookId):
+  the_book = Book.query.get(bookId)
+  form = BookForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    the_book.update_title(form.data['title'])
+    db.session.add(the_book)
+    db.session.commit()
+  return {"book": the_book.to_dict()}

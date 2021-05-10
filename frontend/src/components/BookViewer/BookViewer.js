@@ -105,9 +105,15 @@ const BookViewer = () => {
           </a>
         </li>
 
+
           <ToolTip content={"Delete"} >
             <li> <a href='/' onClick={(event) => handleDeleteBook(event, eachBook.id)}> <RiDeleteBinFill/> </a></li>
           </ToolTip>
+
+
+        <ToolTip content={"Update"} >
+          <li> <a href='/' onClick={event => event.preventDefault()} > Update </a> </li>
+        </ToolTip>
         </>
       ))}
     </div>
