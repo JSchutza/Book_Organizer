@@ -15,7 +15,6 @@ import styles from "./homeloader.module.css";
 
 const HomeLoader = () => {
   const [ toggleSlides, setToggleSlides ] = useState(false);
-  const [ clickSlides, setClickSlides ] = useState(0);
   const [ singleCard, setSingleCard ] = useState(null);
 
   const dispatch = useDispatch();
@@ -28,95 +27,101 @@ const HomeLoader = () => {
 
       setTimeout(() => {
         dispatch(nextCard({ cards: two, cardId: 2 }))
-      }, 1000)
+      }, 110)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: three, cardId: 3 }))
-      }, 2000)
+      }, 210)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: four, cardId: 4 }))
-      }, 3000)
+      }, 310)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: five, cardId: 5 }))
-      }, 4000)
+      }, 410)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: six, cardId: 6 }))
-      }, 5000)
+      }, 510)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: seven, cardId: 7 }))
-      }, 6000)
+      }, 610)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: eight, cardId: 8 }))
-      }, 7000)
+      }, 710)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: nine, cardId: 9 }))
-      }, 8000)
+      }, 810)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: ten, cardId: 10 }))
-      }, 9000)
+      }, 910)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: eleven, cardId: 11 }))
-      }, 10000)
+      }, 1010)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: twelve, cardId: 12 }))
-      }, 11000)
+      }, 1110)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: thirteen, cardId: 13 }))
-      }, 12000)
+      }, 1210)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: fourteen, cardId: 14 }))
-      }, 13000)
+      }, 1310)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: fithteen, cardId: 15 }))
-      }, 14000)
+      }, 1410)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: sixteen, cardId: 16 }))
-      }, 15000)
+      }, 1510)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: seventeen, cardId: 17 }))
-      }, 16000)
+      }, 1610)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: eightteen, cardId: 18 }))
-      }, 17000)
+      }, 1710)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: nineteen, cardId: 19 }))
-      }, 18000)
+      }, 1810)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: twenty, cardId: 20 }))
-      }, 19000)
+      }, 1910)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: twentyone, cardId: 21 }))
-      }, 20000)
+      }, 2010)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: twentytwo, cardId: 22 }))
-      }, 21000)
+      }, 2110)
 
       setTimeout(() => {
         dispatch(nextCard({ cards: twentythree, cardId: 23 }))
-      }, 22000)
+      }, 2210)
+
+
+    setTimeout(() => {
+      dispatch(nextCard({ cards: fithteen, cardId: 15 }))
+    }, 2310)
+
 
       setTimeout(() => {
         dispatch(resetCards())
-      }, 23000)
+      }, 7000)
   }
 
 
@@ -202,13 +207,7 @@ const HomeLoader = () => {
           break;
       }
     }
-    // if (clickSlides === 0) {
-      // setToggleSlides(true);
-      // setClickSlides(1);
-    // } else if (clickSlides === 1) {
-      // setToggleSlides(false);
-      // setClickSlides(0);
-    // }
+
   }
 
 
@@ -236,18 +235,21 @@ const HomeLoader = () => {
   return (
     <>
     {next_card ?
-        <div className={styles.main_box}>
+
+        <div>
+
         { toggleSlides ?
         // individual card view
-        <div>
+        <div className={styles.main_box}>
+
           {each_card ?
+
             <a href = '/' onClick = { (event) => handleClick(event) }>
-                  <span></span>
-                  <span></span>
-                  <span></span>
               <img className={styles.card_view} src={each_card} alt='individual card' />
             </a>
-             :
+
+            :
+
               <h1> Loading... </h1>
           }
         </div>
@@ -255,18 +257,19 @@ const HomeLoader = () => {
         :
         // slide show view
 
-        <div>
-          <a href='/' onClick={(event) => pauseSlideShow(event, next_card.cardId)}>
-              <span></span>
-              <span></span>
-              <span></span>
-            <img className={styles.card_view} src={next_card.cards} alt='slide show' />
-          </a>
-        </div>
+            <div className={styles.main_box}>
+              <a href='/' onClick={(event) => pauseSlideShow(event, next_card.cardId)}>
+                <img className={styles.card_view} src={next_card.cards} alt='slide show' />
+              </a>
+          </div>
         }
-    </div>
+
+      </div>
+
     :
+
     <h1>Loading... </h1>
+
     }
     </>
   )

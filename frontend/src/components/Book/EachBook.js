@@ -62,7 +62,7 @@ const EachBook = () => {
 
 
     <div>
-      <PrivateCharacter />
+      <PrivateCharacter bookId={bookId} />
     </div>
 
     <div>
