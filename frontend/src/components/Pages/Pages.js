@@ -30,6 +30,17 @@ const Pages = ({ bookId }) => {
 
 
 
+  const handleUpdate = (event, payload) => {
+    event.preventDefault();
+    dispatch(contentModal("UpdatePage"));
+    dispatch(dataModal(payload));
+    dispatch(showModal());
+  }
+
+
+
+
+
   if (pageInfo === undefined || pageInfo === null) {
     return (
       <>
@@ -59,6 +70,16 @@ const Pages = ({ bookId }) => {
 
 
             <a href='/' onClick={event => handleDelete(event, eachPage.id) }> <RiDeleteBinFill /> </a>
+
+            <a href='/' onClick={event => handleUpdate(event, {
+              id: eachPage.id,
+              title: eachPage.title,
+              text: eachPage.text,
+              book_id: eachPage.book_id
+
+            })}> Update </a>
+
+
             <Modal bookId={eachPage.book_id} />
           </>
         ))

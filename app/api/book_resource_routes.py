@@ -105,3 +105,24 @@ def delete_page(bookId, pageId):
   db.session.delete(the_page)
   db.session.commit()
   return { "pageId": pageId }
+
+
+
+
+
+
+
+
+# /api/book/:bookId/page/:pageId
+@resource_routes.route("/<int:bookId>/page/<int:pageId>", methods=["PUT"])
+@login_required
+def update_page(bookId, pageId):
+  the_page = Page.query.get(pageId)
+  form = PageForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    the_page.update_page_data(form.data['title'], form.data["text"])
+    db.session.add(the_page)
+    db.session.commit()
+    return { "page": the_page.to_dict() }

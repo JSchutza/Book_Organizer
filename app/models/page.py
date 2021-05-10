@@ -50,3 +50,8 @@ class Page(db.Model):
         "book_title": Book.query.get(self.book_id).the_title,
         "created_at": self.created_at,
     }
+
+
+  def update_page_data(self, new_title, new_text):
+    self.title = new_title
+    self.text = new_text
