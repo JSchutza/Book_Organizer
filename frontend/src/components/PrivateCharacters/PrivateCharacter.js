@@ -29,6 +29,17 @@ const PrivateCharacter = ({ bookId }) => {
 
 
 
+  const handleUpdate = (event, payload) => {
+    event.preventDefault();
+    dispatch(contentModal("UpdatePriChar"));
+    dispatch(dataModal(payload));
+    dispatch(showModal());
+  }
+
+
+
+
+
   if (charInfo === undefined) {
     return (
       <>

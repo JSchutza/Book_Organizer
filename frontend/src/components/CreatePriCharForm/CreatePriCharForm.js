@@ -6,11 +6,13 @@ import { thunk_getAllPriChars } from "../../store/thunks/books.js";
 
 
 
-const CreatePriCharForm = ({ bookId }) => {
+const CreatePriCharForm = ({ bookId, update=false, data }) => {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [charname, setCharname] = useState("");
   const [charlabel, setCharlabel] = useState("");
   const [urlpreview, setUrlPreview] = useState(null);
+
+
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
@@ -27,6 +29,9 @@ const CreatePriCharForm = ({ bookId }) => {
     }
     setErrors(errors);
   }, [urlpreview]);
+
+
+
 
 
   const onSubmit = async (e) => {
@@ -66,6 +71,73 @@ const CreatePriCharForm = ({ bookId }) => {
   }
 
 
+
+  const onUpdate = async (event) => {
+    event.preventDefault();
+  }
+
+
+
+  if (update) {
+    return (
+      <>
+        {/* <ul className=''>
+      {errors.map(error => ( <li key={error}> { error } </li> )) }
+      </ul> */}
+
+        {/* for previewing the image before it is sent to backend */}
+        <div>
+          {urlpreview === null ?
+            <p></p>
+            :
+            <>
+              <img src={avatarUrl} />
+              <button onClick={cancelImgChoice}> Cancel </button>
+            </>
+          }
+        </div>
+
+
+        <div>
+          <form className='' onSubmit={onSubmit}>
+
+            <label className="">
+              Pick an Avatar
+            <input id='file' className="" type="file" accept="image/*" onChange={updateAvatar} />
+            </label>
+
+            <label>
+              Character Name
+              <input
+                type='text'
+                name='character name'
+                value={charname}
+                onChange={(e) => setCharname(e.target.value)}
+              />
+            </label>
+
+            <label>
+              Character Label
+              <input
+                type='text'
+                name='character label'
+                value={charlabel}
+                onChange={(e) => setCharlabel(e.target.value)}
+              />
+            </label>
+
+            <button type='submit'> Create </button>
+          </form>
+        </div>
+      </>
+    )
+  }
+
+
+
+
+
+
   return (
     <>
       {/* <ul className=''>
@@ -90,7 +162,7 @@ const CreatePriCharForm = ({ bookId }) => {
 
           <label className="">
             Pick an Avatar
-      <input id='file' className="" type="file" accept="image/*" onChange={updateAvatar} />
+            <input id='file' className="" type="file" accept="image/*" onChange={updateAvatar} />
           </label>
 
 
@@ -107,7 +179,7 @@ const CreatePriCharForm = ({ bookId }) => {
 
           <label>
             Character Label
-      <input
+          <input
               type='text'
               name='character label'
               value={charlabel}

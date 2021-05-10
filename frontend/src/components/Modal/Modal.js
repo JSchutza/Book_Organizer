@@ -80,6 +80,13 @@ const Modal = ({ bookId, user }) =>  {
         }
 
 
+        {content === "UpdatePriChar" && data ?
+          <CreatePriCharForm bookId={bookId} update={true} data={data} />
+        :
+        <p></p>
+        }
+
+
         {content === "CreatePage" ?
           <CreatePageForm bookId={bookId} />
           :
