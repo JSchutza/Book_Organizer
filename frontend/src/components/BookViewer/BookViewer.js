@@ -15,9 +15,13 @@ import { RiDeleteBinFill } from "react-icons/ri";
 const BookViewer = () => {
   const [ showBookForm, setShowBookForm ] = useState(false);
   const [ clickShowForm, setShowForm ] = useState(0);
+
   const [ deletedBook, setDeletedBook ]  = useState(null);
   const [ clickDeleteBook, setClickDeleteBook ] = useState(0);
+
   const [ showUpdateForm, setShowUpdateForm ] = useState(false);
+  const [ clickUpdateBook, setClickUpdateBook ] = useState(0);
+
   const [ toUpdate, setToUpdate ] = useState(null);
 
   const history = useHistory();
@@ -68,11 +72,19 @@ const BookViewer = () => {
   }
 
 
-  const handleUpdate = async (event, bookId) => {
+
+  const handleUpdate = (event, bookId) => {
     event.preventDefault();
     setToUpdate(bookInfo[bookId]);
-    setShowUpdateForm(true);
+    if(clickUpdateBook === 0) {
+      setShowUpdateForm(true);
+      setClickUpdateBook(1);
+    } else if (clickUpdateBook === 1) {
+      setShowUpdateForm(false);
+      setClickUpdateBook(0);
+    }
   }
+
 
 
   if (bookInfo === null){
