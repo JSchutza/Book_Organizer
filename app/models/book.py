@@ -55,3 +55,8 @@ class Book(db.Model):
 
   def check_creator_id(self, to_check):
     return int(self.creator_id) == int(to_check)
+
+
+
+  def update_title(self, new_title):
+    self.the_title = new_title
