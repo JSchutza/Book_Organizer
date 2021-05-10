@@ -9,7 +9,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 
 const CreateBookForm = ({ isUpdate=false, data }) => {
-  const [ updateTitle, setUpdateTitle ] = useState(data.the_title);
+  const [ updateTitle, setUpdateTitle ] = useState("");
   const [ title, setTitle ] = useState("");
   const dispatch = useDispatch();
 
