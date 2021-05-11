@@ -2,6 +2,7 @@ from random import randint
 
 
 
+
 def gen_search_id(the_input):
   number = 0
   for each in the_input:
@@ -12,4 +13,5 @@ def gen_search_id(the_input):
       continue
 
   result = str(the_input[0]) + str(number)
+
   return result
