@@ -6,6 +6,9 @@ import {Book} from "../Book";
 
 
 
+import styles from "./profile.module.css";
+
+
 
 
 const Profile = () => {
@@ -27,21 +30,34 @@ const Profile = () => {
     <>
     <div>
       {/* users info here */}
-      <div>
+
+    <div className={styles.user_info_wrap}>
         {Object.values(userInfo).map(each => (
           <>
+          <div className={styles.user_avatar}>
             <img src={each.avatar} alt='avatar' />
+          </div>
+
+          <div></div>
+            <div className={styles.user_text}>
+
             <p>Search Id: {each.search_id} </p>
+              <br/>
             <p>Username: {each.user_name}</p>
+              <br/>
             <p>Email: {each.email}</p>
+              <br/>
             <p>Bio: {each.bio} </p>
+              <br/>
             <p>Birthday: {each.birthday} </p>
+              <br/>
             <p>Address: {each.location} </p>
+            </div>
           </>
         ))}
-      </div>
+    </div>
 
-      <div>
+      <div className={styles}>
         <h2>Recently Created Books</h2>
       </div>
 
@@ -50,14 +66,14 @@ const Profile = () => {
         <h2>Books</h2>
           {bookInfo ?
             <div>
-              {Object.values(bookInfo).map(eachBook => (
-                <div>
-                  <Book bookId={eachBook.id} title={eachBook.the_title} creatorId={eachBook.creator_id} creationDate={eachBook.created_at} />
-                </div>
-              ))}
-            </div>
+        {Object.values(bookInfo).map(eachBook => (
+        <div>
+          <Book bookId={eachBook.id} title={eachBook.the_title} creatorId={eachBook.creator_id} creationDate={eachBook.created_at} />
+        </div>
+        ))}
+      </div>
           :
-          <h1>Loading books... </h1>
+        <h1>Loading books... </h1>
           }
       </div>
 

@@ -1,0 +1,42 @@
+
+
+
+
+
+.user_info_wrap {
+  display: flex;
+  position: relative;
+  background-color: blue;
+  flex-flow: wrap;
+  flex-direction: column;
+}
+
+
+
+
+
+
+
+.user_avatar {
+  position: relative;
+  display: flex;
+  background-color: black;
+  width: 20%;
+}
+
+
+
+.user_avatar img {
+    display: flex;
+    position: relative;
+    left: 10%;
+}
+
+
+
+
+.user_text {
+    background-color: cadetblue;
+    position: relative;
+    left: 2%;
+}
