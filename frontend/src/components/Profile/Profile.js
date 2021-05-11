@@ -57,17 +57,17 @@ const Profile = () => {
         ))}
     </div>
 
-      <div className={styles}>
+      <div className={styles.recent_books_header}>
         <h2>Recently Created Books</h2>
       </div>
 
       {/* book info here */}
       <div>
-        <h2>Books</h2>
           {bookInfo ?
-            <div>
+
+        <div className={styles.book_link_wrap}>
         {Object.values(bookInfo).map(eachBook => (
-        <div>
+        <div className={styles.each_book_link}>
           <Book bookId={eachBook.id} title={eachBook.the_title} creatorId={eachBook.creator_id} creationDate={eachBook.created_at} />
         </div>
         ))}

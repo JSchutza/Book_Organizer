@@ -5,9 +5,15 @@ import { thunk_getAllBooks, thunk_getAllPriChars, thunk_getAllPages, thunk_delet
 import CreateBookForm from "../CreateBookForm";
 import ToolTip from "../ToolTip";
 
+import styles from "./bookviewer.module.css";
+
 // icon imports here
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { RiDeleteBinFill } from "react-icons/ri";
+
+
+
+
 
 
 
@@ -126,24 +132,25 @@ const BookViewer = () => {
 
 
 
-    <div>
+    <div className={styles.book_link_wrapper}>
       {Object.values(bookInfo).map(eachBook => (
         <>
+
+        <div className={styles.each_book_link}>
         <li>
             <a href='/' onClick={(event) => handleBookClick(event, eachBook.id)}>
             { eachBook.the_title }
           </a>
         </li>
 
-
           <ToolTip content={"Delete"} >
             <li> <a href='/' onClick={(event) => handleDeleteBook(event, eachBook.id)}> <RiDeleteBinFill/> </a></li>
           </ToolTip>
 
-
         <ToolTip content={"Update"} >
             <li> <a href='/' onClick={event => handleUpdate(event, eachBook.id)} > Update </a> </li>
         </ToolTip>
+        </div>
         </>
       ))}
     </div>

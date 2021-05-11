@@ -6,7 +6,6 @@
 .user_info_wrap {
   display: flex;
   position: relative;
-  background-color: blue;
   flex-flow: wrap;
   flex-direction: column;
 }
@@ -20,23 +19,59 @@
 .user_avatar {
   position: relative;
   display: flex;
-  background-color: black;
   width: 20%;
 }
 
 
 
 .user_avatar img {
-    display: flex;
-    position: relative;
-    left: 10%;
+  display: flex;
+  position: relative;
+  left: 10%;
 }
 
 
 
 
 .user_text {
-    background-color: cadetblue;
-    position: relative;
-    left: 2%;
+  position: relative;
+  left: 2%;
+}
+
+
+
+
+.recent_books_header {
+  display: flex;
+  position: relative;
+  left: 2%;
+  box-sizing: border-box;
+  padding: 2%;
+}
+
+
+
+
+.book_link_wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  padding: 2%;
+  left: 4%;
+}
+
+
+
+.each_book_link {
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  padding: 1%;
+  background-color: b;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: solid black .1px;
+  border-radius: 10px;
+  box-shadow: 8px 0px 8px gray;
 }
