@@ -1,7 +1,9 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/thunks/session.js';
+import ToolTip from "../ToolTip";
+
 
 import styles from "./loginform.module.css"
 
@@ -26,8 +28,15 @@ const LoginForm = () => {
   }
 
 
+  const handleDemo = event => {
+    event.preventDefault();
+    dispatch(login("demo@aa.io", "password"));
+  }
+
+
 
   return(
+    <>
     <div className={styles.login_containter}>
       <form className={styles.the_form} onSubmit={onSubmit}>
         <label>
@@ -51,9 +60,20 @@ const LoginForm = () => {
         />
         </label>
 
+        <ToolTip content={"Enter"}>
         <button> <IoIosPower/> </button>
+        </ToolTip>
+
       </form>
     </div>
+
+    <div>
+      <ToolTip content={"Demo"}>
+        <a href='/' onClick={event => handleDemo(event)}> Demo </a>
+      </ToolTip>
+
+    </div>
+    </>
   )
 };
 

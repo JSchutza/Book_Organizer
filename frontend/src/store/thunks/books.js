@@ -1,7 +1,7 @@
 
 
 import { getAllBooks, getAllPriChars, getAllPages, deleteBook, deleteUsersPrivateChars, deletePage } from "../actions/books.js";
-
+import { setErrors } from "../actions/errors.js";
 
 
 
@@ -16,6 +16,7 @@ const thunk_getAllBooks = () => async (dispatch) => {
 
   const data = await response.json();
   if (data.errors) {
+    dispatch(setErrors(data.errors));
     return;
   }
   dispatch(getAllBooks(data));
@@ -35,6 +36,7 @@ const thunk_getAllPriChars = (bookId) => async (dispatch) => {
 
   const data = await response.json();
   if (data.errors) {
+    dispatch(setErrors(data.errors));
     return;
   }
   dispatch(getAllPriChars(data));
@@ -55,6 +57,7 @@ const thunk_getAllPages = (bookId) => async (dispatch) => {
 
   const data = await response.json();
   if (data.errors) {
+    dispatch(setErrors(data.errors));
     return;
   }
   dispatch(getAllPages(data));
@@ -72,6 +75,7 @@ const thunk_deleteBook = (bookId) => async (dispatch) => {
 
   const data = await response.json();
   if (data.errors) {
+    dispatch(setErrors(data.errors));
     return;
   }
   dispatch(deleteBook(bookId));
@@ -91,6 +95,7 @@ const thunk_deleteUsersPrivateChars = (bookId, characterId) => async (dispatch) 
 
   const data = await response.json();
   if (data.errors) {
+    dispatch(setErrors(data.errors));
     return;
   }
   dispatch(deleteUsersPrivateChars(characterId));
@@ -111,6 +116,7 @@ const thunk_deletePage = (bookId, pageId) => async (dispatch) => {
 
   const data = await response.json();
   if (data.errors) {
+    dispatch(setErrors(data.errors));
     return;
   }
   dispatch(deletePage(pageId));

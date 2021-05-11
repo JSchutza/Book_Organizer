@@ -1,26 +1,51 @@
 
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import User
+from app.validators import check_if_empty, check_right_length
+# from app.models import User
+
 
 # from app.models.user import follower_to_followee
 
 user_routes = Blueprint('users', __name__)
 
+# /api/users/
+@user_routes.route('/')
+@login_required
+def index():
+    errors = [ "You need to enter a search id to search.", "Please try again." ]
+    return {"errors":  errors }
+
+
+
+
+
 
 
 
 #  /api/users/:searchId
-@user_routes.route('/<int:searchId>')
+@user_routes.route('/<string:searchId>')
 @login_required
 def search_for_user(searchId):
-    if int(current_user.the_search_id) == int(searchId):
-        result = current_user.get_users_public_characters()
-        public_characters = { each["id"]: each   for each in result["public_characters"] }
+    try:
+        errors = []
+        if check_if_empty(str(searchId)):
+            errors.append("You need to enter a search id.")
 
-        return {"public_characters": public_characters}
+        if check_right_length(str(searchId)):
+            errors.append("Your search id needs to be six characters long.")
 
-    return { "Error": "You entered the wrong search_id" }
+        if int(current_user.the_search_id) == int(searchId):
+            result = current_user.get_users_public_characters()
+            public_characters = { each["id"]: each   for each in result["public_characters"] }
+            return {"public_characters": public_characters}
+
+        errors.append("You entered the wrong search id.")
+
+        return { "errors": errors }
+    except ValueError:
+        errors = ["You need to enter a search id to search.", "Please try again."]
+        return {"errors":  errors}
 
 
 
