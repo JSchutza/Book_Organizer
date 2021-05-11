@@ -1,5 +1,5 @@
 
-import { setUser, removeUser,  } from '../actions/session.js';
+import { setUser, removeUser, setErrors  } from '../actions/session.js';
 
 
 
@@ -33,6 +33,7 @@ const login = (email, password) => async (dispatch) => {
   });
   const data = await response.json();
   if (data.errors) {
+    dispatch(setErrors(data.errors));
     return;
   }
   dispatch(setUser(data));
@@ -62,7 +63,12 @@ const signUp = (username, email, password) => async (dispatch) => {
       password,
     }),
   });
+
   const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
   dispatch(setUser(data));
 };
 

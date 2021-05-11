@@ -1,5 +1,5 @@
 
-import { SET_USER, REMOVE_USER } from '../types'
+import { SET_USER, REMOVE_USER, VALIDATION_ERRORS, CLEAR_ERRORS } from '../types'
 
 
 const setUser = (user) => ({
@@ -12,9 +12,23 @@ const removeUser = () => ({
 });
 
 
+const setErrors = (errors) => ({
+  type: VALIDATION_ERRORS,
+  errors
+});
+
+
+
+const clearErrors = () => ({
+  type: CLEAR_ERRORS
+});
+
 
 export {
   setUser,
   removeUser,
+  setErrors,
+  clearErrors,
+
 
 }

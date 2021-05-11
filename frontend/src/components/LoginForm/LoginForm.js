@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/thunks/session.js';
 
@@ -15,6 +14,7 @@ import { hideModal, contentModal } from "../../store/actions/modal.js";
 const LoginForm = () => {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
+
   const dispatch = useDispatch();
 
 

@@ -1,6 +1,11 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const VALIDATION_ERRORS = "session/VALIDATION_ERRORS";
+const CLEAR_ERRORS = "session/CLEAR_ERRORS";
+
+
+
 const ALL_CHARACTERS = "characters/ALL_CHARACTERS"
 const NEXT_CARD = "loader/NEXT_CARD";
 const RESET_CARDS = "loader/RESET_CARDS";
@@ -38,6 +43,8 @@ const TRIGGER_RENDER = "render/TRIGGER_RENDER";
 export {
   SET_USER,
   REMOVE_USER,
+  VALIDATION_ERRORS,
+  CLEAR_ERRORS,
   ALL_CHARACTERS,
   NEXT_CARD,
   RESET_CARDS,
