@@ -1,0 +1,19 @@
+
+
+
+
+
+.book_link_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
+.each_book_link {
+    display: flex;
+    background-color: brown;
+    box-sizing: border-box;
+    padding: 1%;
+}
