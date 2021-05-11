@@ -1,6 +1,7 @@
 
 
 import { getAllCharacters, searchForUsersPubChars, deleteUsersPubChars } from "../actions/characters.js";
+import { setErrors } from "../actions/errors.js";
 
 
 
@@ -16,6 +17,7 @@ const thunk_getAllCharacters = () => async (dispatch) => {
 
   const data = await response.json();
   if (data.errors) {
+    dispatch(setErrors(data.errors));
     return;
   }
   dispatch(getAllCharacters(data));
@@ -33,6 +35,7 @@ const thunk_searchForUsersPubChars = (searchId) => async (dispatch) => {
 
   const data = await response.json();
   if (data.errors) {
+    dispatch(setErrors(data.errors));
     return;
   }
   dispatch(searchForUsersPubChars(data));
@@ -50,6 +53,7 @@ const thunk_deleteUsersPubChars = (characterId) => async (dispatch) => {
 
   const data = await response.json();
   if (data.errors) {
+    dispatch(setErrors(data.errors));
     return;
   }
   dispatch(deleteUsersPubChars(characterId));

@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import CharacterSearch from "./components/CharacterSearch";
 import CharacterPage from "./components/CharacterPage";
 import Modal from "./components/Modal";
+import Errors from "./components/Errors";
 import Profile from "./components/Profile";
 import BookViewer from "./components/BookViewer";
 import { EachBook } from "./components/Book";
@@ -54,6 +55,7 @@ function App() {
         <NavBar userStatus={false}/>
       </BrowserRouter>
       <Modal />
+      <Errors />
       </>
     );
   }
@@ -68,6 +70,7 @@ if (user !== null) {
     <BrowserRouter>
       <NavBar userStatus={true} />
       <Modal />
+
         <Switch>
           <Route path="/" exact>
             <Redirect to="/profile" />

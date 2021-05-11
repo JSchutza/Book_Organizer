@@ -6,7 +6,7 @@ import {FiLogOut} from 'react-icons/fi'
 import { hideModal } from "../../store/actions/modal.js";
 import { showLoader } from "../../store/actions/loader.js";
 
-
+import { clearErrors } from "../../store/actions/session.js";
 
 
 const LogoutButton = () => {
@@ -18,6 +18,9 @@ const LogoutButton = () => {
     dispatch(hideModal());
     dispatch(showLoader());
     dispatch(logout());
+    setTimeout(() => {
+      dispatch(clearErrors());
+    }, 100);
     history.push("/")
   };
 

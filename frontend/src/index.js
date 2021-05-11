@@ -6,6 +6,7 @@ import { showLoader } from "./store/actions/loader.js";
 import App from "./App";
 import HomeLoader from "./components/HomeLoader";
 
+
 import configureStore from "./store";
 
 
@@ -33,10 +34,11 @@ const Loader = () => {
     return (
       <>
         { initLoader ?
-
+        <>
         <div>
           <HomeLoader />
         </div>
+        </>
         :
         <p></p>
         }

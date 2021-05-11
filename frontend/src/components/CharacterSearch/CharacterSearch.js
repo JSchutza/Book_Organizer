@@ -5,12 +5,12 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import ToolTip from "../ToolTip";
 import styles from "./charactersearch.module.css";
 import React, { useState, useEffect } from 'react';
-import Modal from "../Modal";
+
 import { useDispatch, useSelector } from 'react-redux';
+import { resetErrors } from "../../store/actions/errors.js";
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";;
-
 
 
 
@@ -21,11 +21,17 @@ const CharacterSearch = () => {
   const [ searchId, setSearchId ] = useState("");
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
+  const [ backenderrors, setBackenderrors ] = useState(null);
   const dispatch = useDispatch();
-  const searchedChar = useSelector((store) => store.searchCharacterPageReducer.characters)
-  const char = useSelector((store) => store.searchCharacterPageReducer)
+  const searchedChar = useSelector((store) => store.searchCharacterPageReducer.characters);
+  const char = useSelector((store) => store.searchCharacterPageReducer);
+  const errors = useSelector((store)  => store.errorsReducer.errors);
 
-
+  useEffect(() => {
+    if(errors !== null ) {
+      setBackenderrors(Object.values(errors));
+    }
+  }, [errors]);
 
 
   const showSpecificChar = (event, the_char_id) => {
@@ -72,6 +78,13 @@ const CharacterSearch = () => {
     dispatch(showModal());
   }
 
+
+  const clearErrors = (event) => {
+    event.preventDefault();
+    dispatch(resetErrors());
+    setBackenderrors(null);
+    setSearchId("");
+  }
 
 
   if(specificChar === true) {
@@ -166,6 +179,21 @@ const CharacterSearch = () => {
   return (
     <>
     <div className={styles.search_wrapper}>
+      <div>
+        {backenderrors !== null ?
+        <>
+          { backenderrors.map(each => ( <li> {each} </li>))}
+          <div>
+            <a href='/' onClick={(event) => clearErrors(event)}> Try Again </a>
+          </div>
+        </>
+        :
+        <></>
+        }
+      </div>
+
+
+
       <div className={styles.search_input}>
       <label>
         Search

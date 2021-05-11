@@ -48,6 +48,8 @@ const Modal = ({ user }) =>  {
     <>
     <div className={styles.modal_background}>
 
+
+
         {content === "login" ?
           <div className={styles.log_in_wrap}>
             <LoginForm />
