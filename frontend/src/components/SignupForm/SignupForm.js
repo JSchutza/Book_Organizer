@@ -4,7 +4,7 @@ import { signUp } from "../../store/thunks/session.js";
 import { hideModal, contentModal } from "../../store/actions/modal.js";
 
 import styles from "./signupform.module.css"
-
+import ToolTip from "../ToolTip";
 
 import { IoIosPower } from "react-icons/io";
 
@@ -107,7 +107,15 @@ const SignUpForm = () => {
           ></input>
         </div>
 
-        <button className="" type="submit"> <IoIosPower /> </button>
+
+
+        <div className={styles.enter_button}>
+          <div>
+          <ToolTip content={"Enter"}>
+            <button className="" type="submit"> <IoIosPower /> </button>
+          </ToolTip>
+          </div>
+        </div>
 
       </form>
     </div>
