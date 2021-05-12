@@ -131,9 +131,11 @@ const Modal = ({ user }) =>  {
         }
 
 
+        <div className={styles.modal_exit_button}>
         <ToolTip content={"Close"} >
           <a href='/' onClick={event => onClose(event)}> <BsFillBackspaceFill/> </a>
         </ToolTip>
+        </div>
 
     </div>
     </>
