@@ -19,7 +19,7 @@ auth_routes = Blueprint('auth', __name__)
 def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
-    return {'errors': ['Unauthorized']}
+    return {'errors': ['']}
 
 
 
@@ -71,4 +71,4 @@ def sign_up():
 
 @auth_routes.route('/unauthorized')
 def unauthorized():
-    return {'errors': ['Unauthorized']}, 401
+    return {'errors': ['']}, 401
