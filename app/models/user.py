@@ -6,11 +6,10 @@ from app.hash import gen_search_id
 from random import randint
 
 
-# follower_to_followee = db.Table(
-#     "follower_to_followee",
-#     db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
-#     db.Column("followee_id", db.Integer, db.ForeignKey("users.id")),
-# )
+follower_to_followee = db.Table("follower_to_followee",
+    db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("followee_id", db.Integer, db.ForeignKey("users.id")),
+)
 
 
 
@@ -30,24 +29,20 @@ class User(db.Model, UserMixin):
     birthday = db.Column(db.DateTime)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
+
     public_characters = db.relationship("PublicCharacter", backref="users", cascade="all, delete")
     books = db.relationship("Book", backref="users", cascade="all, delete")
+    polls = db.relationship("Poll", backref="users", cascade="all, delete")
+    comments = db.relationship("Comment", backref="users", cascade="all, delete")
 
 
-
-
-    # posts = db.relationship("Post", backref="users", cascade="all, delete")
-    # comments = db.relationship(
-    #     "Comment", backref="users", cascade="all, delete")
-
-    # followers = db.relationship(
-    #     "User",
-    #     secondary=follower_to_followee,
-    #     primaryjoin=id == follower_to_followee.c.follower_id,
-    #     secondaryjoin=id == follower_to_followee.c.followee_id,
-    #     backref=db.backref("follower_to_followee", lazy="joined"),
-    #     lazy="joined",
-    # )
+    followers = db.relationship("User",
+        secondary=follower_to_followee,
+        primaryjoin=id == follower_to_followee.c.follower_id,
+        secondaryjoin=id == follower_to_followee.c.followee_id,
+        backref=db.backref("follower_to_followee", lazy="joined"),
+        lazy="joined",
+    )
 
 
 
@@ -156,6 +151,16 @@ class User(db.Model, UserMixin):
             "books": [book.to_dict() for book in self.books],
         }
 
+    def get_users_polls(self):
+        return {
+            "polls": [poll.to_dict() for poll in self.polls],
+        }
+
+
+    def get_users_followers(self):
+        return {
+            "followers": [follower.id for follower in self.followers],
+        }
 
 
     def to_dict(self):
@@ -169,10 +174,7 @@ class User(db.Model, UserMixin):
             "avatar": self.avatar,
             "birthday": self.birthday,
             "created_at": self.created_at,
+            "polls" : [poll.to_dict()  for poll in self.polls],
+            "comments": [comment.to_dict() for comment in self.comments],
+            "followers": [follower.id  for follower in self.followers],
         }
-
-
-
-
-            # "followers": [follower.id for follower in self.followers],
-            # "comments": [comment.to_dict() for comment in self.comments],
