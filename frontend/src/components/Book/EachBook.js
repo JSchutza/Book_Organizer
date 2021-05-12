@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import PrivateCharacter from "../PrivateCharacters";
 import Pages from "../Pages";
+import ToolTip from "../ToolTip";
 
 
 
@@ -55,12 +56,18 @@ const EachBook = () => {
   return (
     <>
     <div>
+      <ToolTip content={"New Character"}>
         <a href='/' onClick={(event) => handleCreateChar(event)}> <BsFillPersonPlusFill/> </a>
+      </ToolTip>
     </div>
 
+
     <div>
+      <ToolTip content={"New Page"}>
         <a href='/' onClick={(event) => handleCreatePage(event)}> <BsFileEarmarkPlus/> </a>
+      </ToolTip>
     </div>
+
 
 
     <div>

@@ -11,7 +11,7 @@ import DeletePubCharButton from "../DeletePubCharButton";
 import EditPubCharButton from "../EditPubCharButton";
 import DeletePageButton from "../DeletePageButton";
 import DeletePriCharButton from "../DeletePriCharButton";
-
+import ToolTip from "../ToolTip";
 
 import { showLoader } from "../../store/actions/loader.js";
 
@@ -130,7 +130,11 @@ const Modal = ({ user }) =>  {
           <></>
         }
 
-        <a href='/' onClick={event => onClose(event)}> <BsFillBackspaceFill/> </a>
+
+        <ToolTip content={"Close"} >
+          <a href='/' onClick={event => onClose(event)}> <BsFillBackspaceFill/> </a>
+        </ToolTip>
+
     </div>
     </>
   );

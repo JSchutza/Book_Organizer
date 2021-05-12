@@ -134,6 +134,8 @@ const CharacterSearch = () => {
                 <img className={styles.search_results_each_img} src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
+
+              <ToolTip content={"Delete"} >
                 <a href='/' onClick={(event) => handleDelete(event, {
                   charId: eachChar.id,
                   avatar: eachChar.avatar,
@@ -146,8 +148,9 @@ const CharacterSearch = () => {
                   search_id: eachChar.search_id,
 
                   })}> <RiDeleteBinFill /> </a>
+                </ToolTip>
 
-
+                <ToolTip content={"Update"} >
                 <a href='/' onClick={(event) => handleUpdate(event, {
                   charId: eachChar.id,
                   avatar: eachChar.avatar,
@@ -160,6 +163,7 @@ const CharacterSearch = () => {
                   search_id: eachChar.search_id,
 
                   })}> Update </a>
+                  </ToolTip>
 
               </div>
               </>
