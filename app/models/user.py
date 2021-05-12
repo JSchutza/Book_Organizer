@@ -151,6 +151,11 @@ class User(db.Model, UserMixin):
             "books": [book.to_dict() for book in self.books],
         }
 
+    def get_users_polls(self):
+        return {
+            "polls": [poll.to_dict() for poll in self.polls],
+        }
+
 
     def get_users_followers(self):
         return {
