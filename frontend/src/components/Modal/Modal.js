@@ -69,7 +69,9 @@ const Modal = ({ user }) =>  {
 
 
         {content === "CreatePubChar" ?
+        <div className={styles.create_pub_char_form}>
           <CreateCharacterForm />
+        </div>
         :
           <></>
         }
