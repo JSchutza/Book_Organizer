@@ -12,6 +12,7 @@ import ToolTip from "../ToolTip";
 import { showModal, contentModal, hideModal } from "../../store/actions/modal.js";
 import { hideLoader } from "../../store/actions/loader.js";
 import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
+import { clearErrors } from "../../store/actions/session.js";
 
 
 const NavBar = ({ userStatus }) => {
@@ -20,6 +21,7 @@ const NavBar = ({ userStatus }) => {
 
   const showLoginForm = (event) => {
     event.preventDefault();
+    dispatch(clearErrors());
     dispatch(contentModal("login"));
     dispatch(showModal());
     dispatch(hideLoader());
@@ -27,6 +29,7 @@ const NavBar = ({ userStatus }) => {
 
   const showSignupForm = (event) => {
     event.preventDefault();
+    dispatch(clearErrors());
     dispatch(contentModal("signin"))
     dispatch(showModal());
     dispatch(hideLoader());

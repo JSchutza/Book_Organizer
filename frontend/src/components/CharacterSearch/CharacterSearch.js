@@ -19,10 +19,9 @@ import { showModal, contentModal, dataModal } from "../../store/actions/modal.js
 
 const CharacterSearch = () => {
   const [ searchId, setSearchId ] = useState("");
-  const [ specificChar, setSpecificChar ] = useState(false);
   const [ isHidden, setIsHidden] = useState("");
-  const [ charId, setCharId ] = useState(false);
   const [ backenderrors, setBackenderrors ] = useState(null);
+
   const dispatch = useDispatch();
   const searchedChar = useSelector((store) => store.searchCharacterPageReducer.characters);
   const char = useSelector((store) => store.searchCharacterPageReducer);
@@ -31,22 +30,13 @@ const CharacterSearch = () => {
   useEffect(() => {
     if(errors !== null ) {
       setBackenderrors(Object.values(errors));
+    } else if (errors === null) {
+      setBackenderrors(null);
     }
   }, [errors]);
 
 
-  const showSpecificChar = (event, the_char_id) => {
-    event.preventDefault();
-    setCharId(the_char_id);
-    setSpecificChar(true);
-  }
 
-
-  const hideSpecificChar = (event) => {
-    event.preventDefault();
-    setCharId(false);
-    setSpecificChar(false);
-  }
 
 
   const handleSearch = (event) => {
@@ -89,24 +79,7 @@ const CharacterSearch = () => {
   }
 
 
-  if(specificChar === true) {
-    return (
-        <div>
-          <h1>Search Results</h1>
 
-          <a href='/' onClick={(event) => hideSpecificChar(event)}>
-            <h1> {char[charId].username} </h1>
-            <li key={charId} >
-              {char[charId].character_name}
-              <br />
-              {char[charId].character_label}
-            </li>
-            <img src={char[charId].avatar} alt={char[charId].character_name} />
-          </a>
-        </div>
-
-    )
-  }
 
 
 
@@ -128,7 +101,7 @@ const CharacterSearch = () => {
             {Object.values(char).map(eachChar => (
               <>
               <div className={styles.search_results_each_card}>
-                <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id)}>
+                <a href='/' onClick={event => event.preventDefault()}>
                     <div className={isHidden} >
                   <li className={styles.search_results_each_detail} key={eachChar.id}>
                     <div className={styles.search_results_each_detail_text}>

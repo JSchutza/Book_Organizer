@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { hideModal } from "../../store/actions/modal.js";
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
-
+import { processFile } from "../../services/protectedFileUpload.js";
 
 
 
@@ -58,10 +58,16 @@ const CreateCharacterForm = () => {
 
 
   const updateAvatar = (e) => {
-    const file = e.target.files[0];
-    setUrlPreview(file);
-    setAvatarUrl(URL.createObjectURL(file));
+    const result = processFile(e.target.files);
+    if (result) {
+      setUrlPreview(result);
+      setAvatarUrl(URL.createObjectURL(result));
+    } else {
+      setUrlPreview(null);
+      setAvatarUrl('');
+    }
   };
+
 
 
   const cancelImgChoice = () => {
