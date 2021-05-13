@@ -20,6 +20,7 @@ import { showModal, contentModal, dataModal } from "../../store/actions/modal.js
 const CharacterSearch = () => {
   const [ searchId, setSearchId ] = useState("");
   const [ specificChar, setSpecificChar ] = useState(false);
+  const [ isHidden, setIsHidden] = useState("");
   const [ charId, setCharId ] = useState(false);
   const [ backenderrors, setBackenderrors ] = useState(null);
   const dispatch = useDispatch();
@@ -65,6 +66,7 @@ const CharacterSearch = () => {
 
   const handleDelete = (event, payload) => {
     event.preventDefault();
+    setIsHidden("hide");
     dispatch(contentModal("DeletePubChar"));
     dispatch(dataModal(payload));
     dispatch(showModal());
@@ -123,6 +125,7 @@ const CharacterSearch = () => {
               <>
               <div className={styles.search_results_each_card}>
                 <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id)}>
+                    <div className={isHidden} >
                   <li className={styles.search_results_each_detail} key={eachChar.id}>
                     <div className={styles.search_results_each_detail_text}>
                       <b> Name </b>
@@ -131,9 +134,12 @@ const CharacterSearch = () => {
                         <p>{eachChar.character_label}</p>
                     </div>
                   </li>
+                  </div>
                 <img className={styles.search_results_each_img} src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
+
+              <ToolTip content={"Delete"} >
                 <a href='/' onClick={(event) => handleDelete(event, {
                   charId: eachChar.id,
                   avatar: eachChar.avatar,
@@ -144,10 +150,12 @@ const CharacterSearch = () => {
                   user_id: eachChar.user_id,
                   username: eachChar.username,
                   search_id: eachChar.search_id,
+                  setIsHidden,
 
                   })}> <RiDeleteBinFill /> </a>
+                </ToolTip>
 
-
+                <ToolTip content={"Update"} >
                 <a href='/' onClick={(event) => handleUpdate(event, {
                   charId: eachChar.id,
                   avatar: eachChar.avatar,
@@ -160,6 +168,7 @@ const CharacterSearch = () => {
                   search_id: eachChar.search_id,
 
                   })}> Update </a>
+                  </ToolTip>
 
               </div>
               </>

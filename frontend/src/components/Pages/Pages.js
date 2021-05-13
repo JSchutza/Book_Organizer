@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
-
+import Tooltip from "../ToolTip";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { thunk_getAllPages } from "../../store/thunks/books.js";
 
@@ -69,6 +69,8 @@ const Pages = ({ bookId }) => {
             </a>
 
 
+
+          <Tooltip content={"Delete"}>
             <a href='/' onClick={event => handleDelete(event, {
               pageId: eachPage.id,
               title: eachPage.title,
@@ -76,7 +78,11 @@ const Pages = ({ bookId }) => {
               book_id: eachPage.book_id
 
             }) }> <RiDeleteBinFill /> </a>
+          </Tooltip>
 
+
+
+            <Tooltip content={"Update"}>
             <a href='/' onClick={event => handleUpdate(event, {
               pageId: eachPage.id,
               title: eachPage.title,
@@ -84,6 +90,7 @@ const Pages = ({ bookId }) => {
               book_id: eachPage.book_id
 
             })}> Update </a>
+            </Tooltip>
 
 
           </>

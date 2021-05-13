@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
 
 
 
 
 
-const Book = ({ bookId, title, creatorId, creationDate }) => {
-  const dispatch = useDispatch();
-
-
+const Book = ({ bookId, title }) => {
 
   return (
     <>

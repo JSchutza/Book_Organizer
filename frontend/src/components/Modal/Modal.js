@@ -11,7 +11,7 @@ import DeletePubCharButton from "../DeletePubCharButton";
 import EditPubCharButton from "../EditPubCharButton";
 import DeletePageButton from "../DeletePageButton";
 import DeletePriCharButton from "../DeletePriCharButton";
-
+import ToolTip from "../ToolTip";
 
 import { showLoader } from "../../store/actions/loader.js";
 
@@ -38,6 +38,10 @@ const Modal = ({ user }) =>  {
     } else {
       dispatch(contentModal(null))
       dispatch(hideModal());
+
+      if(data.setIsHidden){
+        data.setIsHidden("");
+      }
     }
 
   };
@@ -69,68 +73,92 @@ const Modal = ({ user }) =>  {
 
 
         {content === "CreatePubChar" ?
+        <div className={styles.create_pub_char_form}>
           <CreateCharacterForm />
+        </div>
         :
           <></>
         }
 
 
         {content === "CreatePriChar" && data ?
+        <div className={styles.create_pri_char_form}>
           <CreatePriCharForm bookId={data.book_id}/>
+        </div>
           :
           <></>
         }
 
 
         {content === "UpdatePriChar" && data ?
-          <CreatePriCharForm bookId={data.book_id} update={true} data={data} />
+          <div className={styles.create_pri_char_form}>
+            <CreatePriCharForm bookId={data.book_id} update={true} data={data} />
+          </div>
         :
           <></>
         }
 
 
         {content === "CreatePage" && data?
+        <div className={styles.create_page_form}>
           <CreatePageForm bookId={data.book_id} />
+        </div>
           :
           <></>
         }
 
 
         {content === "UpdatePage" && data?
-          <CreatePageForm bookId={data.book_id} update={true} data={data} />
+          <div className={styles.create_page_form}>
+            <CreatePageForm bookId={data.book_id} update={true} data={data} />
+          </div>
           :
           <></>
         }
 
 
         {content === "DeletePubChar" && data ?
+          <div className={styles.delete_prompt}>
           <DeletePubCharButton charId={data.charId} search_id={data.search_id} />
+          </div>
         :
           <></>
         }
 
 
         {content === "EditPubChar" && data ?
+          <div className={styles.create_pub_char_form}>
           <EditPubCharButton charId={data.charId} search_id={data.search_id} />
+          </div>
         :
           <></>
         }
 
 
         {content === "DeletePage" && data ?
+          <div className={styles.delete_prompt}>
           <DeletePageButton bookId={data.book_id} pageId={data.pageId} />
+          </div>
         :
           <></>
         }
 
 
         {content === "DeletePriChar" && data ?
+        <div className={styles.delete_prompt}>
           <DeletePriCharButton bookId={data.book_id} charId={data.charId} />
+        </div>
         :
           <></>
         }
 
-        <a href='/' onClick={event => onClose(event)}> <BsFillBackspaceFill/> </a>
+
+        <div className={styles.modal_exit_button}>
+        <ToolTip content={"Close"} >
+          <a href='/' onClick={event => onClose(event)}> <BsFillBackspaceFill/> </a>
+        </ToolTip>
+        </div>
+
     </div>
     </>
   );

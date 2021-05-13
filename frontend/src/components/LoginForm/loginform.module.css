@@ -11,3 +11,45 @@
 .the_form {
   display: grid;
 }
+
+
+
+.enter_button {
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.enter_button button {
+  display: flex;
+}
+
+
+.demo_button {
+  position: relative;
+  top: 20%;
+}
+
+.demo_button a {
+  font-size: 1rem;
+}
+
+
+.spacer {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 3%;
+  border-radius: 5px;
+}

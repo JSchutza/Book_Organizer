@@ -60,19 +60,28 @@ const LoginForm = () => {
         />
         </label>
 
-        <ToolTip content={"Enter"}>
-        <button> <IoIosPower/> </button>
-        </ToolTip>
+
+
+        <div className={styles.enter_button}>
+          <div>
+          <ToolTip content={"Enter"}>
+            <button> <IoIosPower/> </button>
+          </ToolTip>
+          </div>
+        </div>
 
       </form>
+
+      <div className={styles.demo_button}>
+        <div className={styles.spacer}>
+        <ToolTip content={"Demo"}>
+          <a href='/' onClick={event => handleDemo(event)}> Demo </a>
+        </ToolTip>
+        </div>
+      </div>
+
     </div>
 
-    <div>
-      <ToolTip content={"Demo"}>
-        <a href='/' onClick={event => handleDemo(event)}> Demo </a>
-      </ToolTip>
-
-    </div>
     </>
   )
 };

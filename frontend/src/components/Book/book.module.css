@@ -1,0 +1,36 @@
+
+
+
+
+.create_wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+
+
+.create_char_button {
+  position: relative;
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 5px;
+}
+
+
+
+.create_page_button {
+  position: relative;
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 5px;
+}

@@ -2,18 +2,16 @@
 
 
 .modal_background {
-  background-color: rgba(0, 0, 0, 0.356);
-  z-index: 1;
   position: absolute;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.226);
   width: 100%;
   height: 100%;
-  bottom: 0%;
-  display: flex;
 }
 
 
 
-.modal_background a{
+.modal_exit_button {
   font-size: 1.5rem;
 }
 
@@ -26,6 +24,11 @@
   padding: 5%;
   box-sizing: content-box;
   left: 40%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .sign_in_wrap {
@@ -35,4 +38,58 @@
   padding: 5%;
   box-sizing: content-box;
   left: 40%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.create_pub_char_form {
+  position: relative;
+  width: 10%;
+  padding: 5%;
+  box-sizing: content-box;
+  left: 40%;
+  background-color: white;
+}
+
+
+
+
+.create_pri_char_form {
+  position: relative;
+  width: 10%;
+  padding: 5%;
+  box-sizing: content-box;
+  left: 40%;
+  background-color: white;
+}
+
+
+
+.create_page_form {
+  position: relative;
+  width: 10%;
+  padding: 5%;
+  box-sizing: content-box;
+  left: 40%;
+  background-color: white;
+}
+
+
+
+
+.delete_prompt {
+  padding: 5%;
+  box-sizing: content-box;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
-
+import Tooltip from "../ToolTip";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { thunk_getAllPriChars } from "../../store/thunks/books.js";
 
@@ -67,6 +67,8 @@ const PrivateCharacter = ({ bookId }) => {
               </a>
 
 
+
+          <Tooltip content={"Delete"}>
             <a href='/' onClick={event => handleDelete(event, {
               charId: eachChar.id,
               avatar: eachChar.avatar,
@@ -74,7 +76,11 @@ const PrivateCharacter = ({ bookId }) => {
               character_label: eachChar.character_label,
               book_id: bookId
             })}> <RiDeleteBinFill /> </a>
+          </Tooltip>
 
+
+
+            <Tooltip content={"Update"}>
             <a href='/' onClick={event => handleUpdate(event, {
               charId: eachChar.id,
               avatar: eachChar.avatar,
@@ -82,6 +88,7 @@ const PrivateCharacter = ({ bookId }) => {
               character_label: eachChar.character_label,
               book_id: bookId
             })}> Update </a>
+            </Tooltip>
 
             </>
           ))

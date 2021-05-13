@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import PrivateCharacter from "../PrivateCharacters";
 import Pages from "../Pages";
+import ToolTip from "../ToolTip";
 
-
+import styles from "./book.module.css";
 
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
@@ -54,13 +55,22 @@ const EachBook = () => {
 
   return (
     <>
-    <div>
+
+    <div className={styles.create_wrapper}>
+    <div className={styles.create_char_button}>
+      <ToolTip content={"New Character"}>
         <a href='/' onClick={(event) => handleCreateChar(event)}> <BsFillPersonPlusFill/> </a>
+      </ToolTip>
     </div>
 
-    <div>
+
+      <div className={styles.create_page_button}>
+      <ToolTip content={"New Page"}>
         <a href='/' onClick={(event) => handleCreatePage(event)}> <BsFileEarmarkPlus/> </a>
+      </ToolTip>
     </div>
+    </div>
+
 
 
     <div>
