@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { hideModal } from "../../store/actions/modal.js";
-import { thunk_getAllPriChars } from "../../store/thunks/books.js";
+import { thunk_getAllPriChars, thunk_createPriChar } from "../../store/thunks/books.js";
 import { processFile } from "../../services/protectedFileUpload.js";
+
 
 
 
@@ -35,27 +36,11 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
 
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", urlpreview);
-    formData.append("charactername", charname);
-    formData.append("characterlabel", charlabel);
-
-    const res = await fetch(`/api/book/${bookId}/character`, {
-      method: "POST",
-      body: formData,
-    });
-
-    if (res.ok) {
-      dispatch(thunk_getAllPriChars(bookId));
-      dispatch(hideModal());
-
-    } else {
-      console.log("error");
-    }
-
+    dispatch(thunk_createPriChar({ bookId, urlpreview, charname, charlabel }));
   };
+
 
 
 

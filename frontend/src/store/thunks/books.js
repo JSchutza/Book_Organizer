@@ -2,7 +2,7 @@
 
 import { getAllBooks, getAllPriChars, getAllPages, deleteBook, deleteUsersPrivateChars, deletePage } from "../actions/books.js";
 import { setErrors, resetErrors } from "../actions/errors.js";
-
+import { hideModal } from "../actions/modal.js";
 
 
 
@@ -45,6 +45,30 @@ const thunk_getAllPriChars = (bookId) => async (dispatch) => {
 };
 
 
+
+const thunk_createPriChar = ({ bookId, urlpreview, charname, charlabel }) => async (dispatch) => {
+
+  const formData = new FormData();
+  formData.append("image", urlpreview);
+  formData.append("charactername", charname);
+  formData.append("characterlabel", charlabel);
+
+  const response = await fetch(`/api/book/${bookId}/character`, {
+    method: "POST",
+    body: formData,
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    dispatch(hideModal());
+    return;
+  }
+  dispatch(thunk_getAllPriChars(bookId));
+  dispatch(resetErrors());
+  dispatch(hideModal());
+
+}
 
 
 
@@ -104,6 +128,7 @@ const thunk_deleteUsersPrivateChars = (bookId, characterId) => async (dispatch) 
   }
   dispatch(resetErrors());
   dispatch(deleteUsersPrivateChars(characterId));
+  dispatch(thunk_getAllPriChars(bookId));
 
 };
 
@@ -139,6 +164,7 @@ export {
   thunk_deleteBook,
   thunk_deleteUsersPrivateChars,
   thunk_deletePage,
+  thunk_createPriChar,
 
 
 }
