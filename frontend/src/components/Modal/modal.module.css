@@ -55,3 +55,41 @@
   left: 40%;
   background-color: white;
 }
+
+
+
+
+.create_pri_char_form {
+  position: relative;
+  width: 10%;
+  padding: 5%;
+  box-sizing: content-box;
+  left: 40%;
+  background-color: white;
+}
+
+
+
+.create_page_form {
+  position: relative;
+  width: 10%;
+  padding: 5%;
+  box-sizing: content-box;
+  left: 40%;
+  background-color: white;
+}
+
+
+
+
+.delete_prompt {
+  padding: 5%;
+  box-sizing: content-box;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
