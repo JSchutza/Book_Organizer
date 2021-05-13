@@ -114,10 +114,14 @@ const CharacterSearch = () => {
 
     return(
       <>
+      <div className={styles.search_title_backbutton}>
         <h2>Search Results</h2>
+        <div className={styles.search_back_button}>
           <ToolTip content={"Back"} >
             <a href='/' onClick={(event) => clearSearch(event)} > <IoIosArrowDropleftCircle/> </a>
           </ToolTip>
+        </div>
+        </div>
 
 
       <div className={styles.search_results_wrap}>

@@ -106,10 +106,12 @@ const BookViewer = () => {
 
   return (
     <>
-    <div>
+    <div className={styles.book_create_wrapper}>
+    <div className={styles.book_create_button}>
       <ToolTip content={"Create"} >
         <a href='/' onClick={(event) => createBookClick(event)}> <BsFillPlusSquareFill/> </a>
       </ToolTip>
+      </div>
     </div>
 
 
