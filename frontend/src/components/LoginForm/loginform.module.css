@@ -9,7 +9,11 @@
 
 
 .the_form {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
 }
 
 
@@ -32,8 +36,10 @@
 
 
 .demo_button {
-  position: relative;
-  top: 20%;
+  position: absolute;
+  width: 50%;
+  top: 10%;
+  left: 100%;
 }
 
 .demo_button a {
