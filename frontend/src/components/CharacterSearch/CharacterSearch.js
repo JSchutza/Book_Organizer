@@ -51,16 +51,16 @@ const CharacterSearch = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    dispatch(thunk_searchForUsersPubChars(searchId))
-    dispatch(searchTriggered({ search: true }))
+    dispatch(thunk_searchForUsersPubChars(searchId));
+    dispatch(searchTriggered({ search: true }));
   }
 
 
 
   const clearSearch = (event) => {
     event.preventDefault();
-    dispatch(clearSearchResults({ characters: null }))
-    dispatch(searchTriggered({ search: null }))
+    dispatch(clearSearchResults({ characters: null }));
+    dispatch(searchTriggered({ search: null }));
   }
 
 
