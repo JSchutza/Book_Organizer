@@ -1,7 +1,7 @@
 
 
 import { getAllBooks, getAllPriChars, getAllPages, deleteBook, deleteUsersPrivateChars, deletePage } from "../actions/books.js";
-import { setErrors } from "../actions/errors.js";
+import { setErrors, resetErrors } from "../actions/errors.js";
 
 
 
@@ -19,6 +19,7 @@ const thunk_getAllBooks = () => async (dispatch) => {
     dispatch(setErrors(data.errors));
     return;
   }
+  dispatch(resetErrors());
   dispatch(getAllBooks(data));
 };
 
@@ -39,6 +40,7 @@ const thunk_getAllPriChars = (bookId) => async (dispatch) => {
     dispatch(setErrors(data.errors));
     return;
   }
+  dispatch(resetErrors());
   dispatch(getAllPriChars(data));
 };
 
@@ -60,6 +62,7 @@ const thunk_getAllPages = (bookId) => async (dispatch) => {
     dispatch(setErrors(data.errors));
     return;
   }
+  dispatch(resetErrors());
   dispatch(getAllPages(data));
 };
 
@@ -78,6 +81,7 @@ const thunk_deleteBook = (bookId) => async (dispatch) => {
     dispatch(setErrors(data.errors));
     return;
   }
+  dispatch(resetErrors());
   dispatch(deleteBook(bookId));
 
 };
@@ -98,6 +102,7 @@ const thunk_deleteUsersPrivateChars = (bookId, characterId) => async (dispatch) 
     dispatch(setErrors(data.errors));
     return;
   }
+  dispatch(resetErrors());
   dispatch(deleteUsersPrivateChars(characterId));
 
 };
@@ -119,6 +124,7 @@ const thunk_deletePage = (bookId, pageId) => async (dispatch) => {
     dispatch(setErrors(data.errors));
     return;
   }
+  dispatch(resetErrors());
   dispatch(deletePage(pageId));
 
 };

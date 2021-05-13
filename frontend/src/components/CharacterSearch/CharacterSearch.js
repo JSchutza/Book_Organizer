@@ -31,6 +31,8 @@ const CharacterSearch = () => {
   useEffect(() => {
     if(errors !== null ) {
       setBackenderrors(Object.values(errors));
+    } else if (errors === null) {
+      setBackenderrors(null);
     }
   }, [errors]);
 
