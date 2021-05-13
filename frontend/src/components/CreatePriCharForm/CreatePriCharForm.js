@@ -64,7 +64,10 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
     if (result) {
         setUrlPreview(result);
         setAvatarUrl(URL.createObjectURL(result));
-    } else return;
+    } else {
+      setUrlPreview(null);
+      setAvatarUrl('');
+    }
 
   };
 
