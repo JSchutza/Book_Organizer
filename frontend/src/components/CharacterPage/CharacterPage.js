@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
-import { showModal, contentModal } from "../../store/actions/modal.js";
+import { showModal, contentModal, hideModal, dataModal } from "../../store/actions/modal.js";
 
 import ToolTip from "../ToolTip";
 
@@ -17,6 +17,7 @@ import styles from "./characterpage.module.css"
 const CharacterPage = () => {
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
+  const [ isHidden, setIsHidden ] = useState('');
   const allChars = useSelector((store) => store.characterPageReducer.characters)
   const dispatch = useDispatch();
 
@@ -24,6 +25,7 @@ const CharacterPage = () => {
 
   useEffect(() => {
     dispatch(thunk_getAllCharacters());
+    setIsHidden('');
   }, [specificChar, dispatch]);
 
 
@@ -43,8 +45,10 @@ const CharacterPage = () => {
 
   const createCharactersClick = (event) => {
     event.preventDefault();
-    dispatch(contentModal("CreatePubChar"));
-    dispatch(showModal());
+      setIsHidden('hide');
+      dispatch(dataModal({ setIsHidden }));
+      dispatch(contentModal("CreatePubChar"));
+      dispatch(showModal());
   }
 
 
@@ -99,6 +103,7 @@ const CharacterPage = () => {
       <>
       <div className={styles.each_card}>
         <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
+        <div className={isHidden} >
         <li className={styles.each_detail} key={eachChar.id}>
           <div className={styles.each_detail_text}>
           <b> {eachChar.username} </b>
@@ -106,6 +111,7 @@ const CharacterPage = () => {
             <p> {eachChar.character_label} </p>
           </div>
         </li>
+          </div>
           <img className={styles.each_img} src={eachChar.avatar} alt={eachChar.character_name} />
       </a>
       </div>

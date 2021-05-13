@@ -38,6 +38,10 @@ const Modal = ({ user }) =>  {
     } else {
       dispatch(contentModal(null))
       dispatch(hideModal());
+
+      if(data.setIsHidden){
+        data.setIsHidden("");
+      }
     }
 
   };
