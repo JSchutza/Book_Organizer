@@ -94,7 +94,7 @@ if (user !== null) {
           { isSearch === null ?
             <CharacterPage />
             :
-            <p></p>
+            <></>
           }
 
           </Route>

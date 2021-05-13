@@ -106,10 +106,12 @@ const BookViewer = () => {
 
   return (
     <>
-    <div>
+    <div className={styles.book_create_wrapper}>
+    <div className={styles.book_create_button}>
       <ToolTip content={"Create"} >
         <a href='/' onClick={(event) => createBookClick(event)}> <BsFillPlusSquareFill/> </a>
       </ToolTip>
+      </div>
     </div>
 
 
@@ -135,22 +137,31 @@ const BookViewer = () => {
     <div className={styles.book_link_wrapper}>
       {Object.values(bookInfo).map(eachBook => (
         <>
-
         <div className={styles.each_book_link}>
         <li>
             <a href='/' onClick={(event) => handleBookClick(event, eachBook.id)}>
             { eachBook.the_title }
           </a>
         </li>
-
-          <ToolTip content={"Delete"} >
-            <li> <a href='/' onClick={(event) => handleDeleteBook(event, eachBook.id)}> <RiDeleteBinFill/> </a></li>
-          </ToolTip>
-
-        <ToolTip content={"Update"} >
-            <li> <a href='/' onClick={event => handleUpdate(event, eachBook.id)} > Update </a> </li>
-        </ToolTip>
         </div>
+
+
+
+        <div className={styles.delete_update_wrap}>
+          <div className={styles.delete_button}>
+            <ToolTip content={"Delete"} >
+              <li> <a href='/' onClick={(event) => handleDeleteBook(event, eachBook.id)}> <RiDeleteBinFill/> </a></li>
+            </ToolTip>
+          </div>
+
+
+          <div className={styles.update_button}>
+            <ToolTip content={"Update"} >
+              <li> <a href='/' onClick={event => handleUpdate(event, eachBook.id)} > Update </a> </li>
+            </ToolTip>
+          </div>
+        </div>
+
         </>
       ))}
     </div>
