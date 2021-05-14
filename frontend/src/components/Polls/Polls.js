@@ -2,8 +2,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { thunk_getUsersPolls, thunk_getUsersSpecificComments } from "../../store/thunks/polls.js";
-
+import { thunk_getUsersPolls, thunk_getUsersSpecificComments, thunk_deleteSpecificPoll } from "../../store/thunks/polls.js";
+import ToolTip from "../ToolTip";
+import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 
 
 
@@ -28,6 +29,21 @@ const Polls = () => {
 
 
 
+  const handleCreate = (event) => {
+    event.preventDefault();
+    dispatch(contentModal("CreatePoll"));
+    dispatch(showModal());
+  }
+
+
+
+  const handleDelete = (event, pollId) => {
+    event.preventDefault();
+    dispatch(thunk_deleteSpecificPoll(pollId));
+  }
+
+
+
   if (polls === null){
     return (
       <>
@@ -41,9 +57,16 @@ const Polls = () => {
 
   return (
     <>
+      <div>
+        <a href='/' onClick={event => handleCreate(event)} > Create </a>
+      </div>
+
+
     <div>
       <h1> Your Polls </h1>
     </div>
+
+
 
     <div>
         {Object.values(polls).map(eachPoll => (
@@ -54,10 +77,15 @@ const Polls = () => {
                   <h3> { eachPoll.title } </h3>
               </li>
             </a>
+
+            <div>
+                <a href='/' onClick={event => handleDelete(event, eachPoll.id)} > Delete </a>
+            </div>
           </div>
           </>
         ))}
     </div>
+
     </>
   )
 };

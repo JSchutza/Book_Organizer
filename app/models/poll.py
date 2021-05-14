@@ -35,3 +35,8 @@ class Poll(db.Model):
   def update_poll_data(self, new_title, new_text):
     self.title = new_title
     self.question_text = new_text
+
+
+
+  def check_creator_id(self, to_check):
+    return int(self.user_id) == int(to_check)
