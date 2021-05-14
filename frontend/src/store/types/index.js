@@ -20,6 +20,11 @@ const GET_USERS_PAGES = "books/GET_USERS_PAGES";
 const DELETE_BOOK = "books/DELETE_BOOK";
 const DELETE_USERS_PRI_CHARS = 'characters/DELETE_USERS_PRI_CHARS'
 const DELETE_USERS_PAGE = 'books/DELETE_USERS_PAGE';
+const GET_USERS_POLLS = 'polls/GET_USERS_POLLS';
+
+
+
+
 
 
 // for the modals here
@@ -71,6 +76,7 @@ export {
   TRIGGER_RENDER,
   SET_ERRORS,
   RESET_ERRORS,
+  GET_USERS_POLLS,
 
 
 }

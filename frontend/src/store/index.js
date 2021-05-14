@@ -10,6 +10,7 @@ import { usersReducer } from './reducers/session.js';
 import { characterPageReducer, searchCharacterPageReducer, searchTriggeredReducer } from "./reducers/characters.js";
 import { cardLoaderReducer, singleCardReducer } from "./reducers/cardloader.js";
 import { booksReducer, priCharReducer, pageReducer } from "./reducers/books.js";
+import { pollsReducer } from "./reducers/polls.js";
 
 
 
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   booksReducer,
   priCharReducer,
   pageReducer,
+  pollsReducer,
 
 });
 

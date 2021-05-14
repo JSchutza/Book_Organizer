@@ -8,6 +8,7 @@ import { FiLogIn } from 'react-icons/fi'
 import { ImUserPlus } from "react-icons/im";
 import { GiBookshelf, GiCardDraw } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
+import { BsQuestionSquareFill } from "react-icons/bs";
 import ToolTip from "../ToolTip";
 import { showModal, contentModal, hideModal } from "../../store/actions/modal.js";
 import { hideLoader } from "../../store/actions/loader.js";
@@ -96,18 +97,25 @@ const NavBar = ({ userStatus }) => {
           <li> <NavLink to="/characters" exact onClick={() => handleCharacterClick()} > <GiCardDraw/> </NavLink></li>
           </ToolTip>
 
+
           <ToolTip content={'Profile'} >
             <li> <NavLink to="/profile" exact onClick={() => handleProfileClick()}> <CgProfile/> </NavLink></li>
           </ToolTip>
+
 
           <ToolTip content={'Books'} >
             <li> <NavLink to="/books" exact onClick={() => handleBooksClick()}> <GiBookshelf/> </NavLink></li>
           </ToolTip>
 
+
+          <ToolTip content={'Polls'}>
+            <li> <NavLink to='/polls' exact> <BsQuestionSquareFill/> </NavLink> </li>
+          </ToolTip>
+
+
           <ToolTip content={'Logout'} >
           <li> <LogoutButton /> </li>
           </ToolTip>
-
       </nav>
     </div>
 
