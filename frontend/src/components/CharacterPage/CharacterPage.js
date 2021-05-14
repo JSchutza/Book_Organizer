@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
-import { showModal, contentModal, hideModal, dataModal } from "../../store/actions/modal.js";
+import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 
 import ToolTip from "../ToolTip";
 

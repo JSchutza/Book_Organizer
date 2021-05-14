@@ -3,6 +3,7 @@ from datetime import datetime
 from .user import User
 
 
+
 class Poll(db.Model):
   __tablename__ = "polls"
 
@@ -17,7 +18,7 @@ class Poll(db.Model):
 
   def get_creation_date(self):
     return {
-        "created_at": self.created_at,
+      "created_at": self.created_at,
     }
 
   def to_dict(self):

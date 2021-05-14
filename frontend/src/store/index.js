@@ -10,6 +10,7 @@ import { usersReducer } from './reducers/session.js';
 import { characterPageReducer, searchCharacterPageReducer, searchTriggeredReducer } from "./reducers/characters.js";
 import { cardLoaderReducer, singleCardReducer } from "./reducers/cardloader.js";
 import { booksReducer, priCharReducer, pageReducer } from "./reducers/books.js";
+import { pollsReducer, commentReducer } from "./reducers/polls.js";
 
 
 
@@ -28,6 +29,8 @@ const rootReducer = combineReducers({
   booksReducer,
   priCharReducer,
   pageReducer,
+  pollsReducer,
+  commentReducer,
 
 });
 
@@ -42,7 +45,7 @@ let enhancer;
 if (process.env.NODE_ENV === "production") {
   enhancer = applyMiddleware(thunk);
 } else {
-  const logger = require("redux-logger").default;
+
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   enhancer = composeEnhancers(applyMiddleware(thunk));

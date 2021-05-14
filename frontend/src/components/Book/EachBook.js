@@ -30,7 +30,7 @@ const EachBook = () => {
   useEffect(() => {
     dispatch(thunk_getAllPriChars(bookId));
     dispatch(thunk_getAllPages(bookId));
-  }, [dispatch])
+  }, [dispatch, bookId])
 
 
 

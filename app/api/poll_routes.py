@@ -1,7 +1,10 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Poll
-# from app.forms import BookForm
+from app.models import db, Poll, Comment
+
+
+
+
 
 poll_routes = Blueprint('polls', __name__)
 
@@ -13,6 +16,33 @@ def get_all_polls():
   their_polls = current_user.get_users_polls()
   normalized = {each["id"]: each for each in their_polls["polls"]}
   return { "polls": normalized }
+
+
+
+
+
+
+
+
+# /api/polls/:pollId/comments
+@poll_routes.route("/<int:pollId>/comments", methods=['GET'])
+# @login_required
+def get_all_comments(pollId):
+  the_comments = Comment.query.filter_by(poll_id=pollId).all()
+  normalized = { each.to_dict()["id"]: each.to_dict() for each in the_comments }
+
+  return {"comments": normalized }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

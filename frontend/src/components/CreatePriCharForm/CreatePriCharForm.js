@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { hideModal } from "../../store/actions/modal.js";
 import { thunk_getAllPriChars, thunk_createPriChar } from "../../store/thunks/books.js";
 import { processFile } from "../../services/protectedFileUpload.js";
-
+import { nanoid } from "nanoid";
 
 
 
@@ -21,16 +21,16 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
   useEffect(() => {
     const errors = [];
-    if (true) {
-      errors.push('message here');
+    if (charlabel.length === 0) {
+      errors.push('You must have a character label to create a character.');
     }
-    if (true) {
-      errors.push('message here');
-    } else if (true) {
-      errors.push('message here');
+
+    if (charname.length === 0){
+      errors.push("You must have character name to create a character.");
     }
+
     setErrors(errors);
-  }, [urlpreview]);
+  }, [charlabel, charname]);
 
 
 
@@ -95,13 +95,19 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
   if (update) {
     return (
       <>
+        <div>
+          {errors.map(each => (
+            <li key={nanoid()}> { each} </li>
+          ))}
+        </div>
+
         {/* for previewing the image before it is sent to backend */}
         <div>
           {urlpreview === null ?
             <p></p>
             :
             <>
-              <img src={avatarUrl} />
+              <img src={avatarUrl} alt={"cool"}/>
               <button onClick={cancelImgChoice}> Cancel </button>
             </>
           }
@@ -150,6 +156,11 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
   return (
     <>
+    <div>
+      {errors.map(each => (
+        <li key={nanoid()}> { each } </li>
+      ))}
+    </div>
 
       {/* for previewing the image before it is sent to backend */}
       <div>
@@ -157,7 +168,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
           <p></p>
           :
           <>
-            <img src={avatarUrl} />
+            <img src={avatarUrl} alt={"cool"}/>
             <button onClick={cancelImgChoice}> Cancel </button>
           </>
         }

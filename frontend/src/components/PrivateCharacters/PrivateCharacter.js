@@ -1,22 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
 import Tooltip from "../ToolTip";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+import { resetErrors } from "../../store/actions/errors.js";
 import { thunk_getAllPriChars } from "../../store/thunks/books.js";
 
 
 
 
 const PrivateCharacter = ({ bookId }) => {
+  const [backenderrors, setBackenderrors] = useState(null);
   const dispatch = useDispatch();
   const charInfo = useSelector((store) => store.priCharReducer.private_characters)
   const rend = useSelector((store) => store.triggerRenderReducer.trigger);
+  const errors = useSelector((store) => store.errorsReducer.errors);
+
+
+
+
+  useEffect(() => {
+    if (errors !== null) {
+      setBackenderrors(Object.values(errors));
+    } else if (errors === null) {
+      setBackenderrors(null);
+    }
+  }, [errors]);
+
 
 
   useEffect(() => {
     dispatch(thunk_getAllPriChars(bookId));
-  }, [dispatch, rend]);
+  }, [dispatch, rend, bookId]);
 
 
   const handleDelete = (event, payload) => {
@@ -38,6 +53,12 @@ const PrivateCharacter = ({ bookId }) => {
 
 
 
+  const clearErrors = (event) => {
+    event.preventDefault();
+    dispatch(resetErrors());
+    setBackenderrors(null);
+  }
+
 
 
   if (charInfo === undefined) {
@@ -51,6 +72,24 @@ const PrivateCharacter = ({ bookId }) => {
 
   return (
     <>
+
+      <div className={''}>
+        <div>
+          {backenderrors !== null ?
+            <>
+              {backenderrors.map(each => (<li> {each} </li>))}
+              <div>
+                <a href='/' onClick={(event) => clearErrors(event)}> Try Again </a>
+              </div>
+            </>
+            :
+            <></>
+          }
+        </div>
+        </div>
+
+
+
     <div>
       <h1>Your Characters</h1>
         {Object.values(charInfo).map(eachChar => (

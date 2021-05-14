@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { hideModal } from "../../store/actions/modal.js";
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
-
+import { nanoid } from "nanoid";
 
 
 
@@ -13,8 +13,21 @@ const EditPubCharButton = ({ charId, search_id }) => {
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
   const [ urlpreview, setUrlPreview ] = useState(null);
+  const [ errors, setErrors ] = useState([]);
 
   const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    const errors = [];
+    if(charname.length === 0){
+      errors.push("You must enter an character name to create an character.");
+    }
+    if(charlabel.length === 0){
+      errors.push("You must enter an character label to create an character.");
+    }
+    setErrors(errors);
+  },[charname, charlabel]);
 
 
 
@@ -63,13 +76,18 @@ const EditPubCharButton = ({ charId, search_id }) => {
 
     return (
       <>
+      <div>
+        {errors.map(each => (
+          <li key={nanoid()}> { each } </li>
+        ))}
+      </div>
 
         <div>
           {urlpreview === null ?
             <p></p>
             :
             <>
-              <img src={avatarUrl} />
+              <img src={avatarUrl} alt={"cool"} />
               <button onClick={cancelImgChoice}> Cancel </button>
             </>
           }

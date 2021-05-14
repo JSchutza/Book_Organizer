@@ -16,7 +16,7 @@ const Pages = ({ bookId }) => {
 
   useEffect(() => {
     dispatch(thunk_getAllPages(bookId));
-  },[dispatch, rend]);
+  },[dispatch, rend, bookId]);
 
 
 

@@ -9,6 +9,8 @@ import Modal from "./components/Modal";
 import Errors from "./components/Errors";
 import Profile from "./components/Profile";
 import BookViewer from "./components/BookViewer";
+import Polls from "./components/Polls";
+import Comments from "./components/Comments";
 import { EachBook } from "./components/Book";
 import { hideLoader } from "./store/actions/loader.js";
 import { hideModal } from "./store/actions/modal.js";
@@ -110,6 +112,13 @@ if (user !== null) {
             <EachBook />
           </Route>
 
+          <Route path='/polls' exact={true}>
+            <Polls />
+          </Route>
+
+          <Route path='/comments/:pollId' exact={true}>
+            <Comments />
+          </Route>
 
         </Switch>
     </BrowserRouter>
