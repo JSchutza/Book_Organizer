@@ -35,15 +35,18 @@ def get_all_pages(bookId):
 @login_required
 def create_pri_char(bookId):
   if "image" not in request.files:
-    return {"errors": "image required"}, 400
+    return {"errors": ["Image required.", "Please try again."] }, 400
 
   image = request.files["image"]
   charactername = request.form['charactername']
   characterlabel = request.form['characterlabel']
+  if len(charactername) == 0 or len(characterlabel) == 0:
+    return {"errors": ["Invalid character submission.", "Please try again."]}, 400
+
 
 
   if not allowed_file(image.filename):
-    return {"errors": "file type not permitted"}, 400
+    return {"errors": ["File type not permitted.", "Please try again." ]}, 400
 
   image.filename = get_unique_filename(image.filename)
 
