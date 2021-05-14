@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { hideModal } from "../../store/actions/modal.js";
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { processFile } from "../../services/protectedFileUpload.js";
-
+import { nanoid } from "nanoid";
 
 
 
@@ -22,16 +22,19 @@ const CreateCharacterForm = () => {
 
   useEffect(() => {
   const errors = [];
-  if (true) {
-  errors.push('message here');
+  if (charlabel.length === 0) {
+    errors.push('You must enter an character label to create an character.');
   }
-  if (true) {
-  errors.push('message here');
-  } else if (true) {
-  errors.push('message here');
+  if(charname.length === 0) {
+    errors.push('You must enter an character name to create an character.');
   }
   setErrors(errors);
-  }, [urlpreview]);
+  }, [charlabel, charname]);
+
+
+
+
+
 
 
   const onSubmit = async (event) => {
@@ -76,11 +79,19 @@ const CreateCharacterForm = () => {
   }
 
 
+
+
+
   return (
     <>
-      {/* <ul className=''>
-      {errors.map(error => ( <li key={error}> { error } </li> )) }
-      </ul> */}
+      <div>
+        {errors.map(each => (
+          <li key={nanoid()}> {each} </li>
+        ))}
+      </div>
+
+
+
 
       {/* for previewing the image before it is sent to backend */}
       <div>
@@ -88,7 +99,7 @@ const CreateCharacterForm = () => {
         <p></p>
         :
         <>
-          <img src={avatarUrl}/>
+          <img src={avatarUrl} alt={"cool"} />
             <button onClick={cancelImgChoice}> Cancel </button>
         </>
         }

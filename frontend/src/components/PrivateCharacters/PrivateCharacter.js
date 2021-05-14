@@ -31,7 +31,7 @@ const PrivateCharacter = ({ bookId }) => {
 
   useEffect(() => {
     dispatch(thunk_getAllPriChars(bookId));
-  }, [dispatch, rend]);
+  }, [dispatch, rend, bookId]);
 
 
   const handleDelete = (event, payload) => {

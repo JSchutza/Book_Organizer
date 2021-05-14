@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { thunk_deleteUsersPrivateChars, thunk_getAllPriChars } from "../../store/thunks/books.js";
-import { hideModal, contentModal, dataModal } from "../../store/actions/modal.js";
+import { hideModal } from "../../store/actions/modal.js";
 import { triggerRender } from "../../store/actions/render.js";
 
 

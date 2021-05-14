@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { hideModal } from "../../store/actions/modal.js";
 import { thunk_getAllPages } from "../../store/thunks/books.js";
 import { useDispatch } from "react-redux";
-
+import { nanoid } from "nanoid"
 
 
 const CreatePageForm = ({ bookId, update=false, data }) => {
   const [ title, setTitle ] = useState('');
   const [ text, setText ] = useState('');
-
-
-  const [ updateTitle, setUpdateTitle ] = useState();
-  const [ updateText, setUpdateText ] = useState();
-
-
+  const [ updateTitle, setUpdateTitle ] = useState('');
+  const [ updateText, setUpdateText ] = useState('');
   const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
+
+
+
+  useEffect(() => {
+    const errors = []
+    if(title.length === 0){
+      errors.push("You must have a title to create a page.")
+    }
+    if(text.length === 0) {
+      errors.push("You must have text to create a page.")
+    }
+    setErrors(errors);
+  },[title, text]);
+
+
 
 
 
@@ -67,6 +78,13 @@ const CreatePageForm = ({ bookId, update=false, data }) => {
     return (
       <>
         <div>
+          {errors.map(each => (
+            <li key={nanoid()}> {each} </li>
+          ))}
+        </div>
+
+
+        <div>
           <form className='' onSubmit={onUpdate}>
             <label>
               Title
@@ -99,6 +117,12 @@ const CreatePageForm = ({ bookId, update=false, data }) => {
 
   return (
     <>
+      <div>
+        {errors.map(each => (
+          <li key={nanoid()}> {each} </li>
+        ))}
+      </div>
+
       <div>
         <form className='' onSubmit={onSubmit}>
           <label>
