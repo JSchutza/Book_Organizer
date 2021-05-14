@@ -28,6 +28,31 @@ const thunk_getUsersPolls = () => async (dispatch) => {
 
 
 
+const thunk_createNewPoll = ({ title, questionText }) => async (dispatch) => {
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("question_text", questionText);
+
+
+  const response = await fetch("/api/polls", {
+    method: "POST",
+    body: formData,
+  });
+
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+  dispatch(resetErrors());
+  dispatch(thunk_getUsersPolls());
+
+};
+
+
+
 
 
 
@@ -57,6 +82,7 @@ const thunk_getUsersSpecificComments = (pollId) => async (dispatch) => {
 export {
   thunk_getUsersPolls,
   thunk_getUsersSpecificComments,
+  thunk_createNewPoll,
 
 
 }

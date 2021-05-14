@@ -3,7 +3,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { thunk_getUsersPolls, thunk_getUsersSpecificComments } from "../../store/thunks/polls.js";
-
+import ToolTip from "../ToolTip";
+import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 
 
 
@@ -28,6 +29,15 @@ const Polls = () => {
 
 
 
+  const handleCreate = (event) => {
+    event.preventDefault();
+    dispatch(contentModal("CreatePoll"));
+    dispatch(showModal());
+  }
+
+
+
+
   if (polls === null){
     return (
       <>
@@ -41,6 +51,11 @@ const Polls = () => {
 
   return (
     <>
+      <div>
+        <a href='/' onClick={event => handleCreate(event)} > Create </a>
+      </div>
+
+
     <div>
       <h1> Your Polls </h1>
     </div>
@@ -58,6 +73,7 @@ const Polls = () => {
           </>
         ))}
     </div>
+
     </>
   )
 };

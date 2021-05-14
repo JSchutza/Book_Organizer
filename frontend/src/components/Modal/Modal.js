@@ -11,6 +11,7 @@ import DeletePubCharButton from "../DeletePubCharButton";
 import EditPubCharButton from "../EditPubCharButton";
 import DeletePageButton from "../DeletePageButton";
 import DeletePriCharButton from "../DeletePriCharButton";
+import CreatePollForm from "../CreatePollForm";
 import ToolTip from "../ToolTip";
 
 import { showLoader } from "../../store/actions/loader.js";
@@ -39,6 +40,7 @@ const Modal = ({ user }) =>  {
       dispatch(contentModal(null))
       dispatch(hideModal());
 
+      if (data === null) return;
       if(data.setIsHidden){
         data.setIsHidden("");
       }
@@ -150,6 +152,12 @@ const Modal = ({ user }) =>  {
         </div>
         :
           <></>
+        }
+
+        {content === "CreatePoll" ?
+          <CreatePollForm />
+        :
+        <></>
         }
 
 

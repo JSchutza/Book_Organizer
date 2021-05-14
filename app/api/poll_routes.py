@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import db, Poll, Comment
-
+from app.forms import PollForm
 
 
 
@@ -26,7 +26,7 @@ def get_all_polls():
 
 # /api/polls/:pollId/comments
 @poll_routes.route("/<int:pollId>/comments", methods=['GET'])
-# @login_required
+@login_required
 def get_all_comments(pollId):
   the_comments = Comment.query.filter_by(poll_id=pollId).all()
   normalized = { each.to_dict()["id"]: each.to_dict() for each in the_comments }
@@ -43,24 +43,23 @@ def get_all_comments(pollId):
 
 
 
+# /api/polls
+@poll_routes.route('', methods=['POST'])
+@login_required
+def create_new_poll():
+  form = PollForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    new_poll = Poll(title=form.data['title'], question_text=form.data["question_text"], user_id=current_user.get_id())
+    db.session.add(new_poll)
+    db.session.commit()
+    return { "poll": new_poll.to_dict() }
+
+  # if there are errors
+  return { "errors": ["errors", "Please try again."] }
 
 
-
-
-
-# #  /api/books
-# @book_routes.route('', methods=['POST'])
-# @login_required
-# def create_new_book():
-#   form = BookForm()
-#   form['csrf_token'].data = request.cookies['csrf_token']
-
-#   if form.validate_on_submit():
-#     new_book = Book(the_title=form.data['title'],
-#                     creator_id=current_user.get_id())
-#     db.session.add(new_book)
-#     db.session.commit()
-#   return {"book": new_book.to_dict()}
 
 
 # #  /api/books/:bookId
