@@ -1,8 +1,8 @@
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { thunk_getUsersPolls } from "../../store/thunks/polls.js";
+import { useHistory } from "react-router-dom";
+import { thunk_getUsersPolls, thunk_getUsersSpecificComments } from "../../store/thunks/polls.js";
 
 
 
@@ -10,6 +10,7 @@ import { thunk_getUsersPolls } from "../../store/thunks/polls.js";
 
 const Polls = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const polls = useSelector(store => store.pollsReducer.polls);
 
 
@@ -17,6 +18,14 @@ const Polls = () => {
   useEffect(() => {
     dispatch(thunk_getUsersPolls());
   },[dispatch]);
+
+
+  const handleEachClick = (event, pollId) => {
+    event.preventDefault();
+    dispatch(thunk_getUsersSpecificComments(pollId));
+    history.push(`/comments/${pollId}`);
+  }
+
 
 
   if (polls === null){
@@ -40,7 +49,7 @@ const Polls = () => {
         {Object.values(polls).map(eachPoll => (
           <>
           <div>
-            <a href='/' onClick={event => event.preventDefault()}>
+              <a href='/' onClick={event => handleEachClick(event, eachPoll.id)}>
               <li key={eachPoll.id}>
                   <h3> { eachPoll.title } </h3>
               </li>
