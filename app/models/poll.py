@@ -1,6 +1,7 @@
 from .db import db
 from datetime import datetime
-from .user import User
+# from .user import User
+from .comment import Comment
 
 
 class Poll(db.Model):
@@ -17,7 +18,7 @@ class Poll(db.Model):
 
   def get_creation_date(self):
     return {
-        "created_at": self.created_at,
+      "created_at": self.created_at,
     }
 
   def to_dict(self):
@@ -27,10 +28,17 @@ class Poll(db.Model):
         "question_text": self.question_text,
         "pub_date": self.pub_date,
         "user_id": self.user_id,
-        "username": User.query.get(self.user_id).user_name,
+        # "username": User.query.get(self.user_id).user_name,
         "created_at": self.created_at,
     }
 
   def update_poll_data(self, new_title, new_text):
     self.title = new_title
     self.question_text = new_text
+
+
+
+  def get_associated_comments(self):
+    return {
+        "comments": Comment.query.filter_by(poll_id=self.id)
+    }

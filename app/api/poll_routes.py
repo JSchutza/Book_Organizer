@@ -15,6 +15,14 @@ def get_all_polls():
   return { "polls": normalized }
 
 
+# /api/polls/:pollId/comments
+@poll_routes.route("/<int:pollId>/comments", methods=['GET'])
+# @login_required
+def get_all_comments(pollId):
+  the_poll = Poll.query.get(pollId)
+  the_comments = the_poll.get_associated_comments()
+  return {"test": the_comments }
+
 
 
 
