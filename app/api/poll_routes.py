@@ -62,16 +62,22 @@ def create_new_poll():
 
 
 
-# #  /api/books/:bookId
-# @book_routes.route('/<int:bookId>', methods=['DELETE'])
-# @login_required
-# def delete_book(bookId):
-#   the_book = Book.query.get(bookId)
-#   if the_book.check_creator_id(current_user.get_id()):
-#     db.session.delete(the_book)
-#     db.session.commit()
-#     return {"message": "book successfully deleted"}
-#   return {"message": "Error, cannot remove a book that does not belong to the current user."}
+
+# /api/polls/:pollId
+@poll_routes.route('/<int:pollId>', methods=['DELETE'])
+@login_required
+def delete_poll(pollId):
+  the_poll = Poll.query.get(pollId)
+  if the_poll.check_creator_id(current_user.get_id()):
+    db.session.delete(the_poll)
+    db.session.commit()
+    return { "message": "book successfully deleted" }
+
+  return { "errors": ["Error, cannot remove a book that does not belong to the current user.", "Please try again."] }
+
+
+
+
 
 
 # # /api/books/:bookId

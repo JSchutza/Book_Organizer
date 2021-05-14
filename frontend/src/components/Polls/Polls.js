@@ -37,6 +37,12 @@ const Polls = () => {
 
 
 
+  const handleDelete = (event, pollId) => {
+    event.preventDefault();
+
+  }
+
+
 
   if (polls === null){
     return (
@@ -60,6 +66,8 @@ const Polls = () => {
       <h1> Your Polls </h1>
     </div>
 
+
+
     <div>
         {Object.values(polls).map(eachPoll => (
           <>
@@ -69,6 +77,10 @@ const Polls = () => {
                   <h3> { eachPoll.title } </h3>
               </li>
             </a>
+
+            <div>
+                <a href='/' onClick={event => handleDelete(event, eachPoll.id)} > Delete </a>
+            </div>
           </div>
           </>
         ))}
