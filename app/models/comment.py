@@ -4,6 +4,7 @@ from .poll import Poll
 from datetime import datetime
 
 
+
 class Comment(db.Model):
     __tablename__ = "comments"
 
