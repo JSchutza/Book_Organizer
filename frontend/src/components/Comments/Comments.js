@@ -10,6 +10,7 @@ const Comments = () => {
   const { pollId } = useParams();
   const dispatch = useDispatch();
   const comments = useSelector(store => store.commentReducer.comments);
+  const user = useSelector((store) => store.usersReducer.user);
 
 
   useEffect(() => {
@@ -34,6 +35,27 @@ const Comments = () => {
 
   return (
     <>
+
+      {comments === false ?
+          <div>
+            <h2> This poll currently does not have any comments. </h2>
+          </div>
+
+        :
+        <>
+
+      <div>
+        <div>
+            { Object.values(comments)[0].poll_title }
+        </div>
+
+        <div>
+          { Object.values(comments)[0].poll_text }
+        </div>
+      </div>
+
+
+
     <div>
       {Object.values(comments).map(eachComment => (
         <>
@@ -41,11 +63,35 @@ const Comments = () => {
             <p> { eachComment.username } </p>
             <p> { eachComment.answer_text } </p>
           </li>
-        </>
-      ))}
-    </div>
+
+          {user.id === eachComment.user_id ?
+              <>
+              <a href='/' onClick={event => event.preventDefault()} >
+                <li>
+                    Delete
+                </li>
+              </a>
+
+
+              <a href='/' onClick={event => event.preventDefault()} >
+                <li>
+                  Update
+                  </li>
+                </a>
+              </>
+
+              :
+            <></>
+          }
+          </>
+        ))}
+      </div>
     </>
+    }
+    </>
+
   );
+
 
 };
 

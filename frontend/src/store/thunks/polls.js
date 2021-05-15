@@ -1,7 +1,7 @@
 
 
 
-import { getUsersPolls, getUsersSpecificComments, deleteSpecificPoll } from "../actions/polls.js";
+import { getUsersPolls, getUsersSpecificComments, deleteSpecificPoll, allPolls } from "../actions/polls.js";
 import { setErrors, resetErrors } from "../actions/errors.js";
 
 
@@ -94,6 +94,22 @@ const thunk_getUsersSpecificComments = (pollId) => async (dispatch) => {
 
 
 
+const thunk_allPolls = () => async (dispatch) => {
+  const response = await fetch("/api/polls/all", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+  dispatch(resetErrors());
+  dispatch(allPolls(data));
+};
+
 
 
 
@@ -102,6 +118,7 @@ export {
   thunk_getUsersSpecificComments,
   thunk_createNewPoll,
   thunk_deleteSpecificPoll,
+  thunk_allPolls,
 
 
 }

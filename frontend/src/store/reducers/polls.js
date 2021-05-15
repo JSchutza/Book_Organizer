@@ -1,7 +1,7 @@
 
 
 
-import { GET_USERS_POLLS, GET_COMMENTS_BY_POLL_ID, DELETE_SPECIFIC_POLL } from "../types";
+import { GET_USERS_POLLS, GET_COMMENTS_BY_POLL_ID, DELETE_SPECIFIC_POLL, GET_ALL_POLLS } from "../types";
 
 
 
@@ -32,9 +32,21 @@ const commentReducer = (state = { comments: null }, action) => {
 
 
 
+const allPollsReducer = (state = { polls: null }, action) => {
+  switch (action.type){
+    case GET_ALL_POLLS:
+      return { ...action.polls };
+    default:
+      return state;
+  }
+}
+
+
+
 
 export {
   pollsReducer,
   commentReducer,
+  allPollsReducer,
 
 }
