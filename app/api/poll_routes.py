@@ -14,12 +14,17 @@ poll_routes = Blueprint('polls', __name__)
 @login_required
 def get_all_polls():
   their_polls = current_user.get_users_polls()
-  normalized = {each["id"]: each for each in their_polls["polls"]}
+  normalized = { each["id"]: each   for each in their_polls["polls"] }
   return { "polls": normalized }
 
 
-
-
+# /api/polls/all
+@poll_routes.route('/all', methods=['GET'])
+@login_required
+def get_all_other_polls():
+  all_polls = Poll.query.order_by(Poll.created_at).all()
+  normalized = { each.to_dict()["id"]: each.to_dict()   for each in all_polls }
+  return { "polls" : normalized }
 
 
 
@@ -30,7 +35,8 @@ def get_all_polls():
 def get_all_comments(pollId):
   the_comments = Comment.query.filter_by(poll_id=pollId).all()
   normalized = { each.to_dict()["id"]: each.to_dict() for each in the_comments }
-
+  if len(normalized) == 0:
+    return { "comments": False }
   return {"comments": normalized }
 
 
