@@ -77,7 +77,9 @@ const EachBook = () => {
       <PrivateCharacter bookId={bookId} />
     </div>
 
-    <div>
+
+
+    <div className={styles.pages_wrap}>
       <Pages bookId={bookId} />
     </div>
 
