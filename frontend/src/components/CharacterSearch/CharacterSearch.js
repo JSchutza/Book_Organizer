@@ -2,6 +2,7 @@
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
 import { RiDeleteBinFill } from "react-icons/ri";
+import { GrUpdate } from "react-icons/gr";
 import ToolTip from "../ToolTip";
 import styles from "./charactersearch.module.css";
 import React, { useState, useEffect } from 'react';
@@ -144,7 +145,7 @@ const CharacterSearch = () => {
                   username: eachChar.username,
                   search_id: eachChar.search_id,
 
-                  })}> Update </a>
+                })}> <GrUpdate /> </a>
                   </ToolTip>
 
               </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
+import { GrUpdate } from "react-icons/gr";
 import Tooltip from "../ToolTip";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { resetErrors } from "../../store/actions/errors.js";
@@ -126,7 +127,7 @@ const PrivateCharacter = ({ bookId }) => {
               character_name: eachChar.character_name,
               character_label: eachChar.character_label,
               book_id: bookId
-            })}> Update </a>
+            })}> <GrUpdate /> </a>
             </Tooltip>
 
             </>

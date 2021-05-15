@@ -3,6 +3,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { thunk_getUsersPolls, thunk_getUsersSpecificComments, thunk_deleteSpecificPoll, thunk_allPolls } from "../../store/thunks/polls.js";
+import { GrUpdate } from "react-icons/gr";
+import { RiDeleteBinFill } from "react-icons/ri";
+import { BsFillPlusSquareFill } from "react-icons/bs";
 import ToolTip from "../ToolTip";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 
@@ -68,7 +71,7 @@ const Polls = () => {
   return (
     <>
       <div>
-        <a href='/' onClick={event => handleCreate(event)} > Create </a>
+        <a href='/' onClick={event => handleCreate(event)} > <BsFillPlusSquareFill /> </a>
       </div>
 
     <div>
@@ -86,11 +89,11 @@ const Polls = () => {
             </a>
 
             <div>
-                <a href='/' onClick={event => handleDelete(event, eachPoll.id)} > Delete </a>
+                <a href='/' onClick={event => handleDelete(event, eachPoll.id)} > <RiDeleteBinFill /> </a>
             </div>
 
             <div>
-              <a href='/' onClick={event => handleUpdate(event, eachPoll.id)} > Update </a>
+              <a href='/' onClick={event => handleUpdate(event, eachPoll.id)} > <GrUpdate /> </a>
             </div>
 
           </div>

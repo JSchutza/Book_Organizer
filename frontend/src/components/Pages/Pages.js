@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
+import { GrUpdate } from "react-icons/gr";
 import Tooltip from "../ToolTip";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { thunk_getAllPages } from "../../store/thunks/books.js";
@@ -89,7 +90,7 @@ const Pages = ({ bookId }) => {
               text: eachPage.text,
               book_id: eachPage.book_id
 
-            })}> Update </a>
+            })}> <GrUpdate /> </a>
             </Tooltip>
 
 

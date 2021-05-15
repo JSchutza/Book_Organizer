@@ -4,6 +4,14 @@ import { nanoid } from "nanoid";
 import { useParams } from "react-router-dom";
 import { thunk_getUsersSpecificComments, thunk_createComment, thunk_deleteSpecificComment, thunk_updateSpecificComment } from "../../store/thunks/polls.js";
 
+import { GrUpdate } from "react-icons/gr";
+import { RiDeleteBinFill } from "react-icons/ri";
+import { AiOutlinePlus } from "react-icons/ai";
+
+
+
+
+
 
 
 const Comments = () => {
@@ -45,7 +53,6 @@ const Comments = () => {
   const handleUpdate = (event, payload) => {
     event.preventDefault();
     setShow(true);
-    setButtonText("Update");
 
     setUpdateInfo(payload);
     setUpdateText(payload.answer_text);
@@ -110,7 +117,7 @@ const Comments = () => {
               <>
               <a href='/' onClick={event => handleDelete(event, eachComment.id)} >
                 <li>
-                    Delete
+                  <RiDeleteBinFill />
                 </li>
               </a>
 
@@ -123,7 +130,7 @@ const Comments = () => {
               })} >
 
                 <li>
-                  Update
+                  <GrUpdate />
                   </li>
                 </a>
               </>
@@ -159,7 +166,7 @@ const Comments = () => {
 
 
           <div>
-              <a href='/' onClick={event => updateComment(event)}> { buttonText } Comment </a>
+            <a href='/' onClick={event => updateComment(event)}> <GrUpdate /> </a>
           </div>
 
           </div>
@@ -178,7 +185,7 @@ const Comments = () => {
             </div>
 
           <div>
-              <a href='/' onClick={event => createComment(event)}> { buttonText } Comment </a>
+            <a href='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </a>
           </div>
 
           </div>
