@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
 
-
+import ToolTip from "../ToolTip";
 import { AiOutlinePlus } from "react-icons/ai";
+import { GrUpdate } from "react-icons/gr";
+import styles from "./createbookform.module.css";
 
 
 
@@ -57,8 +59,8 @@ const CreateBookForm = ({ isUpdate=false, data }) => {
   if (isUpdate) {
     return (
       <>
-        <div>
-          <form className='' onSubmit={onUpdateSubmit}>
+        <div className={styles.form_wrap}>
+          <form onSubmit={onUpdateSubmit}>
             <label>
               Title
           <input
@@ -69,7 +71,10 @@ const CreateBookForm = ({ isUpdate=false, data }) => {
               />
             </label>
 
-            <button> <AiOutlinePlus /> </button>
+
+            <ToolTip content={"Update"}>
+              <button> <GrUpdate /> </button>
+            </ToolTip>
           </form>
         </div>
       </>
@@ -80,8 +85,8 @@ const CreateBookForm = ({ isUpdate=false, data }) => {
 
   return (
     <>
-    <div>
-      <form className='' onSubmit={onCreateSubmit}>
+    <div className={styles.form_wrap}>
+      <form onSubmit={onCreateSubmit}>
         <label>
           Title
           <input
@@ -92,7 +97,9 @@ const CreateBookForm = ({ isUpdate=false, data }) => {
           />
         </label>
 
-          <button> <AiOutlinePlus/> </button>
+          <ToolTip content={"Create"}>
+            <button> <AiOutlinePlus/> </button>
+          </ToolTip>
       </form>
     </div>
     </>
