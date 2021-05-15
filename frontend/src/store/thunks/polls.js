@@ -139,6 +139,34 @@ const thunk_deleteSpecificComment = (pollId, commentId) => async (dispatch) => {
 };
 
 
+// /api/polls/:pollId/comments/:commentId
+
+const thunk_updateSpecificComment = ({ pollId, commentId }, answer_text) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("answer_text", answer_text);
+
+  const response = await fetch(`/api/polls/${pollId}/comments/${commentId}`, {
+    method: "PUT",
+    body: formData,
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+
+  dispatch(resetErrors());
+  dispatch(thunk_getUsersSpecificComments(pollId));
+
+};
+
+
+
+
+
+
+
 const thunk_allPolls = () => async (dispatch) => {
   const response = await fetch("/api/polls/all", {
     headers: {
@@ -158,7 +186,6 @@ const thunk_allPolls = () => async (dispatch) => {
 
 
 // /api/polls/:pollId/comment
-
 
 
 const thunk_createComment = ({ pollId, commentText }) => async (dispatch) => {
@@ -193,6 +220,7 @@ export {
   thunk_updatePoll,
   thunk_createComment,
   thunk_deleteSpecificComment,
+  thunk_updateSpecificComment,
 
 
 }
