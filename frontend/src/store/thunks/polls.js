@@ -54,6 +54,33 @@ const thunk_createNewPoll = ({ title, questionText }) => async (dispatch) => {
 
 
 
+
+
+const thunk_updatePoll = ({ pollId, title, questionText }) => async (dispatch) => {
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("question_text", questionText);
+
+
+  const response = await fetch(`/api/polls/${pollId}`, {
+    method: "PUT",
+    body: formData,
+  });
+
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+  dispatch(resetErrors());
+  dispatch(thunk_getUsersPolls());
+
+};
+
+
+
 const thunk_deleteSpecificPoll = (pollId) => async (dispatch) => {
   const response = await fetch(`/api/polls/${pollId}`, {
     method: "DELETE",
@@ -119,6 +146,7 @@ export {
   thunk_createNewPoll,
   thunk_deleteSpecificPoll,
   thunk_allPolls,
+  thunk_updatePoll,
 
 
 }

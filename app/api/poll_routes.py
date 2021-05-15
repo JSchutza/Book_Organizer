@@ -85,17 +85,18 @@ def delete_poll(pollId):
 
 
 
+# /api/polls/:pollId
+@poll_routes.route('/<int:pollId>', methods=['PUT'])
+@login_required
+def update_poll(pollId):
+  the_poll = Poll.query.get(pollId)
 
-# # /api/books/:bookId
-# @book_routes.route('/<int:bookId>', methods=['PUT'])
-# @login_required
-# def update_book(bookId):
-#   the_book = Book.query.get(bookId)
-#   form = BookForm()
-#   form['csrf_token'].data = request.cookies['csrf_token']
+  form = PollForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    the_poll.update_poll_data(form.data['title'], form.data["question_text"])
+    db.session.add(the_poll)
+    db.session.commit()
+    return { "poll": the_poll.to_dict() }
 
-#   if form.validate_on_submit():
-#     the_book.update_title(form.data['title'])
-#     db.session.add(the_book)
-#     db.session.commit()
-#   return {"book": the_book.to_dict()}
+  return { "errors": ["error", "Please try again."] }
