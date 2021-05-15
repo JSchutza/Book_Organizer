@@ -36,3 +36,7 @@ class Comment(db.Model):
 
     def update_comment(self, new_answer):
         self.answer_text = new_answer
+
+
+    def check_creator_id(self, to_check):
+        return int(self.user_id) == int(to_check)

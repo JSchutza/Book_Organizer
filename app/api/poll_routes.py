@@ -62,6 +62,23 @@ def new_comment(pollId):
 
 
 
+# /api/polls/:pollId/comments/:commentId
+@poll_routes.route("/<int:pollId>/comments/<int:commentId>", methods=['DELETE'])
+@login_required
+def delete_comment(pollId, commentId):
+  the_comment = Comment.query.get(commentId)
+
+  if the_comment.check_creator_id(current_user.get_id()):
+    db.session.delete(the_comment)
+    db.session.commit()
+    return { "message": "comment successfully deleted" }
+
+  return { "errors": ["Error, cannot remove a comment that does not belong to the current user.", "Please try again."] }
+
+
+
+
+
 
 
 # /api/polls

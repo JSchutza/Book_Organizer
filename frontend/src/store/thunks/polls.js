@@ -1,7 +1,7 @@
 
 
 
-import { getUsersPolls, getUsersSpecificComments, deleteSpecificPoll, allPolls } from "../actions/polls.js";
+import { getUsersPolls, getUsersSpecificComments, deleteSpecificPoll, allPolls, deleteSpecificComment } from "../actions/polls.js";
 import { setErrors, resetErrors } from "../actions/errors.js";
 
 
@@ -102,6 +102,7 @@ const thunk_deleteSpecificPoll = (pollId) => async (dispatch) => {
 
 
 
+
 const thunk_getUsersSpecificComments = (pollId) => async (dispatch) => {
   const response = await fetch(`/api/polls/${pollId}/comments`, {
     headers: {
@@ -119,6 +120,23 @@ const thunk_getUsersSpecificComments = (pollId) => async (dispatch) => {
 };
 
 
+//  /api/polls/:pollId/comments/:commentId
+const thunk_deleteSpecificComment = (pollId, commentId) => async (dispatch) => {
+  const response = await fetch(`/api/polls/${pollId}/comments/${commentId}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+
+  dispatch(resetErrors());
+  dispatch(deleteSpecificComment(commentId));
+  dispatch(thunk_getUsersSpecificComments(pollId));
+};
 
 
 const thunk_allPolls = () => async (dispatch) => {
@@ -139,6 +157,32 @@ const thunk_allPolls = () => async (dispatch) => {
 
 
 
+// /api/polls/:pollId/comment
+
+
+
+const thunk_createComment = ({ pollId, commentText }) => async (dispatch) => {
+
+  const formData = new FormData();
+  formData.append("answer_text", commentText);
+
+  const response = await fetch(`/api/polls/${pollId}/comment`, {
+    method: "POST",
+    body: formData,
+  });
+
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+  dispatch(resetErrors());
+  dispatch(thunk_getUsersSpecificComments(pollId));
+
+};
+
+
 
 export {
   thunk_getUsersPolls,
@@ -147,6 +191,8 @@ export {
   thunk_deleteSpecificPoll,
   thunk_allPolls,
   thunk_updatePoll,
+  thunk_createComment,
+  thunk_deleteSpecificComment,
 
 
 }
