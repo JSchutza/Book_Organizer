@@ -8,7 +8,7 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import ToolTip from "../ToolTip";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
-
+import styles from "./polls.module.css";
 
 
 
@@ -70,47 +70,56 @@ const Polls = () => {
 
   return (
     <>
-      <div>
+      <div className={styles.create_poll_button}>
         <ToolTip content={"New Poll"}>
           <a href='/' onClick={event => handleCreate(event)} > <BsFillPlusSquareFill /> </a>
         </ToolTip>
       </div>
 
-    <div>
+    <div className={styles.main_titles}>
       <h1> Your Polls </h1>
     </div>
 
-    <div>
+
+    <div className={styles.each_personal_poll_wrap}>
         {Object.values(polls).map(eachPoll => (
           <>
           <div>
+            <div className={styles.each_poll_title}>
               <a href='/' onClick={event => handleEachClick(event, eachPoll.id)}>
               <li key={eachPoll.id}>
                   <h3> { eachPoll.title } </h3>
               </li>
             </a>
+            </div>
+          </div>
 
-            <div>
+
+            <div className={styles.each_poll_button_wrap}>
+            <div className={styles.each_poll_delete_button}>
               <ToolTip content={"Delete"}>
                 <a href='/' onClick={event => handleDelete(event, eachPoll.id)} > <RiDeleteBinFill /> </a>
               </ToolTip>
             </div>
 
-            <div>
+            <div className={styles.each_poll_update_button}>
               <ToolTip content={"Update"}>
                 <a href='/' onClick={event => handleUpdate(event, eachPoll.id)} > <GrUpdate /> </a>
               </ToolTip>
             </div>
-
           </div>
+
           </>
         ))}
     </div>
 
 
-    <div>
+
+
+    <div className={styles.main_titles}>
       <h1> All Polls </h1>
     </div>
+
 
     <div>
         {Object.values(allPolls).map(eachPoll => (
@@ -121,8 +130,6 @@ const Polls = () => {
                 <h3> {eachPoll.title} </h3>
               </li>
             </a>
-
-
           </div>
           </>
         ))}
