@@ -13,6 +13,7 @@ const Comments = () => {
   const user = useSelector((store) => store.usersReducer.user);
 
 
+
   useEffect(() => {
     dispatch(thunk_getUsersSpecificComments(pollId));
   },[dispatch, pollId]);

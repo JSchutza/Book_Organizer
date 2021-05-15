@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import db, Poll, Comment
-from app.forms import PollForm
+from app.forms import PollForm, CommentForm
 
 
 
@@ -43,6 +43,21 @@ def get_all_comments(pollId):
 
 
 
+# /api/polls/:pollId/comment
+@poll_routes.route("/<int:pollId>/comment", methods=['POST'])
+@login_required
+def new_comment(pollId):
+  form = CommentForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    new_comment = Comment(answer_text=form.data['answer_text'], poll_id=int(pollId), user_id=current_user.get_id())
+    db.session.add(new_comment)
+    db.session.commit()
+    return { "comment": new_comment.to_dict() }
+
+  # if there are errors
+  return { "errors": ["errors", "Please try again."] }
 
 
 
