@@ -71,7 +71,9 @@ const Polls = () => {
   return (
     <>
       <div>
-        <a href='/' onClick={event => handleCreate(event)} > <BsFillPlusSquareFill /> </a>
+        <ToolTip content={"New Poll"}>
+          <a href='/' onClick={event => handleCreate(event)} > <BsFillPlusSquareFill /> </a>
+        </ToolTip>
       </div>
 
     <div>
@@ -89,11 +91,15 @@ const Polls = () => {
             </a>
 
             <div>
+              <ToolTip content={"Delete"}>
                 <a href='/' onClick={event => handleDelete(event, eachPoll.id)} > <RiDeleteBinFill /> </a>
+              </ToolTip>
             </div>
 
             <div>
-              <a href='/' onClick={event => handleUpdate(event, eachPoll.id)} > <GrUpdate /> </a>
+              <ToolTip content={"Update"}>
+                <a href='/' onClick={event => handleUpdate(event, eachPoll.id)} > <GrUpdate /> </a>
+              </ToolTip>
             </div>
 
           </div>

@@ -7,7 +7,7 @@ import { thunk_getUsersSpecificComments, thunk_createComment, thunk_deleteSpecif
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { AiOutlinePlus } from "react-icons/ai";
-
+import ToolTip from "../ToolTip";
 
 
 
@@ -115,24 +115,21 @@ const Comments = () => {
 
           {user.id === eachComment.user_id ?
               <>
-              <a href='/' onClick={event => handleDelete(event, eachComment.id)} >
-                <li>
-                  <RiDeleteBinFill />
-                </li>
-              </a>
+
+              <div>
+                <ToolTip content={"Delete"}>
+                  <a href='/' onClick={event => handleDelete(event, eachComment.id)} > <li> <RiDeleteBinFill /> </li> </a>
+                </ToolTip>
+              </div>
 
 
 
-              <a href='/' onClick={event => handleUpdate(event, {
-                commentId: eachComment.id,
-                answer_text: eachComment.answer_text,
-                pollId
-              })} >
-
-                <li>
-                  <GrUpdate />
-                  </li>
-                </a>
+                <div>
+                  <ToolTip content={"Update"}>
+                    <a href='/' onClick={event => handleUpdate(event, { commentId: eachComment.id, answer_text: eachComment.answer_text,
+                        pollId })} > <li> <GrUpdate /> </li> </a>
+                  </ToolTip>
+                </div>
               </>
 
               :
@@ -166,7 +163,9 @@ const Comments = () => {
 
 
           <div>
-            <a href='/' onClick={event => updateComment(event)}> <GrUpdate /> </a>
+            <ToolTip content={"Update"}>
+              <a href='/' onClick={event => updateComment(event)}> <GrUpdate /> </a>
+            </ToolTip>
           </div>
 
           </div>
@@ -185,7 +184,9 @@ const Comments = () => {
             </div>
 
           <div>
-            <a href='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </a>
+            <ToolTip content={"Comment"}>
+              <a href='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </a>
+            </ToolTip>
           </div>
 
           </div>
