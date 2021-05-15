@@ -1,7 +1,7 @@
 
 
 
-import { GET_USERS_POLLS, GET_COMMENTS_BY_POLL_ID, DELETE_SPECIFIC_POLL, GET_ALL_POLLS } from "../types";
+import { GET_USERS_POLLS, GET_COMMENTS_BY_POLL_ID, DELETE_SPECIFIC_POLL, GET_ALL_POLLS, DELETE_SPECIFIC_COMMENT } from "../types";
 
 
 
@@ -34,12 +34,20 @@ const allPolls = (polls) => ({
 
 
 
+const deleteSpecificComment = (comment) => ({
+  type: DELETE_SPECIFIC_COMMENT,
+  comment
+});
+
+
+
 
 export {
   getUsersPolls,
   getUsersSpecificComments,
   deleteSpecificPoll,
   allPolls,
+  deleteSpecificComment,
 
 
 }

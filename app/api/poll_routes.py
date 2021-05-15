@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import db, Poll, Comment
-from app.forms import PollForm
+from app.forms import PollForm, CommentForm
 
 
 
@@ -39,6 +39,58 @@ def get_all_comments(pollId):
     return { "comments": False }
   return {"comments": normalized }
 
+
+
+
+
+# /api/polls/:pollId/comment
+@poll_routes.route("/<int:pollId>/comment", methods=['POST'])
+@login_required
+def new_comment(pollId):
+  form = CommentForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    new_comment = Comment(answer_text=form.data['answer_text'], poll_id=int(pollId), user_id=current_user.get_id())
+    db.session.add(new_comment)
+    db.session.commit()
+    return { "comment": new_comment.to_dict() }
+
+  # if there are errors
+  return { "errors": ["errors", "Please try again."] }
+
+
+
+
+# /api/polls/:pollId/comments/:commentId
+@poll_routes.route("/<int:pollId>/comments/<int:commentId>", methods=['DELETE'])
+@login_required
+def delete_comment(pollId, commentId):
+  the_comment = Comment.query.get(commentId)
+
+  if the_comment.check_creator_id(current_user.get_id()):
+    db.session.delete(the_comment)
+    db.session.commit()
+    return { "message": "comment successfully deleted" }
+
+  return { "errors": ["Error, cannot remove a comment that does not belong to the current user.", "Please try again."] }
+
+
+# /api/polls/:pollId/comments/:commentId
+@poll_routes.route("/<int:pollId>/comments/<int:commentId>", methods=['PUT'])
+@login_required
+def update_comment(pollId, commentId):
+  the_comment = Comment.query.get(commentId)
+  form = CommentForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    the_comment.update_comment(form.data['answer_text'])
+    db.session.add(the_comment)
+    db.session.commit()
+    return { "comment": the_comment.to_dict() }
+
+  return { "errors": ["error", "Please try again."] }
 
 
 
@@ -85,17 +137,18 @@ def delete_poll(pollId):
 
 
 
+# /api/polls/:pollId
+@poll_routes.route('/<int:pollId>', methods=['PUT'])
+@login_required
+def update_poll(pollId):
+  the_poll = Poll.query.get(pollId)
 
-# # /api/books/:bookId
-# @book_routes.route('/<int:bookId>', methods=['PUT'])
-# @login_required
-# def update_book(bookId):
-#   the_book = Book.query.get(bookId)
-#   form = BookForm()
-#   form['csrf_token'].data = request.cookies['csrf_token']
+  form = PollForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    the_poll.update_poll_data(form.data['title'], form.data["question_text"])
+    db.session.add(the_poll)
+    db.session.commit()
+    return { "poll": the_poll.to_dict() }
 
-#   if form.validate_on_submit():
-#     the_book.update_title(form.data['title'])
-#     db.session.add(the_book)
-#     db.session.commit()
-#   return {"book": the_book.to_dict()}
+  return { "errors": ["error", "Please try again."] }

@@ -44,6 +44,15 @@ const Polls = () => {
   }
 
 
+  const handleUpdate = (event, pollId) => {
+    event.preventDefault();
+    dispatch(dataModal({ pollId }))
+    dispatch(contentModal("UpdatePoll"));
+    dispatch(showModal());
+  }
+
+
+
 
   if (polls === null || allPolls === null){
     return (
@@ -79,6 +88,11 @@ const Polls = () => {
             <div>
                 <a href='/' onClick={event => handleDelete(event, eachPoll.id)} > Delete </a>
             </div>
+
+            <div>
+              <a href='/' onClick={event => handleUpdate(event, eachPoll.id)} > Update </a>
+            </div>
+
           </div>
           </>
         ))}

@@ -1,7 +1,7 @@
 
 
 
-import { getUsersPolls, getUsersSpecificComments, deleteSpecificPoll, allPolls } from "../actions/polls.js";
+import { getUsersPolls, getUsersSpecificComments, deleteSpecificPoll, allPolls, deleteSpecificComment } from "../actions/polls.js";
 import { setErrors, resetErrors } from "../actions/errors.js";
 
 
@@ -54,6 +54,33 @@ const thunk_createNewPoll = ({ title, questionText }) => async (dispatch) => {
 
 
 
+
+
+const thunk_updatePoll = ({ pollId, title, questionText }) => async (dispatch) => {
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("question_text", questionText);
+
+
+  const response = await fetch(`/api/polls/${pollId}`, {
+    method: "PUT",
+    body: formData,
+  });
+
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+  dispatch(resetErrors());
+  dispatch(thunk_getUsersPolls());
+
+};
+
+
+
 const thunk_deleteSpecificPoll = (pollId) => async (dispatch) => {
   const response = await fetch(`/api/polls/${pollId}`, {
     method: "DELETE",
@@ -69,6 +96,7 @@ const thunk_deleteSpecificPoll = (pollId) => async (dispatch) => {
   dispatch(deleteSpecificPoll(pollId));
   dispatch(thunk_getUsersPolls());
 };
+
 
 
 
@@ -92,6 +120,51 @@ const thunk_getUsersSpecificComments = (pollId) => async (dispatch) => {
 };
 
 
+//  /api/polls/:pollId/comments/:commentId
+const thunk_deleteSpecificComment = (pollId, commentId) => async (dispatch) => {
+  const response = await fetch(`/api/polls/${pollId}/comments/${commentId}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+
+  dispatch(resetErrors());
+  dispatch(deleteSpecificComment(commentId));
+  dispatch(thunk_getUsersSpecificComments(pollId));
+};
+
+
+// /api/polls/:pollId/comments/:commentId
+
+const thunk_updateSpecificComment = ({ pollId, commentId }, answer_text) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("answer_text", answer_text);
+
+  const response = await fetch(`/api/polls/${pollId}/comments/${commentId}`, {
+    method: "PUT",
+    body: formData,
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+
+  dispatch(resetErrors());
+  dispatch(thunk_getUsersSpecificComments(pollId));
+
+};
+
+
+
+
+
 
 
 const thunk_allPolls = () => async (dispatch) => {
@@ -112,6 +185,31 @@ const thunk_allPolls = () => async (dispatch) => {
 
 
 
+// /api/polls/:pollId/comment
+
+
+const thunk_createComment = ({ pollId, commentText }) => async (dispatch) => {
+
+  const formData = new FormData();
+  formData.append("answer_text", commentText);
+
+  const response = await fetch(`/api/polls/${pollId}/comment`, {
+    method: "POST",
+    body: formData,
+  });
+
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+  dispatch(resetErrors());
+  dispatch(thunk_getUsersSpecificComments(pollId));
+
+};
+
+
 
 export {
   thunk_getUsersPolls,
@@ -119,6 +217,10 @@ export {
   thunk_createNewPoll,
   thunk_deleteSpecificPoll,
   thunk_allPolls,
+  thunk_updatePoll,
+  thunk_createComment,
+  thunk_deleteSpecificComment,
+  thunk_updateSpecificComment,
 
 
 }

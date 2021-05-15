@@ -156,6 +156,12 @@ const Modal = ({ user }) =>  {
 
         {content === "CreatePoll" ?
           <CreatePollForm />
+          :
+          <></>
+        }
+
+        {content === "UpdatePoll" ?
+          <CreatePollForm update={true} data={data} />
         :
         <></>
         }
