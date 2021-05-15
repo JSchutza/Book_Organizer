@@ -155,13 +155,17 @@ const Modal = ({ user }) =>  {
         }
 
         {content === "CreatePoll" ?
-          <CreatePollForm />
+          <div className={styles.create_poll_form}>
+            <CreatePollForm />
+          </div>
           :
           <></>
         }
 
         {content === "UpdatePoll" ?
-          <CreatePollForm update={true} data={data} />
+          <div className={styles.create_poll_form}>
+            <CreatePollForm update={true} data={data} />
+          </div>
         :
         <></>
         }
