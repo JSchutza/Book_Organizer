@@ -36,7 +36,7 @@ const Comments = () => {
 
 
 
-  const handleUpdate = (event) => {
+  const handleUpdate = (event, payload) => {
     event.preventDefault();
 
   }
@@ -96,7 +96,13 @@ const Comments = () => {
               </a>
 
 
-              <a href='/' onClick={event => handleUpdate(event, eachComment.id)} >
+
+              <a href='/' onClick={event => handleUpdate(event, {
+                commentId: eachComment.id,
+                answer_text: eachComment.answer_text,
+
+              })} >
+
                 <li>
                   Update
                   </li>

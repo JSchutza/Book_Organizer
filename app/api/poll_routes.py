@@ -76,6 +76,26 @@ def delete_comment(pollId, commentId):
   return { "errors": ["Error, cannot remove a comment that does not belong to the current user.", "Please try again."] }
 
 
+# /api/polls/:pollId/comments/:commentId
+@poll_routes.route("/<int:pollId>/comments/<int:commentId>", methods=['PUT'])
+@login_required
+def update_comment(pollId, commentId):
+  the_comment = Comment.query.get(commentId)
+  form = CommentForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    the_comment.update_comment(form.data['answer_text'])
+    db.session.add(the_comment)
+    db.session.commit()
+    return { "comment": the_comment.to_dict() }
+
+  return { "errors": ["error", "Please try again."] }
+
+
+
+
+
 
 
 
