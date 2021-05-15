@@ -18,7 +18,7 @@ const Comments = () => {
   const [ commentText, setCommentText ] = useState('');
   const [ updateText, setUpdateText ] = useState('');
 
-  const [ buttonText, setButtonText  ] = useState('Create');
+
   const [ show, setShow ] = useState(false);
   const [ updateInfo, setUpdateInfo ] = useState(null);
 

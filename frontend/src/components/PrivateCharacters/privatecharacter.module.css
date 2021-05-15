@@ -1,0 +1,54 @@
+
+
+
+
+
+
+.each_char_container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+
+
+
+
+
+.each_char_button_wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  right: 14%;
+  padding: 1%;
+  border-radius: 10px;
+}
+
+
+
+.each_char_delete_button {
+  display: flex;
+  position: relative;
+  width: 60px;
+  justify-content: center;
+  padding: 1%;
+}
+
+
+
+.each_char_update_button {
+  display: flex;
+  position: relative;
+  width: 60px;
+  justify-content: center;
+  padding: 1%;
+
+}

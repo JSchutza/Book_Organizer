@@ -73,7 +73,7 @@ const EachBook = () => {
 
 
 
-    <div>
+    <div className={styles.private_char_wrap}>
       <PrivateCharacter bookId={bookId} />
     </div>
 
