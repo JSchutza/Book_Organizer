@@ -116,7 +116,8 @@ const CharacterSearch = () => {
                 <img className={styles.search_results_each_img} src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
-
+              <div className={styles.each_result_button_wrap}>
+              <div className={styles.each_result_delete_button}>
               <ToolTip content={"Delete"} >
                 <a href='/' onClick={(event) => handleDelete(event, {
                   charId: eachChar.id,
@@ -130,9 +131,13 @@ const CharacterSearch = () => {
                   search_id: eachChar.search_id,
                   setIsHidden,
 
-                  })}> <RiDeleteBinFill /> </a>
+                })}> <RiDeleteBinFill /> </a>
                 </ToolTip>
+                </div>
 
+
+
+                <div className={styles.each_result_update_button}>
                 <ToolTip content={"Update"} >
                 <a href='/' onClick={(event) => handleUpdate(event, {
                   charId: eachChar.id,
@@ -147,6 +152,8 @@ const CharacterSearch = () => {
 
                 })}> <GrUpdate /> </a>
                   </ToolTip>
+                </div>
+                </div>
 
               </div>
               </>
@@ -166,18 +173,19 @@ const CharacterSearch = () => {
   return (
     <>
     <div className={styles.search_wrapper}>
-      <div>
+
         {backenderrors !== null ?
         <>
+        <div className={styles.errors}>
           { backenderrors.map(each => ( <li> {each} </li>))}
           <div>
             <a href='/' onClick={(event) => clearErrors(event)}> Try Again </a>
           </div>
+        </div>
         </>
         :
         <></>
         }
-      </div>
 
 
 

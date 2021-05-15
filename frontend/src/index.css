@@ -52,7 +52,9 @@ img {
   height: 550px;
 }
 
-
+svg {
+  font-size: 30px;
+}
 
 
 .hide {
