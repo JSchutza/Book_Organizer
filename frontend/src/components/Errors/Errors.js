@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { showLoader } from "../../store/actions/loader.js";
 import { clearErrors } from "../../store/actions/session.js";
-
+import styles from "./errors.module.css";
 
 
 
@@ -31,21 +31,21 @@ const Errors = () => {
 
   return (
     <>
-    <div>
       {errors !== null  && user === null ?
       <>
+      <div className={styles.errors}>
         <div> {errors} </div>
 
         <div>
           <a href='/' onClick={event => handleTryAgain(event)} > Try Again </a>
         </div>
+      </div>
       </>
 
       :
       <></>
       }
 
-    </div>
 
     </>
   )

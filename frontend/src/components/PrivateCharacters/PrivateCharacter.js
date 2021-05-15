@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
-import Tooltip from "../ToolTip";
+import { GrUpdate } from "react-icons/gr";
+import ToolTip from "../ToolTip";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { resetErrors } from "../../store/actions/errors.js";
 import { thunk_getAllPriChars } from "../../store/thunks/books.js";
-
+import styles from "./privatecharacter.module.css";
 
 
 
@@ -89,9 +90,9 @@ const PrivateCharacter = ({ bookId }) => {
         </div>
 
 
-
-    <div>
       <h1>Your Characters</h1>
+
+    <div className={styles.each_char_container}>
         {Object.values(charInfo).map(eachChar => (
             <>
               <a href='/' onClick={event => event.preventDefault()}>
@@ -106,8 +107,9 @@ const PrivateCharacter = ({ bookId }) => {
               </a>
 
 
-
-          <Tooltip content={"Delete"}>
+          <div className={styles.each_char_button_wrap}>
+          <div className={styles.each_char_delete_button}>
+          <ToolTip content={"Delete"}>
             <a href='/' onClick={event => handleDelete(event, {
               charId: eachChar.id,
               avatar: eachChar.avatar,
@@ -115,19 +117,23 @@ const PrivateCharacter = ({ bookId }) => {
               character_label: eachChar.character_label,
               book_id: bookId
             })}> <RiDeleteBinFill /> </a>
-          </Tooltip>
+          </ToolTip>
+          </div>
 
 
 
-            <Tooltip content={"Update"}>
+            <div className={styles.each_char_update_button}>
+            <ToolTip content={"Update"}>
             <a href='/' onClick={event => handleUpdate(event, {
               charId: eachChar.id,
               avatar: eachChar.avatar,
               character_name: eachChar.character_name,
               character_label: eachChar.character_label,
               book_id: bookId
-            })}> Update </a>
-            </Tooltip>
+            })}> <GrUpdate /> </a>
+            </ToolTip>
+            </div>
+            </div>
 
             </>
           ))

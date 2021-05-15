@@ -10,7 +10,7 @@ import styles from "./bookviewer.module.css";
 // icon imports here
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { RiDeleteBinFill } from "react-icons/ri";
-
+import { GrUpdate } from "react-icons/gr";
 
 
 
@@ -157,7 +157,7 @@ const BookViewer = () => {
 
           <div className={styles.update_button}>
             <ToolTip content={"Update"} >
-              <li> <a href='/' onClick={event => handleUpdate(event, eachBook.id)} > Update </a> </li>
+                <li> <a href='/' onClick={event => handleUpdate(event, eachBook.id)} > <GrUpdate /> </a> </li>
             </ToolTip>
           </div>
         </div>

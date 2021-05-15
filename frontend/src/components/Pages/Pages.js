@@ -1,9 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
+import { GrUpdate } from "react-icons/gr";
 import Tooltip from "../ToolTip";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { thunk_getAllPages } from "../../store/thunks/books.js";
+import styles from "./pages.module.css";
+
+
+
+
 
 
 
@@ -54,8 +60,8 @@ const Pages = ({ bookId }) => {
 
     return (
       <>
-      <div>
         <h1>Your Pages</h1>
+      <div className={styles.each_page_container}>
         {Object.values(pageInfo).map(eachPage => (
           <>
             <a href='/' onClick={ event => event.preventDefault() }>
@@ -69,7 +75,8 @@ const Pages = ({ bookId }) => {
             </a>
 
 
-
+          <div className={styles.each_page_button_wrap}>
+          <div className={styles.each_page_delete_button}>
           <Tooltip content={"Delete"}>
             <a href='/' onClick={event => handleDelete(event, {
               pageId: eachPage.id,
@@ -79,9 +86,11 @@ const Pages = ({ bookId }) => {
 
             }) }> <RiDeleteBinFill /> </a>
           </Tooltip>
+          </div>
 
 
 
+            <div className={styles.each_page_update_button}>
             <Tooltip content={"Update"}>
             <a href='/' onClick={event => handleUpdate(event, {
               pageId: eachPage.id,
@@ -89,8 +98,10 @@ const Pages = ({ bookId }) => {
               text: eachPage.text,
               book_id: eachPage.book_id
 
-            })}> Update </a>
+            })}> <GrUpdate /> </a>
             </Tooltip>
+            </div>
+            </div>
 
 
           </>

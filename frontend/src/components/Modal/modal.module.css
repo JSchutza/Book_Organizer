@@ -93,3 +93,17 @@
   justify-content: center;
   align-items: center;
 }
+
+
+
+
+
+
+.create_poll_form {
+  position: relative;
+  width: 10%;
+  padding: 5%;
+  box-sizing: content-box;
+  left: 40%;
+  background-color: white;
+}

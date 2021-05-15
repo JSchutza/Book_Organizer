@@ -4,13 +4,21 @@ import { nanoid } from "nanoid";
 import { useParams } from "react-router-dom";
 import { thunk_getUsersSpecificComments, thunk_createComment, thunk_deleteSpecificComment, thunk_updateSpecificComment } from "../../store/thunks/polls.js";
 
+import { GrUpdate } from "react-icons/gr";
+import { RiDeleteBinFill } from "react-icons/ri";
+import { AiOutlinePlus } from "react-icons/ai";
+import ToolTip from "../ToolTip";
+
+
+
+
 
 
 const Comments = () => {
   const [ commentText, setCommentText ] = useState('');
   const [ updateText, setUpdateText ] = useState('');
 
-  const [ buttonText, setButtonText  ] = useState('Create');
+
   const [ show, setShow ] = useState(false);
   const [ updateInfo, setUpdateInfo ] = useState(null);
 
@@ -45,7 +53,6 @@ const Comments = () => {
   const handleUpdate = (event, payload) => {
     event.preventDefault();
     setShow(true);
-    setButtonText("Update");
 
     setUpdateInfo(payload);
     setUpdateText(payload.answer_text);
@@ -108,24 +115,21 @@ const Comments = () => {
 
           {user.id === eachComment.user_id ?
               <>
-              <a href='/' onClick={event => handleDelete(event, eachComment.id)} >
-                <li>
-                    Delete
-                </li>
-              </a>
+
+              <div>
+                <ToolTip content={"Delete"}>
+                  <a href='/' onClick={event => handleDelete(event, eachComment.id)} > <li> <RiDeleteBinFill /> </li> </a>
+                </ToolTip>
+              </div>
 
 
 
-              <a href='/' onClick={event => handleUpdate(event, {
-                commentId: eachComment.id,
-                answer_text: eachComment.answer_text,
-                pollId
-              })} >
-
-                <li>
-                  Update
-                  </li>
-                </a>
+                <div>
+                  <ToolTip content={"Update"}>
+                    <a href='/' onClick={event => handleUpdate(event, { commentId: eachComment.id, answer_text: eachComment.answer_text,
+                        pollId })} > <li> <GrUpdate /> </li> </a>
+                  </ToolTip>
+                </div>
               </>
 
               :
@@ -159,7 +163,9 @@ const Comments = () => {
 
 
           <div>
-              <a href='/' onClick={event => updateComment(event)}> { buttonText } Comment </a>
+            <ToolTip content={"Update"}>
+              <a href='/' onClick={event => updateComment(event)}> <GrUpdate /> </a>
+            </ToolTip>
           </div>
 
           </div>
@@ -178,7 +184,9 @@ const Comments = () => {
             </div>
 
           <div>
-              <a href='/' onClick={event => createComment(event)}> { buttonText } Comment </a>
+            <ToolTip content={"Comment"}>
+              <a href='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </a>
+            </ToolTip>
           </div>
 
           </div>

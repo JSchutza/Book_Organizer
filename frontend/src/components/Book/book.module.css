@@ -34,3 +34,31 @@
   align-content: center;
   padding: 5px;
 }
+
+
+
+
+
+
+.private_char_wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+}
+
+
+
+
+.pages_wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+}
