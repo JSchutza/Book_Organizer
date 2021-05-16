@@ -57,6 +57,12 @@ svg {
 }
 
 
+textarea {
+  width: 500px;
+  height: 225px;
+}
+
+
 .hide {
   display: none;
 }

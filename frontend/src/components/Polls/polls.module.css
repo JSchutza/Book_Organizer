@@ -64,3 +64,28 @@
   justify-content: center;
   padding: 1%;
 }
+
+
+
+
+
+
+
+
+.all_polls_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+.all_polls_each_link {
+  line-break: auto;
+  padding: 5%;
+}
