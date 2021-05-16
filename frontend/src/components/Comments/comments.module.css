@@ -41,13 +41,13 @@
 
 
 .each_comment_wrap {
+  display: -webkit-flex;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
+  -webkit-flex-direction: row;
+  flex-direction: column;
+  -webkit-align-items: center;
   padding: 2%;
+  align-items: flex-start;
 }
 
 
