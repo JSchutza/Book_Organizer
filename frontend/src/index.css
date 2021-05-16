@@ -17,7 +17,7 @@ button {
 }
 
 button:hover {
-  color: red;
+  color: rgb(27, 25, 25);
   cursor: pointer;
 }
 
@@ -28,7 +28,7 @@ a {
 }
 
 a:hover {
-  color: red;
+  color: rgb(27, 25, 25);
   cursor: pointer;
 }
 
@@ -65,4 +65,21 @@ textarea {
 
 .hide {
   display: none;
+}
+
+
+
+
+.profile_pic_wrap {
+  position: absolute;
+  top: 55%;
+  right: 25%;
+}
+
+
+
+.profile_pic_wrap img {
+  object-fit: contain;
+  width: 100px;
+  height: 550px;
 }

@@ -11,7 +11,7 @@ import configureStore from "./store";
 
 
 import "./index.css";
-
+import profile_pic from "./icons/Profile_Pic.jpg";
 
 
 const store = configureStore();
@@ -36,8 +36,17 @@ const Loader = () => {
         { initLoader ?
         <>
         <div>
-          <HomeLoader />
+          <div>
+            <HomeLoader />
+          </div>
         </div>
+
+
+            <div className='profile_pic_wrap'>
+              <a href='https://github.com/JSchutza' target="_blank">
+                <img src={profile_pic} />
+              </a>
+          </div>
         </>
         :
         <p></p>
