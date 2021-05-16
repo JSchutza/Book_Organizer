@@ -121,10 +121,10 @@ const Polls = () => {
     </div>
 
 
-    <div>
+    <div className={styles.all_polls_wrapper}>
         {Object.values(allPolls).map(eachPoll => (
           <>
-          <div>
+          <div className={styles.all_polls_each_link}>
               <a href='/' onClick={event => handleEachClick(event, eachPoll.id)}>
               <li key={eachPoll.id}>
                 <h3> {eachPoll.title} </h3>
