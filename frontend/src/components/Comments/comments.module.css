@@ -1,0 +1,117 @@
+
+
+
+
+.no_comment_wrap {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+
+
+
+
+.comment_title_wrap {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+
+
+.each_title {
+  padding: 2%;
+}
+
+
+.each_question {
+  padding: 2%;
+}
+
+
+.no_comment_message {
+  padding: 2%;
+}
+
+
+
+
+
+.each_comment_wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+}
+
+
+
+.each_comment_buttons_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2%;
+}
+
+
+
+.each_comment_delete_button {
+  display: flex;
+  position: relative;
+  width: 60px;
+  justify-content: center;
+  padding: 1%;
+}
+
+
+.each_comment_update_button {
+  display: flex;
+  position: relative;
+  width: 60px;
+  justify-content: center;
+  padding: 1%;
+}
+
+
+
+
+.comment_form_input_wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+}
+
+
+
+
+.comment_form_containter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.comment_add_button {
+  padding: 2%;
+}
+
+
+.comment_update_button {
+  padding: 2%;
+}
