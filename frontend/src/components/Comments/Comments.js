@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 import { useParams } from "react-router-dom";
-import { thunk_getUsersSpecificComments, thunk_createComment, thunk_deleteSpecificComment, thunk_updateSpecificComment } from "../../store/thunks/polls.js";
+import { thunk_allPolls, thunk_getUsersSpecificComments, thunk_createComment, thunk_deleteSpecificComment, thunk_updateSpecificComment } from "../../store/thunks/polls.js";
+
+
 
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
@@ -26,11 +28,13 @@ const Comments = () => {
   const dispatch = useDispatch();
   const comments = useSelector(store => store.commentReducer.comments);
   const user = useSelector((store) => store.usersReducer.user);
+  const poll = useSelector(store => store.allPollsReducer.polls);
 
 
 
   useEffect(() => {
     dispatch(thunk_getUsersSpecificComments(pollId));
+    dispatch(thunk_allPolls());
   },[dispatch, pollId]);
 
 
@@ -69,7 +73,7 @@ const Comments = () => {
 
 
 
-  if(comments === null){
+  if (comments === null || poll === null){
     return (
       <>
       <h1> Loading ... </h1>
@@ -86,9 +90,19 @@ const Comments = () => {
   <>
 
       {comments === false ?
+          <>
+          <div>
+            <h1> { poll[pollId].title } </h1>
+          </div>
+
+          <div>
+            <p> { poll[pollId].question_text } </p>
+          </div>
+
           <div>
             <h2> This poll currently does not have any comments. </h2>
           </div>
+          </>
 
         :
         <>
