@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { hideModal } from "../../store/actions/modal.js";
-import { thunk_getAllPriChars, thunk_createPriChar } from "../../store/thunks/books.js";
+import { useHistory } from "react-router-dom";
+import { thunk_updatePriChar, thunk_createPriChar } from "../../store/thunks/books.js";
 import { processFile } from "../../services/protectedFileUpload.js";
 import { nanoid } from "nanoid";
 
@@ -17,6 +18,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -39,6 +41,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(thunk_createPriChar({ bookId, urlpreview, charname, charlabel }));
+    history.push(`/books/${bookId}`);
   };
 
 
@@ -70,24 +73,9 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
   const onUpdate = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("image", urlpreview);
-    formData.append("charactername", charname);
-    formData.append("characterlabel", charlabel);
-
-    const res = await fetch(`/api/book/${bookId}/character/${data.charId}`, {
-      method: "PUT",
-      body: formData,
-    });
-
-    if (res.ok) {
-      dispatch(thunk_getAllPriChars(bookId));
-      dispatch(hideModal());
-
-    } else {
-      console.log("error");
-    }
-
+    dispatch(thunk_updatePriChar({ urlpreview, charname, charlabel, bookId, charId: data.charId }));
+    dispatch(hideModal());
+    history.push(`/books/${bookId}`);
   }
 
 
