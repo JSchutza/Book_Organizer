@@ -7,21 +7,34 @@ import { hideModal } from "../../store/actions/modal.js";
 import { showLoader } from "../../store/actions/loader.js";
 
 import { clearErrors } from "../../store/actions/session.js";
+import { resetErrors } from "../../store/actions/errors.js";
+
+
+
+
+
+
+
+
+
 
 
 const LogoutButton = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+
+
   const onLogout = (event) => {
     event.preventDefault();
     dispatch(hideModal());
     dispatch(showLoader());
     dispatch(logout());
+    dispatch(resetErrors());
     setTimeout(() => {
       dispatch(clearErrors());
     }, 100);
-    history.push("/")
+    history.push("/");
   };
 
 

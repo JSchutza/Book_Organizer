@@ -10,7 +10,7 @@ const usersReducer = (state = { user: null, errors: null }, action) => {
     case SET_USER:
       return { user: action.user };
     case REMOVE_USER:
-      return { user: null };
+      return { user: null, errors: null };
     case VALIDATION_ERRORS:
       return { user: null, errors: action.errors };
     case CLEAR_ERRORS:
