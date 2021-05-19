@@ -3,15 +3,15 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { thunk_deleteUsersPrivateChars, thunk_getAllPriChars } from "../../store/thunks/books.js";
 import { hideModal } from "../../store/actions/modal.js";
-import { triggerRender } from "../../store/actions/render.js";
 
+import { useHistory } from "react-router-dom";
 
 
 
 
 const DeletePriCharButton = ({ bookId, charId }) => {
-
   const dispatch = useDispatch();
+  const history = useHistory();
 
 
 
@@ -22,12 +22,10 @@ const DeletePriCharButton = ({ bookId, charId }) => {
       dispatch(thunk_deleteUsersPrivateChars(bookId, charId));
       dispatch(thunk_getAllPriChars(bookId));
       dispatch(hideModal());
-      dispatch(triggerRender(null));
-      setTimeout(() => {
-        dispatch(triggerRender(bookId));
-      }, 100)
+      history.push(`/books/${bookId}`);
     }
     dispatch(hideModal());
+    history.push(`/books/${bookId}`);
   }
 
 
