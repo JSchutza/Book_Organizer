@@ -6,13 +6,13 @@ import { GrUpdate } from "react-icons/gr";
 import ToolTip from "../ToolTip";
 import styles from "./charactersearch.module.css";
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { resetErrors } from "../../store/actions/errors.js";
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";;
-
 
 
 
@@ -27,6 +27,9 @@ const CharacterSearch = () => {
   const searchedChar = useSelector((store) => store.searchCharacterPageReducer.characters);
   const char = useSelector((store) => store.searchCharacterPageReducer);
   const errors = useSelector((store)  => store.errorsReducer.errors);
+  const history = useHistory();
+
+
 
   useEffect(() => {
     if(errors !== null ) {
@@ -61,6 +64,7 @@ const CharacterSearch = () => {
     dispatch(contentModal("DeletePubChar"));
     dispatch(dataModal(payload));
     dispatch(showModal());
+    history.push("/dropdown");
   }
 
 
@@ -69,6 +73,7 @@ const CharacterSearch = () => {
     dispatch(contentModal("EditPubChar"));
     dispatch(dataModal(payload));
     dispatch(showModal());
+    history.push("/dropdown");
   }
 
 
@@ -130,6 +135,7 @@ const CharacterSearch = () => {
                   username: eachChar.username,
                   search_id: eachChar.search_id,
                   setIsHidden,
+                  lastpage: "/characters"
 
                 })}> <RiDeleteBinFill /> </a>
                 </ToolTip>
@@ -149,6 +155,8 @@ const CharacterSearch = () => {
                   user_id: eachChar.user_id,
                   username: eachChar.username,
                   search_id: eachChar.search_id,
+                  lastpage: "/characters"
+
 
                 })}> <GrUpdate /> </a>
                   </ToolTip>
