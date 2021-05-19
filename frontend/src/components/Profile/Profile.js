@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
 import { hideModal } from "../../store/actions/modal.js";
 import {Book} from "../Book";
-
-
+import { NavLink } from "react-router-dom";
+import { thunk_getUsersPolls } from "../../store/thunks/polls.js";
 
 import styles from "./profile.module.css";
 
@@ -12,14 +12,16 @@ import styles from "./profile.module.css";
 
 
 const Profile = () => {
-  const userInfo = useSelector((store) => store.usersReducer)
-  const bookInfo = useSelector((store) => store.booksReducer.books)
+  const userInfo = useSelector((store) => store.usersReducer);
+  const bookInfo = useSelector((store) => store.booksReducer.books);
+  const pollInfo = useSelector(store => store.pollsReducer.polls);
   const dispatch = useDispatch();
 
 
   useEffect(() => {
     dispatch(hideModal());
     dispatch(thunk_getAllBooks());
+    dispatch(thunk_getUsersPolls());
   },[dispatch]);
 
 
@@ -67,13 +69,30 @@ const Profile = () => {
 
         <div className={styles.book_link_wrap}>
         {Object.values(bookInfo).map(eachBook => (
-        <div className={styles.each_book_link}>
-          <Book bookId={eachBook.id} title={eachBook.the_title} creatorId={eachBook.creator_id} creationDate={eachBook.created_at} />
-        </div>
+          <div className={styles.each_book_link}>
+            <Book bookId={eachBook.id} title={eachBook.the_title} creatorId={eachBook.creator_id} creationDate={eachBook.created_at} />
+          </div>
         ))}
       </div>
           :
         <h1>Loading books... </h1>
+          }
+      </div>
+
+
+      <div>
+          {pollInfo ?
+            <>
+            {Object.values(pollInfo).map(eachPoll => (
+              <div>
+                <NavLink to={`/comments/${eachPoll.id}`} exact>
+                  {eachPoll.title}
+                </NavLink>
+              </div>
+            ))}
+            </>
+            :
+            <h3> You currently do not have any polls. </h3>
           }
       </div>
 
