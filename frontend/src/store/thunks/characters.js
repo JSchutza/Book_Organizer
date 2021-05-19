@@ -65,7 +65,26 @@ const thunk_deleteUsersPubChars = (characterId) => async (dispatch) => {
 
 
 
+const thunk_newPubCharacter = ({ urlpreview, charname, charlabel }) => async (dispatch) => {
 
+  const formData = new FormData();
+  formData.append("image", urlpreview);
+  formData.append("charactername", charname);
+  formData.append("characterlabel", charlabel);
+
+  const response = await fetch("/api/characters", {
+    method: "POST",
+    body: formData,
+  });
+
+  const data = await response.json();
+  if(data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+
+  dispatch(thunk_getAllCharacters());
+}
 
 
 
@@ -75,5 +94,6 @@ export {
   thunk_getAllCharacters,
   thunk_searchForUsersPubChars,
   thunk_deleteUsersPubChars,
+  thunk_newPubCharacter,
 
 }

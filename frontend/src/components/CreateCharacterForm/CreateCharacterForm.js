@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { hideModal } from "../../store/actions/modal.js";
-import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
+import { thunk_newPubCharacter } from "../../store/thunks/characters.js";
 import { processFile } from "../../services/protectedFileUpload.js";
 import { nanoid } from "nanoid";
 
@@ -11,7 +11,7 @@ import { nanoid } from "nanoid";
 
 
 
-const CreateCharacterForm = () => {
+const CreateCharacterForm = ({ data }) => {
   const [ avatarUrl, setAvatarUrl ] = useState("");
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
@@ -39,21 +39,12 @@ const CreateCharacterForm = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("image", urlpreview);
-    formData.append("charactername", charname);
-    formData.append("characterlabel", charlabel);
+    dispatch(thunk_newPubCharacter({ urlpreview, charname, charlabel }));
 
-    const res = await fetch("/api/characters", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (res.ok) {
+    if (data === null) return;
+    if (data.setIsHidden) {
       dispatch(hideModal());
-      dispatch(thunk_getAllCharacters());
-    } else {
-      console.log("error");
+      data.setIsHidden("");
     }
 
   };
