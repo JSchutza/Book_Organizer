@@ -7,6 +7,7 @@ import ToolTip from "../ToolTip";
 import styles from "./charactersearch.module.css";
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import { useUser } from "../../context/UserContext.js";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { resetErrors } from "../../store/actions/errors.js";
@@ -19,7 +20,8 @@ import { showModal, contentModal, dataModal } from "../../store/actions/modal.js
 
 
 const CharacterSearch = () => {
-  const [ searchId, setSearchId ] = useState("");
+  const { isUser } = useUser();
+  const [searchId, setSearchId] = useState(isUser.search_id);
   const [ isHidden, setIsHidden] = useState("");
   const [ backenderrors, setBackenderrors ] = useState(null);
 

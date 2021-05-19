@@ -39,7 +39,7 @@ const CreatePollForm = ({ update=false, data }) => {
     history.push("/polls");
   }
 
-  
+
 
   const onUpdate = event => {
     event.preventDefault();
