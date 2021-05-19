@@ -5,7 +5,7 @@ import { thunk_deleteUsersPubChars, thunk_getAllCharacters, thunk_searchForUsers
 import { hideModal } from "../../store/actions/modal.js";
 
 
-const DeletePubCharButton = ({ charId, search_id }) => {
+const DeletePubCharButton = ({ charId, search_id, data }) => {
   const dispatch = useDispatch();
 
 
@@ -14,11 +14,20 @@ const DeletePubCharButton = ({ charId, search_id }) => {
     event.preventDefault();
     if (choice === true) {
       dispatch(thunk_deleteUsersPubChars(charId));
-      dispatch(thunk_searchForUsersPubChars());
+      dispatch(thunk_searchForUsersPubChars(search_id));
       dispatch(thunk_getAllCharacters());
-      dispatch(hideModal());
+      if (data === null) return;
+      if (data.setIsHidden) {
+        dispatch(hideModal());
+        data.setIsHidden("");
+      }
     }
-    dispatch(hideModal());
+
+    if (data === null) return;
+    if (data.setIsHidden) {
+      dispatch(hideModal());
+      data.setIsHidden("");
+    }
 
   }
 
