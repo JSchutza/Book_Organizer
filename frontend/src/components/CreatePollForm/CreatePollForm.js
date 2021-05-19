@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { nanoid } from "nanoid";
 import { thunk_createNewPoll, thunk_updatePoll } from "../../store/thunks/polls.js";
 import { hideModal } from "../../store/actions/modal.js";
-
+import { useHistory } from "react-router-dom";
 
 
 
@@ -15,6 +15,7 @@ const CreatePollForm = ({ update=false, data }) => {
   const [ title, setTitle ] = useState('');
   const [ questionText, setQuestionText ] = useState('');
   const [ errors, setErrors ] = useState([]);
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -35,14 +36,16 @@ const CreatePollForm = ({ update=false, data }) => {
     event.preventDefault();
     dispatch(thunk_createNewPoll({ title, questionText }));
     dispatch(hideModal());
+    history.push("/polls");
   }
 
-
+  
 
   const onUpdate = event => {
     event.preventDefault();
     dispatch(thunk_updatePoll({ pollId: data.pollId, title, questionText }));
     dispatch(hideModal());
+    history.push("/polls");
   }
 
 
