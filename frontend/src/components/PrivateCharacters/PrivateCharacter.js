@@ -14,8 +14,7 @@ import styles from "./privatecharacter.module.css";
 const PrivateCharacter = ({ bookId }) => {
   const [backenderrors, setBackenderrors] = useState(null);
   const dispatch = useDispatch();
-  const charInfo = useSelector((store) => store.priCharReducer.private_characters)
-  const rend = useSelector((store) => store.triggerRenderReducer.trigger);
+  const charInfo = useSelector((store) => store.priCharReducer.private_characters);
   const errors = useSelector((store) => store.errorsReducer.errors);
   const history = useHistory();
 
@@ -33,7 +32,7 @@ const PrivateCharacter = ({ bookId }) => {
 
   useEffect(() => {
     dispatch(thunk_getAllPriChars(bookId));
-  }, [dispatch, rend, bookId]);
+  }, [dispatch, bookId]);
 
 
   const handleDelete = (event, payload) => {

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { hideModal } from "../../store/actions/modal.js";
-import { thunk_getAllPages } from "../../store/thunks/books.js";
+import { thunk_updatePage, thunk_createPage } from "../../store/thunks/books.js";
 import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid"
+import { useHistory } from "react-router-dom";
 
 
 const CreatePageForm = ({ bookId, update=false, data }) => {
@@ -12,7 +13,7 @@ const CreatePageForm = ({ bookId, update=false, data }) => {
   const [ updateText, setUpdateText ] = useState('');
   const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
-
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -29,48 +30,20 @@ const CreatePageForm = ({ bookId, update=false, data }) => {
 
 
 
-
-
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("text", text);
-
-    const res = await fetch(`/api/book/${bookId}/page`, {
-      method: "POST",
-      body: formData,
-    });
-
-    if (res.ok) {
-      dispatch(thunk_getAllPages(bookId));
-      dispatch(hideModal());
-    } else {
-      console.log("error");
-    }
-
+  const onSubmit = event => {
+    event.preventDefault();
+    dispatch(thunk_createPage({ title, text, bookId }));
+    history.push(`/books/${bookId}`);
   };
 
 
   const onUpdate = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("title", updateTitle);
-    formData.append("text", updateText);
-
-    const res = await fetch(`/api/book/${bookId}/page/${data.pageId}`, {
-      method: "PUT",
-      body: formData,
-    });
-
-    if (res.ok) {
-      dispatch(thunk_getAllPages(bookId));
-      dispatch(hideModal());
-    } else {
-      console.log("error");
-    }
+    dispatch(thunk_updatePage({ title: updateTitle, text: updateText, bookId, pageId: data.pageId }));
+    history.push(`/books/${bookId}`);
   }
+
+
 
 
 

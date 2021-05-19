@@ -40,8 +40,6 @@ const SHOW_LOADER = "loader/SHOW_LOADER";
 const HIDE_LOADER = "loader/HIDE_LOADER";
 
 
-// for triggering rerender
-const TRIGGER_RENDER = "render/TRIGGER_RENDER";
 
 // general errors for after they are logged in
 const SET_ERRORS = "errors/SET_ERRORS";
@@ -73,7 +71,6 @@ export {
   DELETE_USERS_PAGE,
   SHOW_LOADER,
   HIDE_LOADER,
-  TRIGGER_RENDER,
   SET_ERRORS,
   RESET_ERRORS,
   GET_USERS_POLLS,

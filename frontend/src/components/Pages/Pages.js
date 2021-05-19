@@ -18,7 +18,6 @@ import styles from "./pages.module.css";
 const Pages = ({ bookId }) => {
   const dispatch = useDispatch();
   const pageInfo = useSelector((store) => store.pageReducer.pages)
-  // const rend = useSelector((store) => store.triggerRenderReducer.trigger);
   const history = useHistory();
 
   useEffect(() => {
