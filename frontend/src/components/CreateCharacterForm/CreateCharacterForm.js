@@ -4,7 +4,7 @@ import { hideModal } from "../../store/actions/modal.js";
 import { thunk_newPubCharacter } from "../../store/thunks/characters.js";
 import { processFile } from "../../services/protectedFileUpload.js";
 import { nanoid } from "nanoid";
-
+import styles from "./createcharacterform.module.css";
 
 
 
@@ -85,7 +85,7 @@ const CreateCharacterForm = ({ data }) => {
 
 
       {/* for previewing the image before it is sent to backend */}
-      <div>
+      <div className={styles.url_preview_wrap}>
         {urlpreview === null ?
         <p></p>
         :
