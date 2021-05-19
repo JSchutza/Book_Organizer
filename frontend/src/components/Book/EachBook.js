@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import PrivateCharacter from "../PrivateCharacters";
 import Pages from "../Pages";
 import ToolTip from "../ToolTip";
+import { useHistory } from "react-router-dom";
 
 import styles from "./book.module.css";
 
@@ -24,7 +25,7 @@ import { BsFileEarmarkPlus } from "react-icons/bs";
 const EachBook = () => {
   const dispatch = useDispatch();
   const { bookId } = useParams();
-
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -36,18 +37,20 @@ const EachBook = () => {
 
   const handleCreateChar = event => {
     event.preventDefault();
-    dispatch(dataModal({ book_id: bookId }));
+    dispatch(dataModal({ book_id: bookId, lastpage: `/books/${bookId}` }));
     dispatch(contentModal("CreatePriChar"));
     dispatch(showModal());
+    history.push("/dropdown");
   }
 
 
 
   const handleCreatePage = event => {
     event.preventDefault();
-    dispatch(dataModal({ book_id: bookId }));
+    dispatch(dataModal({ book_id: bookId, lastpage: `/books/${bookId}` }));
     dispatch(contentModal("CreatePage"));
     dispatch(showModal());
+    history.push("/dropdown");
   }
 
 
