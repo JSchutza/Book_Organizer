@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 
 
 
-const EditPubCharButton = ({ charId, search_id }) => {
+const EditPubCharButton = ({ charId, search_id, data }) => {
   const [ avatarUrl, setAvatarUrl ] = useState("");
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
@@ -16,6 +16,7 @@ const EditPubCharButton = ({ charId, search_id }) => {
   const [ errors, setErrors ] = useState([]);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const EditPubCharButton = ({ charId, search_id }) => {
     event.preventDefault();
     dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId, search_id }));
     dispatch(hideModal());
-
+    history.push(data.lastpage);
   }
 
 

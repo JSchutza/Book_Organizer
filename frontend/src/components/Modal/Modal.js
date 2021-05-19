@@ -132,7 +132,7 @@ const Modal = () =>  {
 
         {content === "EditPubChar" && data ?
           <div className={styles.create_pub_char_form}>
-          <EditPubCharButton charId={data.charId} search_id={data.search_id} />
+          <EditPubCharButton charId={data.charId} search_id={data.search_id} data={data}/>
           </div>
         :
           <></>
