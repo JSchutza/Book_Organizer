@@ -5,12 +5,10 @@
 
 
 .each_char_container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 

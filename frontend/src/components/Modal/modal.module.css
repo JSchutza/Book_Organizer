@@ -43,31 +43,49 @@
 
 .create_pub_char_form {
     position: relative;
-    width: 10%;
-    padding: 5%;
-    box-sizing: content-box;
+    width: 20%;
+    padding: 3%;
+    box-sizing: border-box;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 
 
 
 .create_pri_char_form {
-  position: relative;
-    width: 10%;
-    padding: 5%;
-    box-sizing: content-box;
+    position: relative;
+    width: 20%;
+    padding: 3%;
+    box-sizing: border-box;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 
 
 .create_page_form {
   position: relative;
-    width: 10%;
-    padding: 5%;
-    box-sizing: content-box;
+    width: 20%;
+    padding: 3%;
+    box-sizing: border-box;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -88,8 +106,14 @@
 
 .create_poll_form {
   position: relative;
-    width: 10%;
-    padding: 5%;
-    box-sizing: content-box;
+    width: 20%;
+    padding: 3%;
+    box-sizing: border-box;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
