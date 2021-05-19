@@ -122,7 +122,7 @@ const Modal = ({ user }) =>  {
 
         {content === "DeletePubChar" && data ?
           <div className={styles.delete_prompt}>
-          <DeletePubCharButton charId={data.charId} search_id={data.search_id} />
+            <DeletePubCharButton charId={data.charId} search_id={data.search_id} data={data} />
           </div>
         :
           <></>
