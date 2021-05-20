@@ -59,7 +59,7 @@ class User(db.Model, UserMixin):
     def the_search_id(self, thing_to_hash):
         new_id = gen_search_id(thing_to_hash)
         exists = User.query.filter_by(search_id=new_id).first()
-        # above line gives me  None if the new_id does not already exist
+        # above line gives me  None if the new_id does not exist
         count = 0
         while count == 0 and exists is not None:
             new_id = gen_search_id(thing_to_hash)

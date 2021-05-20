@@ -123,6 +123,7 @@ const CharacterSearch = () => {
                 <img className={styles.search_results_each_img} src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
+              {searchId === isUser.search_id ?
               <div className={styles.each_result_button_wrap}>
               <div className={styles.each_result_delete_button}>
               <ToolTip content={"Delete"} >
@@ -165,6 +166,9 @@ const CharacterSearch = () => {
                 </div>
                 </div>
 
+                :
+                <></>
+              }
               </div>
               </>
             ))}

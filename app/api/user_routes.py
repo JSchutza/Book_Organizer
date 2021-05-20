@@ -2,7 +2,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.validators import check_if_empty, check_right_length
-# from app.models import User
+from app.models import User
 
 
 # from app.models.user import follower_to_followee
@@ -38,14 +38,20 @@ def search_for_user(searchId):
         if int(current_user.the_search_id) == int(searchId):
             result = current_user.get_users_public_characters()
             public_characters = { each["id"]: each   for each in result["public_characters"] }
-            return {"public_characters": public_characters}
+            return { "public_characters": public_characters }
+        else:
+            searched_user = User.query.filter_by(search_id=str(searchId)).first()
+            if searched_user is None:
+                errors.append("You entered the wrong search id.")
+                return { "errors": errors }
+            else:
+                result = searched_user.get_users_public_characters()
+                public_characters = { each["id"]: each   for each in result["public_characters"] }
+                return { "public_characters": public_characters }
 
-        errors.append("You entered the wrong search id.")
-
-        return { "errors": errors }
     except ValueError:
         errors = ["You need to enter a search id to search.", "Please try again."]
-        return {"errors":  errors}
+        return { "errors":  errors }
 
 
 
