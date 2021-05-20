@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
-
+import { useHistory } from "react-router-dom";
 import ToolTip from "../ToolTip";
 
 
@@ -20,7 +20,7 @@ const CharacterPage = () => {
   const [ isHidden, setIsHidden ] = useState('');
   const allChars = useSelector((store) => store.characterPageReducer.characters)
   const dispatch = useDispatch();
-
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -43,12 +43,15 @@ const CharacterPage = () => {
   }
 
 
+
+
   const createCharactersClick = (event) => {
     event.preventDefault();
       setIsHidden('hide');
-      dispatch(dataModal({ setIsHidden }));
+      dispatch(dataModal({ setIsHidden, lastpage: '/characters' }));
       dispatch(contentModal("CreatePubChar"));
       dispatch(showModal());
+      history.push("/dropdown");
   }
 
 

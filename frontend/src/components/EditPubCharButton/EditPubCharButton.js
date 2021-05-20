@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { hideModal } from "../../store/actions/modal.js";
-import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
+import { thunk_updatePubCharacter } from "../../store/thunks/characters.js";
 import { nanoid } from "nanoid";
+import { useHistory } from "react-router-dom";
 
 
 
-
-const EditPubCharButton = ({ charId, search_id }) => {
+const EditPubCharButton = ({ charId, search_id, data }) => {
   const [ avatarUrl, setAvatarUrl ] = useState("");
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
@@ -16,6 +16,7 @@ const EditPubCharButton = ({ charId, search_id }) => {
   const [ errors, setErrors ] = useState([]);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -41,23 +42,9 @@ const EditPubCharButton = ({ charId, search_id }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("image", urlpreview);
-    formData.append("charactername", charname);
-    formData.append("characterlabel", charlabel);
-
-    const res = await fetch(`/api/characters/${charId}`, {
-      method: "PUT",
-      body: formData,
-    });
-
-    if (res.ok) {
-      dispatch(hideModal());
-      dispatch(thunk_searchForUsersPubChars(search_id));
-    } else {
-      console.log("error");
-    }
-
+    dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId, search_id }));
+    dispatch(hideModal());
+    history.push(data.lastpage);
   }
 
 

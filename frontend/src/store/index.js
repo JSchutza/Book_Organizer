@@ -3,7 +3,6 @@ import thunk from "redux-thunk";
 
 // reducer imports here
 import { errorsReducer } from "./reducers/errors.js";
-import { triggerRenderReducer } from "./reducers/render.js";
 import { loaderReducer } from "./reducers/loader.js";
 import { modalReducer } from "./reducers/modal.js";
 import { usersReducer } from './reducers/session.js';
@@ -17,7 +16,6 @@ import { pollsReducer, commentReducer, allPollsReducer } from "./reducers/polls.
 // root reducer here
 const rootReducer = combineReducers({
   errorsReducer,
-  triggerRenderReducer,
   loaderReducer,
   modalReducer,
   usersReducer,

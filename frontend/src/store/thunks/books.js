@@ -156,6 +156,85 @@ const thunk_deletePage = (bookId, pageId) => async (dispatch) => {
 
 
 
+const thunk_updatePriChar = ({ urlpreview, charname, charlabel, bookId, charId }) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("image", urlpreview);
+  formData.append("charactername", charname);
+  formData.append("characterlabel", charlabel);
+
+  const response = await fetch(`/api/book/${bookId}/character/${charId}`, {
+    method: "PUT",
+    body: formData,
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    dispatch(hideModal());
+    return;
+  }
+
+  dispatch(thunk_getAllPriChars(bookId));
+  dispatch(resetErrors());
+}
+
+
+
+const thunk_createPage = ({ title, text, bookId }) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("text", text);
+
+
+  const response = await fetch(`/api/book/${bookId}/page`, {
+    method: "POST",
+    body: formData,
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    dispatch(hideModal());
+    return;
+  }
+
+  dispatch(thunk_getAllPages(bookId));
+  dispatch(resetErrors());
+}
+
+
+
+
+
+
+const thunk_updatePage = ({ title, text, bookId, pageId }) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("text", text);
+
+  const response = await fetch(`/api/book/${bookId}/page/${pageId}`, {
+    method: "PUT",
+    body: formData,
+  });
+
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    dispatch(hideModal());
+    return;
+  }
+
+  dispatch(thunk_getAllPages(bookId));
+  dispatch(resetErrors());
+}
+
+
+
+
+
+
+
 
 export {
   thunk_getAllBooks,
@@ -165,6 +244,9 @@ export {
   thunk_deleteUsersPrivateChars,
   thunk_deletePage,
   thunk_createPriChar,
+  thunk_updatePriChar,
+  thunk_createPage,
+  thunk_updatePage,
 
 
 }

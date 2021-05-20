@@ -6,6 +6,8 @@ import { GrUpdate } from "react-icons/gr";
 import ToolTip from "../ToolTip";
 import styles from "./charactersearch.module.css";
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
+import { useUser } from "../../context/UserContext.js";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { resetErrors } from "../../store/actions/errors.js";
@@ -17,9 +19,9 @@ import { showModal, contentModal, dataModal } from "../../store/actions/modal.js
 
 
 
-
 const CharacterSearch = () => {
-  const [ searchId, setSearchId ] = useState("");
+  const { isUser } = useUser();
+  const [searchId, setSearchId] = useState(isUser.search_id);
   const [ isHidden, setIsHidden] = useState("");
   const [ backenderrors, setBackenderrors ] = useState(null);
 
@@ -27,6 +29,9 @@ const CharacterSearch = () => {
   const searchedChar = useSelector((store) => store.searchCharacterPageReducer.characters);
   const char = useSelector((store) => store.searchCharacterPageReducer);
   const errors = useSelector((store)  => store.errorsReducer.errors);
+  const history = useHistory();
+
+
 
   useEffect(() => {
     if(errors !== null ) {
@@ -61,6 +66,7 @@ const CharacterSearch = () => {
     dispatch(contentModal("DeletePubChar"));
     dispatch(dataModal(payload));
     dispatch(showModal());
+    history.push("/dropdown");
   }
 
 
@@ -69,6 +75,7 @@ const CharacterSearch = () => {
     dispatch(contentModal("EditPubChar"));
     dispatch(dataModal(payload));
     dispatch(showModal());
+    history.push("/dropdown");
   }
 
 
@@ -130,6 +137,7 @@ const CharacterSearch = () => {
                   username: eachChar.username,
                   search_id: eachChar.search_id,
                   setIsHidden,
+                  lastpage: "/characters"
 
                 })}> <RiDeleteBinFill /> </a>
                 </ToolTip>
@@ -149,6 +157,8 @@ const CharacterSearch = () => {
                   user_id: eachChar.user_id,
                   username: eachChar.username,
                   search_id: eachChar.search_id,
+                  lastpage: "/characters"
+
 
                 })}> <GrUpdate /> </a>
                   </ToolTip>

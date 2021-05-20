@@ -3,11 +3,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { thunk_deleteUsersPubChars, thunk_getAllCharacters, thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 import { hideModal } from "../../store/actions/modal.js";
+import { useHistory } from "react-router-dom";
+
 
 
 const DeletePubCharButton = ({ charId, search_id, data }) => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
 
 
   const handle = (event, choice) => {
@@ -20,13 +22,16 @@ const DeletePubCharButton = ({ charId, search_id, data }) => {
       if (data.setIsHidden) {
         dispatch(hideModal());
         data.setIsHidden("");
+        history.push(data.lastpage);
       }
     }
+
 
     if (data === null) return;
     if (data.setIsHidden) {
       dispatch(hideModal());
       data.setIsHidden("");
+      history.push(data.lastpage);
     }
 
   }

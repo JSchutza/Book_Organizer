@@ -50,9 +50,15 @@
 
 
 .search_results_each_card {
-  position: relative;
-  box-sizing: border-box;
-  padding: 2%;
+    position: relative;
+    box-sizing: border-box;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -70,18 +76,9 @@
 
 
 .search_results_each_detail {
-  display: flex;
-  position: absolute;
-  z-index: 1;
-  bottom: 12%;
-  right: 9%;
-  background-color: tan;
-  padding: 1%;
-  box-sizing: border-box;
-  width: 296px;
-  height: 550px;
-  border: solid black 1px;
-  border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -136,7 +133,7 @@
 
 
 .each_result_delete_button {
-display: flex;
+  display: flex;
   position: relative;
   width: 60px;
   justify-content: center;
@@ -145,7 +142,7 @@ display: flex;
 
 
 .each_result_update_button {
-display: flex;
+  display: flex;
   position: relative;
   width: 60px;
   justify-content: center;

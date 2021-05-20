@@ -14,22 +14,21 @@ import Comments from "./components/Comments";
 import { EachBook } from "./components/Book";
 import { hideLoader } from "./store/actions/loader.js";
 import { hideModal } from "./store/actions/modal.js";
-import { authenticate } from "./store/thunks/session.js";
 
+import { useUser } from "./context/UserContext.js";
 
 
 
 function App() {
   const dispatch = useDispatch();
   const [ loaded, setLoaded ] = useState(false);
-  const user = useSelector((store) => store.usersReducer.user);
+  const { isUser } = useUser();
   const isSearch = useSelector((store) => store.searchTriggeredReducer.search)
 
 
 
 
   useEffect(() => {
-    dispatch(authenticate());
     dispatch(hideLoader());
     dispatch(hideModal());
     setLoaded(true);
@@ -46,9 +45,7 @@ function App() {
 
 
 
-  if (user === null) {
-
-
+  if (isUser === null) {
     dispatch(hideModal());
 
     return (
@@ -63,7 +60,7 @@ function App() {
   }
 
 
-if (user !== null) {
+if (isUser !== null) {
 
   dispatch(hideLoader());
   dispatch(hideModal());
@@ -71,9 +68,13 @@ if (user !== null) {
   return (
     <BrowserRouter>
       <NavBar userStatus={true} />
-      <Modal />
+
 
         <Switch>
+          <Route path="/dropdown" exact>
+            <Modal />
+          </Route>
+
           <Route path="/" exact>
             <Redirect to="/profile" />
           </Route>

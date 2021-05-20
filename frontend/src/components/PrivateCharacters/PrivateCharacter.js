@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import ToolTip from "../ToolTip";
+import { useHistory } from "react-router-dom";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { resetErrors } from "../../store/actions/errors.js";
 import { thunk_getAllPriChars } from "../../store/thunks/books.js";
@@ -13,10 +14,9 @@ import styles from "./privatecharacter.module.css";
 const PrivateCharacter = ({ bookId }) => {
   const [backenderrors, setBackenderrors] = useState(null);
   const dispatch = useDispatch();
-  const charInfo = useSelector((store) => store.priCharReducer.private_characters)
-  const rend = useSelector((store) => store.triggerRenderReducer.trigger);
+  const charInfo = useSelector((store) => store.priCharReducer.private_characters);
   const errors = useSelector((store) => store.errorsReducer.errors);
-
+  const history = useHistory();
 
 
 
@@ -32,7 +32,7 @@ const PrivateCharacter = ({ bookId }) => {
 
   useEffect(() => {
     dispatch(thunk_getAllPriChars(bookId));
-  }, [dispatch, rend, bookId]);
+  }, [dispatch, bookId]);
 
 
   const handleDelete = (event, payload) => {
@@ -40,6 +40,7 @@ const PrivateCharacter = ({ bookId }) => {
     dispatch(contentModal("DeletePriChar"));
     dispatch(dataModal(payload));
     dispatch(showModal());
+    history.push("/dropdown");
   }
 
 
@@ -50,6 +51,7 @@ const PrivateCharacter = ({ bookId }) => {
     dispatch(contentModal("UpdatePriChar"));
     dispatch(dataModal(payload));
     dispatch(showModal());
+    history.push("/dropdown");
   }
 
 
@@ -115,7 +117,8 @@ const PrivateCharacter = ({ bookId }) => {
               avatar: eachChar.avatar,
               character_name: eachChar.character_name,
               character_label: eachChar.character_label,
-              book_id: bookId
+              book_id: bookId,
+              lastpage: `/books/${bookId}`
             })}> <RiDeleteBinFill /> </a>
           </ToolTip>
           </div>
@@ -129,7 +132,8 @@ const PrivateCharacter = ({ bookId }) => {
               avatar: eachChar.avatar,
               character_name: eachChar.character_name,
               character_label: eachChar.character_label,
-              book_id: bookId
+              book_id: bookId,
+              lastpage: `/books/${bookId}`
             })}> <GrUpdate /> </a>
             </ToolTip>
             </div>

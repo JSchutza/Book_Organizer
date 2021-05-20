@@ -5,7 +5,7 @@ import { thunk_newPubCharacter } from "../../store/thunks/characters.js";
 import { processFile } from "../../services/protectedFileUpload.js";
 import { nanoid } from "nanoid";
 import styles from "./createcharacterform.module.css";
-
+import { useHistory } from "react-router-dom";
 
 
 
@@ -18,6 +18,7 @@ const CreateCharacterForm = ({ data }) => {
   const [ urlpreview, setUrlPreview ] = useState(null);
   const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const CreateCharacterForm = ({ data }) => {
 
 
 
-  const onSubmit = async (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
     dispatch(thunk_newPubCharacter({ urlpreview, charname, charlabel }));
 
@@ -45,6 +46,7 @@ const CreateCharacterForm = ({ data }) => {
     if (data.setIsHidden) {
       dispatch(hideModal());
       data.setIsHidden("");
+      history.push(data.lastpage);
     }
 
   };

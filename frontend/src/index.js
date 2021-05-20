@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { showLoader } from "./store/actions/loader.js";
+import { UserProvider } from "./context/UserContext.js";
+
+
 
 import App from "./App";
 import HomeLoader from "./components/HomeLoader";
@@ -63,11 +66,14 @@ const Loader = () => {
 
 
 
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
-      <Loader />
+      <UserProvider >
+        <App />
+        <Loader />
+      </UserProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

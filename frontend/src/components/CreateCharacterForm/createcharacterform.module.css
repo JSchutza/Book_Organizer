@@ -3,9 +3,7 @@
 
 
 
-.url_preview_wrap {
-  position: absolute;
-  left: 100%;
-  bottom: 0%;
-  background-color: white;
+.url_preview_wrap img {
+    object-fit: contain;
+    width: 294px;
 }

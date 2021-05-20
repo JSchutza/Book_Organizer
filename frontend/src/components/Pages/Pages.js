@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
+import { useHistory } from "react-router-dom";
 import Tooltip from "../ToolTip";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { thunk_getAllPages } from "../../store/thunks/books.js";
@@ -17,12 +18,11 @@ import styles from "./pages.module.css";
 const Pages = ({ bookId }) => {
   const dispatch = useDispatch();
   const pageInfo = useSelector((store) => store.pageReducer.pages)
-  const rend = useSelector((store) => store.triggerRenderReducer.trigger);
-
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(thunk_getAllPages(bookId));
-  },[dispatch, rend, bookId]);
+  },[dispatch, bookId]);
 
 
 
@@ -32,6 +32,7 @@ const Pages = ({ bookId }) => {
     dispatch(contentModal("DeletePage"));
     dispatch(dataModal(payload));
     dispatch(showModal());
+    history.push("/dropdown");
   }
 
 
@@ -41,6 +42,7 @@ const Pages = ({ bookId }) => {
     dispatch(contentModal("UpdatePage"));
     dispatch(dataModal(payload));
     dispatch(showModal());
+    history.push("/dropdown");
   }
 
 
@@ -82,7 +84,8 @@ const Pages = ({ bookId }) => {
               pageId: eachPage.id,
               title: eachPage.title,
               text: eachPage.text,
-              book_id: eachPage.book_id
+              book_id: eachPage.book_id,
+              lastpage: `/books/${bookId}`
 
             }) }> <RiDeleteBinFill /> </a>
           </Tooltip>
@@ -96,7 +99,8 @@ const Pages = ({ bookId }) => {
               pageId: eachPage.id,
               title: eachPage.title,
               text: eachPage.text,
-              book_id: eachPage.book_id
+              book_id: eachPage.book_id,
+              lastpage: `/books/${bookId}`
 
             })}> <GrUpdate /> </a>
             </Tooltip>
