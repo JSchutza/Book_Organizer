@@ -5,6 +5,7 @@ import { hideModal } from "../../store/actions/modal.js";
 import {Book} from "../Book";
 import { NavLink } from "react-router-dom";
 import { thunk_getUsersPolls } from "../../store/thunks/polls.js";
+import { useUser } from "../../context/UserContext.js";
 
 import styles from "./profile.module.css";
 
@@ -12,7 +13,7 @@ import styles from "./profile.module.css";
 
 
 const Profile = () => {
-  const userInfo = useSelector((store) => store.usersReducer);
+  const { isUser } = useUser();
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const pollInfo = useSelector(store => store.pollsReducer.polls);
   const dispatch = useDispatch();
@@ -28,13 +29,14 @@ const Profile = () => {
 
 
 
-  return (
+
+  return bookInfo && pollInfo && (
     <>
     <div>
       {/* users info here */}
 
-    <div className={styles.user_info_wrap}>
-        {Object.values(userInfo).map(each => (
+    {/* <div className={styles.user_info_wrap}>
+        {Object.values(isUser).map(each => (
           <>
           <div className={styles.user_avatar}>
             <img src={each.avatar} alt='avatar' />
@@ -54,10 +56,12 @@ const Profile = () => {
             <p>Birthday: {each.birthday} </p>
               <br/>
             <p>Address: {each.location} </p>
+              <br />
+            <p> Number of followers {each.followers.length} </p>
             </div>
           </>
         ))}
-    </div>
+    </div> */}
 
       <div className={styles.recent_books_header}>
         <h2>Recently Created Books</h2>

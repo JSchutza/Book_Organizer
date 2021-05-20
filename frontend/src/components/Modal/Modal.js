@@ -12,6 +12,7 @@ import EditPubCharButton from "../EditPubCharButton";
 import DeletePageButton from "../DeletePageButton";
 import DeletePriCharButton from "../DeletePriCharButton";
 import CreatePollForm from "../CreatePollForm";
+import DeleteBookButton from "../DeleteBookButton";
 import ToolTip from "../ToolTip";
 
 import { showLoader } from "../../store/actions/loader.js";
@@ -171,6 +172,17 @@ const Modal = () =>  {
         :
         <></>
         }
+
+
+        {content === "DeleteBook" ?
+        <div className={styles.delete_prompt}>
+            <DeleteBookButton data={data} />
+        </div>
+        :
+        <></>
+        }
+
+
 
 
         <div className={styles.modal_exit_button}>

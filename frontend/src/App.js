@@ -11,6 +11,7 @@ import Profile from "./components/Profile";
 import BookViewer from "./components/BookViewer";
 import Polls from "./components/Polls";
 import Comments from "./components/Comments";
+import EachUsersProfile from "./components/EachUsersProfile";
 import { EachBook } from "./components/Book";
 import { hideLoader } from "./store/actions/loader.js";
 import { hideModal } from "./store/actions/modal.js";
@@ -65,6 +66,8 @@ if (isUser !== null) {
   dispatch(hideLoader());
   dispatch(hideModal());
 
+
+
   return (
     <BrowserRouter>
       <NavBar userStatus={true} />
@@ -86,8 +89,8 @@ if (isUser !== null) {
           </Route>
 
 
-          <Route path="/profile/:id">
-            <h1>Each individual users profile page</h1>
+          <Route path="/user/:searchId">
+            <EachUsersProfile />
           </Route>
 
 

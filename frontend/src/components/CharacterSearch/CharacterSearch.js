@@ -6,7 +6,7 @@ import { GrUpdate } from "react-icons/gr";
 import ToolTip from "../ToolTip";
 import styles from "./charactersearch.module.css";
 import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { useUser } from "../../context/UserContext.js";
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -123,6 +123,7 @@ const CharacterSearch = () => {
                 <img className={styles.search_results_each_img} src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
+              {searchId === isUser.search_id ?
               <div className={styles.each_result_button_wrap}>
               <div className={styles.each_result_delete_button}>
               <ToolTip content={"Delete"} >
@@ -165,9 +166,24 @@ const CharacterSearch = () => {
                 </div>
                 </div>
 
+                :
+                <></>
+              }
               </div>
               </>
             ))}
+
+          {searchId === isUser.search_id ?
+            <></>
+          :
+            <div>
+              <NavLink to={`/user/${searchId}`} exact >
+                Profile
+              </NavLink>
+            </div>
+          }
+
+
       </div>
 
       </>
