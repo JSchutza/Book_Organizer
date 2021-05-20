@@ -54,6 +54,8 @@ const Profile = () => {
             <p>Birthday: {each.birthday} </p>
               <br/>
             <p>Address: {each.location} </p>
+              <br />
+            <p> Number of followers {each.followers.length} </p>
             </div>
           </>
         ))}

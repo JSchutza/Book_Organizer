@@ -54,9 +54,17 @@ def search_for_user(searchId):
         return { "errors":  errors }
 
 
-
-
-
+#  /api/users/search/:searchId
+@user_routes.route('/search/<string:searchId>')
+# @login_required
+def get_specific_user(searchId):
+    errors = []
+    searched_user = User.query.filter_by(search_id=str(searchId)).first()
+    if searched_user is None:
+        errors.append("You entered the wrong search id.")
+        return { "errors": errors }
+    else:
+        return { "searchedUser": searched_user.to_dict() }
 
 
 

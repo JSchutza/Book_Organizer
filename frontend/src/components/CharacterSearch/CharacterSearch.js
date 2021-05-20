@@ -6,7 +6,7 @@ import { GrUpdate } from "react-icons/gr";
 import ToolTip from "../ToolTip";
 import styles from "./charactersearch.module.css";
 import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { useUser } from "../../context/UserContext.js";
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -172,6 +172,18 @@ const CharacterSearch = () => {
               </div>
               </>
             ))}
+
+          {searchId === isUser.search_id ?
+            <></>
+          :
+            <div>
+              <NavLink to={`/user/${searchId}`} exact >
+                Profile
+              </NavLink>
+            </div>
+          }
+
+
       </div>
 
       </>
