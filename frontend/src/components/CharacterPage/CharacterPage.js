@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import ToolTip from "../ToolTip";
 
 
@@ -70,6 +70,13 @@ const CharacterPage = () => {
     return (
       <>
       <div>
+      <div>
+        <NavLink to={`/user/${allChars[charId].search_id}`} exact>
+          Profile
+        </NavLink>
+      </div>
+
+      <div>
           <a href='/' onClick={(event) => hideSpecificChar(event) }>
           <h1> {allChars[charId].username} </h1>
             <li key={charId} >
@@ -79,6 +86,7 @@ const CharacterPage = () => {
             </li>
             <img src={allChars[charId].avatar} alt={allChars[charId].character_name} />
           </a>
+      </div>
       </div>
       </>
       )

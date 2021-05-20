@@ -59,7 +59,7 @@ const EachUsersProfile = () => {
                 <br />
                 <p>Address: {each.location} </p>
                 <br />
-                {/* <p> Number of followers {each.followers.length} </p> */}
+                <p> Number of followers {each.followers.length} </p>
               </div>
             </>
           ))}
