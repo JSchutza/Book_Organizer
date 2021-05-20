@@ -65,6 +65,8 @@ if (isUser !== null) {
   dispatch(hideLoader());
   dispatch(hideModal());
 
+
+
   return (
     <BrowserRouter>
       <NavBar userStatus={true} />
