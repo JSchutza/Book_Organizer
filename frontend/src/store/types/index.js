@@ -3,7 +3,7 @@ const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 const VALIDATION_ERRORS = "session/VALIDATION_ERRORS";
 const CLEAR_ERRORS = "session/CLEAR_ERRORS";
-
+const USER_SEARCH = "session/USER_SEARCH";
 
 
 const ALL_CHARACTERS = "characters/ALL_CHARACTERS"
@@ -78,6 +78,7 @@ export {
   DELETE_SPECIFIC_POLL,
   GET_ALL_POLLS,
   DELETE_SPECIFIC_COMMENT,
+  USER_SEARCH,
 
 
 

@@ -1,5 +1,5 @@
 
-import { setUser, removeUser, setErrors  } from '../actions/session.js';
+import { setUser, removeUser, setErrors, userSearch  } from '../actions/session.js';
 
 
 
@@ -82,6 +82,26 @@ const resetUser = () => async (dispatch) => {
 };
 
 
+// userSearch
+//  /api/users/search/:searchId
+const thunk_userSearch = (searchId) => async (dispatch) => {
+  const response = await fetch(`/api/users/search/${searchId}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+
+  dispatch(userSearch(data));
+
+};
+
+
 
 
 
@@ -90,5 +110,8 @@ export {
   login,
   logout,
   signUp,
-  resetUser
+  resetUser,
+  thunk_userSearch,
+
+
 }
