@@ -5,8 +5,10 @@ import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { useHistory, NavLink } from "react-router-dom";
 import ToolTip from "../ToolTip";
+import { useUser } from "../../context/UserContext.js";
 
-
+import { RiDeleteBinFill } from "react-icons/ri";
+import { GrUpdate } from "react-icons/gr";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import styles from "./characterpage.module.css"
 
@@ -21,6 +23,7 @@ const CharacterPage = () => {
   const allChars = useSelector((store) => store.characterPageReducer.characters)
   const dispatch = useDispatch();
   const history = useHistory();
+  const { isUser } = useUser();
 
 
   useEffect(() => {
@@ -40,6 +43,26 @@ const CharacterPage = () => {
     event.preventDefault();
     setCharId(false);
     setSpecificChar(false);
+  }
+
+
+
+  const handleDelete = (event, payload) => {
+    event.preventDefault();
+    setIsHidden('hide');
+    dispatch(contentModal("DeletePubChar"));
+    dispatch(dataModal(payload));
+    dispatch(showModal());
+    history.push("/dropdown");
+  }
+
+
+  const handleUpdate = (event, payload) => {
+    event.preventDefault();
+    dispatch(contentModal("EditPubChar"));
+    dispatch(dataModal(payload));
+    dispatch(showModal());
+    history.push("/dropdown");
   }
 
 
@@ -110,7 +133,7 @@ const CharacterPage = () => {
 
 
     <div className={styles.page_wrapper}>
-    {Object.values(allChars).map(eachChar => (
+    {Object.values(allChars).reverse().map(eachChar => (
       <>
       <div className={styles.each_card}>
         <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
@@ -126,6 +149,51 @@ const CharacterPage = () => {
           <img className={styles.each_img} src={eachChar.avatar} alt={eachChar.character_name} />
       </a>
       </div>
+
+
+        {eachChar.user_id === isUser.id ?
+          <div>
+            <div>
+              <ToolTip content={'Update'} >
+                <a href='/' onClick={event => handleUpdate(event, {
+                  charId: eachChar.id,
+                  avatar: eachChar.avatar,
+                  character_label: eachChar.character_label,
+                  character_name: eachChar.character_name,
+                  created_at: eachChar.created_at,
+                  pub_date: eachChar.pub_date,
+                  user_id: eachChar.user_id,
+                  username: eachChar.username,
+                  search_id: eachChar.search_id,
+                  lastpage: "/characters",
+                  charPage: true
+
+                })}> <GrUpdate /> </a>
+              </ToolTip>
+            </div>
+
+            <div>
+              <ToolTip content={'Delete'} >
+                <a href='/' onClick={event => handleDelete(event, {
+                  charId: eachChar.id,
+                  avatar: eachChar.avatar,
+                  character_label: eachChar.character_label,
+                  character_name: eachChar.character_name,
+                  created_at: eachChar.created_at,
+                  pub_date: eachChar.pub_date,
+                  user_id: eachChar.user_id,
+                  username: eachChar.username,
+                  search_id: eachChar.search_id,
+                  setIsHidden,
+                  lastpage: "/characters"
+
+                })} > <RiDeleteBinFill /> </a>
+              </ToolTip>
+            </div>
+          </div>
+        :
+        <></>
+        }
       </>
       ))}
     </div>
