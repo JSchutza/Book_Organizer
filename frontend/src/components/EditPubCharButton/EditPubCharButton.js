@@ -40,12 +40,23 @@ const EditPubCharButton = ({ charId, search_id, data }) => {
 
 
 
-  const onSubmit = async (event) => {
+  const onSubmit = event => {
     event.preventDefault();
-    dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId, search_id }));
-    dispatch(hideModal());
+
+    if (data.charPage === true) {
+      dispatch(thunk_updatePubCharacter({ charPage: true, urlpreview, charname, charlabel, charId, search_id }));
+      dispatch(hideModal());
+      history.push(data.lastpage);
+    } else if (data.charPage === undefined) {
+      dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId, search_id }));
+      dispatch(hideModal());
+      history.push(data.lastpage);
+    }
+
     history.push(data.lastpage);
   }
+
+
 
 
 
