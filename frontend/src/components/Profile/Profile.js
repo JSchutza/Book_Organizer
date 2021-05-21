@@ -88,16 +88,23 @@ const Profile = () => {
       </div>
 
 
+
+        <div className={styles.recent_polls_header}>
+          <h2>Recently Created polls</h2>
+        </div>
+
       <div>
           {pollInfo ?
             <>
+            <div className={styles.poll_link_wrap}>
             {Object.values(pollInfo).map(eachPoll => (
-              <div>
+              <div className={styles.each_poll_link}>
                 <NavLink to={`/comments/${eachPoll.id}`} exact>
-                  {eachPoll.title}
+                  <h3> {eachPoll.title} </h3>
                 </NavLink>
               </div>
             ))}
+            </div>
             </>
             :
             <h3> You currently do not have any polls. </h3>
