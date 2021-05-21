@@ -27,6 +27,15 @@ const Profile = () => {
 
 
 
+  if (isUser === null) {
+    return (
+      <div>
+        <h1> Loading ... </h1>
+      </div>
+    );
+  }
+
+
 
 
 
@@ -34,34 +43,29 @@ const Profile = () => {
     <>
     <div>
       {/* users info here */}
-
-    {/* <div className={styles.user_info_wrap}>
-        {Object.values(isUser).map(each => (
-          <>
+    <div className={styles.user_info_wrap}>
           <div className={styles.user_avatar}>
-            <img src={each.avatar} alt='avatar' />
+            <img src={isUser.avatar} alt='avatar' />
           </div>
 
           <div></div>
             <div className={styles.user_text}>
 
-            <p>Search Id: {each.search_id} </p>
+            <p>Search Id: {isUser.search_id} </p>
               <br/>
-            <p>Username: {each.user_name}</p>
+            <p>Username: {isUser.user_name}</p>
               <br/>
-            <p>Email: {each.email}</p>
+            <p>Email: {isUser.email}</p>
               <br/>
-            <p>Bio: {each.bio} </p>
+            <p>Bio: {isUser.bio} </p>
               <br/>
-            <p>Birthday: {each.birthday} </p>
+            <p>Birthday: {isUser.birthday} </p>
               <br/>
-            <p>Address: {each.location} </p>
+            <p>Address: {isUser.location} </p>
               <br />
-            <p> Number of followers {each.followers.length} </p>
+            <p> Number of followers {isUser.followers.length} </p>
             </div>
-          </>
-        ))}
-    </div> */}
+    </div>
 
       <div className={styles.recent_books_header}>
         <h2>Recently Created Books</h2>
@@ -84,16 +88,23 @@ const Profile = () => {
       </div>
 
 
+
+        <div className={styles.recent_polls_header}>
+          <h2>Recently Created polls</h2>
+        </div>
+
       <div>
           {pollInfo ?
             <>
+            <div className={styles.poll_link_wrap}>
             {Object.values(pollInfo).map(eachPoll => (
-              <div>
+              <div className={styles.each_poll_link}>
                 <NavLink to={`/comments/${eachPoll.id}`} exact>
-                  {eachPoll.title}
+                  <h3> {eachPoll.title} </h3>
                 </NavLink>
               </div>
             ))}
+            </div>
             </>
             :
             <h3> You currently do not have any polls. </h3>

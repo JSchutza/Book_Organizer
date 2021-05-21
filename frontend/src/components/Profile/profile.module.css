@@ -75,3 +75,46 @@
   border-radius: 10px;
   box-shadow: 8px 0px 8px gray;
 }
+
+
+
+
+
+.recent_polls_header {
+  display: flex;
+  position: relative;
+  left: 2%;
+  box-sizing: border-box;
+  padding: 2%;
+}
+
+
+
+
+
+
+
+
+.poll_link_wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  padding: 2%;
+  left: 4%;
+}
+
+
+
+.each_poll_link {
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  padding: 1%;
+  background-color: b;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: solid black .1px;
+  border-radius: 10px;
+  box-shadow: 8px 0px 8px gray;
+}
