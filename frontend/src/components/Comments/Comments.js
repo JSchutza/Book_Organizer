@@ -67,6 +67,8 @@ const Comments = () => {
   const updateComment = event => {
     event.preventDefault();
     dispatch(thunk_updateSpecificComment(updateInfo, updateText));
+    setShow(false);
+
   }
 
 
