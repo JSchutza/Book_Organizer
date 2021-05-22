@@ -14,6 +14,7 @@ import DeletePriCharButton from "../DeletePriCharButton";
 import CreatePollForm from "../CreatePollForm";
 import DeleteBookButton from "../DeleteBookButton";
 import DeleteUserButton from "../DeleteUserButton";
+import UpdateUserForm from "../UpdateUserForm";
 import ToolTip from "../ToolTip";
 
 
@@ -193,6 +194,21 @@ const Modal = () =>  {
         :
           <></>
         }
+
+
+
+        {content === "UpdateUser" ?
+          <div className={styles.update_user_wrap}>
+            <UpdateUserForm  data={data} />
+          </div>
+        :
+          <></>
+        }
+
+
+
+
+
 
 
         <div className={styles.modal_exit_button}>

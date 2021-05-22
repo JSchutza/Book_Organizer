@@ -6,6 +6,9 @@ import {Book} from "../Book";
 import { NavLink, useHistory } from "react-router-dom";
 import { thunk_getUsersPolls } from "../../store/thunks/polls.js";
 import { useUser } from "../../context/UserContext.js";
+import { RiDeleteBinFill } from "react-icons/ri";
+import { GrUpdate } from "react-icons/gr";
+import ToolTip from "../ToolTip";
 
 import styles from "./profile.module.css";
 import defaultImg from "../../icons/default_user.svg";
@@ -31,7 +34,7 @@ const Profile = () => {
 
 
 
-  const handleDelete =(event) => {
+  const handleDelete = (event) => {
     event.preventDefault();
     dispatch(contentModal("DeleteUser"));
     dispatch(dataModal({ isUser, lastpage: "/" }));
@@ -43,8 +46,12 @@ const Profile = () => {
 
 
 
-  const handleUpdate =(event) => {
+  const handleUpdate = (event) => {
     event.preventDefault();
+    dispatch(contentModal("UpdateUser"));
+    dispatch(dataModal({ isUser, lastpage: "/" }));
+    dispatch(showModal());
+    history.push("/dropdown");
 
   };
 
@@ -97,13 +104,18 @@ const Profile = () => {
     </div>
 
 
+
     <div>
       <div>
-        <a href='/' onClick={event => handleUpdate(event)}> Update </a>
+        <ToolTip content={'Update Info'}>
+          <a href='/' onClick={event => handleUpdate(event)}> <GrUpdate /> </a>
+        </ToolTip>
       </div>
 
       <div>
-        <a href='/' onClick={event => handleDelete(event)}> Delete </a>
+        <ToolTip content={'Delete Account'}>
+          <a href='/' onClick={event => handleDelete(event)}> <RiDeleteBinFill /> </a>
+        </ToolTip>
       </div>
     </div>
 
