@@ -72,6 +72,19 @@ const Profile = () => {
             </div>
     </div>
 
+
+    <div>
+      <div>
+        <a href='/' onClick={event => event.preventDefault()}> Update </a>
+      </div>
+
+      <div>
+        <a href='/' onClick={event => event.preventDefault()}> Delete </a>
+      </div>
+    </div>
+
+
+
       <div className={styles.recent_books_header}>
         <h2>Recently Created Books</h2>
       </div>

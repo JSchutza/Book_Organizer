@@ -2,12 +2,40 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.validators import check_if_empty, check_right_length
-from app.models import User
+from app.models import db, User
 
 
 # from app.models.user import follower_to_followee
 
 user_routes = Blueprint('users', __name__)
+
+
+# /api/users/:userId
+@user_routes.route('/<int:user_id>', methods=['PUT'])
+@login_required
+def update_user_info(user_id):
+    return
+
+
+
+
+# /api/users/:userId
+@user_routes.route('/<int:user_id>', methods=['DELETE'])
+@login_required
+def delete_user(user_id):
+    if int(user_id) == int(current_user.get_id()):
+        db.session.delete(current_user)
+        db.session.commit()
+        return { "Success": "Your accont was successfully deleted." }
+    else:
+        return { "errors" : [ "You can not remove another user.", "Please try again." ] }
+
+
+
+
+
+
+
 
 # /api/users/
 @user_routes.route('/')
