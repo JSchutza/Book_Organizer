@@ -1,6 +1,6 @@
 
 import { setUser, removeUser, setErrors, userSearch  } from '../actions/session.js';
-
+import { setErrors as initErrors, resetErrors } from "../actions/errors.js";
 
 
 // thunks
@@ -49,6 +49,7 @@ const logout = () => async (dispatch) => {
   });
   dispatch(removeUser());
 };
+
 
 
 const signUp = (username, email, password) => async (dispatch) => {
@@ -104,6 +105,27 @@ const thunk_userSearch = (searchId) => async (dispatch) => {
 
 
 
+// /api/users/:userId
+const thunk_deleteUserAccount = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/users/${userId}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(initErrors(data.errors));
+    return;
+  }
+
+  dispatch(resetErrors());
+  dispatch(removeUser());
+};
+
+
+
+
+
 
 export {
   authenticate,
@@ -112,6 +134,8 @@ export {
   signUp,
   resetUser,
   thunk_userSearch,
+  thunk_deleteUserAccount,
+
 
 
 }

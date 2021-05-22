@@ -75,7 +75,7 @@
 
 
 .create_page_form {
-  position: relative;
+    position: relative;
     width: 20%;
     padding: 3%;
     box-sizing: border-box;
@@ -92,7 +92,7 @@
 
 
 .delete_prompt {
-  position: relative;
+    position: relative;
     width: 10%;
     padding: 5%;
     box-sizing: content-box;
@@ -105,7 +105,7 @@
 
 
 .create_poll_form {
-  position: relative;
+    position: relative;
     width: 20%;
     padding: 3%;
     box-sizing: border-box;
@@ -116,4 +116,13 @@
     align-content: center;
     justify-content: center;
     align-items: center;
+}
+
+
+
+.update_user_wrap {
+    position: relative;
+    width: 10%;
+    padding: 5%;
+    box-sizing: content-box;
 }

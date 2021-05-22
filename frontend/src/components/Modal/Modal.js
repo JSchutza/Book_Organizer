@@ -13,7 +13,10 @@ import DeletePageButton from "../DeletePageButton";
 import DeletePriCharButton from "../DeletePriCharButton";
 import CreatePollForm from "../CreatePollForm";
 import DeleteBookButton from "../DeleteBookButton";
+import DeleteUserButton from "../DeleteUserButton";
+import UpdateUserForm from "../UpdateUserForm";
 import ToolTip from "../ToolTip";
+
 
 import { showLoader } from "../../store/actions/loader.js";
 import { useHistory } from "react-router-dom";
@@ -181,6 +184,29 @@ const Modal = () =>  {
         :
         <></>
         }
+
+
+
+        {content === "DeleteUser" ?
+          <div className={styles.delete_prompt}>
+            <DeleteUserButton  data={data}  />
+          </div>
+        :
+          <></>
+        }
+
+
+
+        {content === "UpdateUser" ?
+          <div className={styles.update_user_wrap}>
+            <UpdateUserForm  data={data} />
+          </div>
+        :
+          <></>
+        }
+
+
+
 
 
 
