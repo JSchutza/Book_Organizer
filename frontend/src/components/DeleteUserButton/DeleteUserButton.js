@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { hideModal } from "../../store/actions/modal.js";
+import { hideModal, dataModal } from "../../store/actions/modal.js";
 import { useHistory } from "react-router-dom";
 import { thunk_deleteUserAccount } from "../../store/thunks/session.js";
-
+import { showLoader } from "../../store/actions/loader.js";
 
 
 const DeleteUserButton = ({ data }) => {
@@ -18,9 +18,10 @@ const DeleteUserButton = ({ data }) => {
 
     if (choice === true) {
       if (data === null) return;
-      // dispatch here to thunk
       dispatch(thunk_deleteUserAccount(data.isUser.id));
       history.push(data.lastpage);
+      dispatch(dataModal(null));
+      dispatch(showLoader());
     }
 
       dispatch(hideModal());
