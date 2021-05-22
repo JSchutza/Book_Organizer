@@ -8,6 +8,7 @@ import { thunk_getUsersPolls } from "../../store/thunks/polls.js";
 import { useUser } from "../../context/UserContext.js";
 
 import styles from "./profile.module.css";
+import defaultImg from "../../icons/default_user.svg";
 
 
 
@@ -45,7 +46,11 @@ const Profile = () => {
       {/* users info here */}
     <div className={styles.user_info_wrap}>
           <div className={styles.user_avatar}>
-            <img src={isUser.avatar} alt='avatar' />
+            {isUser.avatar === null ?
+              <img src={defaultImg} alt='avatar' />
+            :
+              <img src={isUser.avatar} alt='avatar' />
+            }
           </div>
 
           <div></div>
