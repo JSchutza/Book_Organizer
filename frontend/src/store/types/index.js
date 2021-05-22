@@ -6,6 +6,7 @@ const CLEAR_ERRORS = "session/CLEAR_ERRORS";
 const USER_SEARCH = "session/USER_SEARCH";
 
 
+
 const ALL_CHARACTERS = "characters/ALL_CHARACTERS"
 const NEXT_CARD = "loader/NEXT_CARD";
 const RESET_CARDS = "loader/RESET_CARDS";
@@ -79,6 +80,8 @@ export {
   GET_ALL_POLLS,
   DELETE_SPECIFIC_COMMENT,
   USER_SEARCH,
+
+
 
 
 

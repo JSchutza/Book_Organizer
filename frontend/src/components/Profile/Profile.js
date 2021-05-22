@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
-import { hideModal } from "../../store/actions/modal.js";
+import { hideModal, showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import {Book} from "../Book";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { thunk_getUsersPolls } from "../../store/thunks/polls.js";
 import { useUser } from "../../context/UserContext.js";
 
@@ -13,11 +13,14 @@ import defaultImg from "../../icons/default_user.svg";
 
 
 
+
 const Profile = () => {
   const { isUser } = useUser();
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const pollInfo = useSelector(store => store.pollsReducer.polls);
   const dispatch = useDispatch();
+  const history = useHistory();
+
 
 
   useEffect(() => {
@@ -25,6 +28,27 @@ const Profile = () => {
     dispatch(thunk_getAllBooks());
     dispatch(thunk_getUsersPolls());
   },[dispatch]);
+
+
+
+  const handleDelete =(event) => {
+    event.preventDefault();
+    dispatch(contentModal("DeleteUser"));
+    dispatch(dataModal({ isUser, lastpage: "/" }));
+    dispatch(showModal());
+    history.push("/dropdown");
+  };
+
+
+
+
+
+  const handleUpdate =(event) => {
+    event.preventDefault();
+
+  };
+
+
 
 
 
@@ -75,11 +99,11 @@ const Profile = () => {
 
     <div>
       <div>
-        <a href='/' onClick={event => event.preventDefault()}> Update </a>
+        <a href='/' onClick={event => handleUpdate(event)}> Update </a>
       </div>
 
       <div>
-        <a href='/' onClick={event => event.preventDefault()}> Delete </a>
+        <a href='/' onClick={event => handleDelete(event)}> Delete </a>
       </div>
     </div>
 
