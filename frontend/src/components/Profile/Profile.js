@@ -114,7 +114,7 @@ const Profile = () => {
               <br />
 
               <a href='/' onClick={event => handleFollowerViewClick(event)}>
-                <p> Followers {isUser.followers.length} </p>
+              <p> {Object.keys(isUser.followers).length} followers </p>
               </a>
             </div>
     </div>

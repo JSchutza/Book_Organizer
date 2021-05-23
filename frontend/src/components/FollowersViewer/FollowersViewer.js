@@ -1,4 +1,5 @@
 import React from 'react';
+import { useUser } from "../../context/UserContext.js";
 
 import styles from "./followersviewer.module.css";
 import defaultImg from "../../icons/default_user.svg";
@@ -7,6 +8,12 @@ import defaultImg from "../../icons/default_user.svg";
 
 
 const FollowersViewer = ({ data }) => {
+  const { isUser } = useUser();
+
+
+
+
+
 
 
   if (!data.followersInfo) {
@@ -42,11 +49,20 @@ const FollowersViewer = ({ data }) => {
                 <br />
                 <p>Email: {eachFollower.email}</p>
                 <br />
-                <p> Number of followers {eachFollower.followers.length} </p>
+                <p> Number of followers {Object.keys(eachFollower.followers).length} </p>
 
-                <a href='/' onClick={event => event.preventDefault()}>
-                  Follow
-                </a>
+
+                {/* unfollow or follow link needs to appear if i am following them or not */}
+                {eachFollower.followers[isUser.id] !== undefined ?
+                    <a href='/' onClick={event => event.preventDefault()}>
+                      Unfollow
+                    </a>
+                  :
+                    <a href='/' onClick={event => event.preventDefault()}>
+                      Follow
+                    </a>
+
+                }
 
                 <a href='/' onClick={event => event.preventDefault()}>
                   Message

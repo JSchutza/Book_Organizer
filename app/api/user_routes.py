@@ -114,6 +114,8 @@ def followers():
 
 
 
+# need a route that gets all the users I am following
+# need a route that gets all the users I am NOT following
 
 
 
@@ -128,6 +130,7 @@ def followers():
 #     user1 = User.query.get(userId1)
 #     user2 = User.query.get(userId2)
 
+#       is the second user is already in my followers -- remove them 'unfollow'
 #     if user2 in user1.followers:
 #         user1.followers.remove(user2)
 #     else:

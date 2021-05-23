@@ -158,7 +158,7 @@ class User(db.Model, UserMixin):
 
 
     def get_users_followers(self):
-        normalized_data = { follower.id: follower.to_dict()   for follower in self.followers }
+        normalized_data = { follower.id : follower.to_dict()   for follower in self.followers }
         return { "followers": normalized_data }
 
 
@@ -175,7 +175,7 @@ class User(db.Model, UserMixin):
             "avatar": self.avatar,
             "birthday": self.birthday,
             "created_at": self.created_at,
-            "polls" : [poll.to_dict()  for poll in self.polls],
-            "comments": [comment.to_dict() for comment in self.comments],
-            "followers": [follower.id  for follower in self.followers],
+            "polls": { poll.id : poll.to_dict()  for poll in self.polls },
+            "comments": { comment.id : comment.to_dict() for comment in self.comments },
+            "followers": { follower.id : follower.user_name   for follower in self.followers },
         }
