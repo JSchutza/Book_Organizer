@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
+import { thunk_getUsersFollowers } from "../../store/thunks/followers.js";
 import { hideModal, showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import {Book} from "../Book";
 import { NavLink, useHistory } from "react-router-dom";
@@ -21,6 +22,7 @@ const Profile = () => {
   const { isUser } = useUser();
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const pollInfo = useSelector(store => store.pollsReducer.polls);
+  const followersInfo = useSelector(store => store.followersReducer.followers);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -30,6 +32,7 @@ const Profile = () => {
     dispatch(hideModal());
     dispatch(thunk_getAllBooks());
     dispatch(thunk_getUsersPolls());
+    dispatch(thunk_getUsersFollowers());
   },[dispatch]);
 
 
@@ -52,8 +55,18 @@ const Profile = () => {
     dispatch(dataModal({ isUser, lastpage: "/" }));
     dispatch(showModal());
     history.push("/dropdown");
-
   };
+
+
+
+  const handleFollowerViewClick = event => {
+    event.preventDefault();
+    dispatch(contentModal("ViewFollowers"));
+    dispatch(dataModal({ followersInfo, lastpage: "/"}));
+    dispatch(showModal());
+    history.push("/dropdown");
+  }
+
 
 
 
@@ -71,7 +84,7 @@ const Profile = () => {
 
 
 
-  return bookInfo && pollInfo && (
+  return bookInfo && pollInfo && followersInfo && (
     <>
     <div>
       {/* users info here */}
@@ -99,7 +112,10 @@ const Profile = () => {
               <br/>
             <p>Address: {isUser.location} </p>
               <br />
-            <p> Number of followers {isUser.followers.length} </p>
+
+              <a href='/' onClick={event => handleFollowerViewClick(event)}>
+                <p> Followers {isUser.followers.length} </p>
+              </a>
             </div>
     </div>
 

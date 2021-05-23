@@ -105,7 +105,7 @@ def get_specific_user(searchId):
 
 #  /api/users/followers
 @user_routes.route('/followers')
-# @login_required
+@login_required
 def followers():
     return current_user.get_users_followers()
 

@@ -126,3 +126,13 @@
     padding: 5%;
     box-sizing: content-box;
 }
+
+
+
+
+.view_followers_wrap {
+    position: relative;
+    padding: 9%;
+    box-sizing: content-box;
+    top: 50%;
+}
