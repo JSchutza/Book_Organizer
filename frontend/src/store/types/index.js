@@ -1,4 +1,5 @@
 // constants
+// session
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 const VALIDATION_ERRORS = "session/VALIDATION_ERRORS";
@@ -7,20 +8,29 @@ const USER_SEARCH = "session/USER_SEARCH";
 
 
 
+
+
+// characters
 const ALL_CHARACTERS = "characters/ALL_CHARACTERS"
-const NEXT_CARD = "loader/NEXT_CARD";
-const RESET_CARDS = "loader/RESET_CARDS";
-const GET_SINGLE_CARD = "loader/GET_SINGLE_CARD";
 const SEARCH_PUB_CHARACTERS = "characters/SEARCH_PUB_CHARACTERS";
 const SEARCH_TRIGGERED = "characters/SEARCH_TRIGGERED";
 const CLEAR_SEARCH_PUB_CHARS = "characters/CLEAR_SEARCH_PUB_CHARS";
 const DELETE_USERS_PUB_CHARS = "characters/DELETE_USERS_PUB_CHARS";
+const DELETE_USERS_PRI_CHARS = 'characters/DELETE_USERS_PRI_CHARS'
+
+
+
+// books
 const GET_USERS_BOOKS = "books/GET_USERS_BOOKS";
 const GET_USERS_PRI_CHARS = "books/GET_USERS_PRI_CHARS";
 const GET_USERS_PAGES = "books/GET_USERS_PAGES";
 const DELETE_BOOK = "books/DELETE_BOOK";
-const DELETE_USERS_PRI_CHARS = 'characters/DELETE_USERS_PRI_CHARS'
 const DELETE_USERS_PAGE = 'books/DELETE_USERS_PAGE';
+
+
+
+
+// polls
 const GET_USERS_POLLS = 'polls/GET_USERS_POLLS';
 const GET_COMMENTS_BY_POLL_ID = 'polls/GET_COMMENTS_BY_POLL_ID';
 const DELETE_SPECIFIC_POLL = 'polls/DELETE_SPECIFIC_POLL';
@@ -28,7 +38,18 @@ const GET_ALL_POLLS = 'polls/GET_ALL_POLLS';
 const DELETE_SPECIFIC_COMMENT = 'polls/DELETE_SPECIFIC_COMMENT';
 
 
-// for the modals here
+
+
+// followers
+const GET_USERS_FOLLOWERS = 'followers/GET_USERS_FOLLOWERS';
+
+
+
+
+
+
+
+// modal
 const SHOW_MODAL = 'modal/SHOW_MODAL';
 const HIDE_MODAL = 'modal/HIDE_MODAL';
 const CONTENT_MODAL = "modal/CONTENT_MODAL";
@@ -36,15 +57,25 @@ const DATA_MODAL = "modal/DATA_MODAL";
 
 
 
-// for the HomeLoader component
+
+// HomeLoader
+const GET_SINGLE_CARD = "loader/GET_SINGLE_CARD";
+const RESET_CARDS = "loader/RESET_CARDS";
+const NEXT_CARD = "loader/NEXT_CARD";
 const SHOW_LOADER = "loader/SHOW_LOADER";
 const HIDE_LOADER = "loader/HIDE_LOADER";
+
 
 
 
 // general errors for after they are logged in
 const SET_ERRORS = "errors/SET_ERRORS";
 const RESET_ERRORS = "errors/RESET_ERRORS";
+
+
+
+
+
 
 
 export {
@@ -80,6 +111,8 @@ export {
   GET_ALL_POLLS,
   DELETE_SPECIFIC_COMMENT,
   USER_SEARCH,
+  GET_USERS_FOLLOWERS,
+
 
 
 
