@@ -158,9 +158,10 @@ class User(db.Model, UserMixin):
 
 
     def get_users_followers(self):
-        return {
-            "followers": [follower.id for follower in self.followers],
-        }
+        normalized_data = { follower.id: follower.to_dict()   for follower in self.followers }
+        return { "followers": normalized_data }
+
+
 
 
     def to_dict(self):

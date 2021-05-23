@@ -84,7 +84,7 @@ def search_for_user(searchId):
 
 #  /api/users/search/:searchId
 @user_routes.route('/search/<string:searchId>')
-# @login_required
+@login_required
 def get_specific_user(searchId):
     errors = []
     searched_user = User.query.filter_by(search_id=str(searchId)).first()
@@ -99,18 +99,23 @@ def get_specific_user(searchId):
 
 
 
-# @user_routes.route('/followers')
+
+
+
+
+#  /api/users/followers
+@user_routes.route('/followers')
 # @login_required
-# def followers():
-#     userId = current_user.get_id()
-#     user = User.query.get(userId)
-#     user_data = user.to_dict()
-#     followers_array = user_data["followers"]
+def followers():
+    return current_user.get_users_followers()
 
-#     normalized_data = {followers_array[each]: User.query.get(followers_array[each]).username
-#                        for each in range(len(followers_array))}
 
-#     return {"username": user.username, "id": user.id, "followers": normalized_data}
+
+
+
+
+
+
 
 
 
