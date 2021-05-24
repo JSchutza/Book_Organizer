@@ -84,7 +84,7 @@ def search_for_user(searchId):
 
 #  /api/users/search/:searchId
 @user_routes.route('/search/<string:searchId>')
-# @login_required
+@login_required
 def get_specific_user(searchId):
     errors = []
     searched_user = User.query.filter_by(search_id=str(searchId)).first()
@@ -99,33 +99,73 @@ def get_specific_user(searchId):
 
 
 
-# @user_routes.route('/followers')
+
+
+
+
+#  /api/users/followers
+@user_routes.route('/followers')
+@login_required
+def followers():
+    return current_user.get_users_followers()
+
+
+
+
+#  /api/users/following
+@user_routes.route('/following')
+@login_required
+def following():
+    return current_user.get_people_they_follow()
+
+
+
+
+
+
+
+
+
+
+
+
+#  /api/users/:userId/following
+@user_routes.route('/<int:userId>/following', methods=['POST'])
+@login_required
+def check_if_following(userId):
+    searched_user = User.query.get(userId)
+
+    if current_user.follow_or_unfollow(searched_user) == "UN_FOLLOW":
+        current_user.following.remove(searched_user)
+        searched_user.followers.remove(current_user)
+        db.session.commit()
+        return { "message": ["User has been unfollowed."] }
+    else:
+        current_user.following.append(searched_user)
+        searched_user.followers.append(current_user)
+        db.session.commit()
+        return { "message": ["User has been followed."] }
+
+
+    # return { "errors": ['Error', 'Please try again.'] }
+
+
+
+
+
+
+
+#  /api/users/:userId/follow
+# @user_routes.route('/<int:userId>/follow', methods=['POST'])
 # @login_required
-# def followers():
-#     userId = current_user.get_id()
-#     user = User.query.get(userId)
-#     user_data = user.to_dict()
-#     followers_array = user_data["followers"]
+# def follow_user(userId):
+#     searched_user = User.query.get(userId)
 
-#     normalized_data = {followers_array[each]: User.query.get(followers_array[each]).username
-#                        for each in range(len(followers_array))}
+#   if the second user is NOT already in my followers -- add them 'follow'
+    # if current_user.follow_or_unfollow(searched_user) == "FOLLOW":
+    #     current_user.following.append(searched_user)
 
-#     return {"username": user.username, "id": user.id, "followers": normalized_data}
-
-
-
-# @user_routes.route('/follow')
-# @login_required
-# def follow():
-#     userId1 = int(current_user.get_id())
-#     userId2 = int(request.args['userId2'])
-
-#     user1 = User.query.get(userId1)
-#     user2 = User.query.get(userId2)
-
-#     if user2 in user1.followers:
-#         user1.followers.remove(user2)
-#     else:
-#         user1.followers.append(user2)
-#     db.session.commit()
-#     return '200'
+    #     db.session.commit()
+    #     return { "message": "User has been followed." }
+    # else:
+    #     return { "errors": ['That user is currently within your followers', 'Please try again.'] }

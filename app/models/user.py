@@ -6,9 +6,17 @@ from app.hash import gen_search_id
 from random import randint
 
 
+
 follower_to_followee = db.Table("follower_to_followee",
     db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
     db.Column("followee_id", db.Integer, db.ForeignKey("users.id")),
+)
+
+
+
+followee_to_follower = db.Table("followee_to_follower",
+    db.Column("followee_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
 )
 
 
@@ -45,6 +53,23 @@ class User(db.Model, UserMixin):
     )
 
 
+    following = db.relationship("User",
+        secondary=followee_to_follower,
+        primaryjoin=id == followee_to_follower.c.followee_id,
+        secondaryjoin=id == followee_to_follower.c.follower_id,
+        backref=db.backref("followee_to_follower", lazy="joined"),
+        lazy="joined",
+    )
+
+
+
+
+
+    def follow_or_unfollow(self, user_to_search):
+        if user_to_search in self.following:
+            return "UN_FOLLOW"
+        else:
+            return "FOLLOW"
 
 
 
@@ -158,9 +183,16 @@ class User(db.Model, UserMixin):
 
 
     def get_users_followers(self):
-        return {
-            "followers": [follower.id for follower in self.followers],
-        }
+        normalized_data = { follower.id : follower.to_dict()   for follower in self.followers }
+        return { "followers": normalized_data }
+
+
+
+    def get_people_they_follow(self):
+        normalized_data = { eachperson.id: eachperson.to_dict()   for eachperson in self.following }
+        return { "following": normalized_data }
+
+
 
 
     def to_dict(self):
@@ -174,7 +206,9 @@ class User(db.Model, UserMixin):
             "avatar": self.avatar,
             "birthday": self.birthday,
             "created_at": self.created_at,
-            "polls" : [poll.to_dict()  for poll in self.polls],
-            "comments": [comment.to_dict() for comment in self.comments],
-            "followers": [follower.id  for follower in self.followers],
+            "polls": { poll.id : poll.to_dict()  for poll in self.polls },
+            "comments": { comment.id : comment.to_dict() for comment in self.comments },
+            "followers": { follower.id : follower.user_name   for follower in self.followers },
+            "following": { each.id : each.user_name  for each in self.following },
+
         }

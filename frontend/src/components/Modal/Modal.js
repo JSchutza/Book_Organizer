@@ -15,6 +15,7 @@ import CreatePollForm from "../CreatePollForm";
 import DeleteBookButton from "../DeleteBookButton";
 import DeleteUserButton from "../DeleteUserButton";
 import UpdateUserForm from "../UpdateUserForm";
+import FollowersViewer from "../FollowersViewer";
 import ToolTip from "../ToolTip";
 
 
@@ -209,6 +210,23 @@ const Modal = () =>  {
 
 
 
+        {content === "ViewFollowers" ?
+          <div className={styles.view_followers_wrap}>
+            <FollowersViewer data={data} />
+          </div>
+        :
+          <></>
+        }
+
+
+
+        {content === "Loading" ?
+          <div>
+            <h1>Loading ...</h1>
+          </div>
+        :
+          <></>
+        }
 
 
         <div className={styles.modal_exit_button}>

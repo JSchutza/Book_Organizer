@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ToolTip from "../ToolTip";
 
@@ -11,9 +11,23 @@ import styles from "./updateuserform.module.css";
 
 
 const UpdateUserForm = ({ data }) => {
+  // const [ theirAvatar, setTheirAvatar ] = useState(data.isUser.user_name);
+
   const [ theirUsername, setTheirUsername ] = useState(data.isUser.user_name);
+  const [ theirEmail, setTheirEmail ] = useState(data.isUser.email);
+
+  const [ theirNewPassword, setTheirNewPassword ] = useState('');
+  const [ paswordConfirm, setPasswordConfirm ] = useState('');
+
+  const [ theirBio, setTheirBio ] = useState(data.isUser.bio);
+  const [ theirLocation, setTheirLocation ] = useState(data.isUser.location);
+
+
+  const [ theirBirthday, setTheirBirthday ] = useState(data.isUser.birthday);
+
+
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
 
 
 
@@ -56,8 +70,8 @@ const UpdateUserForm = ({ data }) => {
         <input
           type="email"
           name="email"
-          value={theirUsername}
-          onChange={event => setTheirUsername(event.target.value)}
+          value={theirEmail}
+          onChange={event => setTheirEmail(event.target.value)}
         />
         </label>
 
@@ -67,8 +81,19 @@ const UpdateUserForm = ({ data }) => {
         <input
           type="password"
           name="password"
-          value={theirUsername}
-          onChange={event => setTheirUsername(event.target.value)}
+          value={theirNewPassword}
+          onChange={event => setTheirNewPassword(event.target.value)}
+        />
+        </label>
+
+
+        <label>
+          Confirm Password
+        <input
+          type="password"
+          name="password"
+          value={paswordConfirm}
+          onChange={event => setPasswordConfirm(event.target.value)}
         />
         </label>
 
@@ -76,8 +101,8 @@ const UpdateUserForm = ({ data }) => {
         <label>
           Bio
         <textarea
-          value={theirUsername}
-          onChange={event => setTheirUsername(event.target.value)}
+          value={theirBio}
+          onChange={event => setTheirBio(event.target.value)}
         />
         </label>
 
@@ -87,8 +112,8 @@ const UpdateUserForm = ({ data }) => {
         <input
           type="text"
           name="location"
-          value={theirUsername}
-          onChange={event => setTheirUsername(event.target.value)}
+          value={theirLocation}
+          onChange={event => setTheirLocation(event.target.value)}
         />
         </label>
 
@@ -97,7 +122,6 @@ const UpdateUserForm = ({ data }) => {
           Avatar
         <input
           type="file"
-
         />
         </label>
 
@@ -105,10 +129,10 @@ const UpdateUserForm = ({ data }) => {
         <label>
           Birthday
         <input
-          type="text"
+          type="date"
           name="birthday"
-          value={theirUsername}
-          onChange={event => setTheirUsername(event.target.value)}
+          value={theirBirthday}
+          onChange={event => setTheirBirthday(event.target.value)}
         />
         </label>
 

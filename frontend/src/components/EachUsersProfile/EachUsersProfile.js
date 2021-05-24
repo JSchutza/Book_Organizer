@@ -15,7 +15,7 @@ const EachUsersProfile = () => {
 
   useEffect(() => {
     dispatch(thunk_userSearch(searchId));
-   }, [searchId]);
+  }, [dispatch, searchId]);
 
 
 
