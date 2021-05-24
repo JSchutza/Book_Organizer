@@ -65,7 +65,7 @@ const Profile = () => {
   const handleFollowerViewClick = event => {
     event.preventDefault();
     dispatch(contentModal("ViewFollowers"));
-    dispatch(dataModal({ followersInfo, followingInfo, lastpage: "/" }));
+    dispatch(dataModal({ lastpage: "/" }));
     dispatch(showModal());
     history.push("/dropdown");
   }
