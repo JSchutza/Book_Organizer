@@ -1,6 +1,6 @@
 
 
-import { GET_USERS_FOLLOWERS } from "../types";
+import { GET_USERS_FOLLOWERS,  } from "../types";
 
 
 

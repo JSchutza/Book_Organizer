@@ -22,10 +22,12 @@ def seed_follows():
         followee = User.query.get(second_user)
 
         follower.followers.append(followee)
+        followee.following.append(follower)
         db.session.commit()
         count -= 1
 
 
 def undo_follows():
     db.session.execute('TRUNCATE follower_to_followee RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE followee_to_follower RESTART IDENTITY CASCADE;')
     db.session.commit()

@@ -11,7 +11,7 @@ import { cardLoaderReducer, singleCardReducer } from "./reducers/cardloader.js";
 import { booksReducer, priCharReducer, pageReducer } from "./reducers/books.js";
 import { pollsReducer, commentReducer, allPollsReducer } from "./reducers/polls.js";
 import { followersReducer } from "./reducers/followers.js";
-
+import { followingReducer } from "./reducers/following.js";
 
 
 // root reducer here
@@ -32,6 +32,7 @@ const rootReducer = combineReducers({
   commentReducer,
   allPollsReducer,
   followersReducer,
+  followingReducer,
 
 });
 

@@ -220,6 +220,15 @@ const Modal = () =>  {
 
 
 
+        {content === "Loading" ?
+          <div>
+            <h1>Loading ...</h1>
+          </div>
+        :
+          <></>
+        }
+
+
         <div className={styles.modal_exit_button}>
         <ToolTip content={"Close"} >
           <a href='/' onClick={event => onClose(event)}> <BsFillBackspaceFill/> </a>

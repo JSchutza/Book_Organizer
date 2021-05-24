@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
 import { thunk_getUsersFollowers } from "../../store/thunks/followers.js";
+import { thunk_getFollowing } from "../../store/thunks/following.js";
 import { hideModal, showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import {Book} from "../Book";
 import { NavLink, useHistory } from "react-router-dom";
@@ -23,6 +24,7 @@ const Profile = () => {
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const pollInfo = useSelector(store => store.pollsReducer.polls);
   const followersInfo = useSelector(store => store.followersReducer.followers);
+  const followingInfo = useSelector(store => store.followingReducer.following);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -33,7 +35,8 @@ const Profile = () => {
     dispatch(thunk_getAllBooks());
     dispatch(thunk_getUsersPolls());
     dispatch(thunk_getUsersFollowers());
-  },[dispatch]);
+    dispatch(thunk_getFollowing());
+  }, [dispatch]);
 
 
 
@@ -62,7 +65,7 @@ const Profile = () => {
   const handleFollowerViewClick = event => {
     event.preventDefault();
     dispatch(contentModal("ViewFollowers"));
-    dispatch(dataModal({ followersInfo, lastpage: "/"}));
+    dispatch(dataModal({ followersInfo, followingInfo, lastpage: "/" }));
     dispatch(showModal());
     history.push("/dropdown");
   }
@@ -84,7 +87,7 @@ const Profile = () => {
 
 
 
-  return bookInfo && pollInfo && followersInfo && (
+  return bookInfo && pollInfo && followersInfo && followingInfo && (
     <>
     <div>
       {/* users info here */}
@@ -114,7 +117,11 @@ const Profile = () => {
               <br />
 
               <a href='/' onClick={event => handleFollowerViewClick(event)}>
-              <p> {Object.keys(isUser.followers).length} followers </p>
+                <p> {Object.keys(isUser.followers).length} followers </p>
+              </a>
+
+              <a href='/' onClick={event => event.preventDefault(event)}>
+                <p> {Object.keys(isUser.following).length} following </p>
               </a>
             </div>
     </div>
