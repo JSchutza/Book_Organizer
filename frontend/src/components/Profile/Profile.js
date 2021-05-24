@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
 import { thunk_getUsersFollowers } from "../../store/thunks/followers.js";
@@ -116,13 +116,24 @@ const Profile = () => {
             <p>Address: {isUser.location} </p>
               <br />
 
-              <a href='/' onClick={event => handleFollowerViewClick(event)}>
-                <p> {Object.keys(isUser.followers).length} followers </p>
-              </a>
 
-              <a href='/' onClick={event => event.preventDefault(event)}>
-                <p> {Object.keys(isUser.following).length} following </p>
+            {followersInfo ?
+              <a href='/' onClick={event => handleFollowerViewClick(event)}>
+                <p> {Object.keys(followersInfo).length} followers </p>
               </a>
+            :
+              <></>
+            }
+
+
+
+            {followingInfo ?
+              <a href='/' onClick={event => event.preventDefault(event)}>
+                <p> {Object.keys(followingInfo.following).length} following </p>
+              </a>
+            :
+              <></>
+            }
             </div>
     </div>
 

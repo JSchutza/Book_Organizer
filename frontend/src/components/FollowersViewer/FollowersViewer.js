@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
-// import { useUser } from "../../context/UserContext.js";
-import { useDispatch, useSelector } from "react-redux";
-import { thunk_followOrUnfollow, thunk_getFollowing } from "../../store/thunks/following.js";
+import React, { useState } from 'react';
+
+import { useDispatch } from "react-redux";
+import { thunk_followOrUnfollow } from "../../store/thunks/following.js";
+
+
 import { useHistory } from "react-router-dom";
-import { hideModal } from "../../store/actions/modal.js";
+import { hideModal, dataModal, contentModal } from "../../store/actions/modal.js";
 
 
 import styles from "./followersviewer.module.css";
@@ -17,15 +19,10 @@ import defaultImg from "../../icons/default_user.svg";
 
 
 const FollowersViewer = ({ data }) => {
-  // const { isUser } = useUser();
-  const [ loaded, setLoaded ] = useState(null);
-  const [ message, setMessage ] = useState(null);
+
   const dispatch = useDispatch();
   const history = useHistory();
-  const followOrUnFollowMessage = useSelector(store => store.followingReducer.message);
-
-
-
+  // const followOrUnFollowMessage = useSelector(store => store.followingReducer.message);
 
 
 
@@ -36,10 +33,11 @@ const FollowersViewer = ({ data }) => {
     if (data === null) return;
 
     dispatch(thunk_followOrUnfollow(userId));
-    setLoaded(true);
 
-    // dispatch(hideModal());
-    // history.push(data.lastpage);
+    dispatch(dataModal(null));
+    dispatch(contentModal(null));
+    dispatch(hideModal());
+    history.push(data.lastpage);
   }
 
 
@@ -64,18 +62,6 @@ const FollowersViewer = ({ data }) => {
 
   return (
     <>
-    <div>
-        {loaded ?
-        <>
-        <h1> here </h1>
-        </>
-        :
-        <> <h1>false</h1></>
-        }
-    </div>
-
-
-
     <div>
         {Object.values(data.followersInfo).map(eachFollower => (
           <>
