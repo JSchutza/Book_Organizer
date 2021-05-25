@@ -84,7 +84,6 @@ if (isUser !== null) {
 
 
           <Route path="/profile" exact={true}>
-            <h1>Profile</h1>
             <Profile />
           </Route>
 

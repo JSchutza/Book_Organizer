@@ -99,6 +99,10 @@ const Profile = () => {
   return bookInfo && pollInfo && followersInfo && followingInfo && (
     <>
     <div>
+          <div className={styles.profile_header}>
+            <h1>Profile</h1>
+          </div>
+
       {/* users info here */}
     <div className={styles.user_info_wrap}>
           <div className={styles.user_avatar}>
@@ -148,14 +152,14 @@ const Profile = () => {
 
 
 
-    <div>
-      <div>
+    <div className={styles.user_buttons_wrap}>
+      <div className={styles.update_user_button}>
         <ToolTip content={'Update Info'}>
           <a href='/' onClick={event => handleUpdate(event)}> <GrUpdate /> </a>
         </ToolTip>
       </div>
 
-      <div>
+      <div className={styles.delete_user_button}>
         <ToolTip content={'Delete Account'}>
           <a href='/' onClick={event => handleDelete(event)}> <RiDeleteBinFill /> </a>
         </ToolTip>

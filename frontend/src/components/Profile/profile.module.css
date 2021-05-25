@@ -1,5 +1,13 @@
 
-
+.profile_header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+}
 
 
 
@@ -37,6 +45,40 @@
   position: relative;
   left: 2%;
 }
+
+
+
+
+
+
+
+
+.user_buttons_wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+.update_user_button {
+    padding: 1%;
+}
+
+
+
+.delete_user_button {
+    padding: 1%;
+}
+
+
+
 
 
 
