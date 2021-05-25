@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
+import { thunk_getFollowing, thunk_followOrUnfollow } from "../../store/thunks/following.js";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import { useHistory, NavLink } from "react-router-dom";
 import ToolTip from "../ToolTip";
@@ -20,16 +21,33 @@ const CharacterPage = () => {
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
   const [ isHidden, setIsHidden ] = useState('');
-  const allChars = useSelector((store) => store.characterPageReducer.characters)
+  const allChars = useSelector((store) => store.characterPageReducer.characters);
+  const followingInfo = useSelector(store => store.followingReducer.following);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const { isUser } = useUser();
+
+
+
+
+  useEffect(() => {
+    dispatch(thunk_getFollowing());
+  }, [dispatch]);
+
+
+
+
+
 
 
   useEffect(() => {
     dispatch(thunk_getAllCharacters());
     setIsHidden('');
   }, [specificChar, dispatch]);
+
+
+
 
 
   const showSpecificChar = (event, the_char_id) => {
@@ -39,11 +57,15 @@ const CharacterPage = () => {
   }
 
 
+
+
   const hideSpecificChar = (event) => {
     event.preventDefault();
     setCharId(false);
     setSpecificChar(false);
   }
+
+
 
 
 
@@ -57,6 +79,8 @@ const CharacterPage = () => {
   }
 
 
+
+
   const handleUpdate = (event, payload) => {
     event.preventDefault();
     dispatch(contentModal("EditPubChar"));
@@ -64,6 +88,8 @@ const CharacterPage = () => {
     dispatch(showModal());
     history.push("/dropdown");
   }
+
+
 
 
 
@@ -80,6 +106,29 @@ const CharacterPage = () => {
 
 
 
+
+
+
+
+  const toProfile = event => {
+    event.preventDefault();
+    history.push('/profile');
+  }
+
+
+
+
+
+
+
+  const handleFollowOrUnfollow = (event, userId) => {
+    event.preventDefault();
+    dispatch(thunk_followOrUnfollow(userId));
+  }
+
+
+
+
   if(allChars === null) {
     return (
       <>
@@ -89,15 +138,39 @@ const CharacterPage = () => {
   }
 
 
+
+
   if(specificChar === true){
     return (
       <>
       <div>
-      <div>
-        <NavLink to={`/user/${allChars[charId].search_id}`} exact>
-          Profile
-        </NavLink>
-      </div>
+          {/* if the selected character belongs to the currently logged-in user */}
+          {allChars[charId].user_id === isUser.id ?
+          <>
+            <a href='/' onClick={event => toProfile(event)}> Profile </a>
+          </>
+
+          :
+
+          <>
+          <div>
+            <NavLink to={`/user/${allChars[charId].search_id}`} exact>
+              Profile
+            </NavLink>
+          </div>
+
+                {followingInfo.following[allChars[charId].user_id] ?
+                    <a href='/' onClick={event => handleFollowOrUnfollow(event, allChars[charId].user_id)}>
+                      Unfollow
+                    </a>
+                  :
+                  <a href='/' onClick={event => handleFollowOrUnfollow(event, allChars[charId].user_id)}>
+                      Follow
+                    </a>
+                }
+        </>
+        }
+
 
       <div>
           <a href='/' onClick={(event) => hideSpecificChar(event) }>
@@ -110,6 +183,7 @@ const CharacterPage = () => {
             <img src={allChars[charId].avatar} alt={allChars[charId].character_name} />
           </a>
       </div>
+
       </div>
       </>
       )
