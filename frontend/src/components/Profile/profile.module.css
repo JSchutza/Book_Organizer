@@ -49,6 +49,40 @@
 
 
 
+
+
+
+
+.user_buttons_wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+.update_user_button {
+    padding: 1%;
+}
+
+
+
+.delete_user_button {
+    padding: 1%;
+}
+
+
+
+
+
+
+
 .recent_books_header {
   display: flex;
   position: relative;
