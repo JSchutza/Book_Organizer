@@ -100,6 +100,11 @@ const BookViewer = () => {
 
   return (
     <>
+      <div className={styles.bookpage_header}>
+        <h1>Books</h1>
+      </div>
+
+
     <div className={styles.book_create_wrapper}>
     <div className={styles.book_create_button}>
       <ToolTip content={"Create"} >

@@ -99,6 +99,10 @@ const Profile = () => {
   return bookInfo && pollInfo && followersInfo && followingInfo && (
     <>
     <div>
+          <div className={styles.profile_header}>
+            <h1>Profile</h1>
+          </div>
+
       {/* users info here */}
     <div className={styles.user_info_wrap}>
           <div className={styles.user_avatar}>

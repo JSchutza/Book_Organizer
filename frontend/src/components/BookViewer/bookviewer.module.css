@@ -1,5 +1,17 @@
 
 
+.bookpage_header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+}
+
+
+
 .book_create_wrapper {
   display: flex;
   flex-direction: column;
