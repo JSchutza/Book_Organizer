@@ -27,6 +27,8 @@ const thunk_getAllCharacters = () => async (dispatch) => {
 
 
 
+
+// /api/users/:searchId
 const thunk_searchForUsersPubChars = (searchId) => async (dispatch) => {
   const response = await fetch(`/api/users/${searchId}`, {
     headers: {
@@ -47,7 +49,7 @@ const thunk_searchForUsersPubChars = (searchId) => async (dispatch) => {
 
 
 // /api/characters/:characterId
-const thunk_deleteUsersPubChars = (characterId) => async (dispatch) => {
+const thunk_deleteUsersPubChars = ({ charPage=false, characterId, search_id }) => async (dispatch) => {
   const response = await fetch(`/api/characters/${characterId}`, {
     method: "DELETE",
     credentials: "include",
@@ -59,8 +61,21 @@ const thunk_deleteUsersPubChars = (characterId) => async (dispatch) => {
     return;
   }
   dispatch(resetErrors());
-  dispatch(deleteUsersPubChars(characterId));
+
+  if (charPage === true && search_id === undefined) {
+    dispatch(deleteUsersPubChars(characterId));
+    dispatch(thunk_getAllCharacters());
+    return;
+  } else if (charPage === false && search_id) {
+    dispatch(deleteUsersPubChars(characterId));
+    dispatch(thunk_searchForUsersPubChars(search_id));
+  }
+
+
 };
+
+
+
 
 
 

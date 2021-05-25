@@ -143,11 +143,36 @@ const CharacterPage = () => {
   if(specificChar === true){
     return (
       <>
-      <div>
+      <div className={styles.specific_char_wrap}>
           {/* if the selected character belongs to the currently logged-in user */}
           {allChars[charId].user_id === isUser.id ?
           <>
-            <a href='/' onClick={event => toProfile(event)}> Profile </a>
+            <div>
+              <a href='/' onClick={event => toProfile(event)}> Profile </a>
+            </div>
+
+
+            <div>
+                <div>
+                  <ToolTip content={'Delete'} >
+                    <a href='/' onClick={event => handleDelete(event, {
+                      charId: allChars[charId].id,
+                      avatar: allChars[charId].avatar,
+                      character_label: allChars[charId].character_label,
+                      character_name: allChars[charId].character_name,
+                      created_at: allChars[charId].created_at,
+                      pub_date: allChars[charId].pub_date,
+                      user_id: allChars[charId].user_id,
+                      username: allChars[charId].username,
+                      search_id: allChars[charId].search_id,
+                      setIsHidden,
+                      lastpage: "/characters",
+                      charPage: true
+
+                    })} > <RiDeleteBinFill /> </a>
+                  </ToolTip>
+                </div>
+            </div>
           </>
 
           :
@@ -160,26 +185,37 @@ const CharacterPage = () => {
           </div>
 
                 {followingInfo.following[allChars[charId].user_id] ?
+                  <div>
                     <a href='/' onClick={event => handleFollowOrUnfollow(event, allChars[charId].user_id)}>
                       Unfollow
                     </a>
+                  </div>
+
                   :
-                  <a href='/' onClick={event => handleFollowOrUnfollow(event, allChars[charId].user_id)}>
+
+                  <div>
+                    <a href='/' onClick={event => handleFollowOrUnfollow(event, allChars[charId].user_id)}>
                       Follow
                     </a>
+                  </div>
                 }
         </>
         }
 
 
-      <div>
+      <div className={styles.specific_char_containter}>
           <a href='/' onClick={(event) => hideSpecificChar(event) }>
-          <h1> {allChars[charId].username} </h1>
+
+            <div className={styles.specific_char_username}>
+              <h1> {allChars[charId].username} </h1>
+            </div>
+
             <li key={charId} >
               {allChars[charId].character_name}
               <br/>
               {allChars[charId].character_label}
             </li>
+
             <img src={allChars[charId].avatar} alt={allChars[charId].character_name} />
           </a>
       </div>
@@ -203,7 +239,9 @@ const CharacterPage = () => {
       </ToolTip>
     </div>
 
-    <h1> Characters </h1>
+    <div className={styles.characters_header}>
+      <h1> Characters </h1>
+    </div>
 
 
     <div className={styles.page_wrapper}>
@@ -226,8 +264,8 @@ const CharacterPage = () => {
 
 
         {eachChar.user_id === isUser.id ?
-          <div>
-            <div>
+          <div className={styles.users_character_button_wrap}>
+            <div className={styles.each_button}>
               <ToolTip content={'Update'} >
                 <a href='/' onClick={event => handleUpdate(event, {
                   charId: eachChar.id,
@@ -246,7 +284,7 @@ const CharacterPage = () => {
               </ToolTip>
             </div>
 
-            <div>
+            <div className={styles.each_button}>
               <ToolTip content={'Delete'} >
                 <a href='/' onClick={event => handleDelete(event, {
                   charId: eachChar.id,
@@ -259,7 +297,8 @@ const CharacterPage = () => {
                   username: eachChar.username,
                   search_id: eachChar.search_id,
                   setIsHidden,
-                  lastpage: "/characters"
+                  lastpage: "/characters",
+                  charPage: true
 
                 })} > <RiDeleteBinFill /> </a>
               </ToolTip>
