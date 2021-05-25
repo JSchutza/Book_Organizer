@@ -69,7 +69,7 @@ const FollowersViewer = ({ data }) => {
 
   return (
     <>
-    <div>
+      <div className={styles.user_info_container}>
         {Object.values(followersInfo).map(eachFollower => (
           <>
             <div className={styles.user_info_wrap}>
