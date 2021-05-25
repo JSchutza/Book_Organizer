@@ -8,7 +8,7 @@ import CreateBookForm from "../CreateBookForm";
 import ToolTip from "../ToolTip";
 
 import styles from "./bookviewer.module.css";
-
+import LoadScreen from "../LoadScreen";
 // icon imports here
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { RiDeleteBinFill } from "react-icons/ri";
@@ -21,6 +21,7 @@ import { GrUpdate } from "react-icons/gr";
 
 
 const BookViewer = () => {
+  const [loading, setLoading] = useState(false);
   const [ showBookForm, setShowBookForm ] = useState(false);
   const [ clickShowForm, setShowForm ] = useState(0);
 
@@ -37,7 +38,13 @@ const BookViewer = () => {
 
 
   useEffect(() => {
-    dispatch(thunk_getAllBooks());
+    if (!loading) {
+      dispatch(thunk_getAllBooks());
+      setTimeout(() => {
+        setLoading(true);
+      }, 1000);
+    }
+
   }, [dispatch]);
 
 
@@ -87,11 +94,11 @@ const BookViewer = () => {
 
 
 
-  if (bookInfo === null){
+  if (bookInfo === null || !loading){
     return (
-      <div>
-        <h1>Loading books ... </h1>
-      </div>
+      <>
+        <LoadScreen />
+      </>
     )
   }
 

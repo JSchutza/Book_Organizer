@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
 import { thunk_getUsersFollowers } from "../../store/thunks/followers.js";
@@ -14,12 +14,14 @@ import ToolTip from "../ToolTip";
 
 import styles from "./profile.module.css";
 import defaultImg from "../../icons/default_user.svg";
+import LoadScreen from "../LoadScreen";
 
 
 
 
 
 const Profile = () => {
+  const [ loading, setLoading ] = useState(false);
   const { isUser } = useUser();
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const pollInfo = useSelector(store => store.pollsReducer.polls);
@@ -31,11 +33,16 @@ const Profile = () => {
 
 
   useEffect(() => {
-    dispatch(hideModal());
-    dispatch(thunk_getAllBooks());
-    dispatch(thunk_getUsersPolls());
-    dispatch(thunk_getUsersFollowers());
-    dispatch(thunk_getFollowing());
+    if (!loading) {
+      dispatch(hideModal());
+      dispatch(thunk_getAllBooks());
+      dispatch(thunk_getUsersPolls());
+      dispatch(thunk_getUsersFollowers());
+      dispatch(thunk_getFollowing());
+      setTimeout(() => {
+        setLoading(true);
+      }, 1000);
+    }
   }, [dispatch]);
 
 
@@ -84,11 +91,11 @@ const Profile = () => {
 
 
 
-  if (isUser === null) {
+  if (isUser === null || !loading) {
     return (
-      <div>
-        <h1> Loading ... </h1>
-      </div>
+      <>
+        <LoadScreen />
+      </>
     );
   }
 

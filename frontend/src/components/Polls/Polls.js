@@ -1,11 +1,12 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { thunk_getUsersPolls, thunk_getUsersSpecificComments, thunk_deleteSpecificPoll, thunk_allPolls } from "../../store/thunks/polls.js";
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
 import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
 import styles from "./polls.module.css";
@@ -13,6 +14,7 @@ import styles from "./polls.module.css";
 
 
 const Polls = () => {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const polls = useSelector(store => store.pollsReducer.polls);
@@ -20,8 +22,13 @@ const Polls = () => {
 
 
   useEffect(() => {
-    dispatch(thunk_getUsersPolls());
-    dispatch(thunk_allPolls());
+    if (!loading) {
+      dispatch(thunk_getUsersPolls());
+      dispatch(thunk_allPolls());
+      setTimeout(() => {
+        setLoading(true);
+      }, 1000);
+    }
   },[dispatch]);
 
 
@@ -61,10 +68,10 @@ const Polls = () => {
 
 
 
-  if (polls === null || allPolls === null){
+  if (polls === null || allPolls === null || !loading){
     return (
       <>
-      <h1> Loading ... </h1>
+        <LoadScreen />
       </>
     );
   }
