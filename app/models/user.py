@@ -210,5 +210,6 @@ class User(db.Model, UserMixin):
             "comments": { comment.id : comment.to_dict() for comment in self.comments },
             "followers": { follower.id : follower.user_name   for follower in self.followers },
             "following": { each.id : each.user_name  for each in self.following },
-
+            "characters": { each_char.id : each_char.to_dict()    for each_char in self.public_characters },
+            "books": { each_book.id : each_book.to_dict()    for each_book in self.books },
         }

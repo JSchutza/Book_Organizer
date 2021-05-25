@@ -72,6 +72,15 @@ const Profile = () => {
 
 
 
+  const handleFollowingViewClick = event => {
+    event.preventDefault();
+    dispatch(contentModal("FollowingView"));
+    dispatch(dataModal({ lastpage: "/" }));
+    dispatch(showModal());
+    history.push("/dropdown");
+  }
+
+
 
 
 
@@ -128,7 +137,7 @@ const Profile = () => {
 
 
             {followingInfo ?
-              <a href='/' onClick={event => event.preventDefault(event)}>
+              <a href='/' onClick={event => handleFollowingViewClick(event)}>
                 <p> {Object.keys(followingInfo.following).length} following </p>
               </a>
             :

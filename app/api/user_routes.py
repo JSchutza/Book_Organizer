@@ -145,27 +145,3 @@ def check_if_following(userId):
         searched_user.followers.append(current_user)
         db.session.commit()
         return { "message": ["User has been followed."] }
-
-
-    # return { "errors": ['Error', 'Please try again.'] }
-
-
-
-
-
-
-
-#  /api/users/:userId/follow
-# @user_routes.route('/<int:userId>/follow', methods=['POST'])
-# @login_required
-# def follow_user(userId):
-#     searched_user = User.query.get(userId)
-
-#   if the second user is NOT already in my followers -- add them 'follow'
-    # if current_user.follow_or_unfollow(searched_user) == "FOLLOW":
-    #     current_user.following.append(searched_user)
-
-    #     db.session.commit()
-    #     return { "message": "User has been followed." }
-    # else:
-    #     return { "errors": ['That user is currently within your followers', 'Please try again.'] }

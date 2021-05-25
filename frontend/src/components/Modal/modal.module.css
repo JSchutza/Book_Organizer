@@ -136,3 +136,14 @@
     box-sizing: content-box;
     top: 50%;
 }
+
+
+
+
+
+.view_following_wrap {
+    position: relative;
+    padding: 9%;
+    box-sizing: content-box;
+    top: 50%;
+}

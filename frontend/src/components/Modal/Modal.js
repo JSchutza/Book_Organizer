@@ -16,6 +16,7 @@ import DeleteBookButton from "../DeleteBookButton";
 import DeleteUserButton from "../DeleteUserButton";
 import UpdateUserForm from "../UpdateUserForm";
 import FollowersViewer from "../FollowersViewer";
+import FollowingViewer from "../FollowingViewer";
 import ToolTip from "../ToolTip";
 
 
@@ -217,6 +218,18 @@ const Modal = () =>  {
         :
           <></>
         }
+
+
+
+
+        {content === "FollowingView" ?
+          <div className={styles.view_following_wrap}>
+            <FollowingViewer data={data} />
+          </div>
+        :
+        <></>
+        }
+
 
 
 

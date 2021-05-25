@@ -12,29 +12,39 @@ const DeletePubCharButton = ({ charId, search_id, data }) => {
   const history = useHistory();
 
 
+
+
+
+
   const handle = (event, choice) => {
     event.preventDefault();
+    if (data === null) return;
     if (choice === true) {
-      dispatch(thunk_deleteUsersPubChars(charId));
-      dispatch(thunk_searchForUsersPubChars(search_id));
-      dispatch(thunk_getAllCharacters());
-      if (data === null) return;
+      if (data.charPage === true) {
+        dispatch(thunk_deleteUsersPubChars({ charPage: true, characterId: charId, search_id: undefined }));
+        dispatch(hideModal());
+        history.push(data.lastpage);
+      } else if (data.charPage === undefined) {
+        dispatch(thunk_deleteUsersPubChars({ charPage: false, characterId: charId, search_id }));
+        dispatch(hideModal());
+        history.push(data.lastpage);
+      }
+        if (data.setIsHidden) {
+          dispatch(hideModal());
+          data.setIsHidden("");
+          history.push(data.lastpage);
+        }
+    }
       if (data.setIsHidden) {
         dispatch(hideModal());
         data.setIsHidden("");
         history.push(data.lastpage);
       }
-    }
-
-
-    if (data === null) return;
-    if (data.setIsHidden) {
-      dispatch(hideModal());
-      data.setIsHidden("");
-      history.push(data.lastpage);
-    }
-
   }
+
+
+
+
 
 
 

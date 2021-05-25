@@ -1,6 +1,41 @@
 
+.specific_char_wrap {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
 
 
+.specific_char_containter {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
+}
+
+
+.specific_char_username {
+    padding: 5%;
+}
+
+
+
+
+
+.characters_header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
@@ -33,7 +68,7 @@
 
 
 .each_detail {
-  display: flex;
+  /* display: flex;
   position: absolute;
   z-index: 1;
   bottom: 8%;
@@ -44,7 +79,7 @@
   width: 296px;
   height: 550px;
   border: solid black 1px;
-  border-radius: 30px;
+  border-radius: 30px; */
 }
 
 
@@ -68,4 +103,29 @@
   box-sizing: content-box;
   line-height: 1.5rem;
   top: 20%;
+}
+
+
+
+.users_character_button_wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.each_button {
+    display: flex;
+    position: relative;
+    width: 60px;
+    justify-content: center;
+    padding: 1%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
 }
