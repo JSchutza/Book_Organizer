@@ -152,7 +152,26 @@ const CharacterPage = () => {
             </div>
 
 
-            <div>
+              <div>
+                  <div>
+                  <ToolTip content={'Update'} >
+                    <a href='/' onClick={event => handleUpdate(event, {
+                      charId: allChars[charId].id,
+                      avatar: allChars[charId].avatar,
+                      character_label: allChars[charId].character_label,
+                      character_name: allChars[charId].character_name,
+                      created_at: allChars[charId].created_at,
+                      pub_date: allChars[charId].pub_date,
+                      user_id: allChars[charId].user_id,
+                      username: allChars[charId].username,
+                      search_id: allChars[charId].search_id,
+                      lastpage: "/characters",
+                      charPage: true
+
+                    })}> <GrUpdate /> </a>
+                  </ToolTip>
+                </div>
+
                 <div>
                   <ToolTip content={'Delete'} >
                     <a href='/' onClick={event => handleDelete(event, {
