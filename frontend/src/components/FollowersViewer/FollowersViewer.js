@@ -53,7 +53,7 @@ const FollowersViewer = ({ data }) => {
 
 
 
-
+// if there is not information to display for the current users followers info
 
   if (!followersInfo && !followingInfo) {
     return (
@@ -64,8 +64,17 @@ const FollowersViewer = ({ data }) => {
   }
 
 
+// if there is a flag set that this is another users followers / following info was clicked
+// if(data.otheruser === true) { ect....}
 
 
+
+
+
+
+
+
+  // this returns if the viewer was clicked on current users profile
 
   return (
     <>

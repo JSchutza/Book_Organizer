@@ -93,7 +93,7 @@ const Polls = () => {
 
 
     <div className={styles.each_personal_poll_wrap}>
-        {Object.values(polls).map(eachPoll => (
+        {Object.values(polls).reverse().map(eachPoll => (
           <>
           <div>
             <div className={styles.each_poll_title}>
@@ -133,7 +133,7 @@ const Polls = () => {
 
 
     <div className={styles.all_polls_wrapper}>
-        {Object.values(allPolls).map(eachPoll => (
+        {Object.values(allPolls).reverse().map(eachPoll => (
           <>
           <div className={styles.all_polls_each_link}>
               <a href='/' onClick={event => handleEachClick(event, eachPoll.id)}>

@@ -26,6 +26,15 @@ const EachUsersProfile = () => {
 
 
 
+  const handleFollowersClick = event => {
+    event.preventDefault();
+
+  }
+
+
+
+
+
    if(!searchedUserInfo || !loaded) {
      return (
         <>
@@ -33,9 +42,6 @@ const EachUsersProfile = () => {
         </>
       );
    }
-
-
-
 
 
 
@@ -66,8 +72,70 @@ const EachUsersProfile = () => {
                 <br />
                 <p>Address: {each.location} </p>
                 <br />
-                <p> {Object.values(each.followers).length} followers </p>
+
+                <a href='/' onClick={event => handleFollowersClick(event)} >
+                    {Object.values(each.followers).length} followers
+                </a>
+
+                <a href='/' onClick={event =>  event.preventDefault()} >
+                  {Object.values(each.following).length} following
+                </a>
               </div>
+
+
+
+
+              <div>
+                <h2>{each.user_name}'s Characters</h2>
+              </div>
+
+              <div>
+                    {Object.values(each.characters).map(eachChar => (
+                      <>
+                        <a href='/' onClick={event => event.preventDefault()}>
+                            <div>
+                              <img src={eachChar.avatar} alt={eachChar.name}/>
+                            </div>
+
+                            <div>
+                              <p> <b> {eachChar.character_name} </b> </p>
+                                <p>{eachChar.character_label}</p>
+                            </div>
+                        </a>
+                      </>
+                    ))}
+              </div>
+
+
+
+              <div>
+                <h2> {each.user_name}'s Polls </h2>
+              </div>
+
+              <div>
+                    {Object.values(each.polls).map(eachPoll => (
+                      <>
+                      <div>
+                        <a href='/' onClick={event => event.preventDefault()}>
+                          <div>
+                              <p> {eachPoll.created_at} </p>
+                          </div>
+
+                          <div>
+                              <h3> {eachPoll.title} </h3>
+                          </div>
+
+                          <div>
+                              <p> <b> <i> {eachPoll.question_text} </i> </b> </p>
+                          </div>
+                        </a>
+                      </div>
+                      </>
+                    ))}
+              </div>
+
+
+
             </>
           ))}
         </div>
