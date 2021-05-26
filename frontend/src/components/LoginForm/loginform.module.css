@@ -20,7 +20,6 @@
 
 .enter_button {
   position: relative;
-  background-color: white;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -48,7 +47,6 @@
 
 
 .spacer {
-  background-color: white;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;

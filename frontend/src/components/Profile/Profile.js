@@ -139,7 +139,7 @@ const Profile = () => {
 
             {followersInfo ?
               <a href='/' onClick={event => handleFollowerViewClick(event)}>
-                <p> {Object.keys(followersInfo).length} followers </p>
+                {Object.keys(followersInfo).length} followers
               </a>
             :
               <></>
@@ -149,7 +149,7 @@ const Profile = () => {
 
             {followingInfo ?
               <a href='/' onClick={event => handleFollowingViewClick(event)}>
-                <p> {Object.keys(followingInfo.following).length} following </p>
+                {Object.keys(followingInfo.following).length} following
               </a>
             :
               <></>
