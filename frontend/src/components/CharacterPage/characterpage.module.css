@@ -1,4 +1,29 @@
 
+
+.specific_char_buttons_wrap {
+    display: flex;
+    background: cornflowerblue;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    width: 10%;
+    padding: 1%;
+    position: relative;
+}
+
+.specific_char_update_button {
+
+}
+
+
+.specific_char_delete_button {
+
+}
+
+
+
 .specific_char_wrap {
     display: flex;
     flex-direction: column;

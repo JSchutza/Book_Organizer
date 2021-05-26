@@ -11,3 +11,35 @@
   justify-content: center;
   align-items: center;
 }
+
+
+
+
+.createbook_update_button {
+    display: flex;
+    background-color: white;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    padding: 10%;
+    position: relative;
+    left: 40%;
+}
+
+
+
+.createbook_create_button {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    padding: 10%;
+    position: relative;
+    left: 40%;
+}

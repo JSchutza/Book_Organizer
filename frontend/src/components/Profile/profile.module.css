@@ -58,8 +58,13 @@
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: center;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    background: cornflowerblue;
+    width: 30%;
+    padding: 1%;
+    position: relative;
+    left: 30%;
 }
 
 
@@ -113,12 +118,13 @@
   background-color: b;
   width: -moz-fit-content;
   width: fit-content;
-  border: solid black .1px;
   border-radius: 10px;
-  box-shadow: 8px 0px 8px gray;
+  background: cornflowerblue;
 }
 
-
+.each_book_link h3:hover {
+  color: blue;
+}
 
 
 
@@ -156,7 +162,12 @@
   background-color: b;
   width: -moz-fit-content;
   width: fit-content;
-  border: solid black .1px;
   border-radius: 10px;
-  box-shadow: 8px 0px 8px gray;
+  background: cornflowerblue;
+}
+
+
+
+.each_poll_link h3:hover {
+  color: blue;
 }

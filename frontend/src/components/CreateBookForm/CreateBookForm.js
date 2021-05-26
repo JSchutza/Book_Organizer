@@ -73,7 +73,9 @@ const CreateBookForm = ({ isUpdate=false, data }) => {
 
 
             <ToolTip content={"Update"}>
-              <button> <GrUpdate /> </button>
+              <div className={styles.createbook_update_button}>
+                <a href='/' onClick={(event) => onUpdateSubmit(event)}> <GrUpdate /> </a>
+              </div>
             </ToolTip>
           </form>
         </div>
@@ -98,7 +100,9 @@ const CreateBookForm = ({ isUpdate=false, data }) => {
         </label>
 
           <ToolTip content={"Create"}>
-            <button> <AiOutlinePlus/> </button>
+            <div className={styles.createbook_create_button}>
+              <a href='/' onClick={(event) => onCreateSubmit(event)}> <AiOutlinePlus /> </a>
+            </div>
           </ToolTip>
       </form>
     </div>

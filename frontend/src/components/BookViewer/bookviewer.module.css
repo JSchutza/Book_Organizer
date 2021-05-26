@@ -52,11 +52,14 @@
 
 
 .delete_update_wrap {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: relative;
+    justify-content: space-evenly;
+    background: cornflowerblue;
+    width: 50%;
+    left: 25%;
 }
 
 

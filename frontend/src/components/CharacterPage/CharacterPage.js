@@ -159,8 +159,8 @@ const CharacterPage = () => {
             </div>
 
 
-              <div>
-                  <div>
+              <div className={styles.specific_char_buttons_wrap}>
+                <div className={styles.specific_char_update_button}>
                   <ToolTip content={'Update'} >
                     <a href='/' onClick={event => handleUpdate(event, {
                       charId: allChars[charId].id,
@@ -179,7 +179,7 @@ const CharacterPage = () => {
                   </ToolTip>
                 </div>
 
-                <div>
+                <div className={styles.specific_char_delete_button}>
                   <ToolTip content={'Delete'} >
                     <a href='/' onClick={event => handleDelete(event, {
                       charId: allChars[charId].id,
