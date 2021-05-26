@@ -18,11 +18,12 @@
 
 .each_page_button_wrap {
   display: flex;
-  background-color: white;
-  position: relative;
+  border-radius: 10px;
+  background: cornflowerblue;
+  border: solid white .1px;
+  border-radius: 15px;  position: relative;
   right: 25%;
   padding: 5%;
-  border-radius: 10px;
 }
 
 

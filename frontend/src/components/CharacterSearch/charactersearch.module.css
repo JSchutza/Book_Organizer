@@ -130,7 +130,8 @@
     align-items: center;
     width: 60%;
     padding: 4%;
-
+    border: solid white .1px;
+    border-radius: 15px;
 }
 
 

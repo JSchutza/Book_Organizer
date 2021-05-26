@@ -56,7 +56,10 @@
     display: flex;
     flex-direction: row;
     padding: 2%;
-    background: cornflowerblue;
+    border-radius: 10px;
+  background: cornflowerblue;
+  border: solid white .1px;
+  border-radius: 15px;
     position: relative;
     left: 80%;
     flex-wrap: wrap;

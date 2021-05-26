@@ -57,8 +57,10 @@
     flex-wrap: nowrap;
     position: relative;
     justify-content: space-evenly;
-    background: cornflowerblue;
-    width: 50%;
+border-radius: 10px;
+  background: cornflowerblue;
+  border: solid white .1px;
+  border-radius: 15px;    width: 50%;
     left: 25%;
 }
 
