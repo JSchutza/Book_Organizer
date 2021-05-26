@@ -32,6 +32,11 @@ const EachUsersProfile = () => {
   }
 
 
+  const handleFollowingClick = event => {
+    event.preventDefault();
+
+  }
+
 
 
 
@@ -77,7 +82,7 @@ const EachUsersProfile = () => {
                     {Object.values(each.followers).length} followers
                 </a>
 
-                <a href='/' onClick={event =>  event.preventDefault()} >
+                <a href='/' onClick={event => handleFollowingClick(event)} >
                   {Object.values(each.following).length} following
                 </a>
               </div>
@@ -85,13 +90,14 @@ const EachUsersProfile = () => {
 
 
 
-              <div>
+              <div className={styles.users_characters_header}>
                 <h2>{each.user_name}'s Characters</h2>
               </div>
 
-              <div>
+              <div className={styles.users_characters_wrap}>
                     {Object.values(each.characters).map(eachChar => (
                       <>
+                      <div className={styles.each_character_containter}>
                         <a href='/' onClick={event => event.preventDefault()}>
                             <div>
                               <img src={eachChar.avatar} alt={eachChar.name}/>
@@ -102,20 +108,21 @@ const EachUsersProfile = () => {
                                 <p>{eachChar.character_label}</p>
                             </div>
                         </a>
+                      </div>
                       </>
                     ))}
               </div>
 
 
 
-              <div>
+              <div className={styles.users_polls_header}>
                 <h2> {each.user_name}'s Polls </h2>
               </div>
 
-              <div>
+              <div className={styles.users_polls_wrap}>
                     {Object.values(each.polls).map(eachPoll => (
                       <>
-                      <div>
+                      <div className={styles.each_poll_containter}>
                         <a href='/' onClick={event => event.preventDefault()}>
                           <div>
                               <p> {eachPoll.created_at} </p>
