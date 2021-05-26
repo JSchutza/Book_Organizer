@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { thunk_createNewPoll, thunk_updatePoll } from "../../store/thunks/polls.js";
 import { hideModal } from "../../store/actions/modal.js";
 import { useHistory } from "react-router-dom";
-
+import styles from "./createpollform.module.css";
 
 
 
@@ -60,7 +60,7 @@ const CreatePollForm = ({ update=false, data }) => {
         </div>
 
         <div>
-          <form className='' onSubmit={onUpdate}>
+          <form className={styles.create_poll_container} onSubmit={onUpdate}>
             <label>
               Title
           <input
@@ -107,7 +107,7 @@ const CreatePollForm = ({ update=false, data }) => {
     </div>
 
       <div>
-        <form className='' onSubmit={onSubmit}>
+        <form className={styles.create_poll_container} onSubmit={onSubmit}>
           <label>
             Title
           <input

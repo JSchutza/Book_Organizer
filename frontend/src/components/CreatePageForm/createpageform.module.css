@@ -1,0 +1,18 @@
+
+
+
+
+
+
+
+
+.create_page_container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    right: 30%;
+}
