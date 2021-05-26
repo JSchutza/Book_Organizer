@@ -5,6 +5,7 @@ import { hideModal } from "../../store/actions/modal.js";
 import { thunk_updatePubCharacter } from "../../store/thunks/characters.js";
 import { nanoid } from "nanoid";
 import { useHistory } from "react-router-dom";
+import styles from "./editpubcharbutton.module.css";
 
 
 
@@ -80,7 +81,7 @@ const EditPubCharButton = ({ charId, search_id, data }) => {
         ))}
       </div>
 
-        <div>
+        <div className={styles.url_preview_wrap}>
           {urlpreview === null ?
             <p></p>
             :
@@ -93,7 +94,7 @@ const EditPubCharButton = ({ charId, search_id, data }) => {
 
 
       <div>
-        <form className='' onSubmit={onSubmit}>
+        <form className={styles.create_char_container} onSubmit={onSubmit}>
 
           <label>
               Avatar

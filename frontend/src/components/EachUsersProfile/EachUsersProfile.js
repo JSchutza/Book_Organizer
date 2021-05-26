@@ -1,29 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { thunk_userSearch } from "../../store/thunks/session.js";
+import LoadScreen from "../LoadScreen";
 
 import styles from "./eachusersprofile.module.css";
 
 
 const EachUsersProfile = () => {
+  const [ loaded, setLoaded ] = useState(false);
   const { searchId } = useParams();
   const dispatch = useDispatch();
-  const searchedUser = useSelector(store => store.usersReducer.searchedUser);
+  const searchedUserInfo = useSelector(store => store.usersReducer.searchedUser);
 
 
 
   useEffect(() => {
-    dispatch(thunk_userSearch(searchId));
+    if(!loaded) {
+      dispatch(thunk_userSearch(searchId));
+      setTimeout(() => {
+        setLoaded(true);
+      }, 1000);
+    }
   }, [dispatch, searchId]);
 
 
 
-   if(!searchedUser) {
+   if(!searchedUserInfo || !loaded) {
      return (
-        <div>
-          <h1> Loading ... </h1>
-        </div>
+        <>
+          <LoadScreen />
+        </>
       );
    }
 
@@ -38,7 +45,7 @@ const EachUsersProfile = () => {
     <>
       <div>
         <div className={styles.user_info_wrap}>
-          {Object.values(searchedUser).map(each => (
+          {Object.values(searchedUserInfo).map(each => (
             <>
               <div className={styles.user_avatar}>
                 <img src={each.avatar} alt='avatar' />
@@ -59,7 +66,7 @@ const EachUsersProfile = () => {
                 <br />
                 <p>Address: {each.location} </p>
                 <br />
-                <p> Number of followers {each.followers.length} </p>
+                <p> {Object.values(each.followers).length} followers </p>
               </div>
             </>
           ))}

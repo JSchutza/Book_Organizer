@@ -100,7 +100,7 @@ const CreateCharacterForm = ({ data }) => {
 
 
     <div>
-      <form className='' onSubmit={onSubmit}>
+      <form className={styles.create_char_container} onSubmit={onSubmit}>
 
       <label className="">
       Pick an Avatar
