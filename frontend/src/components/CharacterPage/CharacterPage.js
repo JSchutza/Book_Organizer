@@ -204,14 +204,14 @@ const CharacterPage = () => {
           :
 
           <>
-          <div>
+          <div className={styles.specific_char_userprofile_button}>
             <NavLink to={`/user/${allChars[charId].search_id}`} exact>
               Profile
             </NavLink>
           </div>
 
                 {followingInfo.following[allChars[charId].user_id] ?
-                  <div>
+                  <div className={styles.specific_char_follow_unfollow_button}>
                     <a href='/' onClick={event => handleFollowOrUnfollow(event, allChars[charId].user_id)}>
                       Unfollow
                     </a>
@@ -219,7 +219,7 @@ const CharacterPage = () => {
 
                   :
 
-                  <div>
+                <div className={styles.specific_char_follow_unfollow_button}>
                     <a href='/' onClick={event => handleFollowOrUnfollow(event, allChars[charId].user_id)}>
                       Follow
                     </a>

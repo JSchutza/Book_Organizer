@@ -52,6 +52,26 @@
 }
 
 
+.specific_char_userprofile_button {
+    display: flex;
+    padding: 1%;
+    border: solid white .1px;
+    border-radius: 10px;
+    position: relative;
+    left: 20%;
+}
+
+
+
+.specific_char_follow_unfollow_button {
+    display: flex;
+    padding: 1%;
+    border: solid white .1px;
+    border-radius: 10px;
+    position: relative;
+    left: 20%;
+}
+
 
 
 
