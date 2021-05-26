@@ -119,15 +119,17 @@
 
 
 .each_result_button_wrap {
-  display: flex;
-  background-color: white;
-  position: relative;
-  border-radius: 10px;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    background-color: cornflowerblue;
+    position: relative;
+    border-radius: 10px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    padding: 4%;
 
 }
 

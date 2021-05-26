@@ -43,10 +43,10 @@
 
 .create_pub_char_form {
     position: relative;
-    width: 20%;
+    width: 90%;
     padding: 3%;
     box-sizing: border-box;
-    background-color: white;
+    background-color: cadetblue;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -60,10 +60,10 @@
 
 .create_pri_char_form {
     position: relative;
-    width: 20%;
+    width: 90%;
     padding: 3%;
     box-sizing: border-box;
-    background-color: white;
+    background-color: cadetblue;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -76,10 +76,10 @@
 
 .create_page_form {
     position: relative;
-    width: 20%;
+    width: 90%;
     padding: 3%;
     box-sizing: border-box;
-    background-color: white;
+    background-color: cadetblue;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -106,10 +106,10 @@
 
 .create_poll_form {
     position: relative;
-    width: 20%;
+    width: 90%;
     padding: 3%;
     box-sizing: border-box;
-    background-color: white;
+    background-color: cadetblue;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

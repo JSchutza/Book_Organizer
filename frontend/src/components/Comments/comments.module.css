@@ -53,11 +53,13 @@
 
 
 .each_comment_buttons_wrap {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 2%;
+    display: flex;
+    flex-direction: row;
+    padding: 2%;
+    background: cornflowerblue;
+    position: relative;
+    left: 80%;
+    flex-wrap: wrap;
 }
 
 

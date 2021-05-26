@@ -40,11 +40,10 @@
 
 
 .each_poll_button_wrap {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 2%;
+    display: flex;
+    flex-direction: row;
+    padding: 1%;
+    background-color: cornflowerblue;
 }
 
 
