@@ -40,13 +40,18 @@
 
 
 .each_poll_button_wrap {
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: row;
     flex-direction: row;
     padding: 1%;
     border-radius: 10px;
-  background: cornflowerblue;
-  border: solid white .1px;
-  border-radius: 15px;
+    background: #6495ed;
+    border: .1px solid #fff;
+    border-radius: 15px;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
 }
 
 

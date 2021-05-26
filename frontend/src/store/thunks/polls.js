@@ -81,6 +81,32 @@ const thunk_updatePoll = ({ pollId, title, questionText }) => async (dispatch) =
 
 
 
+
+
+
+
+const thunk_allPolls = () => async (dispatch) => {
+  const response = await fetch("/api/polls/all", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
+  dispatch(resetErrors());
+  dispatch(allPolls(data));
+};
+
+
+
+
+
+
+
 const thunk_deleteSpecificPoll = (pollId) => async (dispatch) => {
   const response = await fetch(`/api/polls/${pollId}`, {
     method: "DELETE",
@@ -94,6 +120,7 @@ const thunk_deleteSpecificPoll = (pollId) => async (dispatch) => {
   }
   dispatch(resetErrors());
   dispatch(deleteSpecificPoll(pollId));
+  dispatch(thunk_allPolls());
   dispatch(thunk_getUsersPolls());
 };
 
@@ -162,26 +189,6 @@ const thunk_updateSpecificComment = ({ pollId, commentId }, answer_text) => asyn
 };
 
 
-
-
-
-
-
-const thunk_allPolls = () => async (dispatch) => {
-  const response = await fetch("/api/polls/all", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
-  }
-  dispatch(resetErrors());
-  dispatch(allPolls(data));
-};
 
 
 

@@ -62,6 +62,7 @@
     align-content: center;
     justify-content: center;
     align-items: center;
+    padding: 2%;
 }
 
 
@@ -69,27 +70,33 @@
 
 
 .page_wrapper {
-  display: flex;
-  flex-flow: wrap;
+    display: flex;
+    flex-flow: wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: stretch;
 }
 
 
 
 
 .each_card {
-  position: relative;
-  box-sizing: border-box;
-  padding: 2%;
+    position: relative;
+    box-sizing: border-box;
+    padding: 5%;
+    box-sizing: border-box;
+    border-radius: 30px;
 }
 
 
 .each_img {
-  position: relative;
-  display: flex;
-  box-sizing: border-box;
-  bottom: 3%;
-  border: solid transparent 4px;
-  border-radius: 30px;
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    border: solid white 1.1px;
+    border-radius: 30px;
 }
 
 
