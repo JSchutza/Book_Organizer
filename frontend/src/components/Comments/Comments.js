@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 import { useParams } from "react-router-dom";
-import { thunk_allPolls, thunk_getUsersSpecificComments, thunk_createComment, thunk_deleteSpecificComment, thunk_updateSpecificComment } from "../../store/thunks/polls.js";
+import { thunk_allPolls, thunk_getUsersSpecificComments, thunk_createComment,
+          thunk_deleteSpecificComment, thunk_updateSpecificComment } from "../../store/thunks/polls.js";
+import LoadScreen from "../LoadScreen";
 
 
 
@@ -18,6 +20,7 @@ import styles from "./comments.module.css";
 
 
 const Comments = () => {
+  const [loaded, setLoaded] = useState(false);
   const [ commentText, setCommentText ] = useState('');
   const [ updateText, setUpdateText ] = useState('');
 
@@ -34,8 +37,13 @@ const Comments = () => {
 
 
   useEffect(() => {
-    dispatch(thunk_getUsersSpecificComments(pollId));
-    dispatch(thunk_allPolls());
+    if(!loaded) {
+      dispatch(thunk_getUsersSpecificComments(pollId));
+      dispatch(thunk_allPolls());
+      setTimeout(() => {
+        setLoaded(true);
+      }, 1000)
+    }
   },[dispatch, pollId]);
 
 
@@ -76,10 +84,10 @@ const Comments = () => {
 
 
 
-  if (comments === null || poll === null){
+  if (comments === null || poll === null || !loaded){
     return (
       <>
-      <h1> Loading ... </h1>
+        <LoadScreen />
       </>
     );
   }

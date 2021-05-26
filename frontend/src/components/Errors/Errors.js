@@ -34,7 +34,7 @@ const Errors = () => {
       {errors !== null  && user === null ?
       <>
       <div className={styles.errors}>
-        <div> {errors} </div>
+          <div> <p> {errors} </p> </div>
 
         <div>
           <a href='/' onClick={event => handleTryAgain(event)} > Try Again </a>

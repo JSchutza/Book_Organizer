@@ -11,6 +11,7 @@ import { useUser } from "../../context/UserContext.js";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+import LoadScreen from "../LoadScreen";
 import styles from "./characterpage.module.css"
 
 
@@ -18,6 +19,7 @@ import styles from "./characterpage.module.css"
 
 
 const CharacterPage = () => {
+  const [loading, setLoading] = useState(false);
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
   const [ isHidden, setIsHidden ] = useState('');
@@ -42,8 +44,13 @@ const CharacterPage = () => {
 
 
   useEffect(() => {
-    dispatch(thunk_getAllCharacters());
-    setIsHidden('');
+    if (!loading) {
+      dispatch(thunk_getAllCharacters());
+      setIsHidden('');
+      setTimeout(() => {
+        setLoading(true);
+      }, 1000);
+    }
   }, [specificChar, dispatch]);
 
 
@@ -129,10 +136,10 @@ const CharacterPage = () => {
 
 
 
-  if(allChars === null) {
+  if (allChars === null || !loading) {
     return (
       <>
-      <h1>Loading characters .... </h1>
+        <LoadScreen />
       </>
     )
   }
@@ -152,8 +159,8 @@ const CharacterPage = () => {
             </div>
 
 
-              <div>
-                  <div>
+              <div className={styles.specific_char_buttons_wrap}>
+                <div className={styles.specific_char_update_button}>
                   <ToolTip content={'Update'} >
                     <a href='/' onClick={event => handleUpdate(event, {
                       charId: allChars[charId].id,
@@ -172,7 +179,7 @@ const CharacterPage = () => {
                   </ToolTip>
                 </div>
 
-                <div>
+                <div className={styles.specific_char_delete_button}>
                   <ToolTip content={'Delete'} >
                     <a href='/' onClick={event => handleDelete(event, {
                       charId: allChars[charId].id,

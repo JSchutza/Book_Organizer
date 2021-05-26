@@ -30,22 +30,22 @@ const FollowingViewer = ({ data }) => {
 
 
 
-  const handle = (event, userId, Type) => {
-    event.preventDefault();
-    if (data === null) return;
+  // const handle = (event, userId, Type) => {
+  //   event.preventDefault();
+  //   if (data === null) return;
 
-    // dispatch(thunk_followOrUnfollow(userId));
-    if (Type === 'FOLLOW') {
-      setAddfollow(1);
-    } else if (Type === 'UN_FOLLOW') {
-      setAddfollow(0);
-    }
+  //   // dispatch(thunk_followOrUnfollow(userId));
+  //   if (Type === 'FOLLOW') {
+  //     setAddfollow(1);
+  //   } else if (Type === 'UN_FOLLOW') {
+  //     setAddfollow(0);
+  //   }
 
-    // dispatch(dataModal(null));
-    // dispatch(contentModal(null));
-    // dispatch(hideModal());
-    // history.push(data.lastpage);
-  }
+  //   // dispatch(dataModal(null));
+  //   // dispatch(contentModal(null));
+  //   // dispatch(hideModal());
+  //   // history.push(data.lastpage);
+  // }
 
 
 
@@ -69,7 +69,7 @@ const FollowingViewer = ({ data }) => {
 
   return (
     <>
-      <div>
+      <div className={styles.user_info_container}>
         {Object.values(followingInfo.following).map(each => (
           <>
             <div className={styles.user_info_wrap}>
