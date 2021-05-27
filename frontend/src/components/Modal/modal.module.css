@@ -173,4 +173,5 @@
 .view_following_wrap {
     position: relative;
     box-sizing: content-box;
+    width: 70%;
 }
