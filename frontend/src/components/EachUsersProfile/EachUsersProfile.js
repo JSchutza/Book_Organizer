@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { thunk_userSearch } from "../../store/thunks/session.js";
 import LoadScreen from "../LoadScreen";
@@ -10,6 +10,7 @@ import styles from "./eachusersprofile.module.css";
 const EachUsersProfile = () => {
   const [ loaded, setLoaded ] = useState(false);
   const { searchId } = useParams();
+  const history = useHistory();
   const dispatch = useDispatch();
   const searchedUserInfo = useSelector(store => store.usersReducer.searchedUser);
 
@@ -36,6 +37,19 @@ const EachUsersProfile = () => {
     event.preventDefault();
 
   }
+
+
+  const handleCharacterClick = event => {
+    event.preventDefault();
+  }
+
+
+
+  const handlePollClick = (event, pollId) => {
+    event.preventDefault();
+    history.push(`/comments/${pollId}`);
+  }
+
 
 
 
@@ -98,7 +112,7 @@ const EachUsersProfile = () => {
                     {Object.values(each.characters).map(eachChar => (
                       <>
                       <div className={styles.each_character_containter}>
-                        <a href='/' onClick={event => event.preventDefault()}>
+                        <a href='/' onClick={event => handleCharacterClick(event)}>
                             <div>
                               <img src={eachChar.avatar} alt={eachChar.name}/>
                             </div>
@@ -123,7 +137,7 @@ const EachUsersProfile = () => {
                     {Object.values(each.polls).map(eachPoll => (
                       <>
                       <div className={styles.each_poll_containter}>
-                        <a href='/' onClick={event => event.preventDefault()}>
+                        <a href='/' onClick={event => handlePollClick(event, eachPoll.id)}>
                           <div>
                               <p> {eachPoll.created_at} </p>
                           </div>
