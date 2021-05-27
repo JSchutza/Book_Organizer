@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import { thunk_updatePriChar, thunk_createPriChar } from "../../store/thunks/books.js";
 import { processFile } from "../../services/protectedFileUpload.js";
 import { nanoid } from "nanoid";
+import styles from "./createpricharform.module.css";
+
 
 
 
@@ -90,7 +92,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
         </div>
 
         {/* for previewing the image before it is sent to backend */}
-        <div>
+        <div className={styles.url_preview_wrap}>
           {urlpreview === null ?
             <p></p>
             :
@@ -103,7 +105,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
 
         <div>
-          <form className='' onSubmit={onUpdate}>
+          <form className={styles.create_char_container} onSubmit={onUpdate}>
 
             <label className="">
               Pick an Avatar
@@ -151,7 +153,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
     </div>
 
       {/* for previewing the image before it is sent to backend */}
-      <div>
+      <div className={styles.url_preview_wrap}>
         {urlpreview === null ?
           <p></p>
           :
@@ -164,7 +166,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
 
       <div>
-        <form className='' onSubmit={onSubmit}>
+        <form className={styles.create_char_container} onSubmit={onSubmit}>
 
           <label className="">
             Pick an Avatar

@@ -4,6 +4,9 @@ import { thunk_updatePage, thunk_createPage } from "../../store/thunks/books.js"
 import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid"
 import { useHistory } from "react-router-dom";
+import styles from "./createpageform.module.css";
+
+
 
 
 const CreatePageForm = ({ bookId, update=false, data }) => {
@@ -58,7 +61,7 @@ const CreatePageForm = ({ bookId, update=false, data }) => {
 
 
         <div>
-          <form className='' onSubmit={onUpdate}>
+          <form className={styles.create_page_container} onSubmit={onUpdate}>
             <label>
               Title
             <input
@@ -97,7 +100,7 @@ const CreatePageForm = ({ bookId, update=false, data }) => {
       </div>
 
       <div>
-        <form className='' onSubmit={onSubmit}>
+        <form className={styles.create_page_container} onSubmit={onSubmit}>
           <label>
             Title
           <input
