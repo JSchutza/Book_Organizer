@@ -7,6 +7,14 @@ import NavBar from "../NavBar";
 
 import { useUser } from "../../context/UserContext.js";
 
+import Profile from "../Profile";
+import EachUsersProfile from "../EachUsersProfile";
+import CharacterPage from "../CharacterPage";
+import BookViewer from "../BookViewer";
+import { EachBook } from "../Book";
+import Polls from "../Polls";
+import Comments from "../Comments";
+
 import HomeLoader from "../HomeLoader";
 import LoginForm from "../LoginForm";
 import SignUpForm from "../SignupForm";
@@ -37,43 +45,33 @@ const MainRouter = () => {
         <NavBar />
 
         <Switch>
-          <Route path="/" exact>
-            {/* <Redirect to="/profile" /> */}
-          </Route>
-
           <Route path="/profile" exact>
-            {/* <Profile /> */}
+            <Profile />
           </Route>
 
           <Route path="/user/:searchId">
-            {/* <EachUsersProfile /> */}
+            <EachUsersProfile />
           </Route>
 
           <Route path="/characters" exact>
             {/* <CharacterSearch /> */}
-
-            {/* { isSearch === null ?
             <CharacterPage />
-            :
-            <></>
-          } */}
-
           </Route>
 
           <Route path='/books' exact>
-            {/* <BookViewer /> */}
+            <BookViewer />
           </Route>
 
           <Route path='/books/:bookId' exact>
-            {/* <EachBook /> */}
+            <EachBook />
           </Route>
 
           <Route path='/polls' exact>
-            {/* <Polls /> */}
+            <Polls />
           </Route>
 
           <Route path='/comments/:pollId' exact>
-            {/* <Comments /> */}
+            <Comments />
           </Route>
 
           <Route>
@@ -87,9 +85,9 @@ const MainRouter = () => {
 
 
 
-  // if the user is NOT logged in
-  if (isUser === null) {
 
+
+  // if the user is NOT logged in
     return (
       <>
         <BrowserRouter>
@@ -108,9 +106,8 @@ const MainRouter = () => {
                 onRequestClose={closeModal}
                 appElement={document.getElementById('root')}
               >
-                { login ? <LoginForm /> : <></> }
+                { login ? <LoginForm closeModal={closeModal} /> : <></> }
                 { signup ? <SignUpForm /> : <></> }
-
 
               </ReactModal>
             </Route>
@@ -128,7 +125,7 @@ const MainRouter = () => {
         </BrowserRouter>
       </>
     );
-  }
+
 
 
 };
