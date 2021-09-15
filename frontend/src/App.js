@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
 import CharacterSearch from "./components/CharacterSearch";
@@ -22,64 +22,33 @@ import { useUser } from "./context/UserContext.js";
 
 function App() {
   const dispatch = useDispatch();
-  const [ loaded, setLoaded ] = useState(false);
   const { isUser } = useUser();
-  const isSearch = useSelector((store) => store.searchTriggeredReducer.search)
 
 
-
-
-  useEffect(() => {
-    dispatch(hideLoader());
-    dispatch(hideModal());
-    setLoaded(true);
-  }, [dispatch]);
-
-
-
-
-
-
-  if (!loaded) {
-    return null;
-  }
-
-
-
+// if the user is NOT logged in
   if (isUser === null) {
-    dispatch(hideModal());
 
     return (
       <>
       <BrowserRouter>
         <NavBar userStatus={false}/>
       </BrowserRouter>
-      <Modal />
-      <Errors />
       </>
     );
   }
 
 
+// if the user IS logged in
 if (isUser !== null) {
-
-  dispatch(hideLoader());
-  dispatch(hideModal());
-
-
 
   return (
     <BrowserRouter>
       <NavBar userStatus={true} />
 
-
         <Switch>
-          <Route path="/dropdown" exact>
-            <Modal />
-          </Route>
 
           <Route path="/" exact>
-            <Redirect to="/profile" />
+            {/* <Redirect to="/profile" /> */}
           </Route>
 
 
@@ -96,11 +65,11 @@ if (isUser !== null) {
           <Route path="/characters" exact={true}>
             <CharacterSearch />
 
-          { isSearch === null ?
+          {/* { isSearch === null ?
             <CharacterPage />
             :
             <></>
-          }
+          } */}
 
           </Route>
 
