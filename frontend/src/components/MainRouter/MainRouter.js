@@ -1,6 +1,9 @@
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
+
+import NavBar from "../NavBar";
+
 import { useUser } from "../../context/UserContext.js";
 
 
@@ -10,25 +13,12 @@ import { useUser } from "../../context/UserContext.js";
 const MainRouter = () => {
   const { isUser } = useUser();
 
-  // if the user is NOT logged in
-  if (isUser === null) {
-
-    return (
-      <>
-        <BrowserRouter>
-          {/* <NavBar userStatus={false} /> */}
-        </BrowserRouter>
-      </>
-    );
-  }
-
-
   // if the user IS logged in
-  if (isUser !== null) {
+  if (isUser) {
 
     return (
       <BrowserRouter>
-        {/* <NavBar userStatus={true} /> */}
+        <NavBar />
 
         <Switch>
 
@@ -81,6 +71,25 @@ const MainRouter = () => {
       </BrowserRouter>
     );
   }
+
+
+
+  // if the user is NOT logged in
+  if (isUser === null) {
+
+    return (
+      <>
+        <BrowserRouter>
+          <NavBar />
+        </BrowserRouter>
+      </>
+    );
+  }
+
+
 };
+
+
+
 
 export default MainRouter;
