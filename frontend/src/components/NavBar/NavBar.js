@@ -16,7 +16,7 @@ import ToolTip from "../ToolTip";
 import styles from "./navbar.module.css";
 
 
-const NavBar = ({ setOpenModal, setLogin }) => {
+const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
   const { isUser } = useUser();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -33,6 +33,7 @@ const NavBar = ({ setOpenModal, setLogin }) => {
 
   const handleSignup = event => {
     event.preventDefault();
+    setSignup(true);
     setOpenModal(true);
   }
 

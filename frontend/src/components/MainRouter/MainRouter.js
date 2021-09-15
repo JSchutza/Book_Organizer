@@ -9,6 +9,8 @@ import { useUser } from "../../context/UserContext.js";
 
 import HomeLoader from "../HomeLoader";
 import LoginForm from "../LoginForm";
+import SignUpForm from "../SignupForm";
+
 
 
 const MainRouter = () => {
@@ -94,6 +96,7 @@ const MainRouter = () => {
           <NavBar
             setOpenModal={setOpenModal}
             setLogin={setLogin}
+            setSignup={setSignup}
           />
 
           <Switch>
@@ -106,7 +109,8 @@ const MainRouter = () => {
                 appElement={document.getElementById('root')}
               >
                 { login ? <LoginForm /> : <></> }
-                
+                { signup ? <SignUpForm /> : <></> }
+
 
               </ReactModal>
             </Route>
