@@ -16,13 +16,25 @@ import ToolTip from "../ToolTip";
 import styles from "./navbar.module.css";
 
 
-const NavBar = () => {
+const NavBar = ({ setOpenModal, setLogin }) => {
   const { isUser } = useUser();
   const history = useHistory();
   const dispatch = useDispatch();
 
 
 
+  const handleLogin = event => {
+    event.preventDefault();
+    setLogin(true);
+    setOpenModal(true);
+  }
+
+
+
+  const handleSignup = event => {
+    event.preventDefault();
+    setOpenModal(true);
+  }
 
 
 
@@ -72,13 +84,11 @@ const NavBar = () => {
         <nav className={styles.nav}>
 
           <ToolTip content={'Login'} >
-            <li> <NavLink to='/login'  > <FiLogIn /> </NavLink> </li>
+            <li> <NavLink to='/login' onClick={event => handleLogin(event)}> <FiLogIn /> </NavLink> </li>
           </ToolTip>
 
-
-
           <ToolTip content={'Signup'} >
-            <li> <NavLink to='/signup'> <ImUserPlus /> </NavLink> </li>
+            <li> <NavLink to='/signup' onClick={event => handleSignup(event)}> <ImUserPlus /> </NavLink> </li>
           </ToolTip>
 
         </nav>
