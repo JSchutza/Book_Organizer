@@ -1,17 +1,20 @@
-
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
+
+import { useHistory, NavLink, Link } from "react-router-dom";
+
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { thunk_getFollowing, thunk_followOrUnfollow } from "../../store/thunks/following.js";
-import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
-import { useHistory, NavLink } from "react-router-dom";
-import ToolTip from "../ToolTip";
+
+
 import { useUser } from "../../context/UserContext.js";
 
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import LoadScreen from "../LoadScreen";
+import ToolTip from "../ToolTip";
+
 import styles from "./characterpage.module.css"
 
 
@@ -19,10 +22,11 @@ import styles from "./characterpage.module.css"
 
 
 const CharacterPage = () => {
-  const [loading, setLoading] = useState(false);
+  const [ loading, setLoading ] = useState(false);
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
-  const [ isHidden, setIsHidden ] = useState('');
+  let endloading;
+
   const allChars = useSelector((store) => store.characterPageReducer.characters);
   const followingInfo = useSelector(store => store.followingReducer.following);
 
@@ -46,10 +50,14 @@ const CharacterPage = () => {
   useEffect(() => {
     if (!loading) {
       dispatch(thunk_getAllCharacters());
-      setIsHidden('');
-      setTimeout(() => {
+
+      endloading = setTimeout(() => {
         setLoading(true);
       }, 1000);
+    }
+
+    return () => {
+      clearTimeout(endloading);
     }
   }, [specificChar, dispatch]);
 
@@ -78,11 +86,6 @@ const CharacterPage = () => {
 
   const handleDelete = (event, payload) => {
     event.preventDefault();
-    setIsHidden('hide');
-    dispatch(contentModal("DeletePubChar"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
-    history.push("/dropdown");
   }
 
 
@@ -90,10 +93,7 @@ const CharacterPage = () => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-    dispatch(contentModal("EditPubChar"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
-    history.push("/dropdown");
+
   }
 
 
@@ -103,11 +103,7 @@ const CharacterPage = () => {
 
   const createCharactersClick = (event) => {
     event.preventDefault();
-      setIsHidden('hide');
-      dispatch(dataModal({ setIsHidden, lastpage: '/characters' }));
-      dispatch(contentModal("CreatePubChar"));
-      dispatch(showModal());
-      history.push("/dropdown");
+
   }
 
 
@@ -136,6 +132,7 @@ const CharacterPage = () => {
 
 
 
+
   if (allChars === null || !loading) {
     return (
       <>
@@ -143,6 +140,7 @@ const CharacterPage = () => {
       </>
     )
   }
+
 
 
 
@@ -191,8 +189,6 @@ const CharacterPage = () => {
                       user_id: allChars[charId].user_id,
                       username: allChars[charId].username,
                       search_id: allChars[charId].search_id,
-                      setIsHidden,
-                      lastpage: "/characters",
                       charPage: true
 
                     })} > <RiDeleteBinFill /> </a>
@@ -275,7 +271,7 @@ const CharacterPage = () => {
       <>
       <div className={styles.each_card}>
         <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
-        <div className={isHidden} >
+
         <li className={styles.each_detail} key={eachChar.id}>
           <div className={styles.each_detail_text}>
           <b> {eachChar.username} </b>
@@ -283,7 +279,7 @@ const CharacterPage = () => {
             <p> {eachChar.character_label} </p>
           </div>
         </li>
-          </div>
+
           <img className={styles.each_img} src={eachChar.avatar} alt={eachChar.character_name} />
       </a>
       </div>
@@ -322,8 +318,6 @@ const CharacterPage = () => {
                   user_id: eachChar.user_id,
                   username: eachChar.username,
                   search_id: eachChar.search_id,
-                  setIsHidden,
-                  lastpage: "/characters",
                   charPage: true
 
                 })} > <RiDeleteBinFill /> </a>
