@@ -5,6 +5,7 @@ import { useHistory, NavLink, Link } from "react-router-dom";
 
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { thunk_getFollowing, thunk_followOrUnfollow } from "../../store/thunks/following.js";
+import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
 
 
 import { useUser } from "../../context/UserContext.js";
@@ -93,8 +94,9 @@ const CharacterPage = () => {
 
 
 
-  const handleDelete = (event, payload) => {
+  const handleDelete = (event, { charId }) => {
     event.preventDefault();
+    console.log(charId, "<---------------");
   }
 
 
@@ -188,19 +190,7 @@ const CharacterPage = () => {
 
                 <div className={styles.specific_char_delete_button}>
                   <ToolTip content={'Delete'} >
-                    <a href='/' onClick={event => handleDelete(event, {
-                      charId: allChars[charId].id,
-                      avatar: allChars[charId].avatar,
-                      character_label: allChars[charId].character_label,
-                      character_name: allChars[charId].character_name,
-                      created_at: allChars[charId].created_at,
-                      pub_date: allChars[charId].pub_date,
-                      user_id: allChars[charId].user_id,
-                      username: allChars[charId].username,
-                      search_id: allChars[charId].search_id,
-                      charPage: true
-
-                    })} > <RiDeleteBinFill /> </a>
+                    <a href='/' onClick={event => handleDelete(event, { charId: allChars[charId].id })} > <RiDeleteBinFill /> </a>
                   </ToolTip>
                 </div>
             </div>
@@ -329,19 +319,7 @@ const CharacterPage = () => {
 
             <div className={styles.each_button}>
               <ToolTip content={'Delete'} >
-                <a href='/' onClick={event => handleDelete(event, {
-                  charId: eachChar.id,
-                  avatar: eachChar.avatar,
-                  character_label: eachChar.character_label,
-                  character_name: eachChar.character_name,
-                  created_at: eachChar.created_at,
-                  pub_date: eachChar.pub_date,
-                  user_id: eachChar.user_id,
-                  username: eachChar.username,
-                  search_id: eachChar.search_id,
-                  charPage: true
-
-                })} > <RiDeleteBinFill /> </a>
+                <a href='/' onClick={event => handleDelete(event, { charId: eachChar.id })} > <RiDeleteBinFill /> </a>
               </ToolTip>
             </div>
           </div>
