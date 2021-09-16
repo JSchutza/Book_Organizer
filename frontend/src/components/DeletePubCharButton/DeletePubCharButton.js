@@ -7,40 +7,21 @@ import { useHistory } from "react-router-dom";
 
 
 
-const DeletePubCharButton = ({ charId, search_id, data }) => {
+const DeletePubCharButton = ({ charId }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
 
-
-
-
-
-  const handle = (event, choice) => {
+  const handleDelete = event => {
     event.preventDefault();
-
-    // dispatch(thunk_deleteUsersPubChars({ charPage: true, characterId: charId, search_id: undefined }));
-
-
-    // dispatch(thunk_deleteUsersPubChars({ charPage: false, characterId: charId, search_id }));
-
+    dispatch(thunk_deleteUsersPubChars(charId));
   }
-
-
-
-
-
 
 
 
   return (
     <>
-        <div>
-          <h3>Are you sure you want to delete this character? It can not be undone. </h3>
-          <a href='/' onClick={(event) => handle(event, true)}>Yes</a>
-          <br/>
-          <a href='/' onClick={(event) => handle(event, false)}>No</a>
-        </div>
+      <button onClick={event => handleDelete(event)}> Delete </button>
     </>
   )
 };
