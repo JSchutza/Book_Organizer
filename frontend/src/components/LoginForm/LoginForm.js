@@ -1,4 +1,4 @@
-import React from 'react';
+import { useHistory } from "react-router-dom";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/thunks/session.js';
@@ -16,21 +16,28 @@ import { IoIosPower } from "react-icons/io";
 const LoginForm = ({ closeModal }) => {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
 
-  const onSubmit = (event) => {
+
+  const onSubmit = event => {
     event.preventDefault();
     dispatch(login(email, password));
+    closeModal();
+    history.push("/profile");
   }
+
+
 
 
   const handleDemo = event => {
     event.preventDefault();
     dispatch(login("demo@aa.io", "password"));
     closeModal();
+    history.push("/profile");
   }
+
 
 
 

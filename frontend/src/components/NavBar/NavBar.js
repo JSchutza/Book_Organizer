@@ -47,17 +47,17 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     <div>
       <nav className={styles.nav}>
           <ToolTip content={'Characters'} >
-          <li> <NavLink to="/characters"  onClick={event => event.preventDefault()} > <GiCardDraw/> </NavLink></li>
+          <li> <NavLink to="/characters" > <GiCardDraw/> </NavLink></li>
           </ToolTip>
 
 
           <ToolTip content={'Profile'} >
-            <li> <NavLink to="/profile"  onClick={event => event.preventDefault()}> <CgProfile/> </NavLink></li>
+            <li> <NavLink to="/profile" > <CgProfile/> </NavLink></li>
           </ToolTip>
 
 
           <ToolTip content={'Books'} >
-            <li> <NavLink to="/books"  onClick={event => event.preventDefault()}> <GiBookshelf/> </NavLink></li>
+            <li> <NavLink to="/books" > <GiBookshelf/> </NavLink></li>
           </ToolTip>
 
 
