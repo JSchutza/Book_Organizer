@@ -12,8 +12,11 @@ import { useUser } from "../../context/UserContext.js";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+import CreateCharacterForm from "../CreateCharacterForm";
 import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
+import ReactModal from 'react-modal';
+
 
 import styles from "./characterpage.module.css"
 
@@ -25,6 +28,8 @@ const CharacterPage = () => {
   const [ loading, setLoading ] = useState(false);
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
+  const [ openModal, setOpenModal ] = useState(false);
+
   let endloading;
 
   const allChars = useSelector((store) => store.characterPageReducer.characters);
@@ -62,6 +67,10 @@ const CharacterPage = () => {
   }, [specificChar, dispatch]);
 
 
+
+  const closeModal = () => {
+    setOpenModal(false);
+  };
 
 
 
@@ -103,7 +112,7 @@ const CharacterPage = () => {
 
   const createCharactersClick = (event) => {
     event.preventDefault();
-
+    setOpenModal(true);
   }
 
 
@@ -257,9 +266,21 @@ const CharacterPage = () => {
 
     <div className={styles.create_button}>
       <ToolTip content='Create'>
-        <a href='/' onClick={(event) => createCharactersClick(event)}> <BsFillPlusSquareFill/> </a>
+        <Link href='/' onClick={(event) => createCharactersClick(event)}> <BsFillPlusSquareFill /> </Link>
       </ToolTip>
     </div>
+
+
+      <ReactModal
+        isOpen={openModal}
+        onRequestClose={closeModal}
+        appElement={document.getElementById('root')}
+      >
+        <CreateCharacterForm closeModal={closeModal} />
+
+      </ReactModal>
+
+
 
     <div className={styles.characters_header}>
       <h1> Characters </h1>
