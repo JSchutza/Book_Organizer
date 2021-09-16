@@ -96,7 +96,8 @@ const CharacterPage = () => {
 
   const handleDelete = (event, { charId }) => {
     event.preventDefault();
-    console.log(charId, "<---------------");
+    dispatch(thunk_deleteUsersPubChars(charId))
+
   }
 
 
