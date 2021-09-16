@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 
 
 
-const CreateCharacterForm = ({ data }) => {
+const CreateCharacterForm = ({ closeModal }) => {
   const [ avatarUrl, setAvatarUrl ] = useState("");
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
@@ -41,14 +41,7 @@ const CreateCharacterForm = ({ data }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(thunk_newPubCharacter({ urlpreview, charname, charlabel }));
-
-    if (data === null) return;
-    if (data.setIsHidden) {
-      dispatch(hideModal());
-      data.setIsHidden("");
-      history.push(data.lastpage);
-    }
-
+    closeModal();
   };
 
 

@@ -1,115 +1,68 @@
-import React from 'react';
-import { NavLink } from "react-router-dom";
-import LogoutButton from "../LogoutButton"
-import styles from "./navbar.module.css";
+import { NavLink, useHistory } from "react-router-dom";
+
 import { useDispatch } from "react-redux"
-import { thunk_getAllCharacters } from "../../store/thunks/characters.js"
+
 import { FiLogIn } from 'react-icons/fi'
 import { ImUserPlus } from "react-icons/im";
 import { GiBookshelf, GiCardDraw } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import { BsQuestionSquareFill } from "react-icons/bs";
+
+import { useUser } from "../../context/UserContext";
+
+import LogoutButton from "../LogoutButton"
 import ToolTip from "../ToolTip";
-import { showModal, contentModal, hideModal } from "../../store/actions/modal.js";
-import { hideLoader } from "../../store/actions/loader.js";
-import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
-import { clearErrors } from "../../store/actions/session.js";
+
+import styles from "./navbar.module.css";
 
 
-const NavBar = ({ userStatus }) => {
+const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
+  const { isUser } = useUser();
+  const history = useHistory();
   const dispatch = useDispatch();
 
 
-  const showLoginForm = (event) => {
+
+  const handleLogin = event => {
     event.preventDefault();
-    dispatch(clearErrors());
-    dispatch(contentModal("login"));
-    dispatch(showModal());
-    dispatch(hideLoader());
+    setLogin(true);
+    setOpenModal(true);
   }
 
-  const showSignupForm = (event) => {
+
+
+  const handleSignup = event => {
     event.preventDefault();
-    dispatch(clearErrors());
-    dispatch(contentModal("signin"))
-    dispatch(showModal());
-    dispatch(hideLoader());
+    setSignup(true);
+    setOpenModal(true);
   }
 
 
 
-  const handleCharacterClick = () => {
-    dispatch(thunk_getAllCharacters());
-    dispatch(hideModal());
-    dispatch(contentModal(null));
-    dispatch(clearSearchResults({ characters: null }));
-    dispatch(searchTriggered({ search: null }));
-  }
+  // if the user IS logged in
 
-
-
-  const handleProfileClick = () => {
-    dispatch(hideModal());
-    dispatch(contentModal(null));
-  }
-
-  const handleBooksClick = () => {
-    dispatch(hideModal());
-    dispatch(contentModal(null));
-  }
-
-
-
-
-  if (userStatus === false){
-    return (
-      <>
-      <div>
-        <nav className={styles.nav}>
-
-            <ToolTip content={'Login'} >
-              <li> <a href='/' onClick={(event) => showLoginForm(event)} > <FiLogIn /> </a> </li>
-            </ToolTip>
-
-
-
-            <ToolTip content={'Signup'} >
-              <li> <a href='/' onClick={(event) => showSignupForm(event)}> <ImUserPlus /> </a> </li>
-            </ToolTip>
-
-        </nav>
-      </div>
-
-
-    </>
-    );
-  }
-
-
-
-
-
+  if (isUser) {
   return (
     <>
     <div>
       <nav className={styles.nav}>
           <ToolTip content={'Characters'} >
-          <li> <NavLink to="/characters" exact onClick={() => handleCharacterClick()} > <GiCardDraw/> </NavLink></li>
+          <li> <NavLink to="/characters" > <GiCardDraw/> </NavLink></li>
           </ToolTip>
 
 
           <ToolTip content={'Profile'} >
-            <li> <NavLink to="/profile" exact onClick={() => handleProfileClick()}> <CgProfile/> </NavLink></li>
+            <li> <NavLink to="/profile" > <CgProfile/> </NavLink></li>
           </ToolTip>
 
 
           <ToolTip content={'Books'} >
-            <li> <NavLink to="/books" exact onClick={() => handleBooksClick()}> <GiBookshelf/> </NavLink></li>
+            <li> <NavLink to="/books" > <GiBookshelf/> </NavLink></li>
           </ToolTip>
 
 
           <ToolTip content={'Polls'}>
-            <li> <NavLink to='/polls' exact> <BsQuestionSquareFill/> </NavLink> </li>
+            <li> <NavLink to='/polls' > <BsQuestionSquareFill/> </NavLink> </li>
           </ToolTip>
 
 
@@ -118,6 +71,29 @@ const NavBar = ({ userStatus }) => {
           </ToolTip>
       </nav>
     </div>
+
+
+    </>
+  );
+
+  }
+
+// if the user is NOT logged in
+  return (
+    <>
+      <div>
+        <nav className={styles.nav}>
+
+          <ToolTip content={'Login'} >
+            <li> <NavLink to='/login' onClick={event => handleLogin(event)}> <FiLogIn /> </NavLink> </li>
+          </ToolTip>
+
+          <ToolTip content={'Signup'} >
+            <li> <NavLink to='/signup' onClick={event => handleSignup(event)}> <ImUserPlus /> </NavLink> </li>
+          </ToolTip>
+
+        </nav>
+      </div>
 
 
     </>
