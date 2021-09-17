@@ -20,11 +20,10 @@ const DeleteUserButton = ({ data }) => {
       if (data === null) return;
       dispatch(thunk_deleteUserAccount(data.isUser.id));
       history.push(data.lastpage);
-      dispatch(dataModal(null));
-      dispatch(showLoader());
+
     }
 
-      dispatch(hideModal());
+
       history.push(data.lastpage);
   }
 

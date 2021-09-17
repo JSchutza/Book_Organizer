@@ -29,9 +29,7 @@ const Pages = ({ bookId }) => {
 
   const handleDelete = (event, payload) => {
     event.preventDefault();
-    dispatch(contentModal("DeletePage"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 
@@ -39,9 +37,7 @@ const Pages = ({ bookId }) => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-    dispatch(contentModal("UpdatePage"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 

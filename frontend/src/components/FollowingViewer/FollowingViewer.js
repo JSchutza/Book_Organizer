@@ -19,31 +19,12 @@ import defaultImg from "../../icons/default_user.svg";
 const FollowingViewer = ({ data }) => {
   const [addfollow, setAddfollow] = useState(0);
   const dispatch = useDispatch();
-  // const history = useHistory();
-  // const followersInfo = useSelector(store => store.followersReducer.followers);
+
+
   const followingInfo = useSelector(store => store.followingReducer.following);
-  // const followOrUnFollowMessage = useSelector(store => store.followingReducer.message);
 
 
 
-
-
-  // const handle = (event, userId, Type) => {
-  //   event.preventDefault();
-  //   if (data === null) return;
-
-  //   // dispatch(thunk_followOrUnfollow(userId));
-  //   if (Type === 'FOLLOW') {
-  //     setAddfollow(1);
-  //   } else if (Type === 'UN_FOLLOW') {
-  //     setAddfollow(0);
-  //   }
-
-  //   // dispatch(dataModal(null));
-  //   // dispatch(contentModal(null));
-  //   // dispatch(hideModal());
-  //   // history.push(data.lastpage);
-  // }
 
 
 

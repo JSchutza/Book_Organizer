@@ -34,7 +34,6 @@ const Profile = () => {
 
   useEffect(() => {
     if (!loading) {
-      dispatch(hideModal());
       dispatch(thunk_getAllBooks());
       dispatch(thunk_getUsersPolls());
       dispatch(thunk_getUsersFollowers());
@@ -49,9 +48,7 @@ const Profile = () => {
 
   const handleDelete = (event) => {
     event.preventDefault();
-    dispatch(contentModal("DeleteUser"));
-    dispatch(dataModal({ isUser, lastpage: "/" }));
-    dispatch(showModal());
+
     history.push("/dropdown");
   };
 
@@ -61,9 +58,7 @@ const Profile = () => {
 
   const handleUpdate = (event) => {
     event.preventDefault();
-    dispatch(contentModal("UpdateUser"));
-    dispatch(dataModal({ isUser, lastpage: "/" }));
-    dispatch(showModal());
+
     history.push("/dropdown");
   };
 
@@ -71,9 +66,7 @@ const Profile = () => {
 
   const handleFollowerViewClick = event => {
     event.preventDefault();
-    dispatch(contentModal("ViewFollowers"));
-    dispatch(dataModal({ lastpage: "/" }));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 
@@ -81,9 +74,7 @@ const Profile = () => {
 
   const handleFollowingViewClick = event => {
     event.preventDefault();
-    dispatch(contentModal("FollowingView"));
-    dispatch(dataModal({ lastpage: "/" }));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 

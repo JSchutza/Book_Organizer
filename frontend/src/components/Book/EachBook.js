@@ -37,9 +37,9 @@ const EachBook = () => {
 
   const handleCreateChar = event => {
     event.preventDefault();
-    dispatch(dataModal({ book_id: bookId, lastpage: `/books/${bookId}` }));
-    dispatch(contentModal("CreatePriChar"));
-    dispatch(showModal());
+
+
+
     history.push("/dropdown");
   }
 
@@ -47,9 +47,9 @@ const EachBook = () => {
 
   const handleCreatePage = event => {
     event.preventDefault();
-    dispatch(dataModal({ book_id: bookId, lastpage: `/books/${bookId}` }));
-    dispatch(contentModal("CreatePage"));
-    dispatch(showModal());
+
+
+
     history.push("/dropdown");
   }
 

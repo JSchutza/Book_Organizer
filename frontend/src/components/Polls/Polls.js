@@ -42,9 +42,7 @@ const Polls = () => {
 
   const handleCreate = (event) => {
     event.preventDefault();
-    dispatch(contentModal("CreatePoll"));
-    dispatch(dataModal({ lastpage: '/polls' }));
-    dispatch(showModal());
+
     history.push('/dropdown');
   }
 
@@ -59,9 +57,7 @@ const Polls = () => {
 
   const handleUpdate = (event, pollId) => {
     event.preventDefault();
-    dispatch(dataModal({ pollId, lastpage: '/polls' }));
-    dispatch(contentModal("UpdatePoll"));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 

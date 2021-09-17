@@ -62,19 +62,14 @@ const CharacterSearch = () => {
 
   const handleDelete = (event, payload) => {
     event.preventDefault();
-    setIsHidden("hide");
-    dispatch(contentModal("DeletePubChar"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-    dispatch(contentModal("EditPubChar"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 

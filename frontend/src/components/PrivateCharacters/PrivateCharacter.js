@@ -37,9 +37,7 @@ const PrivateCharacter = ({ bookId }) => {
 
   const handleDelete = (event, payload) => {
     event.preventDefault();
-    dispatch(contentModal("DeletePriChar"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 
@@ -48,9 +46,7 @@ const PrivateCharacter = ({ bookId }) => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-    dispatch(contentModal("UpdatePriChar"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 

@@ -72,9 +72,8 @@ const BookViewer = () => {
 
   const handleDeleteBook = (event, bookId) => {
     event.preventDefault();
-    dispatch(contentModal("DeleteBook"));
-    dispatch(showModal());
-    dispatch(dataModal({ lastpage: '/books', bookId }));
+
+
     history.push("/dropdown");
   }
 

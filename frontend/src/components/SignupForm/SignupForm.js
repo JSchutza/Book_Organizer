@@ -23,8 +23,7 @@ const SignUpForm = () => {
   const onSignUp = (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      dispatch(hideModal());
-      dispatch(contentModal(null));
+
       dispatch(signUp(username, email, password));
     }
     // set password does not match error / state

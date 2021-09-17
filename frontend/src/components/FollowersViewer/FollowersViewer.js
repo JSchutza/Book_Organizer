@@ -41,10 +41,7 @@ const FollowersViewer = ({ data }) => {
       setAddfollow(0);
     }
 
-    // dispatch(dataModal(null));
-    // dispatch(contentModal(null));
-    // dispatch(hideModal());
-    // history.push(data.lastpage);
+
   }
 
 
