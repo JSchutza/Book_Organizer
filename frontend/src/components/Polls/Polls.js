@@ -8,7 +8,7 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
-import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+
 import styles from "./polls.module.css";
 
 

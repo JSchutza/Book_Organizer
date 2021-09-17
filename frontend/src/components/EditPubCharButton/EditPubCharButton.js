@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { hideModal } from "../../store/actions/modal.js";
+
 import { thunk_updatePubCharacter } from "../../store/thunks/characters.js";
 import { nanoid } from "nanoid";
 import { useHistory } from "react-router-dom";

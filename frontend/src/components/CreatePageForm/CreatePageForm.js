@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { hideModal } from "../../store/actions/modal.js";
+
 import { thunk_updatePage, thunk_createPage } from "../../store/thunks/books.js";
 import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid"

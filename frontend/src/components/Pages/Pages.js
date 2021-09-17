@@ -4,7 +4,7 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import { useHistory } from "react-router-dom";
 import Tooltip from "../ToolTip";
-import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+
 import { thunk_getAllPages } from "../../store/thunks/books.js";
 import styles from "./pages.module.css";
 

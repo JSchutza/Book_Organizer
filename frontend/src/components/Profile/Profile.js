@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
 import { thunk_getUsersFollowers } from "../../store/thunks/followers.js";
 import { thunk_getFollowing } from "../../store/thunks/following.js";
-import { hideModal, showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+
 import {Book} from "../Book";
 import { NavLink, useHistory } from "react-router-dom";
 import { thunk_getUsersPolls } from "../../store/thunks/polls.js";

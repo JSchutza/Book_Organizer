@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from "nanoid";
 import { thunk_createNewPoll, thunk_updatePoll } from "../../store/thunks/polls.js";
-import { hideModal } from "../../store/actions/modal.js";
+
 import { useHistory } from "react-router-dom";
 import styles from "./createpollform.module.css";
 

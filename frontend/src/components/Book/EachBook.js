@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import styles from "./book.module.css";
 
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
-import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+
 
 // icon imports here
 import { BsFillPersonPlusFill } from "react-icons/bs";

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { showLoader } from "../../store/actions/loader.js";
+
 import { clearErrors } from "../../store/actions/session.js";
 import styles from "./errors.module.css";
 

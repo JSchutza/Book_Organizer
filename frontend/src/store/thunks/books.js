@@ -2,7 +2,7 @@
 
 import { getAllBooks, getAllPriChars, getAllPages, deleteBook, deleteUsersPrivateChars, deletePage } from "../actions/books.js";
 import { setErrors, resetErrors } from "../actions/errors.js";
-import { hideModal } from "../actions/modal.js";
+
 
 
 

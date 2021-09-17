@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 
 // reducer imports here
 import { errorsReducer } from "./reducers/errors.js";
-import { loaderReducer } from "./reducers/loader.js";
+
 
 import { usersReducer } from './reducers/session.js';
 import { characterPageReducer, searchCharacterPageReducer, searchTriggeredReducer } from "./reducers/characters.js";
@@ -17,7 +17,6 @@ import { followingReducer } from "./reducers/following.js";
 // root reducer here
 const rootReducer = combineReducers({
   errorsReducer,
-  loaderReducer,
   usersReducer,
   characterPageReducer,
   searchCharacterPageReducer,

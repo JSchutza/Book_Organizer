@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { hideModal } from "../../store/actions/modal.js";
+
 import { useHistory } from "react-router-dom";
 import { thunk_deleteBook } from "../../store/thunks/books";
 

@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 // import { thunk_followOrUnfollow } from "../../store/thunks/following.js";
 
 
-// import { useHistory } from "react-router-dom";
-// import { hideModal, dataModal, contentModal } from "../../store/actions/modal.js";
 
 
 import styles from "./followingviewer.module.css";

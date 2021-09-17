@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../store/thunks/session.js";
-import { hideModal, contentModal } from "../../store/actions/modal.js";
+
 
 import styles from "./signupform.module.css"
 import ToolTip from "../ToolTip";
