@@ -26,7 +26,7 @@ import styles from "./characterpage.module.css"
 
 
 const CharacterPage = () => {
-  const [ loading, setLoading ] = useState(false);
+  const [ loading, setLoading ] = useState(true);
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
   const [ openModal, setOpenModal ] = useState(false);
@@ -54,11 +54,11 @@ const CharacterPage = () => {
 
 
   useEffect(() => {
-    if (!loading) {
+    if (loading) {
       dispatch(thunk_getAllCharacters());
 
       endloading = setTimeout(() => {
-        setLoading(true);
+        setLoading(false);
       }, 1000);
     }
 
@@ -96,9 +96,12 @@ const CharacterPage = () => {
 
   const handleDelete = (event, { charId }) => {
     event.preventDefault();
-    dispatch(thunk_deleteUsersPubChars(charId))
-
-  }
+    dispatch(thunk_deleteUsersPubChars(charId));
+    setLoading(true);
+    endloading = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
 
 
 
@@ -145,7 +148,7 @@ const CharacterPage = () => {
 
 
 
-  if (allChars === null || !loading) {
+  if (allChars === null || loading) {
     return (
       <>
         <LoadScreen />
