@@ -5,6 +5,7 @@ import { useHistory, NavLink, useParams } from "react-router-dom";
 
 
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
+import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
 
 import { useUser } from '../../context/UserContext';
 
@@ -40,9 +41,9 @@ const SearchResults = () => {
 
 
 
-  const handleDelete = (event, payload) => {
+  const handleDelete = (event, { charId }) => {
     event.preventDefault();
-
+    dispatch(thunk_deleteUsersPubChars(charId));
   }
 
 
@@ -69,7 +70,7 @@ const SearchResults = () => {
           <h2>Search Results</h2>
           <div className={styles.search_back_button}>
             <ToolTip content={"Back"} >
-              <a href='/' onClick={(event) => clearSearch(event)} > <IoIosArrowDropleftCircle /> </a>
+              <a href='/' onClick={event => clearSearch(event)} > <IoIosArrowDropleftCircle /> </a>
             </ToolTip>
           </div>
         </div>
@@ -79,7 +80,7 @@ const SearchResults = () => {
           {Object.values(char).map(eachChar => (
             <>
               <div className={styles.search_results_each_card}>
-                <a href='/' onClick={event => event.preventDefault()}>
+                <NavLink to='/' onClick={event => clearSearch(event)} >
 
                   <li className={styles.search_results_each_detail} key={eachChar.id}>
                     <div className={styles.search_results_each_detail_text}>
@@ -91,23 +92,13 @@ const SearchResults = () => {
                   </li>
 
                   <img className={styles.search_results_each_img} src={eachChar.avatar} alt={eachChar.character_name} />
-                </a>
+                </NavLink>
 
                 {searchId === isUser.search_id ?
                   <div className={styles.each_result_button_wrap}>
                     <div className={styles.each_result_delete_button}>
                       <ToolTip content={"Delete"} >
-                        <a href='/' onClick={(event) => handleDelete(event, {
-                          charId: eachChar.id,
-                          avatar: eachChar.avatar,
-                          character_label: eachChar.character_label,
-                          character_name: eachChar.character_name,
-                          created_at: eachChar.created_at,
-                          pub_date: eachChar.pub_date,
-                          user_id: eachChar.user_id,
-                          username: eachChar.username,
-                          search_id: eachChar.search_id
-                        })}> <RiDeleteBinFill /> </a>
+                        <a href='/' onClick={event => handleDelete(event, { charId: eachChar.id })}> <RiDeleteBinFill /> </a>
                       </ToolTip>
                     </div>
 
@@ -115,7 +106,7 @@ const SearchResults = () => {
 
                     <div className={styles.each_result_update_button}>
                       <ToolTip content={"Update"} >
-                        <a href='/' onClick={(event) => handleUpdate(event, {
+                        <a href='/' onClick={event => handleUpdate(event, {
                           charId: eachChar.id,
                           avatar: eachChar.avatar,
                           character_label: eachChar.character_label,
