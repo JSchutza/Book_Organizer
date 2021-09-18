@@ -8,10 +8,6 @@ const USER_SEARCH = "session/USER_SEARCH";
 
 
 
-
-
-
-
 // pub characters
 const ALL_CHARACTERS = "characters/ALL_CHARACTERS"
 const SEARCH_PUB_CHARACTERS = "characters/SEARCH_PUB_CHARACTERS";
