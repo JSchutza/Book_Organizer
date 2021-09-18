@@ -1,6 +1,6 @@
 
 import {
-  ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, SEARCH_TRIGGERED, CLEAR_SEARCH_PUB_CHARS, DELETE_USERS_PUB_CHARS
+  ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, CLEAR_SEARCH_PUB_CHARS, DELETE_USERS_PUB_CHARS, DELETE_PUB_CHAR_SEARCH, UPDATE_PUB_CHAR
 } from '../types'
 
 
@@ -16,6 +16,9 @@ const characterPageReducer = (state = { characters: null }, action) => {
       delete state.characters[id];
       return { ...state, characters: { ...state.characters } };
 
+    case UPDATE_PUB_CHAR:
+      return { ...state, characters: { ...state.characters, ...action.character } };
+
     default:
       return state;
   }
@@ -29,15 +32,15 @@ const characterPageReducer = (state = { characters: null }, action) => {
 const searchCharacterPageReducer = (state = { characters: null }, action) => {
   switch (action.type) {
     case SEARCH_PUB_CHARACTERS:
-      return { ...action.characters.public_characters };
+      return { characters: { ...action.characters.public_characters } };
 
     case CLEAR_SEARCH_PUB_CHARS:
       return { characters: null };
 
-    // case DELETE_USERS_PUB_CHARS:
-    //   const id = action.character;
-    //   delete state.characters[id];
-    //   return { ...state };
+    case DELETE_PUB_CHAR_SEARCH:
+      const id = action.charId;
+      delete state.characters[id];
+      return { ...state, characters: { ...state.characters } };
 
     default:
       return state;
@@ -47,14 +50,6 @@ const searchCharacterPageReducer = (state = { characters: null }, action) => {
 
 
 
-const searchTriggeredReducer = (state = { search: null }, action) => {
-  switch (action.type) {
-    case SEARCH_TRIGGERED:
-      return { ...action.search }
-    default:
-      return state;
-  }
-}
 
 
 
@@ -66,7 +61,7 @@ const searchTriggeredReducer = (state = { search: null }, action) => {
 export {
   characterPageReducer,
   searchCharacterPageReducer,
-  searchTriggeredReducer,
+
 
 
 }

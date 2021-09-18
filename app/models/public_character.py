@@ -17,6 +17,10 @@ class PublicCharacter(db.Model):
   created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 
+  def get_id(self):
+    return self.id
+
+
   def get_avatar(self):
     return {
         "avatar": self.avatar,
