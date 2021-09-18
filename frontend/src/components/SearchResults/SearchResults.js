@@ -127,15 +127,19 @@ const SearchResults = () => {
             </>
           ))}
 
-          {/* {searchId === isUser.search_id ?
-            <></>
+          {searchId === isUser.search_id ?
+            <div>
+              <NavLink to='/profile' exact >
+                Profile
+              </NavLink>
+            </div>
             :
             <div>
               <NavLink to={`/user/${searchId}`} exact >
                 Profile
               </NavLink>
             </div>
-          } */}
+          }
         </div>
       </>
     )
