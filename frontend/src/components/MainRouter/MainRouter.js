@@ -9,7 +9,7 @@ import { useUser } from "../../context/UserContext.js";
 
 import Profile from "../Profile";
 import EachUsersProfile from "../EachUsersProfile";
-import CharacterSearch from "../CharacterSearch";
+
 import CharacterPage from "../CharacterPage";
 import BookViewer from "../BookViewer";
 import { EachBook } from "../Book";
@@ -55,8 +55,11 @@ const MainRouter = () => {
           </Route>
 
           <Route path="/characters" exact>
-            <CharacterSearch />
-            {/* <CharacterPage /> */}
+            <CharacterPage />
+          </Route>
+
+          <Route path="/characters/:searchId" exact>
+            
           </Route>
 
           <Route path='/books' exact>

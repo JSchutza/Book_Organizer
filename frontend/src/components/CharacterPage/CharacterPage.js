@@ -13,6 +13,7 @@ import { useUser } from "../../context/UserContext.js";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+import CharacterSearch from "../CharacterSearch";
 import CreateCharacterForm from "../CreateCharacterForm";
 import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
@@ -254,6 +255,7 @@ const CharacterPage = () => {
 
   return (
     <>
+      <CharacterSearch />
 
     <div className={styles.create_button}>
       <ToolTip content='Create'>
