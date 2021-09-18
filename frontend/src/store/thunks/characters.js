@@ -1,6 +1,14 @@
 
 
-import { getAllCharacters, searchForUsersPubChars, deleteUsersPubChars, updatePubChar } from "../actions/characters.js";
+import {
+  getAllCharacters,
+  searchForUsersPubChars,
+  deleteUsersPubChars,
+  updatePubChar,
+  createPubChar
+} from "../actions/characters.js";
+
+
 import { deleteSearchPubChar } from "../actions/characters.js";
 import { setErrors, resetErrors  } from "../actions/errors.js";
 
@@ -96,8 +104,8 @@ const thunk_newPubCharacter = ({ urlpreview, charname, charlabel }) => async (di
     dispatch(setErrors(data.errors));
     return;
   }
-// change below***
-  dispatch(thunk_getAllCharacters());
+
+  dispatch(createPubChar(data));
 }
 
 
