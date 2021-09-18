@@ -10,23 +10,28 @@ const USER_SEARCH = "session/USER_SEARCH";
 
 
 
-// characters
+// pub characters
 const ALL_CHARACTERS = "characters/ALL_CHARACTERS"
 const SEARCH_PUB_CHARACTERS = "characters/SEARCH_PUB_CHARACTERS";
-
 const CLEAR_SEARCH_PUB_CHARS = "characters/CLEAR_SEARCH_PUB_CHARS";
 const DELETE_USERS_PUB_CHARS = "characters/DELETE_USERS_PUB_CHARS";
-const DELETE_USERS_PRI_CHARS = 'characters/DELETE_USERS_PRI_CHARS'
 
 
 
 // books
 const GET_USERS_BOOKS = "books/GET_USERS_BOOKS";
-const GET_USERS_PRI_CHARS = "books/GET_USERS_PRI_CHARS";
-const GET_USERS_PAGES = "books/GET_USERS_PAGES";
 const DELETE_BOOK = "books/DELETE_BOOK";
+
+
+// pages
+const GET_USERS_PAGES = "books/GET_USERS_PAGES";
 const DELETE_USERS_PAGE = 'books/DELETE_USERS_PAGE';
 
+
+
+// pri characters
+const GET_USERS_PRI_CHARS = "books/GET_USERS_PRI_CHARS";
+const DELETE_USERS_PRI_CHARS = 'characters/DELETE_USERS_PRI_CHARS'
 
 
 
