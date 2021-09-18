@@ -10,14 +10,12 @@ const USER_SEARCH = "session/USER_SEARCH";
 
 
 
+
 // pub characters
 const ALL_CHARACTERS = "characters/ALL_CHARACTERS"
 const SEARCH_PUB_CHARACTERS = "characters/SEARCH_PUB_CHARACTERS";
 const CLEAR_SEARCH_PUB_CHARS = "characters/CLEAR_SEARCH_PUB_CHARS";
 const DELETE_USERS_PUB_CHARS = "characters/DELETE_USERS_PUB_CHARS";
-
-
-
 
 
 
