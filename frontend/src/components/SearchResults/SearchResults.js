@@ -25,8 +25,7 @@ import styles from "./searchresults.module.css";
 
 
 const SearchResults = () => {
-  const searchedChar = useSelector(store => store.searchCharacterPageReducer.characters);
-  const char = useSelector(store => store.searchCharacterPageReducer);
+  const chars = useSelector(store => store.searchCharacterPageReducer.characters);
   const { searchId } = useParams();
   const { isUser } = useUser();
   const dispatch = useDispatch();
@@ -43,7 +42,7 @@ const SearchResults = () => {
 
   const handleDelete = (event, { charId }) => {
     event.preventDefault();
-    dispatch(thunk_deleteUsersPubChars(charId));
+    dispatch(thunk_deleteUsersPubChars(charId, true));
   }
 
 
@@ -62,7 +61,7 @@ const SearchResults = () => {
 
 
 
-  if (searchedChar !== null && char) {
+  if (chars) {
 
     return (
       <>
@@ -77,7 +76,7 @@ const SearchResults = () => {
 
 
         <div className={styles.search_results_wrap}>
-          {Object.values(char).map(eachChar => (
+          {Object.values(chars).map(eachChar => (
             <>
               <div className={styles.search_results_each_card}>
                 <NavLink to='/' onClick={event => clearSearch(event)} >

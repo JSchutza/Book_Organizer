@@ -1,6 +1,6 @@
 
 import {
-  ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, CLEAR_SEARCH_PUB_CHARS, DELETE_USERS_PUB_CHARS
+  ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, CLEAR_SEARCH_PUB_CHARS, DELETE_USERS_PUB_CHARS, DELETE_PUB_CHAR_SEARCH
 } from '../types'
 
 
@@ -29,15 +29,15 @@ const characterPageReducer = (state = { characters: null }, action) => {
 const searchCharacterPageReducer = (state = { characters: null }, action) => {
   switch (action.type) {
     case SEARCH_PUB_CHARACTERS:
-      return { ...action.characters.public_characters };
+      return { characters: { ...action.characters.public_characters } };
 
     case CLEAR_SEARCH_PUB_CHARS:
       return { characters: null };
 
-    // case DELETE_USERS_PUB_CHARS:
-    //   const id = action.character;
-    //   delete state.characters[id];
-    //   return { ...state };
+    case DELETE_PUB_CHAR_SEARCH:
+      const id = action.charId;
+      delete state.characters[id];
+      return { ...state, characters: { ...state.characters } };
 
     default:
       return state;

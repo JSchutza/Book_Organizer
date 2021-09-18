@@ -1,5 +1,5 @@
 import {
-  ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, CLEAR_SEARCH_PUB_CHARS, DELETE_USERS_PUB_CHARS
+  ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, CLEAR_SEARCH_PUB_CHARS, DELETE_USERS_PUB_CHARS, DELETE_PUB_CHAR_SEARCH
 } from '../types'
 
 
@@ -8,6 +8,7 @@ const getAllCharacters = (characters) => ({
   type: ALL_CHARACTERS,
   characters
 });
+
 
 
 const searchForUsersPubChars = (characters) => ({
@@ -25,6 +26,8 @@ const clearSearchResults = (characters) => ({
 });
 
 
+
+
 const deleteUsersPubChars = (character) => ({
   type: DELETE_USERS_PUB_CHARS,
   character
@@ -33,6 +36,11 @@ const deleteUsersPubChars = (character) => ({
 
 
 
+const deleteSearchPubChar = (charId) => ({
+  type: DELETE_PUB_CHAR_SEARCH,
+  charId
+});
+
 
 
 export {
@@ -40,7 +48,7 @@ export {
   searchForUsersPubChars,
   clearSearchResults,
   deleteUsersPubChars,
-
+  deleteSearchPubChar,
 
 
 }

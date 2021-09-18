@@ -1,6 +1,7 @@
 
 
 import { getAllCharacters, searchForUsersPubChars, deleteUsersPubChars } from "../actions/characters.js";
+import { deleteSearchPubChar } from "../actions/characters.js";
 import { setErrors, resetErrors  } from "../actions/errors.js";
 
 
@@ -64,7 +65,7 @@ const thunk_deleteUsersPubChars = (characterId, inSearch=false) => async (dispat
   // if the thunk was dispatched in the search results component
   if (inSearch) {
     dispatch(deleteUsersPubChars(characterId));
-    dispatch();
+    dispatch(deleteSearchPubChar(characterId));
     return;
   }
 
