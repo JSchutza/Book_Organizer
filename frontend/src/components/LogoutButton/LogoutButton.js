@@ -27,13 +27,9 @@ const LogoutButton = () => {
 
   const onLogout = (event) => {
     event.preventDefault();
-    dispatch(hideModal());
-    dispatch(showLoader());
+
     dispatch(logout());
-    dispatch(resetErrors());
-    setTimeout(() => {
-      dispatch(clearErrors());
-    }, 100);
+
     history.push("/");
   };
 

@@ -76,7 +76,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
   const onUpdate = async (event) => {
     event.preventDefault();
     dispatch(thunk_updatePriChar({ urlpreview, charname, charlabel, bookId, charId: data.charId }));
-    dispatch(hideModal());
+
     history.push(`/books/${bookId}`);
   }
 

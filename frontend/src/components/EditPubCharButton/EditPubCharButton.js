@@ -46,11 +46,11 @@ const EditPubCharButton = ({ charId, search_id, data }) => {
 
     if (data.charPage === true) {
       dispatch(thunk_updatePubCharacter({ charPage: true, urlpreview, charname, charlabel, charId, search_id }));
-      dispatch(hideModal());
+
       history.push(data.lastpage);
     } else if (data.charPage === undefined) {
       dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId, search_id }));
-      dispatch(hideModal());
+
       history.push(data.lastpage);
     }
 

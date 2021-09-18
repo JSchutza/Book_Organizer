@@ -35,7 +35,7 @@ const CreatePollForm = ({ update=false, data }) => {
   const onSubmit = event => {
     event.preventDefault();
     dispatch(thunk_createNewPoll({ title, questionText }));
-    dispatch(hideModal());
+
     history.push("/polls");
   }
 
@@ -44,7 +44,7 @@ const CreatePollForm = ({ update=false, data }) => {
   const onUpdate = event => {
     event.preventDefault();
     dispatch(thunk_updatePoll({ pollId: data.pollId, title, questionText }));
-    dispatch(hideModal());
+
     history.push("/polls");
   }
 

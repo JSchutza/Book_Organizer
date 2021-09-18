@@ -21,10 +21,10 @@ const DeletePriCharButton = ({ bookId, charId }) => {
     if (choice === true) {
       dispatch(thunk_deleteUsersPrivateChars(bookId, charId));
       dispatch(thunk_getAllPriChars(bookId));
-      dispatch(hideModal());
+
       history.push(`/books/${bookId}`);
     }
-    dispatch(hideModal());
+
     history.push(`/books/${bookId}`);
   }
 

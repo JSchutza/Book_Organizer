@@ -20,10 +20,10 @@ const DeleteBookButton = ({ data }) => {
     event.preventDefault();
     if (choice === true) {
       dispatch(thunk_deleteBook(data.bookId));
-      dispatch(hideModal());
+
       history.push(data.lastpage);
       }
-      dispatch(hideModal());
+
       history.push(data.lastpage);
     }
 

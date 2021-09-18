@@ -61,12 +61,12 @@ const thunk_createPriChar = ({ bookId, urlpreview, charname, charlabel }) => asy
   const data = await response.json();
   if (data.errors) {
     dispatch(setErrors(data.errors));
-    dispatch(hideModal());
+
     return;
   }
   dispatch(thunk_getAllPriChars(bookId));
-  dispatch(resetErrors());
-  dispatch(hideModal());
+
+
 
 }
 
@@ -170,7 +170,7 @@ const thunk_updatePriChar = ({ urlpreview, charname, charlabel, bookId, charId }
   const data = await response.json();
   if (data.errors) {
     dispatch(setErrors(data.errors));
-    dispatch(hideModal());
+
     return;
   }
 
@@ -194,7 +194,7 @@ const thunk_createPage = ({ title, text, bookId }) => async (dispatch) => {
   const data = await response.json();
   if (data.errors) {
     dispatch(setErrors(data.errors));
-    dispatch(hideModal());
+
     return;
   }
 
@@ -221,7 +221,7 @@ const thunk_updatePage = ({ title, text, bookId, pageId }) => async (dispatch) =
   const data = await response.json();
   if (data.errors) {
     dispatch(setErrors(data.errors));
-    dispatch(hideModal());
+
     return;
   }
 

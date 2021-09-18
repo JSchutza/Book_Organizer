@@ -20,11 +20,11 @@ const DeletePageButton = ({ bookId, pageId }) => {
     if (choice === true) {
       dispatch(thunk_deletePage(bookId, pageId));
       dispatch(thunk_getAllPages(bookId));
-      dispatch(hideModal());
+
       history.push(`/books/${bookId}`);
     }
 
-    dispatch(hideModal());
+
     history.push(`/books/${bookId}`);
   }
 
