@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 
 
@@ -8,35 +8,38 @@ import { GrUpdate } from "react-icons/gr";
 
 
 import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
-import { thunk_getFollowing, thunk_followOrUnfollow } from "../../store/thunks/following.js";
+import { thunk_followOrUnfollow } from "../../store/thunks/following.js";
 import { useUser } from "../../context/UserContext";
 
 
-
+import UpdatePubCharForm from "../UpdatePubCharForm";
 import ToolTip from "../ToolTip";
 
+import ReactModal from 'react-modal';
 
 import styles from "./specificpubchar.module.css"
 
 
 
 
-const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar }) => {
-  const [update, setUpdate] = useState(false);
-  const [updatePayload, setUpdatePayload] = useState(null);
+const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar, setSpecificChar }) => {
+  const [ openModal, setOpenModal ] = useState(false);
+  const [ updatePayload, setUpdatePayload ] = useState(null);
 
   const history = useHistory();
   const dispatch = useDispatch();
   const { isUser } = useUser();
 
-// need to on first render / if page is reloaded get specific char information
-// as of rn on page refresh the app goes back to the charpage component due to
-// state being set in charpage component
 
 
 
 
 
+
+  const closeModal = () => {
+    setOpenModal(false);
+    setSpecificChar(false);
+  }
 
 
 
@@ -61,7 +64,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
     setUpdatePayload(payload);
-    setUpdate(true);
+    setOpenModal(true);
   }
 
 
@@ -70,7 +73,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar 
   const handleDelete = (event, { charId }) => {
     event.preventDefault();
     dispatch(thunk_deleteUsersPubChars(charId));
-
+    setSpecificChar(false);
   };
 
 
@@ -95,6 +98,19 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar 
   return (
     <>
       <div className={styles.specific_char_wrap}>
+
+        <ReactModal
+          isOpen={openModal}
+          onRequestClose={closeModal}
+          appElement={document.getElementById('root')}
+        >
+          <UpdatePubCharForm
+            closeUpdateModal={closeModal}
+            payload={updatePayload}
+          />
+
+        </ReactModal>
+
         {/* if the selected character belongs to the currently logged-in user */}
         {theChar.user_id === isUser.id ?
           <>
@@ -161,7 +177,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar 
 
 
 
-
+        {/* if the selected char does NOT belong to the currently logged in user */}
         <div className={styles.specific_char_containter}>
           <a href='/' onClick={(event) => hideSpecificChar(event)}>
 

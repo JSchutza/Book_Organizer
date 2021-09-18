@@ -160,6 +160,7 @@ const CharacterPage = () => {
           theChar={char}
           followingInfo={followingInfo}
           hideSpecificChar={hideSpecificChar}
+          setSpecificChar={setSpecificChar}
         />
       </>
       )
@@ -254,7 +255,7 @@ const CharacterPage = () => {
           onRequestClose={closeUpdateModal}
           appElement={document.getElementById('root')}
         >
-          {/* <CreateCharacterForm closeModal={closeModal} /> */}
+
           <UpdatePubCharForm
             closeUpdateModal={closeUpdateModal}
             payload={updatePayload}
