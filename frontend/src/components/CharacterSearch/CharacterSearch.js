@@ -1,18 +1,21 @@
-// icon imports here
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, NavLink } from "react-router-dom";
+
+
+import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
+import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
+
+import { useUser } from "../../context/UserContext.js";
+
+import ToolTip from "../ToolTip";
+
+import styles from "./charactersearch.module.css";
+
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
-import ToolTip from "../ToolTip";
-import styles from "./charactersearch.module.css";
-import React, { useState, useEffect } from 'react';
-import { useHistory, NavLink } from "react-router-dom";
-import { useUser } from "../../context/UserContext.js";
-
-import { useDispatch, useSelector } from 'react-redux';
-import { resetErrors } from "../../store/actions/errors.js";
-import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
-import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
 
 
 
@@ -76,7 +79,6 @@ const CharacterSearch = () => {
 
   const clearErrors = (event) => {
     event.preventDefault();
-    dispatch(resetErrors());
     setBackenderrors(null);
     setSearchId("");
   }
