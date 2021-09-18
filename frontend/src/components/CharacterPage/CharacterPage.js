@@ -1,15 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
-
 import { useHistory, NavLink, Link } from "react-router-dom";
-
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { thunk_getFollowing, thunk_followOrUnfollow } from "../../store/thunks/following.js";
 import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
-
-
 import { useUser } from "../../context/UserContext.js";
-
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import { BsFillPlusSquareFill } from "react-icons/bs";
@@ -18,9 +13,13 @@ import CreateCharacterForm from "../CreateCharacterForm";
 import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
 import ReactModal from 'react-modal';
-
-
 import styles from "./characterpage.module.css"
+
+
+
+
+
+
 
 
 
@@ -31,6 +30,8 @@ const CharacterPage = () => {
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ charId, setCharId ] = useState(false);
   const [ openModal, setOpenModal ] = useState(false);
+  const [ update, setUpdate ] = useState(false);
+  const [ updatePayload, setUpdatePayload ] = useState(null);
 
   let endloading;
 
@@ -66,7 +67,7 @@ const CharacterPage = () => {
     return () => {
       clearTimeout(endloading);
     }
-  }, [specificChar, dispatch]);
+  }, [dispatch]);
 
 
 
@@ -106,7 +107,8 @@ const CharacterPage = () => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-
+    setUpdatePayload(payload);
+    setUpdate(true);
   }
 
 
@@ -145,7 +147,7 @@ const CharacterPage = () => {
 
 
 
-
+// loading screen if the character data is not available
   if (allChars === null || loading) {
     return (
       <>
@@ -158,7 +160,10 @@ const CharacterPage = () => {
 
 
 
-  if(specificChar === true){
+
+
+// displays if a specific character is clicked on
+  if(specificChar){
     return (
       <>
       <div className={styles.specific_char_wrap}>
@@ -182,10 +187,7 @@ const CharacterPage = () => {
                       pub_date: allChars[charId].pub_date,
                       user_id: allChars[charId].user_id,
                       username: allChars[charId].username,
-                      search_id: allChars[charId].search_id,
-                      lastpage: "/characters",
-                      charPage: true
-
+                      search_id: allChars[charId].search_id
                     })}> <GrUpdate /> </a>
                   </ToolTip>
                 </div>
@@ -252,7 +254,7 @@ const CharacterPage = () => {
 
 
 
-
+// displays all of the characters
   return (
     <>
       <CharacterSearch />
@@ -312,10 +314,7 @@ const CharacterPage = () => {
                   pub_date: eachChar.pub_date,
                   user_id: eachChar.user_id,
                   username: eachChar.username,
-                  search_id: eachChar.search_id,
-                  lastpage: "/characters",
-                  charPage: true
-
+                  search_id: eachChar.search_id
                 })}> <GrUpdate /> </a>
               </ToolTip>
             </div>
