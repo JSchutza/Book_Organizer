@@ -49,7 +49,7 @@ const thunk_searchForUsersPubChars = (searchId) => async (dispatch) => {
 
 
 // /api/characters/:characterId
-const thunk_deleteUsersPubChars = (characterId) => async (dispatch) => {
+const thunk_deleteUsersPubChars = (characterId, inSearch=false) => async (dispatch) => {
   const response = await fetch(`/api/characters/${characterId}`, {
     method: "DELETE",
     credentials: "include",
@@ -61,9 +61,14 @@ const thunk_deleteUsersPubChars = (characterId) => async (dispatch) => {
     return;
   }
 
+  // if the thunk was dispatched in the search results component
+  if (inSearch) {
+    dispatch(deleteUsersPubChars(characterId));
+    dispatch();
+    return;
+  }
+
   dispatch(deleteUsersPubChars(characterId));
-
-
 
 };
 
