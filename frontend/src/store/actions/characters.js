@@ -1,5 +1,5 @@
 import {
-  ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, CLEAR_SEARCH_PUB_CHARS, DELETE_USERS_PUB_CHARS, DELETE_PUB_CHAR_SEARCH
+  ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, CLEAR_SEARCH_PUB_CHARS, DELETE_USERS_PUB_CHARS, DELETE_PUB_CHAR_SEARCH, UPDATE_PUB_CHAR
 } from '../types'
 
 
@@ -43,12 +43,21 @@ const deleteSearchPubChar = (charId) => ({
 
 
 
+const updatePubChar = (character) => ({
+  type: UPDATE_PUB_CHAR,
+  character
+});
+
+
+
+
 export {
   getAllCharacters,
   searchForUsersPubChars,
   clearSearchResults,
   deleteUsersPubChars,
   deleteSearchPubChar,
+  updatePubChar,
 
 
 }

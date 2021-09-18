@@ -106,4 +106,4 @@ def update_pub_char(characterId):
   old_char.update_character_data(url, charactername, characterlabel)
   db.session.add(old_char)
   db.session.commit()
-  return {"url": url}
+  return { old_char.get_id(): old_char.to_dict() }
