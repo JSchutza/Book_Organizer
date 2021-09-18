@@ -4,7 +4,7 @@ import { useHistory, NavLink } from "react-router-dom";
 
 
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
-import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
+
 
 import { useUser } from "../../context/UserContext.js";
 
@@ -24,62 +24,47 @@ import { GrUpdate } from "react-icons/gr";
 
 const CharacterSearch = () => {
   const { isUser } = useUser();
-  const [searchId, setSearchId] = useState(isUser.search_id);
-  const [ isHidden, setIsHidden] = useState("");
-  const [ backenderrors, setBackenderrors ] = useState(null);
+  const [ searchId, setSearchId ] = useState(isUser.search_id);
 
   const dispatch = useDispatch();
-  const searchedChar = useSelector((store) => store.searchCharacterPageReducer.characters);
-  const char = useSelector((store) => store.searchCharacterPageReducer);
-  const errors = useSelector((store)  => store.errorsReducer.errors);
+  const searchedChar = useSelector(store => store.searchCharacterPageReducer.characters);
+  const char = useSelector(store => store.searchCharacterPageReducer);
+
   const history = useHistory();
 
 
 
-  useEffect(() => {
-    if(errors !== null ) {
-      setBackenderrors(Object.values(errors));
-    } else if (errors === null) {
-      setBackenderrors(null);
-    }
-  }, [errors]);
 
 
 
 
 
-  const handleSearch = (event) => {
+  const handleSearch = event => {
     event.preventDefault();
     dispatch(thunk_searchForUsersPubChars(searchId));
-    dispatch(searchTriggered({ search: true }));
   }
 
 
 
-  const clearSearch = (event) => {
+  const clearSearch = event => {
     event.preventDefault();
-    dispatch(clearSearchResults({ characters: null }));
-    dispatch(searchTriggered({ search: null }));
   }
 
 
   const handleDelete = (event, payload) => {
     event.preventDefault();
-
     history.push("/dropdown");
   }
 
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-
     history.push("/dropdown");
   }
 
 
-  const clearErrors = (event) => {
+  const clearErrors = event => {
     event.preventDefault();
-    setBackenderrors(null);
     setSearchId("");
   }
 
@@ -107,7 +92,7 @@ const CharacterSearch = () => {
               <>
               <div className={styles.search_results_each_card}>
                 <a href='/' onClick={event => event.preventDefault()}>
-                    <div className={isHidden} >
+
                   <li className={styles.search_results_each_detail} key={eachChar.id}>
                     <div className={styles.search_results_each_detail_text}>
                       <b> Name </b>
@@ -116,7 +101,7 @@ const CharacterSearch = () => {
                         <p>{eachChar.character_label}</p>
                     </div>
                   </li>
-                  </div>
+
                 <img className={styles.search_results_each_img} src={eachChar.avatar} alt={eachChar.character_name} />
                 </a>
 
@@ -134,7 +119,7 @@ const CharacterSearch = () => {
                   user_id: eachChar.user_id,
                   username: eachChar.username,
                   search_id: eachChar.search_id,
-                  setIsHidden,
+
                   lastpage: "/characters"
 
                 })}> <RiDeleteBinFill /> </a>
@@ -197,18 +182,7 @@ const CharacterSearch = () => {
     <>
     <div className={styles.search_wrapper}>
 
-        {backenderrors !== null ?
-        <>
-        <div className={styles.errors}>
-          { backenderrors.map(each => ( <li> {each} </li>))}
-          <div>
-            <a href='/' onClick={(event) => clearErrors(event)}> Try Again </a>
-          </div>
-        </div>
-        </>
-        :
-        <></>
-        }
+
 
 
 
