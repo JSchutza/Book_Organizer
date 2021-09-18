@@ -24,15 +24,8 @@ import { BsSearch } from "react-icons/bs";
 const CharacterSearch = () => {
   const { isUser } = useUser();
   const [ searchId, setSearchId ] = useState(isUser.search_id);
-
   const dispatch = useDispatch();
-
-
   const history = useHistory();
-
-
-
-
 
 
 

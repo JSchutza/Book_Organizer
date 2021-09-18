@@ -1,0 +1,20 @@
+search_title_backbutton {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.search_back_button {
+  display: flex;
+  box-sizing: content-box;
+  padding: 1%;
+  justify-content: center;
+}
+
+.search_back_button svg{
+  font-size: 30px;
+}

@@ -1,7 +1,9 @@
 
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, NavLink } from "react-router-dom";
+import { useHistory, NavLink, useParams } from "react-router-dom";
+
+import { useUser } from '../../context/UserContext';
 
 
 import { IoIosArrowDropleftCircle } from "react-icons/io";
@@ -11,26 +13,32 @@ import { GrUpdate } from "react-icons/gr";
 
 import ToolTip from "../ToolTip";
 
-
+import styles from "./searchresults.module.css";
 
 
 
 const SearchResults = () => {
   const searchedChar = useSelector(store => store.searchCharacterPageReducer.characters);
   const char = useSelector(store => store.searchCharacterPageReducer);
-
+  const { searchId } = useParams();
+  const { isUser } = useUser();
 
   const handleDelete = (event, payload) => {
     event.preventDefault();
-    history.push("/dropdown");
+
   }
 
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-    history.push("/dropdown");
+
   }
 
+
+  const clearSearch = event => {
+    event.preventDefault();
+
+  }
 
 
 
@@ -81,7 +89,7 @@ const SearchResults = () => {
                           username: eachChar.username,
                           search_id: eachChar.search_id,
 
-                          lastpage: "/characters"
+
 
                         })}> <RiDeleteBinFill /> </a>
                       </ToolTip>
@@ -101,7 +109,7 @@ const SearchResults = () => {
                           user_id: eachChar.user_id,
                           username: eachChar.username,
                           search_id: eachChar.search_id,
-                          lastpage: "/characters"
+
 
 
                         })}> <GrUpdate /> </a>
@@ -129,6 +137,15 @@ const SearchResults = () => {
       </>
     )
   }
+
+
+
+  return (
+    <>
+      <h1>Loading search results ...</h1>
+    </>
+  );
+
 };
 
 
