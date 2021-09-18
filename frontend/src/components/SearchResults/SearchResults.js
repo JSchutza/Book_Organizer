@@ -1,7 +1,10 @@
 
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, NavLink, useParams } from "react-router-dom";
+
+
+import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 
 import { useUser } from '../../context/UserContext';
 
@@ -30,6 +33,13 @@ const SearchResults = () => {
 
 
 
+  useEffect(() => {
+    dispatch(thunk_searchForUsersPubChars(searchId));
+  },[dispatch]);
+
+
+
+
   const handleDelete = (event, payload) => {
     event.preventDefault();
 
@@ -44,7 +54,8 @@ const SearchResults = () => {
 
   const clearSearch = event => {
     event.preventDefault();
-    dispatch();
+    // clear search results?
+    // dispatch();
     history.push('/characters');
   }
 
