@@ -1,6 +1,6 @@
 
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory, NavLink, useParams } from "react-router-dom";
 
 import { useUser } from '../../context/UserContext';
@@ -14,6 +14,9 @@ import { GrUpdate } from "react-icons/gr";
 import ToolTip from "../ToolTip";
 
 import styles from "./searchresults.module.css";
+
+
+
 
 
 
@@ -87,10 +90,7 @@ const SearchResults = () => {
                           pub_date: eachChar.pub_date,
                           user_id: eachChar.user_id,
                           username: eachChar.username,
-                          search_id: eachChar.search_id,
-
-
-
+                          search_id: eachChar.search_id
                         })}> <RiDeleteBinFill /> </a>
                       </ToolTip>
                     </div>
@@ -108,10 +108,7 @@ const SearchResults = () => {
                           pub_date: eachChar.pub_date,
                           user_id: eachChar.user_id,
                           username: eachChar.username,
-                          search_id: eachChar.search_id,
-
-
-
+                          search_id: eachChar.search_id
                         })}> <GrUpdate /> </a>
                       </ToolTip>
                     </div>
