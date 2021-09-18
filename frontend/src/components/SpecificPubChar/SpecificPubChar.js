@@ -30,6 +30,8 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar 
   const { isUser } = useUser();
 
 // need to on first render / if page is reloaded get specific char information
+// as of rn on page refresh the app goes back to the charpage component due to
+// state being set in charpage component
 
 
 

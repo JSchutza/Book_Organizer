@@ -31,9 +31,9 @@ const CharacterPage = () => {
   const [ specificChar, setSpecificChar ] = useState(false);
   const [ char, setChar ] = useState(false);
   const [ openModal, setOpenModal ] = useState(false);
-  const [ update, setUpdate ] = useState(false);
-  const [ updatePayload, setUpdatePayload ] = useState(null);
 
+  const [ updatePayload, setUpdatePayload ] = useState(null);
+  const [ openUpdateModal, setUpdateModal ] = useState(false);
   let endloading;
 
   const allChars = useSelector((store) => store.characterPageReducer.characters);
@@ -69,6 +69,10 @@ const CharacterPage = () => {
       clearTimeout(endloading);
     }
   }, [dispatch]);
+
+
+
+
 
 
 
@@ -109,9 +113,13 @@ const CharacterPage = () => {
   const handleUpdate = (event, payload) => {
     event.preventDefault();
     setUpdatePayload(payload);
-    setUpdate(true);
+    setUpdateModal(true);
   }
 
+
+  const closeUpdateModal = () => {
+    setUpdateModal(false);
+  }
 
 
 
@@ -238,6 +246,18 @@ const CharacterPage = () => {
         }
       </>
       ))}
+
+
+
+      {/* update char modal */}
+        <ReactModal
+          isOpen={openUpdateModal}
+          onRequestClose={closeUpdateModal}
+          appElement={document.getElementById('root')}
+        >
+          {/* <CreateCharacterForm closeModal={closeModal} /> */}
+
+        </ReactModal>
     </div>
 
     </>
