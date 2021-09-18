@@ -255,7 +255,10 @@ const CharacterPage = () => {
           appElement={document.getElementById('root')}
         >
           {/* <CreateCharacterForm closeModal={closeModal} /> */}
-          <UpdatePubCharForm />
+          <UpdatePubCharForm
+            closeUpdateModal={closeUpdateModal}
+            payload={updatePayload}
+          />
         </ReactModal>
     </div>
 

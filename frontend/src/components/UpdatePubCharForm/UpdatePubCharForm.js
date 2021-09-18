@@ -9,10 +9,11 @@ import styles from "./updatepubcharform.module.css";
 
 
 
-const UpdatePubCharForm = ({ charId, search_id, data }) => {
+const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
+  const { charId, avatar, character_label, character_name, created_at, pub_date, user_id, username, search_id } = payload;
   const [ avatarUrl, setAvatarUrl ] = useState("");
-  const [ charname, setCharname ] = useState("");
-  const [ charlabel, setCharlabel ] = useState("");
+  const [ charname, setCharname ] = useState(character_name);
+  const [ charlabel, setCharlabel ] = useState(character_label);
   const [ urlpreview, setUrlPreview ] = useState(null);
   const [ errors, setErrors ] = useState([]);
 
@@ -33,8 +34,8 @@ const UpdatePubCharForm = ({ charId, search_id, data }) => {
 
 
 
-  const updateAvatar = (e) => {
-    const file = e.target.files[0];
+  const updateAvatar = event => {
+    const file = event.target.files[0];
     setUrlPreview(file);
     setAvatarUrl(URL.createObjectURL(file));
   };
@@ -43,8 +44,8 @@ const UpdatePubCharForm = ({ charId, search_id, data }) => {
 
   const onSubmit = event => {
     event.preventDefault();
-    // dispatch(thunk_updatePubCharacter({ charPage: true, urlpreview, charname, charlabel, charId, search_id }));
-    // dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId, search_id }));
+    dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId }));
+    closeUpdateModal();
 
   }
 
@@ -73,8 +74,11 @@ const UpdatePubCharForm = ({ charId, search_id, data }) => {
       </div>
 
         <div className={styles.url_preview_wrap}>
+          <p>Last avatar: </p>
+          <img src={avatar} alt={"last avatar"} />
+
           {urlpreview === null ?
-            <p></p>
+            <></>
             :
             <>
               <img src={avatarUrl} alt={"cool"} />

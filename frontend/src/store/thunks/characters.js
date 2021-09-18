@@ -96,7 +96,7 @@ const thunk_newPubCharacter = ({ urlpreview, charname, charlabel }) => async (di
 
 
 
-const thunk_updatePubCharacter = ({ charPage=false, urlpreview, charname, charlabel, charId, search_id }) => async (dispatch) => {
+const thunk_updatePubCharacter = ({ urlpreview, charname, charlabel, charId }) => async (dispatch) => {
   const formData = new FormData();
   formData.append("image", urlpreview);
   formData.append("charactername", charname);
@@ -113,15 +113,7 @@ const thunk_updatePubCharacter = ({ charPage=false, urlpreview, charname, charla
     dispatch(setErrors(data.errors));
     return;
   }
-
-
-  if (charPage === true) {
-    dispatch(thunk_getAllCharacters());
-    return;
-  } else if(charPage === false) {
-    dispatch(thunk_searchForUsersPubChars(search_id));
-  }
-
+  // dispatch to update pub char action here
 
 }
 
