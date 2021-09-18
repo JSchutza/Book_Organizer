@@ -5,11 +5,11 @@ import { useDispatch } from 'react-redux';
 import { thunk_updatePubCharacter } from "../../store/thunks/characters.js";
 import { nanoid } from "nanoid";
 import { useHistory } from "react-router-dom";
-import styles from "./editpubcharbutton.module.css";
+import styles from "./updatepubcharform.module.css";
 
 
 
-const EditPubCharButton = ({ charId, search_id, data }) => {
+const UpdatePubCharForm = ({ charId, search_id, data }) => {
   const [ avatarUrl, setAvatarUrl ] = useState("");
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
@@ -43,18 +43,9 @@ const EditPubCharButton = ({ charId, search_id, data }) => {
 
   const onSubmit = event => {
     event.preventDefault();
+    // dispatch(thunk_updatePubCharacter({ charPage: true, urlpreview, charname, charlabel, charId, search_id }));
+    // dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId, search_id }));
 
-    if (data.charPage === true) {
-      dispatch(thunk_updatePubCharacter({ charPage: true, urlpreview, charname, charlabel, charId, search_id }));
-
-      history.push(data.lastpage);
-    } else if (data.charPage === undefined) {
-      dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId, search_id }));
-
-      history.push(data.lastpage);
-    }
-
-    history.push(data.lastpage);
   }
 
 
@@ -130,4 +121,4 @@ const EditPubCharButton = ({ charId, search_id, data }) => {
 
 };
 
-export default EditPubCharButton;
+export default UpdatePubCharForm;

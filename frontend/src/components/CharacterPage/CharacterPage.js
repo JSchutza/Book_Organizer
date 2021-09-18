@@ -13,10 +13,9 @@ import CharacterSearch from "../CharacterSearch";
 import CreateCharacterForm from "../CreateCharacterForm";
 import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
+import UpdatePubCharForm from "../UpdatePubCharForm";
 import ReactModal from 'react-modal';
 import styles from "./characterpage.module.css"
-
-
 
 
 
@@ -256,7 +255,7 @@ const CharacterPage = () => {
           appElement={document.getElementById('root')}
         >
           {/* <CreateCharacterForm closeModal={closeModal} /> */}
-
+          <UpdatePubCharForm />
         </ReactModal>
     </div>
 
