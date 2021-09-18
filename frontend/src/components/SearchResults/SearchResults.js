@@ -1,6 +1,6 @@
 
 // import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, NavLink, useParams } from "react-router-dom";
 
 import { useUser } from '../../context/UserContext';
@@ -25,6 +25,10 @@ const SearchResults = () => {
   const char = useSelector(store => store.searchCharacterPageReducer);
   const { searchId } = useParams();
   const { isUser } = useUser();
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+
 
   const handleDelete = (event, payload) => {
     event.preventDefault();
@@ -40,7 +44,8 @@ const SearchResults = () => {
 
   const clearSearch = event => {
     event.preventDefault();
-
+    dispatch();
+    history.push('/characters');
   }
 
 

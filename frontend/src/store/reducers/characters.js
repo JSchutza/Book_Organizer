@@ -47,14 +47,6 @@ const searchCharacterPageReducer = (state = { characters: null }, action) => {
 
 
 
-const searchTriggeredReducer = (state = { search: null }, action) => {
-  switch (action.type) {
-    case SEARCH_TRIGGERED:
-      return { ...action.search }
-    default:
-      return state;
-  }
-}
 
 
 
@@ -66,7 +58,7 @@ const searchTriggeredReducer = (state = { search: null }, action) => {
 export {
   characterPageReducer,
   searchCharacterPageReducer,
-  searchTriggeredReducer,
+
 
 
 }

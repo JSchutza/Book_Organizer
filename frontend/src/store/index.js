@@ -6,7 +6,7 @@ import { errorsReducer } from "./reducers/errors.js";
 
 
 import { usersReducer } from './reducers/session.js';
-import { characterPageReducer, searchCharacterPageReducer, searchTriggeredReducer } from "./reducers/characters.js";
+import { characterPageReducer, searchCharacterPageReducer } from "./reducers/characters.js";
 
 import { booksReducer, priCharReducer, pageReducer } from "./reducers/books.js";
 import { pollsReducer, commentReducer, allPollsReducer } from "./reducers/polls.js";
@@ -20,7 +20,6 @@ const rootReducer = combineReducers({
   usersReducer,
   characterPageReducer,
   searchCharacterPageReducer,
-  searchTriggeredReducer,
   booksReducer,
   priCharReducer,
   pageReducer,
