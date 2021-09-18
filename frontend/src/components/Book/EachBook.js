@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import styles from "./book.module.css";
 
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
-import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+
 
 // icon imports here
 import { BsFillPersonPlusFill } from "react-icons/bs";
@@ -37,9 +37,9 @@ const EachBook = () => {
 
   const handleCreateChar = event => {
     event.preventDefault();
-    dispatch(dataModal({ book_id: bookId, lastpage: `/books/${bookId}` }));
-    dispatch(contentModal("CreatePriChar"));
-    dispatch(showModal());
+
+
+
     history.push("/dropdown");
   }
 
@@ -47,9 +47,9 @@ const EachBook = () => {
 
   const handleCreatePage = event => {
     event.preventDefault();
-    dispatch(dataModal({ book_id: bookId, lastpage: `/books/${bookId}` }));
-    dispatch(contentModal("CreatePage"));
-    dispatch(showModal());
+
+
+
     history.push("/dropdown");
   }
 

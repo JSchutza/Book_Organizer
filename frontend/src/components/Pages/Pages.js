@@ -4,7 +4,7 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import { useHistory } from "react-router-dom";
 import Tooltip from "../ToolTip";
-import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+
 import { thunk_getAllPages } from "../../store/thunks/books.js";
 import styles from "./pages.module.css";
 
@@ -29,9 +29,7 @@ const Pages = ({ bookId }) => {
 
   const handleDelete = (event, payload) => {
     event.preventDefault();
-    dispatch(contentModal("DeletePage"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 
@@ -39,9 +37,7 @@ const Pages = ({ bookId }) => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-    dispatch(contentModal("UpdatePage"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 

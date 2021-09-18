@@ -8,7 +8,7 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
-import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+
 import styles from "./polls.module.css";
 
 
@@ -42,9 +42,7 @@ const Polls = () => {
 
   const handleCreate = (event) => {
     event.preventDefault();
-    dispatch(contentModal("CreatePoll"));
-    dispatch(dataModal({ lastpage: '/polls' }));
-    dispatch(showModal());
+
     history.push('/dropdown');
   }
 
@@ -59,9 +57,7 @@ const Polls = () => {
 
   const handleUpdate = (event, pollId) => {
     event.preventDefault();
-    dispatch(dataModal({ pollId, lastpage: '/polls' }));
-    dispatch(contentModal("UpdatePoll"));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 

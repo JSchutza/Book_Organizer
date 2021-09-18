@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { resetErrors } from "../../store/actions/errors.js";
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 import { searchTriggered, clearSearchResults } from "../../store/actions/characters.js";
-import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";;
+
 
 
 
@@ -62,19 +62,14 @@ const CharacterSearch = () => {
 
   const handleDelete = (event, payload) => {
     event.preventDefault();
-    setIsHidden("hide");
-    dispatch(contentModal("DeletePubChar"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-    dispatch(contentModal("EditPubChar"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 

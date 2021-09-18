@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { thunk_deletePage, thunk_getAllPages } from "../../store/thunks/books.js";
-import { hideModal } from "../../store/actions/modal.js";
+
 
 import { useHistory } from "react-router-dom";
 
@@ -20,11 +20,11 @@ const DeletePageButton = ({ bookId, pageId }) => {
     if (choice === true) {
       dispatch(thunk_deletePage(bookId, pageId));
       dispatch(thunk_getAllPages(bookId));
-      dispatch(hideModal());
+
       history.push(`/books/${bookId}`);
     }
 
-    dispatch(hideModal());
+
     history.push(`/books/${bookId}`);
   }
 

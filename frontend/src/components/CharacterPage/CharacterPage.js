@@ -97,10 +97,7 @@ const CharacterPage = () => {
   const handleDelete = (event, { charId }) => {
     event.preventDefault();
     dispatch(thunk_deleteUsersPubChars(charId));
-    setLoading(true);
-    endloading = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+
   };
 
 

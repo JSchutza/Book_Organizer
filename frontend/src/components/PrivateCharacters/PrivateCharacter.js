@@ -4,7 +4,7 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import ToolTip from "../ToolTip";
 import { useHistory } from "react-router-dom";
-import { showModal, contentModal, dataModal } from "../../store/actions/modal.js";
+
 import { resetErrors } from "../../store/actions/errors.js";
 import { thunk_getAllPriChars } from "../../store/thunks/books.js";
 import styles from "./privatecharacter.module.css";
@@ -37,9 +37,7 @@ const PrivateCharacter = ({ bookId }) => {
 
   const handleDelete = (event, payload) => {
     event.preventDefault();
-    dispatch(contentModal("DeletePriChar"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 
@@ -48,9 +46,7 @@ const PrivateCharacter = ({ bookId }) => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-    dispatch(contentModal("UpdatePriChar"));
-    dispatch(dataModal(payload));
-    dispatch(showModal());
+
     history.push("/dropdown");
   }
 

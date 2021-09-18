@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { thunk_getAllBooks, thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books";
-import { contentModal, showModal, dataModal } from "../../store/actions/modal.js";
+
 
 import CreateBookForm from "../CreateBookForm";
 import ToolTip from "../ToolTip";
@@ -72,9 +72,8 @@ const BookViewer = () => {
 
   const handleDeleteBook = (event, bookId) => {
     event.preventDefault();
-    dispatch(contentModal("DeleteBook"));
-    dispatch(showModal());
-    dispatch(dataModal({ lastpage: '/books', bookId }));
+
+
     history.push("/dropdown");
   }
 

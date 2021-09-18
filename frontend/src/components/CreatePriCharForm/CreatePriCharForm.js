@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { hideModal } from "../../store/actions/modal.js";
+
 import { useHistory } from "react-router-dom";
 import { thunk_updatePriChar, thunk_createPriChar } from "../../store/thunks/books.js";
 import { processFile } from "../../services/protectedFileUpload.js";
@@ -76,7 +76,7 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
   const onUpdate = async (event) => {
     event.preventDefault();
     dispatch(thunk_updatePriChar({ urlpreview, charname, charlabel, bookId, charId: data.charId }));
-    dispatch(hideModal());
+
     history.push(`/books/${bookId}`);
   }
 

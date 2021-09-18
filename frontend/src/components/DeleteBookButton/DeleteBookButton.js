@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { hideModal } from "../../store/actions/modal.js";
+
 import { useHistory } from "react-router-dom";
 import { thunk_deleteBook } from "../../store/thunks/books";
 
@@ -20,10 +20,10 @@ const DeleteBookButton = ({ data }) => {
     event.preventDefault();
     if (choice === true) {
       dispatch(thunk_deleteBook(data.bookId));
-      dispatch(hideModal());
+
       history.push(data.lastpage);
       }
-      dispatch(hideModal());
+
       history.push(data.lastpage);
     }
 

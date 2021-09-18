@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { hideModal } from "../../store/actions/modal.js";
+
 import { thunk_updatePubCharacter } from "../../store/thunks/characters.js";
 import { nanoid } from "nanoid";
 import { useHistory } from "react-router-dom";
@@ -46,11 +46,11 @@ const EditPubCharButton = ({ charId, search_id, data }) => {
 
     if (data.charPage === true) {
       dispatch(thunk_updatePubCharacter({ charPage: true, urlpreview, charname, charlabel, charId, search_id }));
-      dispatch(hideModal());
+
       history.push(data.lastpage);
     } else if (data.charPage === undefined) {
       dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId, search_id }));
-      dispatch(hideModal());
+
       history.push(data.lastpage);
     }
 

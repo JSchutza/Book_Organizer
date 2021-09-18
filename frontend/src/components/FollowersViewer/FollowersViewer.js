@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunk_followOrUnfollow } from "../../store/thunks/following.js";
 
 
-// import { useHistory } from "react-router-dom";
-// import { hideModal, dataModal, contentModal } from "../../store/actions/modal.js";
+
+
 
 
 import styles from "./followersviewer.module.css";
@@ -41,10 +41,7 @@ const FollowersViewer = ({ data }) => {
       setAddfollow(0);
     }
 
-    // dispatch(dataModal(null));
-    // dispatch(contentModal(null));
-    // dispatch(hideModal());
-    // history.push(data.lastpage);
+
   }
 
 

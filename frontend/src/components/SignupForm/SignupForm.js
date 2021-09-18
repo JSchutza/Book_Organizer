@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../store/thunks/session.js";
-import { hideModal, contentModal } from "../../store/actions/modal.js";
+
 
 import styles from "./signupform.module.css"
 import ToolTip from "../ToolTip";
@@ -23,8 +23,7 @@ const SignUpForm = () => {
   const onSignUp = (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      dispatch(hideModal());
-      dispatch(contentModal(null));
+
       dispatch(signUp(username, email, password));
     }
     // set password does not match error / state
