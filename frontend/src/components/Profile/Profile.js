@@ -33,6 +33,7 @@ const Profile = () => {
   let endLoad;
 
 
+
   useEffect(() => {
     if (!loading) {
       dispatch(thunk_getAllBooks());
@@ -95,10 +96,9 @@ const Profile = () => {
 
   return bookInfo && pollInfo && followersInfo && followingInfo && (
     <>
-    <div>
-          <div className={styles.profile_header}>
-            <h1>Profile</h1>
-          </div>
+      <div className={styles.profile_header}>
+        <h1>Profile</h1>
+      </div>
 
       {/* users info here */}
     <div className={styles.user_info_wrap}>
@@ -110,21 +110,15 @@ const Profile = () => {
             }
           </div>
 
-          <div></div>
             <div className={styles.user_text}>
 
-            <p>Search Id: {isUser.search_id} </p>
-              <br/>
-            <p>Username: {isUser.user_name}</p>
-              <br/>
-            <p>Email: {isUser.email}</p>
-              <br/>
-            <p>Bio: {isUser.bio} </p>
-              <br/>
-            <p>Birthday: {isUser.birthday} </p>
-              <br/>
-            <p>Address: {isUser.location} </p>
-              <br />
+            <li>Search Id: {isUser.search_id} </li>
+            <li>Username: {isUser.user_name}</li>
+            <li>Email: {isUser.email}</li>
+            <li>Bio: {isUser.bio} </li>
+            <li>Birthday: {isUser.birthday} </li>
+            <li>Address: {isUser.location} </li>
+
 
 
             {followersInfo ?
@@ -134,8 +128,6 @@ const Profile = () => {
             :
               <></>
             }
-
-
 
             {followingInfo ?
               <a href='/' onClick={event => handleFollowingViewClick(event)}>
@@ -170,9 +162,7 @@ const Profile = () => {
       </div>
 
       {/* book info here */}
-      <div>
-          {bookInfo ?
-
+        {bookInfo ?
         <div className={styles.book_link_wrap}>
         {Object.values(bookInfo).map(eachBook => (
           <div className={styles.each_book_link}>
@@ -182,16 +172,14 @@ const Profile = () => {
       </div>
           :
         <h1>Loading books... </h1>
-          }
-      </div>
-
+        }
 
 
         <div className={styles.recent_polls_header}>
           <h2>Recently Created polls</h2>
         </div>
 
-      <div>
+
           {pollInfo ?
             <>
             <div className={styles.poll_link_wrap}>
@@ -207,10 +195,6 @@ const Profile = () => {
             :
             <h3> You currently do not have any polls. </h3>
           }
-      </div>
-
-
-    </div>
     </>
   )
 
