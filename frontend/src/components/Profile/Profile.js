@@ -10,11 +10,13 @@ import { thunk_getUsersPolls } from "../../store/thunks/polls.js";
 import { useUser } from "../../context/UserContext.js";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
+import ReactModal from 'react-modal';
 import ToolTip from "../ToolTip";
 
 import styles from "./profile.module.css";
 import defaultImg from "../../icons/default_user.svg";
 import LoadScreen from "../LoadScreen";
+import UpdateUserForm from "../UpdateUserForm";
 
 
 
@@ -22,6 +24,9 @@ import LoadScreen from "../LoadScreen";
 
 const Profile = () => {
   const [ loading, setLoading ] = useState(false);
+  const [ updatePayload, setUpdatePayload ] = useState(null);
+  const [ openUpdateModal, setUpdateModal ] = useState(false);
+
   const { isUser } = useUser();
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const pollInfo = useSelector(store => store.pollsReducer.polls);
@@ -62,9 +67,17 @@ const Profile = () => {
 
 
 
-  const handleUpdate = (event) => {
+  const handleUpdate = (event, payload) => {
     event.preventDefault();
+    setUpdatePayload(payload);
+    setUpdateModal(true);
   };
+
+
+
+  const closeUpdateModal = () => {
+    setUpdateModal(false);
+  }
 
 
 
@@ -93,9 +106,23 @@ const Profile = () => {
 
 
 
-
+// only return if all of the information is available
   return bookInfo && pollInfo && followersInfo && followingInfo && (
     <>
+    {/* update user modal here */}
+      <ReactModal
+        isOpen={openUpdateModal}
+        onRequestClose={closeUpdateModal}
+        appElement={document.getElementById('root')}
+      >
+
+        <UpdateUserForm
+          closeUpdateModal={closeUpdateModal}
+          payload={updatePayload}
+        />
+      </ReactModal>
+
+
       <div className={styles.profile_header}>
         <h1>Profile</h1>
       </div>
@@ -144,7 +171,14 @@ const Profile = () => {
     <div className={styles.user_buttons_wrap}>
       <div className={styles.update_user_button}>
         <ToolTip content={'Update Info'}>
-          <a href='/' onClick={event => handleUpdate(event)}> <GrUpdate /> </a>
+          <a href='/' onClick={event => handleUpdate(event, {
+            avatar: isUser.avatar,
+            username: isUser.user_name,
+            email: isUser.email,
+            bio: isUser.bio,
+            location: isUser.location,
+            birthday: isUser.birthday
+          })}> <GrUpdate /> </a>
         </ToolTip>
       </div>
 
