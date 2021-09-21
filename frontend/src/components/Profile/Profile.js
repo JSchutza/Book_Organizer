@@ -30,6 +30,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  let endLoad;
 
 
   useEffect(() => {
@@ -38,18 +39,22 @@ const Profile = () => {
       dispatch(thunk_getUsersPolls());
       dispatch(thunk_getUsersFollowers());
       dispatch(thunk_getFollowing());
-      setTimeout(() => {
+      endLoad = setTimeout(() => {
         setLoading(true);
       }, 1000);
+    }
+
+    return () => {
+      clearTimeout(endLoad);
     }
   }, [dispatch]);
 
 
 
+
+
   const handleDelete = (event) => {
     event.preventDefault();
-
-    history.push("/dropdown");
   };
 
 
@@ -58,24 +63,18 @@ const Profile = () => {
 
   const handleUpdate = (event) => {
     event.preventDefault();
-
-    history.push("/dropdown");
   };
 
 
 
   const handleFollowerViewClick = event => {
     event.preventDefault();
-
-    history.push("/dropdown");
   }
 
 
 
   const handleFollowingViewClick = event => {
     event.preventDefault();
-
-    history.push("/dropdown");
   }
 
 
