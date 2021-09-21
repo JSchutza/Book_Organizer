@@ -15,7 +15,12 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 
 
+import ReactModal from 'react-modal';
+
+
 import ToolTip from "../ToolTip";
+import UpdatePubCharForm from "../UpdatePubCharForm";
+
 
 import styles from "./searchresults.module.css";
 
@@ -23,8 +28,10 @@ import styles from "./searchresults.module.css";
 
 
 
-
 const SearchResults = () => {
+  const [updatePayload, setUpdatePayload] = useState(null);
+  const [openUpdateModal, setUpdateModal] = useState(false);
+
   const chars = useSelector(store => store.searchCharacterPageReducer.characters);
   const { searchId } = useParams();
   const { isUser } = useUser();
@@ -46,10 +53,22 @@ const SearchResults = () => {
   }
 
 
+
+
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-
+    setUpdatePayload(payload);
+    setUpdateModal(true);
   }
+
+
+
+
+  const closeUpdateModal = () => {
+    setUpdateModal(false);
+    history.push('/characters');
+  }
+
 
 
   const clearSearch = event => {
@@ -58,6 +77,7 @@ const SearchResults = () => {
     // dispatch();
     history.push('/characters');
   }
+
 
 
 
@@ -73,6 +93,20 @@ const SearchResults = () => {
             </ToolTip>
           </div>
         </div>
+
+        {/* update char modal */}
+        <ReactModal
+          isOpen={openUpdateModal}
+          onRequestClose={closeUpdateModal}
+          appElement={document.getElementById('root')}
+        >
+
+          <UpdatePubCharForm
+            closeUpdateModal={closeUpdateModal}
+            payload={updatePayload}
+          />
+        </ReactModal>
+
 
 
         <div className={styles.search_results_wrap}>
