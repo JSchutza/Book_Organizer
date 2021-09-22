@@ -38,7 +38,7 @@ const CreateCharacterForm = ({ closeModal }) => {
 
 
 
-  const onSubmit = (event) => {
+  const onSubmit = event => {
     event.preventDefault();
     dispatch(thunk_newPubCharacter({ urlpreview, charname, charlabel }));
     closeModal();
@@ -46,8 +46,8 @@ const CreateCharacterForm = ({ closeModal }) => {
 
 
 
-  const updateAvatar = (e) => {
-    const result = processFile(e.target.files);
+  const updateAvatar = event => {
+    const result = processFile(event.target.files);
     if (result) {
       setUrlPreview(result);
       setAvatarUrl(URL.createObjectURL(result));

@@ -3,14 +3,14 @@
 
 
 
-const checkFile = (theFile) => {
+const checkFile = theFile => {
   if(theFile.length === 0) return false;
   if (theFile.length > 0) return true;
 }
 
 
 
-const processFile = (theFile) => {
+const processFile = theFile => {
   if(checkFile(theFile)) {
     return theFile[0];
   }
