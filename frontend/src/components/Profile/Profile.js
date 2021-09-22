@@ -10,11 +10,13 @@ import { thunk_getUsersPolls } from "../../store/thunks/polls.js";
 import { useUser } from "../../context/UserContext.js";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
+import ReactModal from 'react-modal';
 import ToolTip from "../ToolTip";
 
 import styles from "./profile.module.css";
 import defaultImg from "../../icons/default_user.svg";
 import LoadScreen from "../LoadScreen";
+import UpdateUserForm from "../UpdateUserForm";
 
 
 
@@ -22,6 +24,9 @@ import LoadScreen from "../LoadScreen";
 
 const Profile = () => {
   const [ loading, setLoading ] = useState(false);
+  const [ updatePayload, setUpdatePayload ] = useState(null);
+  const [ openUpdateModal, setUpdateModal ] = useState(false);
+
   const { isUser } = useUser();
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const pollInfo = useSelector(store => store.pollsReducer.polls);
@@ -29,6 +34,8 @@ const Profile = () => {
   const followingInfo = useSelector(store => store.followingReducer.following);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  let endLoad;
 
 
 
@@ -38,44 +45,50 @@ const Profile = () => {
       dispatch(thunk_getUsersPolls());
       dispatch(thunk_getUsersFollowers());
       dispatch(thunk_getFollowing());
-      setTimeout(() => {
+      endLoad = setTimeout(() => {
         setLoading(true);
       }, 1000);
+    }
+
+    return () => {
+      clearTimeout(endLoad);
     }
   }, [dispatch]);
 
 
 
+
+
   const handleDelete = (event) => {
     event.preventDefault();
-
-    history.push("/dropdown");
   };
 
 
 
 
 
-  const handleUpdate = (event) => {
+  const handleUpdate = (event, payload) => {
     event.preventDefault();
-
-    history.push("/dropdown");
+    setUpdatePayload(payload);
+    setUpdateModal(true);
   };
+
+
+
+  const closeUpdateModal = () => {
+    setUpdateModal(false);
+  }
 
 
 
   const handleFollowerViewClick = event => {
     event.preventDefault();
-
-    history.push("/dropdown");
   }
 
 
 
   const handleFollowingViewClick = event => {
     event.preventDefault();
-
-    history.push("/dropdown");
   }
 
 
@@ -93,13 +106,26 @@ const Profile = () => {
 
 
 
-
+// only return if all of the information is available
   return bookInfo && pollInfo && followersInfo && followingInfo && (
     <>
-    <div>
-          <div className={styles.profile_header}>
-            <h1>Profile</h1>
-          </div>
+    {/* update user modal here */}
+      <ReactModal
+        isOpen={openUpdateModal}
+        onRequestClose={closeUpdateModal}
+        appElement={document.getElementById('root')}
+      >
+
+        <UpdateUserForm
+          closeUpdateModal={closeUpdateModal}
+          payload={updatePayload}
+        />
+      </ReactModal>
+
+
+      <div className={styles.profile_header}>
+        <h1>Profile</h1>
+      </div>
 
       {/* users info here */}
     <div className={styles.user_info_wrap}>
@@ -111,21 +137,15 @@ const Profile = () => {
             }
           </div>
 
-          <div></div>
             <div className={styles.user_text}>
 
-            <p>Search Id: {isUser.search_id} </p>
-              <br/>
-            <p>Username: {isUser.user_name}</p>
-              <br/>
-            <p>Email: {isUser.email}</p>
-              <br/>
-            <p>Bio: {isUser.bio} </p>
-              <br/>
-            <p>Birthday: {isUser.birthday} </p>
-              <br/>
-            <p>Address: {isUser.location} </p>
-              <br />
+            <li>Search Id: {isUser.search_id} </li>
+            <li>Username: {isUser.user_name}</li>
+            <li>Email: {isUser.email}</li>
+            <li>Bio: {isUser.bio} </li>
+            <li>Birthday: {isUser.birthday} </li>
+            <li>Address: {isUser.location} </li>
+
 
 
             {followersInfo ?
@@ -135,8 +155,6 @@ const Profile = () => {
             :
               <></>
             }
-
-
 
             {followingInfo ?
               <a href='/' onClick={event => handleFollowingViewClick(event)}>
@@ -153,7 +171,14 @@ const Profile = () => {
     <div className={styles.user_buttons_wrap}>
       <div className={styles.update_user_button}>
         <ToolTip content={'Update Info'}>
-          <a href='/' onClick={event => handleUpdate(event)}> <GrUpdate /> </a>
+          <a href='/' onClick={event => handleUpdate(event, {
+            avatar: isUser.avatar,
+            username: isUser.user_name,
+            email: isUser.email,
+            bio: isUser.bio,
+            location: isUser.location,
+            birthday: isUser.birthday
+          })}> <GrUpdate /> </a>
         </ToolTip>
       </div>
 
@@ -171,9 +196,7 @@ const Profile = () => {
       </div>
 
       {/* book info here */}
-      <div>
-          {bookInfo ?
-
+        {bookInfo ?
         <div className={styles.book_link_wrap}>
         {Object.values(bookInfo).map(eachBook => (
           <div className={styles.each_book_link}>
@@ -183,16 +206,14 @@ const Profile = () => {
       </div>
           :
         <h1>Loading books... </h1>
-          }
-      </div>
-
+        }
 
 
         <div className={styles.recent_polls_header}>
           <h2>Recently Created polls</h2>
         </div>
 
-      <div>
+
           {pollInfo ?
             <>
             <div className={styles.poll_link_wrap}>
@@ -208,10 +229,6 @@ const Profile = () => {
             :
             <h3> You currently do not have any polls. </h3>
           }
-      </div>
-
-
-    </div>
     </>
   )
 

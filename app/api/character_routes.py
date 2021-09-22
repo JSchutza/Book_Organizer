@@ -50,7 +50,7 @@ def new_pub_char():
 
   db.session.add(new_char)
   db.session.commit()
-  return {"url": url}
+  return { new_char.get_id(): new_char.to_dict() }
 
 
 

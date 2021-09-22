@@ -10,21 +10,16 @@ import styles from "./updateuserform.module.css";
 
 
 
-const UpdateUserForm = ({ data }) => {
-  // const [ theirAvatar, setTheirAvatar ] = useState(data.isUser.user_name);
-
-  const [ theirUsername, setTheirUsername ] = useState(data.isUser.user_name);
-  const [ theirEmail, setTheirEmail ] = useState(data.isUser.email);
-
+const UpdateUserForm = ({ payload, closeUpdateModal }) => {
+  const { avatar, username, email, bio, location, birthday } = payload;
+  const [ theirAvatar, setTheirAvatar ] = useState(avatar);
+  const [ theirUsername, setTheirUsername ] = useState(username);
+  const [ theirEmail, setTheirEmail ] = useState(email);
+  const [ theirBio, setTheirBio ] = useState(bio);
+  const [ theirLocation, setTheirLocation ] = useState(location);
+  const [ theirBirthday, setTheirBirthday ] = useState(birthday);
   const [ theirNewPassword, setTheirNewPassword ] = useState('');
   const [ paswordConfirm, setPasswordConfirm ] = useState('');
-
-  const [ theirBio, setTheirBio ] = useState(data.isUser.bio);
-  const [ theirLocation, setTheirLocation ] = useState(data.isUser.location);
-
-
-  const [ theirBirthday, setTheirBirthday ] = useState(data.isUser.birthday);
-
 
   const dispatch = useDispatch();
   // const history = useHistory();
@@ -32,19 +27,12 @@ const UpdateUserForm = ({ data }) => {
 
 
 
-
-
-  useEffect(() => {
-
-  },[dispatch]);
-
-
-
-
   const onSubmit = event => {
     event.preventDefault();
-
+    // dispatch thunk to update user
+    closeUpdateModal();
   }
+
 
 
 
@@ -138,13 +126,11 @@ const UpdateUserForm = ({ data }) => {
 
 
 
-          <div>
-            <div>
+
               <ToolTip content={'Update'}>
                 <button className="" type="submit"> Update </button>
               </ToolTip>
-            </div>
-          </div>
+
 
 
       </form>

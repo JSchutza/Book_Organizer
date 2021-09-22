@@ -1,5 +1,11 @@
 import {
-  ALL_CHARACTERS, SEARCH_PUB_CHARACTERS, CLEAR_SEARCH_PUB_CHARS, DELETE_USERS_PUB_CHARS, DELETE_PUB_CHAR_SEARCH, UPDATE_PUB_CHAR
+  ALL_CHARACTERS,
+  SEARCH_PUB_CHARACTERS,
+  CLEAR_SEARCH_PUB_CHARS,
+  DELETE_USERS_PUB_CHARS,
+  DELETE_PUB_CHAR_SEARCH,
+  UPDATE_PUB_CHAR,
+  CREATE_PUB_CHAR
 } from '../types'
 
 
@@ -50,6 +56,13 @@ const updatePubChar = (character) => ({
 
 
 
+const createPubChar = (character) => ({
+  type: CREATE_PUB_CHAR,
+  character
+});
+
+
+
 
 export {
   getAllCharacters,
@@ -58,6 +71,7 @@ export {
   deleteUsersPubChars,
   deleteSearchPubChar,
   updatePubChar,
+  createPubChar,
 
 
 }
