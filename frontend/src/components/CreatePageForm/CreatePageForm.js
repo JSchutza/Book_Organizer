@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { thunk_updatePage, thunk_createPage } from "../../store/thunks/books.js";
 import { useDispatch } from "react-redux";
