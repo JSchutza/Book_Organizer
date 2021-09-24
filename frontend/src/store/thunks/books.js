@@ -183,7 +183,7 @@ const thunk_deletePage = (bookId, pageId) => async (dispatch) => {
     dispatch(setErrors(data.errors));
     return;
   }
-  dispatch(resetErrors());
+
   dispatch(deletePage(pageId));
 
 };
@@ -208,8 +208,8 @@ const thunk_updatePriChar = ({ urlpreview, charname, charlabel, bookId, charId }
     return;
   }
 
-  dispatch(thunk_getAllPriChars(bookId));
-  dispatch(resetErrors());
+  // dispatch();
+
 }
 
 
