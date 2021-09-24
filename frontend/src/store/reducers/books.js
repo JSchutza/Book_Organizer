@@ -23,8 +23,8 @@ const booksReducer = (state = { books: null }, action) => {
 
     case DELETE_BOOK:
       const id = action.book;
-      delete state[id];
-      return { ...state };
+      delete state.books[id];
+      return { ...state, books: { ...state.books } };
 
     default:
       return state;

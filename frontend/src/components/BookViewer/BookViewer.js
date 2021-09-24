@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 
 import { thunk_getAllBooks, thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books";
+import { thunk_deleteBook } from "../../store/thunks/books";
 
 
 import CreateBookForm from "../CreateBookForm";
@@ -11,6 +12,7 @@ import ToolTip from "../ToolTip";
 import LoadScreen from "../LoadScreen";
 
 import ReactModal from 'react-modal';
+
 
 
 import { BsFillPlusSquareFill } from "react-icons/bs";
@@ -68,7 +70,7 @@ const BookViewer = () => {
 
   const handleDeleteBook = (event, bookId) => {
     event.preventDefault();
-
+    dispatch(thunk_deleteBook(bookId));
   }
 
 

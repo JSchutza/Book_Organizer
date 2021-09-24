@@ -125,7 +125,7 @@ const thunk_getAllPages = (bookId) => async (dispatch) => {
 
 
 // /api/books/:bookId
-const thunk_deleteBook = (bookId) => async (dispatch) => {
+const thunk_deleteBook = bookId => async dispatch => {
   const response = await fetch(`/api/books/${bookId}`, {
     method: "DELETE",
     credentials: "include",
