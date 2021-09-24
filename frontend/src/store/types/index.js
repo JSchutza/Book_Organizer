@@ -22,6 +22,7 @@ const CREATE_PUB_CHAR = "characters/CREATE_PUB_CHAR";
 
 // books
 const GET_USERS_BOOKS = "books/GET_USERS_BOOKS";
+const CREATE_USERS_BOOKS = 'books/CREATE_USERS_BOOKS';
 const DELETE_BOOK = "books/DELETE_BOOK";
 
 
@@ -96,6 +97,7 @@ export {
   DELETE_PUB_CHAR_SEARCH,
   UPDATE_PUB_CHAR,
   CREATE_PUB_CHAR,
+  CREATE_USERS_BOOKS,
 
 
 

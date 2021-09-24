@@ -11,13 +11,13 @@ import styles from "./createbookform.module.css";
 
 
 const CreateBookForm = ({ isUpdate = false, data, closeModal }) => {
-  const [ updateTitle, setUpdateTitle ] = useState("");
+  const [ updateTitle, setUpdateTitle ] = useState(data?.the_title);
   const [ title, setTitle ] = useState("");
   const dispatch = useDispatch();
 
 
 
-  const onCreateSubmit = async (event) => {
+  const onCreateSubmit = event => {
     event.preventDefault();
     // const formData = new FormData();
     // formData.append("title", title);
@@ -37,7 +37,7 @@ const CreateBookForm = ({ isUpdate = false, data, closeModal }) => {
 
 
 
-  const onUpdateSubmit = async (event) => {
+  const onUpdateSubmit = event => {
     event.preventDefault();
     // const formData = new FormData();
     // formData.append("title", updateTitle);

@@ -1,5 +1,13 @@
 
-import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS, GET_USERS_PAGES, DELETE_BOOK, DELETE_USERS_PRI_CHARS, DELETE_USERS_PAGE } from '../types'
+import {
+  GET_USERS_BOOKS,
+  GET_USERS_PRI_CHARS,
+  GET_USERS_PAGES,
+  DELETE_BOOK,
+  DELETE_USERS_PRI_CHARS,
+  DELETE_USERS_PAGE,
+  CREATE_USERS_BOOKS
+  } from '../types'
 
 
 
@@ -8,15 +16,21 @@ import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS, GET_USERS_PAGES, DELETE_BOOK, DEL
 const booksReducer = (state = { books: null }, action) => {
   switch (action.type) {
     case GET_USERS_BOOKS:
-      return { ...action.books };
+      return {...state, books: { ...action.books.books } };
+
+    case CREATE_USERS_BOOKS:
+      return { ...state, books: { ...state.books, [action.book.id]: action.book } };
+
     case DELETE_BOOK:
       const id = action.book;
       delete state[id];
       return { ...state };
+
     default:
       return state;
   }
 }
+
 
 
 const priCharReducer = (state = { characters: null }, action) => {
@@ -31,6 +45,8 @@ const priCharReducer = (state = { characters: null }, action) => {
       return state;
   }
 }
+
+
 
 const pageReducer = (state = { pages: null }, action) => {
   switch (action.type) {

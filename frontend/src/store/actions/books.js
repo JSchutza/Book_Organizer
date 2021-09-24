@@ -1,6 +1,22 @@
 
 
-import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS, GET_USERS_PAGES, DELETE_BOOK, DELETE_USERS_PRI_CHARS, DELETE_USERS_PAGE } from '../types'
+import {
+  GET_USERS_BOOKS,
+  GET_USERS_PRI_CHARS,
+  GET_USERS_PAGES,
+  DELETE_BOOK,
+  DELETE_USERS_PRI_CHARS,
+  DELETE_USERS_PAGE,
+  CREATE_USERS_BOOKS
+} from '../types'
+
+
+
+const createBook = (book) => ({
+  type: CREATE_USERS_BOOKS,
+  book
+});
+
 
 
 
@@ -24,6 +40,7 @@ const getAllPages = (pages) => ({
 });
 
 
+
 const deleteBook = (book) => ({
   type: DELETE_BOOK,
   book
@@ -37,10 +54,12 @@ const deleteUsersPrivateChars = (character) => ({
 });
 
 
+
 const deletePage = (page) => ({
   type: DELETE_USERS_PAGE,
   page
 });
+
 
 
 export {
@@ -50,6 +69,6 @@ export {
   deleteBook,
   deleteUsersPrivateChars,
   deletePage,
-
+  createBook,
 
 }

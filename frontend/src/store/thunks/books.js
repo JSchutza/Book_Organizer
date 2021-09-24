@@ -1,6 +1,15 @@
 
 
-import { getAllBooks, getAllPriChars, getAllPages, deleteBook, deleteUsersPrivateChars, deletePage } from "../actions/books.js";
+import {
+  getAllBooks,
+  getAllPriChars,
+  getAllPages,
+  deleteBook,
+  deleteUsersPrivateChars,
+  deletePage,
+  createBook
+} from "../actions/books.js";
+
 import { setErrors, resetErrors } from "../actions/errors.js";
 
 
@@ -23,6 +32,12 @@ const thunk_getAllBooks = () => async (dispatch) => {
   dispatch(getAllBooks(data));
 };
 
+
+
+
+const thunk_createBook = () => async (dispatch) => {
+
+}
 
 
 
@@ -247,6 +262,7 @@ export {
   thunk_updatePriChar,
   thunk_createPage,
   thunk_updatePage,
+  thunk_createBook,
 
 
 }
