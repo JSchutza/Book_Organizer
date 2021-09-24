@@ -46,8 +46,13 @@ const thunk_createBook = ({ title, requestUrl, requestMethod }) => async (dispat
     body: formData,
   });
 
+  const data = await response.json();
+  if (data.errors) {
+    dispatch(setErrors(data.errors));
+    return;
+  }
 
-
+  dispatch(createBook(data.book));
 
 }
 
@@ -88,7 +93,6 @@ const thunk_createPriChar = ({ bookId, urlpreview, charname, charlabel }) => asy
   const data = await response.json();
   if (data.errors) {
     dispatch(setErrors(data.errors));
-
     return;
   }
   dispatch(thunk_getAllPriChars(bookId));
