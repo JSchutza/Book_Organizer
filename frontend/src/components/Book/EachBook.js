@@ -1,31 +1,33 @@
-import { useEffect } from 'react';
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from 'react';
+import { useHistory, useParams } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import PrivateCharacter from "../PrivateCharacters";
 import Pages from "../Pages";
 import ToolTip from "../ToolTip";
-import { useHistory } from "react-router-dom";
-
-import styles from "./book.module.css";
+import CreatePriCharForm from "../CreatePriCharForm";
 
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
 
 
-// icon imports here
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { BsFileEarmarkPlus } from "react-icons/bs";
+import ReactModal from 'react-modal';
 
 
 
+import styles from "./book.module.css";
 
 
 
 
 
 const EachBook = () => {
+  const [ openNewCharModal, setOpenNewCharModal ] = useState(false);
+  const [ openNewPageModal, setOpenNewPageModal ] = useState(false);
   const dispatch = useDispatch();
   const { bookId } = useParams();
   const history = useHistory();
+
 
 
   useEffect(() => {
@@ -37,29 +39,44 @@ const EachBook = () => {
 
   const handleCreateChar = event => {
     event.preventDefault();
-
-
-
-    history.push("/dropdown");
-  }
+    setOpenNewCharModal(true);
+  };
 
 
 
   const handleCreatePage = event => {
     event.preventDefault();
+    setOpenNewPageModal(true);
+  };
 
 
 
-    history.push("/dropdown");
-  }
+  const closeNewCharModal = () => {
+    setOpenNewCharModal(false);
+  };
 
+
+  const closeNewPageModal = () => {
+    setOpenNewPageModal(false);
+  };
 
 
 
   return (
     <>
-
     <div className={styles.create_wrapper}>
+
+        <ReactModal
+          isOpen={openNewCharModal}
+          onRequestClose={closeNewCharModal}
+          appElement={document.getElementById('root')}
+        >
+          <CreatePriCharForm bookId={bookId} closeModal={closeNewCharModal} />
+
+        </ReactModal>
+
+
+
     <div className={styles.create_char_button}>
       <ToolTip content={"New Character"}>
         <a href='/' onClick={(event) => handleCreateChar(event)}> <BsFillPersonPlusFill/> </a>
@@ -85,9 +102,6 @@ const EachBook = () => {
     <div className={styles.pages_wrap}>
       <Pages bookId={bookId} />
     </div>
-
-
-
     </>
   )
 };
