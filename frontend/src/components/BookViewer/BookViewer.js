@@ -1,34 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
+
 import { thunk_getAllBooks, thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books";
 
 
 import CreateBookForm from "../CreateBookForm";
 import ToolTip from "../ToolTip";
-
-import styles from "./bookviewer.module.css";
 import LoadScreen from "../LoadScreen";
-// icon imports here
+
+import ReactModal from 'react-modal';
+
+
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 
 
 
+import styles from "./bookviewer.module.css";
 
 
 
 
 const BookViewer = () => {
-  const [loading, setLoading] = useState(false);
-  const [ showBookForm, setShowBookForm ] = useState(false);
-  const [ clickShowForm, setShowForm ] = useState(0);
-
-
+  const [ loading, setLoading ] = useState(false);
+  const [ openNewBookModal, setOpenNewBookModal ] = useState(false);
   const [ showUpdateForm, setShowUpdateForm ] = useState(false);
   const [ clickUpdateBook, setClickUpdateBook ] = useState(0);
-
   const [ toUpdate, setToUpdate ] = useState(null);
 
   const history = useHistory();
@@ -49,6 +49,9 @@ const BookViewer = () => {
 
 
 
+
+
+
   const handleBookClick = (event, bookId) => {
     event.preventDefault();
     dispatch(thunk_getAllPriChars(bookId));
@@ -60,20 +63,12 @@ const BookViewer = () => {
 
   const createBookClick = event => {
     event.preventDefault();
-    if (clickShowForm === 0) {
-      setShowBookForm(true);
-      setShowForm(1);
-    } else if (clickShowForm === 1) {
-      setShowBookForm(false);
-      setShowForm(0);
-    }
+
   }
 
 
   const handleDeleteBook = (event, bookId) => {
     event.preventDefault();
-
-
     history.push("/dropdown");
   }
 
@@ -90,6 +85,14 @@ const BookViewer = () => {
       setClickUpdateBook(0);
     }
   }
+
+
+
+
+  const closeNewBookModal = () => {
+    setOpenNewBookModal(false);
+  }
+
 
 
 
@@ -120,13 +123,16 @@ const BookViewer = () => {
     </div>
 
 
-    <div>
-        {showBookForm ?
-          <CreateBookForm />
-          :
-          <p></p>
-        }
-    </div>
+      <ReactModal
+        isOpen={openNewBookModal}
+        onRequestClose={closeNewBookModal}
+        appElement={document.getElementById('root')}
+      >
+
+        <CreateBookForm closeModal={closeNewBookModal} />
+
+      </ReactModal>
+
 
 
     <div>
