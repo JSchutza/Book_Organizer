@@ -32,7 +32,7 @@ const CreateBookForm = ({ isUpdate = false, data, closeModal }) => {
     // } else {
     //   console.log("error");
     // }
-
+    closeModal();
   }
 
 
@@ -52,6 +52,7 @@ const CreateBookForm = ({ isUpdate = false, data, closeModal }) => {
     // } else {
     //   console.log("error");
     // }
+    closeModal();
   }
 
 

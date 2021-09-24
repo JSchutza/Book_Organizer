@@ -63,13 +63,13 @@ const BookViewer = () => {
 
   const createBookClick = event => {
     event.preventDefault();
-
+    setOpenNewBookModal(true);
   }
 
 
   const handleDeleteBook = (event, bookId) => {
     event.preventDefault();
-    history.push("/dropdown");
+
   }
 
 
@@ -96,13 +96,7 @@ const BookViewer = () => {
 
 
 
-  if (bookInfo === null || !loading){
-    return (
-      <>
-        <LoadScreen />
-      </>
-    )
-  }
+  if (bookInfo === null || !loading) return (<LoadScreen />)
 
 
 
