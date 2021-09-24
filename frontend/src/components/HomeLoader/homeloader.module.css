@@ -38,6 +38,7 @@
 
 
 
+
 .card_view {
   display: block;
   position: relative;
@@ -45,5 +46,15 @@
   border: solid gold .1px;
   box-sizing: border-box;
   height: 100%;
-  border-radius: 25px;
+}
+
+
+
+
+
+.card_view img {
+  height: 400px;
+  width: 233px;
+  object-fit: cover;
+  object-position: 50% 33%;
 }
