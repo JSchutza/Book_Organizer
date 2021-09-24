@@ -28,6 +28,7 @@ const DELETE_BOOK = "books/DELETE_BOOK";
 
 // pages
 const GET_USERS_PAGES = "books/GET_USERS_PAGES";
+const CREATE_PAGE = "books/CREATE_PAGE";
 const DELETE_USERS_PAGE = 'books/DELETE_USERS_PAGE';
 
 
@@ -100,6 +101,7 @@ export {
   CREATE_PUB_CHAR,
   CREATE_USERS_BOOKS,
   CREATE_PRI_CHAR,
+  CREATE_PAGE,
 
 
 

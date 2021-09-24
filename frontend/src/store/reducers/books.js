@@ -7,7 +7,8 @@ import {
   DELETE_USERS_PRI_CHARS,
   DELETE_USERS_PAGE,
   CREATE_USERS_BOOKS,
-  CREATE_PRI_CHAR
+  CREATE_PRI_CHAR,
+  CREATE_PAGE
   } from '../types'
 
 
@@ -57,11 +58,16 @@ const priCharReducer = (state = { characters: null }, action) => {
 const pageReducer = (state = { pages: null }, action) => {
   switch (action.type) {
     case GET_USERS_PAGES:
-      return { ...action.pages };
+      return { ...state, pages: { ...action.pages.pages } };
+
+    case CREATE_PAGE:
+      return { ...state, pages: { ...state.pages, ...action.page } };
+
     case DELETE_USERS_PAGE:
       const id = action.page;
-      delete state[id];
-      return { ...state };
+      delete state.pages[id];
+      return { ...state, pages: { ...state.pages } };
+
     default:
       return state;
   }

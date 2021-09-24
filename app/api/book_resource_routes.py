@@ -95,7 +95,8 @@ def create_page(bookId):
     new_page = Page(title=form.data['title'], text=form.data["text"], book_id=bookId)
     db.session.add(new_page)
     db.session.commit()
-  return { "page": new_page.to_dict() }
+  return { new_page.get_id(): new_page.to_dict() }
+
 
 
 

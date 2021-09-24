@@ -8,8 +8,16 @@ import {
   DELETE_USERS_PRI_CHARS,
   DELETE_USERS_PAGE,
   CREATE_USERS_BOOKS,
-  CREATE_PRI_CHAR
+  CREATE_PRI_CHAR,
+  CREATE_PAGE
 } from '../types'
+
+
+
+const createPage = (page) => ({
+  type: CREATE_PAGE,
+  page
+});
 
 
 
@@ -80,5 +88,6 @@ export {
   deletePage,
   createBook,
   cratePriChar,
+  createPage,
 
 }

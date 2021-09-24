@@ -8,7 +8,8 @@ import {
   deleteUsersPrivateChars,
   deletePage,
   createBook,
-  cratePriChar
+  cratePriChar,
+  createPage
 } from "../actions/books.js";
 
 import { setErrors, resetErrors } from "../actions/errors.js";
@@ -227,12 +228,12 @@ const thunk_createPage = ({ title, text, bookId }) => async (dispatch) => {
   const data = await response.json();
   if (data.errors) {
     dispatch(setErrors(data.errors));
-
     return;
   }
 
-  dispatch(thunk_getAllPages(bookId));
-  dispatch(resetErrors());
+  dispatch(createPage(data));
+
+
 }
 
 

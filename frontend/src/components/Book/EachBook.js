@@ -83,7 +83,6 @@ const EachBook = () => {
           onRequestClose={closeNewPageModal}
           appElement={document.getElementById('root')}
         >
-          {/* closeNewPageModal */}
           <CreatePageForm bookId={bookId} closeModal={closeNewPageModal} />
 
         </ReactModal>
