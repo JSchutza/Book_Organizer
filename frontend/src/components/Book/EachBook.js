@@ -5,6 +5,7 @@ import PrivateCharacter from "../PrivateCharacters";
 import Pages from "../Pages";
 import ToolTip from "../ToolTip";
 import CreatePriCharForm from "../CreatePriCharForm";
+import CreatePageForm from "../CreatePageForm";
 
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
 
@@ -72,6 +73,18 @@ const EachBook = () => {
           appElement={document.getElementById('root')}
         >
           <CreatePriCharForm bookId={bookId} closeModal={closeNewCharModal} />
+
+        </ReactModal>
+
+
+
+        <ReactModal
+          isOpen={openNewPageModal}
+          onRequestClose={closeNewPageModal}
+          appElement={document.getElementById('root')}
+        >
+          {/* closeNewPageModal */}
+          <CreatePageForm bookId={bookId} closeModal={closeNewPageModal} />
 
         </ReactModal>
 

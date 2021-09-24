@@ -43,7 +43,6 @@ const CreatePriCharForm = ({ bookId, update=false, data, closeModal }) => {
     event.preventDefault();
     dispatch(thunk_createPriChar({ bookId, urlpreview, charname, charlabel }));
     closeModal();
-
   };
 
 
