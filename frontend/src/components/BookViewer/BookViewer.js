@@ -27,8 +27,7 @@ import styles from "./bookviewer.module.css";
 const BookViewer = () => {
   const [ loading, setLoading ] = useState(false);
   const [ openNewBookModal, setOpenNewBookModal ] = useState(false);
-  const [ showUpdateForm, setShowUpdateForm ] = useState(false);
-  const [ clickUpdateBook, setClickUpdateBook ] = useState(0);
+  const [ openUpdateBookModal, setOpenUpdateBookModal ] = useState(false);
   const [ toUpdate, setToUpdate ] = useState(null);
 
   const history = useHistory();
@@ -77,13 +76,7 @@ const BookViewer = () => {
   const handleUpdate = (event, bookId) => {
     event.preventDefault();
     setToUpdate(bookInfo[bookId]);
-    if(clickUpdateBook === 0) {
-      setShowUpdateForm(true);
-      setClickUpdateBook(1);
-    } else if (clickUpdateBook === 1) {
-      setShowUpdateForm(false);
-      setClickUpdateBook(0);
-    }
+    setOpenUpdateBookModal(true);
   }
 
 
@@ -92,6 +85,16 @@ const BookViewer = () => {
   const closeNewBookModal = () => {
     setOpenNewBookModal(false);
   }
+
+
+
+  const closeUpdateBookModal = () => {
+    setOpenUpdateBookModal(false);
+  }
+
+
+
+
 
 
 
@@ -129,13 +132,20 @@ const BookViewer = () => {
 
 
 
-    <div>
-        {showUpdateForm ?
-          <CreateBookForm isUpdate={true} data={toUpdate} />
-        :
-        <p></p>
-        }
-    </div>
+      <ReactModal
+        isOpen={openUpdateBookModal}
+        onRequestClose={closeUpdateBookModal}
+        appElement={document.getElementById('root')}
+      >
+
+        <CreateBookForm
+          isUpdate={true}
+          data={toUpdate}
+          closeModal={closeUpdateBookModal}
+        />
+      </ReactModal>
+
+
 
 
 
