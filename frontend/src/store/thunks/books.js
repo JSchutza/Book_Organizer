@@ -7,7 +7,8 @@ import {
   deleteBook,
   deleteUsersPrivateChars,
   deletePage,
-  createBook
+  createBook,
+  cratePriChar
 } from "../actions/books.js";
 
 import { setErrors, resetErrors } from "../actions/errors.js";
@@ -78,6 +79,7 @@ const thunk_getAllPriChars = (bookId) => async (dispatch) => {
 
 
 
+
 const thunk_createPriChar = ({ bookId, urlpreview, charname, charlabel }) => async (dispatch) => {
 
   const formData = new FormData();
@@ -95,8 +97,8 @@ const thunk_createPriChar = ({ bookId, urlpreview, charname, charlabel }) => asy
     dispatch(setErrors(data.errors));
     return;
   }
-  dispatch(thunk_getAllPriChars(bookId));
 
+  dispatch(cratePriChar(data.character));
 
 
 }

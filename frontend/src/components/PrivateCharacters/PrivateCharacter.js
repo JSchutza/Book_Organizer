@@ -14,7 +14,7 @@ import styles from "./privatecharacter.module.css";
 const PrivateCharacter = ({ bookId }) => {
   const [backenderrors, setBackenderrors] = useState(null);
   const dispatch = useDispatch();
-  const charInfo = useSelector((store) => store.priCharReducer.private_characters);
+  const charInfo = useSelector((store) => store.priCharReducer.characters);
   const errors = useSelector((store) => store.errorsReducer.errors);
   const history = useHistory();
 
@@ -35,10 +35,11 @@ const PrivateCharacter = ({ bookId }) => {
   }, [dispatch, bookId]);
 
 
+
+
+
   const handleDelete = (event, payload) => {
     event.preventDefault();
-
-    history.push("/dropdown");
   }
 
 
@@ -46,8 +47,6 @@ const PrivateCharacter = ({ bookId }) => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-
-    history.push("/dropdown");
   }
 
 
@@ -60,13 +59,15 @@ const PrivateCharacter = ({ bookId }) => {
 
 
 
-  if (charInfo === undefined) {
+
+  if (!charInfo) {
     return (
       <>
         <h1>Loading Character information...</h1>
       </>
     )
   }
+
 
 
   return (

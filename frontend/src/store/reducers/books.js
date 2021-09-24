@@ -6,7 +6,8 @@ import {
   DELETE_BOOK,
   DELETE_USERS_PRI_CHARS,
   DELETE_USERS_PAGE,
-  CREATE_USERS_BOOKS
+  CREATE_USERS_BOOKS,
+  CREATE_PRI_CHAR
   } from '../types'
 
 
@@ -36,11 +37,16 @@ const booksReducer = (state = { books: null }, action) => {
 const priCharReducer = (state = { characters: null }, action) => {
   switch (action.type) {
     case GET_USERS_PRI_CHARS:
-      return { ...action.characters };
+      return { ...state, characters: { ...action.characters.characters } };
+
+    case CREATE_PRI_CHAR:
+      return { ...state, books: { ...state.characters, [action.character.id]: action.character } };
+
     case DELETE_USERS_PRI_CHARS:
       const id = action.character
-      delete state[id];
-      return { ...state };
+      delete state.characters[id];
+      return { ...state, characters: { ...state.characters } };
+
     default:
       return state;
   }

@@ -7,8 +7,17 @@ import {
   DELETE_BOOK,
   DELETE_USERS_PRI_CHARS,
   DELETE_USERS_PAGE,
-  CREATE_USERS_BOOKS
+  CREATE_USERS_BOOKS,
+  CREATE_PRI_CHAR
 } from '../types'
+
+
+
+const cratePriChar = (character) => ({
+  type: CREATE_PRI_CHAR,
+  character
+});
+
 
 
 
@@ -70,5 +79,6 @@ export {
   deleteUsersPrivateChars,
   deletePage,
   createBook,
+  cratePriChar,
 
 }
