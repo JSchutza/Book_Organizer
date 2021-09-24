@@ -40,7 +40,7 @@ const priCharReducer = (state = { characters: null }, action) => {
       return { ...state, characters: { ...action.characters.characters } };
 
     case CREATE_PRI_CHAR:
-      return { ...state, books: { ...state.characters, [action.character.id]: action.character } };
+      return { ...state, characters: { ...state.characters, ...action.character } };
 
     case DELETE_USERS_PRI_CHARS:
       const id = action.character

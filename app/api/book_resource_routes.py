@@ -60,7 +60,7 @@ def create_pri_char(bookId):
   new_char = PrivateCharacter(avatar=url, character_name=charactername, character_label=characterlabel, book_id=bookId)
   db.session.add(new_char)
   db.session.commit()
-  return {"url": url}
+  return { new_char.get_id(): new_char.to_dict() }
 
 
 

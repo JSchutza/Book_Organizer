@@ -98,7 +98,7 @@ const thunk_createPriChar = ({ bookId, urlpreview, charname, charlabel }) => asy
     return;
   }
 
-  dispatch(cratePriChar(data.character));
+  dispatch(cratePriChar(data));
 
 
 }
