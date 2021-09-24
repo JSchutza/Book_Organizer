@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from "nanoid";
 import { thunk_createNewPoll, thunk_updatePoll } from "../../store/thunks/polls.js";

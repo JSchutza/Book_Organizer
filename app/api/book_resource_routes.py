@@ -14,7 +14,7 @@ resource_routes = Blueprint('resources', __name__)
 def get_all_private_chars(bookId):
   all_characters = PrivateCharacter.query.filter_by(book_id=bookId).all()
   normalized = {each.to_dict()["id"]: each.to_dict()   for each in all_characters}
-  return { "private_characters": normalized }
+  return { "characters": normalized }
 
 
 
@@ -60,7 +60,8 @@ def create_pri_char(bookId):
   new_char = PrivateCharacter(avatar=url, character_name=charactername, character_label=characterlabel, book_id=bookId)
   db.session.add(new_char)
   db.session.commit()
-  return {"url": url}
+  return { new_char.get_id(): new_char.to_dict() }
+
 
 
 
@@ -94,7 +95,8 @@ def create_page(bookId):
     new_page = Page(title=form.data['title'], text=form.data["text"], book_id=bookId)
     db.session.add(new_page)
     db.session.commit()
-  return { "page": new_page.to_dict() }
+  return { new_page.get_id(): new_page.to_dict() }
+
 
 
 

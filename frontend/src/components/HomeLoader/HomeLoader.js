@@ -11,8 +11,10 @@ const HomeLoader = () => {
 
   return (
     <>
-    <div>
-      <img src={splashImg} />
+    <div className={styles.main_box}>
+      <div className={styles.card_view}>
+        <img src={splashImg} />
+      </div>
     </div>
     </>
   );

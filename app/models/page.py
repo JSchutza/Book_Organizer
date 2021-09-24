@@ -14,16 +14,19 @@ class Page(db.Model):
   created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 
+
+  def get_id(self):
+    return self.id
+
   def get_title(self):
     return {
-
+      "title": self.title
     }
 
   def get_text(self):
     return {
-
+      "text": self.text
     }
-
 
   def get_book_id(self):
     return {

@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
-import { useHistory } from "react-router-dom";
 import Tooltip from "../ToolTip";
 
-import { thunk_getAllPages } from "../../store/thunks/books.js";
+
+import { thunk_getAllPages, thunk_deletePage } from "../../store/thunks/books.js";
+
+
+
+
 import styles from "./pages.module.css";
-
-
-
-
 
 
 
@@ -20,6 +22,8 @@ const Pages = ({ bookId }) => {
   const pageInfo = useSelector((store) => store.pageReducer.pages)
   const history = useHistory();
 
+
+
   useEffect(() => {
     dispatch(thunk_getAllPages(bookId));
   },[dispatch, bookId]);
@@ -27,25 +31,22 @@ const Pages = ({ bookId }) => {
 
 
 
-  const handleDelete = (event, payload) => {
+  const handleDelete = (event, pageId) => {
     event.preventDefault();
-
-    history.push("/dropdown");
+    dispatch(thunk_deletePage(bookId, pageId));
   }
 
 
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-
-    history.push("/dropdown");
   }
 
 
 
 
 
-  if (pageInfo === undefined || pageInfo === null) {
+  if (!pageInfo) {
     return (
       <>
         <h1>Loading Page information...</h1>
@@ -64,11 +65,9 @@ const Pages = ({ bookId }) => {
           <>
             <a href='/' onClick={ event => event.preventDefault() }>
               <li key={eachPage.id}>
-
                 <h3>{eachPage.title}</h3>
                 <br />
                 <p>{eachPage.text}</p>
-
               </li>
             </a>
 
@@ -76,14 +75,7 @@ const Pages = ({ bookId }) => {
           <div className={styles.each_page_button_wrap}>
           <div className={styles.each_page_delete_button}>
           <Tooltip content={"Delete"}>
-            <a href='/' onClick={event => handleDelete(event, {
-              pageId: eachPage.id,
-              title: eachPage.title,
-              text: eachPage.text,
-              book_id: eachPage.book_id,
-              lastpage: `/books/${bookId}`
-
-            }) }> <RiDeleteBinFill /> </a>
+            <a href='/' onClick={event => handleDelete(event, eachPage.id) }> <RiDeleteBinFill /> </a>
           </Tooltip>
           </div>
 

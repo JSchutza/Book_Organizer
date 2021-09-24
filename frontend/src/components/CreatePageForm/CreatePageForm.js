@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-
-import { thunk_updatePage, thunk_createPage } from "../../store/thunks/books.js";
+import { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
-import { nanoid } from "nanoid"
 import { useHistory } from "react-router-dom";
+
+
+import { nanoid } from "nanoid"
+import { thunk_updatePage, thunk_createPage } from "../../store/thunks/books.js";
+
+
+
 import styles from "./createpageform.module.css";
 
 
 
-
-const CreatePageForm = ({ bookId, update=false, data }) => {
+const CreatePageForm = ({ bookId, update=false, data, closeModal }) => {
   const [ title, setTitle ] = useState('');
   const [ text, setText ] = useState('');
   const [ updateTitle, setUpdateTitle ] = useState('');
@@ -36,11 +39,11 @@ const CreatePageForm = ({ bookId, update=false, data }) => {
   const onSubmit = event => {
     event.preventDefault();
     dispatch(thunk_createPage({ title, text, bookId }));
-    history.push(`/books/${bookId}`);
+    closeModal();
   };
 
 
-  const onUpdate = async (event) => {
+  const onUpdate = event => {
     event.preventDefault();
     dispatch(thunk_updatePage({ title: updateTitle, text: updateText, bookId, pageId: data.pageId }));
     history.push(`/books/${bookId}`);

@@ -22,17 +22,20 @@ const CREATE_PUB_CHAR = "characters/CREATE_PUB_CHAR";
 
 // books
 const GET_USERS_BOOKS = "books/GET_USERS_BOOKS";
+const CREATE_USERS_BOOKS = 'books/CREATE_USERS_BOOKS';
 const DELETE_BOOK = "books/DELETE_BOOK";
 
 
 // pages
 const GET_USERS_PAGES = "books/GET_USERS_PAGES";
+const CREATE_PAGE = "books/CREATE_PAGE";
 const DELETE_USERS_PAGE = 'books/DELETE_USERS_PAGE';
 
 
 
 // pri characters
 const GET_USERS_PRI_CHARS = "books/GET_USERS_PRI_CHARS";
+const CREATE_PRI_CHAR = "books/CREATE_PRI_CHAR";
 const DELETE_USERS_PRI_CHARS = 'characters/DELETE_USERS_PRI_CHARS'
 
 
@@ -96,6 +99,9 @@ export {
   DELETE_PUB_CHAR_SEARCH,
   UPDATE_PUB_CHAR,
   CREATE_PUB_CHAR,
+  CREATE_USERS_BOOKS,
+  CREATE_PRI_CHAR,
+  CREATE_PAGE,
 
 
 

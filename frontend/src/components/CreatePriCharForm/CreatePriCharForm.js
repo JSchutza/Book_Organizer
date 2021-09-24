@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useHistory } from "react-router-dom";
@@ -11,16 +11,15 @@ import styles from "./createpricharform.module.css";
 
 
 
-const CreatePriCharForm = ({ bookId, update=false, data }) => {
+const CreatePriCharForm = ({ bookId, update=false, data, closeModal }) => {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [charname, setCharname] = useState("");
   const [charlabel, setCharlabel] = useState("");
   const [urlpreview, setUrlPreview] = useState(null);
-
-
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
+
 
 
   useEffect(() => {
@@ -40,17 +39,17 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
 
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = event => {
+    event.preventDefault();
     dispatch(thunk_createPriChar({ bookId, urlpreview, charname, charlabel }));
-    history.push(`/books/${bookId}`);
+    closeModal();
   };
 
 
 
 
-  const updateAvatar = (e) => {
-    const result = processFile(e.target.files);
+  const updateAvatar = event => {
+    const result = processFile(event.target.files);
     if (result) {
         setUrlPreview(result);
         setAvatarUrl(URL.createObjectURL(result));
@@ -73,10 +72,9 @@ const CreatePriCharForm = ({ bookId, update=false, data }) => {
 
 
 
-  const onUpdate = async (event) => {
+  const onUpdate = event => {
     event.preventDefault();
     dispatch(thunk_updatePriChar({ urlpreview, charname, charlabel, bookId, charId: data.charId }));
-
     history.push(`/books/${bookId}`);
   }
 

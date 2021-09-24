@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { thunk_getAllBooks } from "../../store/thunks/books.js";
+import { thunk_createBook } from "../../store/thunks/books.js";
 
 import ToolTip from "../ToolTip";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -10,48 +10,39 @@ import styles from "./createbookform.module.css";
 
 
 
-const CreateBookForm = ({ isUpdate=false, data }) => {
-  const [ updateTitle, setUpdateTitle ] = useState("");
+const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
+  const [ updateTitle, setUpdateTitle ] = useState(data?.the_title);
   const [ title, setTitle ] = useState("");
   const dispatch = useDispatch();
 
 
-  const onCreateSubmit = async (event) => {
+
+  const onCreateSubmit = event => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("title", title);
+    const payload = {
+      title,
+      requestUrl: "/api/books",
+      requestMethod: "POST"
+    };
 
-    const res = await fetch("/api/books", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (res.ok) {
-      dispatch(thunk_getAllBooks());
-    } else {
-      console.log("error");
-    }
-
+    dispatch(thunk_createBook(payload));
+    closeModal();
   }
 
 
 
-  const onUpdateSubmit = async (event) => {
+  const onUpdateSubmit = event => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("title", updateTitle);
+    const payload = {
+      title: updateTitle,
+      requestUrl: `/api/books/${data.id}`,
+      requestMethod: "PUT"
+    };
 
-    const res = await fetch(`/api/books/${data.id}`, {
-      method: "PUT",
-      body: formData,
-    });
-
-    if (res.ok) {
-      dispatch(thunk_getAllBooks());
-    } else {
-      console.log("error");
-    }
+    dispatch(thunk_createBook(payload));
+    closeModal();
   }
+
 
 
 

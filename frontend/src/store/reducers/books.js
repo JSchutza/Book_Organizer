@@ -1,5 +1,15 @@
 
-import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS, GET_USERS_PAGES, DELETE_BOOK, DELETE_USERS_PRI_CHARS, DELETE_USERS_PAGE } from '../types'
+import {
+  GET_USERS_BOOKS,
+  GET_USERS_PRI_CHARS,
+  GET_USERS_PAGES,
+  DELETE_BOOK,
+  DELETE_USERS_PRI_CHARS,
+  DELETE_USERS_PAGE,
+  CREATE_USERS_BOOKS,
+  CREATE_PRI_CHAR,
+  CREATE_PAGE
+  } from '../types'
 
 
 
@@ -8,38 +18,56 @@ import { GET_USERS_BOOKS, GET_USERS_PRI_CHARS, GET_USERS_PAGES, DELETE_BOOK, DEL
 const booksReducer = (state = { books: null }, action) => {
   switch (action.type) {
     case GET_USERS_BOOKS:
-      return { ...action.books };
+      return {...state, books: { ...action.books.books } };
+
+    case CREATE_USERS_BOOKS:
+      return { ...state, books: { ...state.books, [action.book.id]: action.book } };
+
     case DELETE_BOOK:
       const id = action.book;
-      delete state[id];
-      return { ...state };
+      delete state.books[id];
+      return { ...state, books: { ...state.books } };
+
     default:
       return state;
   }
 }
+
 
 
 const priCharReducer = (state = { characters: null }, action) => {
   switch (action.type) {
     case GET_USERS_PRI_CHARS:
-      return { ...action.characters };
+      return { ...state, characters: { ...action.characters.characters } };
+
+    case CREATE_PRI_CHAR:
+      return { ...state, characters: { ...state.characters, ...action.character } };
+
     case DELETE_USERS_PRI_CHARS:
       const id = action.character
-      delete state[id];
-      return { ...state };
+      delete state.characters[id];
+      return { ...state, characters: { ...state.characters } };
+
     default:
       return state;
   }
 }
 
+
+
 const pageReducer = (state = { pages: null }, action) => {
   switch (action.type) {
     case GET_USERS_PAGES:
-      return { ...action.pages };
+      return { ...state, pages: { ...action.pages.pages } };
+
+    case CREATE_PAGE:
+      return { ...state, pages: { ...state.pages, ...action.page } };
+
     case DELETE_USERS_PAGE:
       const id = action.page;
-      delete state[id];
-      return { ...state };
+      delete state.pages[id];
+      return { ...state, pages: { ...state.pages } };
+
     default:
       return state;
   }
