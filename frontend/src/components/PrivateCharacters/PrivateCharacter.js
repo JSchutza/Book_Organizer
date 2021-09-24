@@ -6,7 +6,7 @@ import ToolTip from "../ToolTip";
 import { useHistory } from "react-router-dom";
 
 import { resetErrors } from "../../store/actions/errors.js";
-import { thunk_getAllPriChars } from "../../store/thunks/books.js";
+import { thunk_getAllPriChars, thunk_deleteUsersPrivateChars } from "../../store/thunks/books.js";
 import styles from "./privatecharacter.module.css";
 
 
@@ -38,8 +38,9 @@ const PrivateCharacter = ({ bookId }) => {
 
 
 
-  const handleDelete = (event, payload) => {
+  const handleDelete = (event, charId) => {
     event.preventDefault();
+    dispatch(thunk_deleteUsersPrivateChars(bookId, charId))
   }
 
 
@@ -109,14 +110,7 @@ const PrivateCharacter = ({ bookId }) => {
           <div className={styles.each_char_button_wrap}>
           <div className={styles.each_char_delete_button}>
           <ToolTip content={"Delete"}>
-            <a href='/' onClick={event => handleDelete(event, {
-              charId: eachChar.id,
-              avatar: eachChar.avatar,
-              character_name: eachChar.character_name,
-              character_label: eachChar.character_label,
-              book_id: bookId,
-              lastpage: `/books/${bookId}`
-            })}> <RiDeleteBinFill /> </a>
+            <a href='/' onClick={event => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </a>
           </ToolTip>
           </div>
 

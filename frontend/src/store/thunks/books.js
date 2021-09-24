@@ -160,9 +160,9 @@ const thunk_deleteUsersPrivateChars = (bookId, characterId) => async (dispatch) 
     dispatch(setErrors(data.errors));
     return;
   }
-  dispatch(resetErrors());
+
   dispatch(deleteUsersPrivateChars(characterId));
-  dispatch(thunk_getAllPriChars(bookId));
+
 
 };
 
