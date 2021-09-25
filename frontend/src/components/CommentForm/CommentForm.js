@@ -25,6 +25,7 @@ const CommentForm = ({ update=false, data, closeModal }) => {
   const updateComment = event => {
     event.preventDefault();
     dispatch(thunk_updateSpecificComment({ pollId, commentId, updateText }));
+    closeModal();
   }
 
 

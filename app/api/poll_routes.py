@@ -89,7 +89,7 @@ def update_comment(pollId, commentId):
     the_comment.update_comment(form.data['answer_text'])
     db.session.add(the_comment)
     db.session.commit()
-    return { "comment": the_comment.to_dict() }
+    return { the_comment.get_id(): the_comment.to_dict() }
 
   return { "errors": ["error", "Please try again."] }
 

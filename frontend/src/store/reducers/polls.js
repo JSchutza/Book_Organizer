@@ -50,8 +50,8 @@ const commentReducer = (state = { comments: null }, action) => {
 
     case DELETE_SPECIFIC_COMMENT:
       const id = action.comment;
-      delete state[id];
-      return { ...state };
+      delete state.comments[id];
+      return { ...state, comments: { ...state.comments } };
 
     case UPDATE_COMMENT:
       return { ...state, comments: { ...state.comments, ...action.comment } };

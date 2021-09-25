@@ -80,6 +80,6 @@ export {
   deleteSpecificComment,
   cretatePoll,
   createComment,
-
+  updateComment,
 
 }

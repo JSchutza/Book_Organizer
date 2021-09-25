@@ -22,6 +22,7 @@ import styles from "./comments.module.css";
 
 const Comments = () => {
   const [ loaded, setLoaded ] = useState(false);
+  const [ openModal, setOpenModal ] = useState(false);
   const [ updateInfo, setUpdateInfo ] = useState(null);
   const { isUser } = useUser();
   const { pollId } = useParams();
@@ -57,11 +58,15 @@ const Comments = () => {
   const handleUpdate = (event, payload) => {
     event.preventDefault();
     setUpdateInfo(payload);
+    setOpenModal(true);
   }
 
 
 
 
+  const closeModal = () => {
+    setOpenModal(false);
+  }
 
 
 
@@ -83,14 +88,18 @@ const Comments = () => {
   return (
   <>
 
-      {/* <ReactModal
+      <ReactModal
         isOpen={openModal}
         onRequestClose={closeModal}
         appElement={document.getElementById('root')}
       >
-        <CreateCharacterForm closeModal={closeModal} />
+        <CommentForm
+          closeModal={closeModal}
+          update={true}
+          data={updateInfo}
+        />
 
-      </ReactModal> */}
+      </ReactModal>
 
 
 
