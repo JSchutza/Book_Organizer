@@ -128,10 +128,9 @@ const thunk_deleteSpecificPoll = (pollId) => async (dispatch) => {
     dispatch(setErrors(data.errors));
     return;
   }
-  dispatch(resetErrors());
+
   dispatch(deleteSpecificPoll(pollId));
-  dispatch(thunk_allPolls());
-  dispatch(thunk_getUsersPolls());
+
 };
 
 
