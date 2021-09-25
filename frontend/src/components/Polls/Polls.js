@@ -3,18 +3,24 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { thunk_getUsersPolls, thunk_getUsersSpecificComments, thunk_deleteSpecificPoll, thunk_allPolls } from "../../store/thunks/polls.js";
+
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
+import ReactModal from 'react-modal';
+
 
 import styles from "./polls.module.css";
 
 
 
+
+
 const Polls = () => {
-  const [loading, setLoading] = useState(false);
+  const [ loading, setLoading ] = useState(false);
+  const [ openCreatePollModal, setOpenCreatePollModal ] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const polls = useSelector(store => store.pollsReducer.polls);
@@ -32,6 +38,9 @@ const Polls = () => {
   },[dispatch]);
 
 
+
+
+
   const handleEachClick = (event, pollId) => {
     event.preventDefault();
     dispatch(thunk_getUsersSpecificComments(pollId));
@@ -40,31 +49,37 @@ const Polls = () => {
 
 
 
-  const handleCreate = (event) => {
-    event.preventDefault();
 
-    history.push('/dropdown');
+  const handleCreate = event => {
+    event.preventDefault();
+    setOpenCreatePollModal(true);
   }
+
 
 
 
   const handleDelete = (event, pollId) => {
     event.preventDefault();
     dispatch(thunk_deleteSpecificPoll(pollId));
-
   }
+
+
 
 
   const handleUpdate = (event, pollId) => {
     event.preventDefault();
+  }
 
-    history.push("/dropdown");
+
+
+  const closeCreatePollModal = () => {
+    setOpenCreatePollModal(false);
   }
 
 
 
 
-  if (polls === null || allPolls === null || !loading){
+  if (!polls || !allPolls || !loading){
     return (
       <>
         <LoadScreen />
@@ -77,11 +92,23 @@ const Polls = () => {
 
   return (
     <>
+      <ReactModal
+        isOpen={openCreatePollModal}
+        onRequestClose={closeCreatePollModal}
+        appElement={document.getElementById('root')}
+      >
+        {/* <CreateCharacterForm closeModal={closeModal} /> */}
+
+      </ReactModal>
+
+
+
       <div className={styles.create_poll_button}>
         <ToolTip content={"New Poll"}>
           <a href='/' onClick={event => handleCreate(event)} > <BsFillPlusSquareFill /> </a>
         </ToolTip>
       </div>
+
 
     <div className={styles.main_titles}>
       <h1> Your Polls </h1>
