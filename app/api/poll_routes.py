@@ -112,7 +112,8 @@ def create_new_poll():
     new_poll = Poll(title=form.data['title'], question_text=form.data["question_text"], user_id=current_user.get_id())
     db.session.add(new_poll)
     db.session.commit()
-    return { "poll": new_poll.to_dict() }
+    return { new_poll.get_id(): new_poll.to_dict() }
+
 
   # if there are errors
   return { "errors": ["errors", "Please try again."] }
