@@ -7,7 +7,10 @@ import {
   deleteSpecificPoll,
   allPolls,
   deleteSpecificComment,
-  cretatePoll
+  cretatePoll,
+  createComment,
+  updateComment,
+
 } from "../actions/polls.js";
 
 
@@ -151,8 +154,9 @@ const thunk_getUsersSpecificComments = (pollId) => async (dispatch) => {
     dispatch(setErrors(data.errors));
     return;
   }
-  dispatch(resetErrors());
+
   dispatch(getUsersSpecificComments(data));
+
 };
 
 
@@ -171,18 +175,19 @@ const thunk_deleteSpecificComment = (pollId, commentId) => async (dispatch) => {
     return;
   }
 
-  dispatch(resetErrors());
+
   dispatch(deleteSpecificComment(commentId));
-  dispatch(thunk_getUsersSpecificComments(pollId));
+
 };
 
 
 
 
+
 // /api/polls/:pollId/comments/:commentId
-const thunk_updateSpecificComment = ({ pollId, commentId }, answer_text) => async (dispatch) => {
+const thunk_updateSpecificComment = ({ pollId, commentId, updateText }) => async (dispatch) => {
   const formData = new FormData();
-  formData.append("answer_text", answer_text);
+  formData.append("answer_text", updateText);
 
   const response = await fetch(`/api/polls/${pollId}/comments/${commentId}`, {
     method: "PUT",
@@ -195,8 +200,7 @@ const thunk_updateSpecificComment = ({ pollId, commentId }, answer_text) => asyn
     return;
   }
 
-  dispatch(resetErrors());
-  dispatch(thunk_getUsersSpecificComments(pollId));
+  dispatch(updateComment(data));
 
 };
 
@@ -223,8 +227,8 @@ const thunk_createComment = ({ pollId, commentText }) => async (dispatch) => {
     dispatch(setErrors(data.errors));
     return;
   }
-  dispatch(resetErrors());
-  dispatch(thunk_getUsersSpecificComments(pollId));
+
+  dispatch(createComment(data));
 
 };
 

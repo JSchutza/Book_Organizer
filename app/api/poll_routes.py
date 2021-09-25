@@ -36,7 +36,8 @@ def get_all_comments(pollId):
   the_comments = Comment.query.filter_by(poll_id=pollId).all()
   normalized = { each.to_dict()["id"]: each.to_dict() for each in the_comments }
   if len(normalized) == 0:
-    return { "comments": False }
+    return { "comments": None }
+
   return {"comments": normalized }
 
 
@@ -54,7 +55,7 @@ def new_comment(pollId):
     new_comment = Comment(answer_text=form.data['answer_text'], poll_id=int(pollId), user_id=current_user.get_id())
     db.session.add(new_comment)
     db.session.commit()
-    return { "comment": new_comment.to_dict() }
+    return { new_comment.get_id(): new_comment.to_dict() }
 
   # if there are errors
   return { "errors": ["errors", "Please try again."] }
@@ -88,7 +89,7 @@ def update_comment(pollId, commentId):
     the_comment.update_comment(form.data['answer_text'])
     db.session.add(the_comment)
     db.session.commit()
-    return { "comment": the_comment.to_dict() }
+    return { the_comment.get_id(): the_comment.to_dict() }
 
   return { "errors": ["error", "Please try again."] }
 

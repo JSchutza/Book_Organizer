@@ -2,36 +2,32 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 import { useParams } from "react-router-dom";
-import { thunk_allPolls, thunk_getUsersSpecificComments, thunk_createComment,
-          thunk_deleteSpecificComment, thunk_updateSpecificComment } from "../../store/thunks/polls.js";
-import LoadScreen from "../LoadScreen";
 
+import { thunk_allPolls, thunk_getUsersSpecificComments, thunk_deleteSpecificComment } from "../../store/thunks/polls.js";
+import { useUser } from "../../context/UserContext.js";
 
 
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
-import { AiOutlinePlus } from "react-icons/ai";
+
+import ReactModal from 'react-modal';
 import ToolTip from "../ToolTip";
+import LoadScreen from "../LoadScreen";
+import CommentForm from "../CommentForm";
+
 
 import styles from "./comments.module.css";
 
 
 
-
-
 const Comments = () => {
-  const [loaded, setLoaded] = useState(false);
-  const [ commentText, setCommentText ] = useState('');
-  const [ updateText, setUpdateText ] = useState('');
-
-
-  const [ show, setShow ] = useState(false);
+  const [ loaded, setLoaded ] = useState(false);
+  const [ openModal, setOpenModal ] = useState(false);
   const [ updateInfo, setUpdateInfo ] = useState(null);
-
+  const { isUser } = useUser();
   const { pollId } = useParams();
   const dispatch = useDispatch();
   const comments = useSelector(store => store.commentReducer.comments);
-  const user = useSelector((store) => store.usersReducer.user);
   const poll = useSelector(store => store.allPollsReducer.polls);
 
 
@@ -49,10 +45,6 @@ const Comments = () => {
 
 
 
-  const createComment = (event) => {
-    event.preventDefault();
-    dispatch(thunk_createComment({ pollId, commentText }));
-  }
 
 
 
@@ -65,26 +57,22 @@ const Comments = () => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-    setShow(true);
-
     setUpdateInfo(payload);
-    setUpdateText(payload.answer_text);
-  }
-
-
-  const updateComment = event => {
-    event.preventDefault();
-    dispatch(thunk_updateSpecificComment(updateInfo, updateText));
-    setShow(false);
-
+    setOpenModal(true);
   }
 
 
 
 
+  const closeModal = () => {
+    setOpenModal(false);
+  }
 
 
-  if (comments === null || poll === null || !loaded){
+
+
+
+  if (!poll || !loaded){
     return (
       <>
         <LoadScreen />
@@ -100,7 +88,22 @@ const Comments = () => {
   return (
   <>
 
-      {comments === false ?
+      <ReactModal
+        isOpen={openModal}
+        onRequestClose={closeModal}
+        appElement={document.getElementById('root')}
+      >
+        <CommentForm
+          closeModal={closeModal}
+          update={true}
+          data={updateInfo}
+        />
+
+      </ReactModal>
+
+
+
+      {!comments ?
           <>
           <div className={styles.no_comment_wrap}>
             <div className={styles.each_title}>
@@ -116,10 +119,8 @@ const Comments = () => {
             </div>
           </div>
           </>
-
         :
         <>
-
         <div className={styles.comment_title_wrap}>
         <div className={styles.each_title}>
             <h1> {Object.values(comments)[0].poll_title} </h1>
@@ -140,8 +141,7 @@ const Comments = () => {
             <p> <b>{eachComment.answer_text}</b> </p>
           </li>
 
-          {user.id === eachComment.user_id ?
-              <>
+          {isUser.id === eachComment.user_id ?
               <div className={styles.each_comment_buttons_wrap}>
               <div className={styles.each_comment_delete_button}>
                 <ToolTip content={"Delete"}>
@@ -151,13 +151,14 @@ const Comments = () => {
 
                 <div className={styles.each_comment_update_button}>
                   <ToolTip content={"Update"}>
-                    <a href='/' onClick={event => handleUpdate(event, { commentId: eachComment.id, answer_text: eachComment.answer_text,
-                        pollId })} > <li> <GrUpdate /> </li> </a>
+                    <a href='/' onClick={event => handleUpdate(event, {
+                      commentId: eachComment.id,
+                      answer_text: eachComment.answer_text,
+                      pollId
+                    })} > <li> <GrUpdate /> </li> </a>
                   </ToolTip>
                 </div>
                 </div>
-              </>
-
               :
             <></>
           }
@@ -167,54 +168,7 @@ const Comments = () => {
     </>
     }
 
-
-
-
-
-
-
-
-
-        {show ?
-        <div className={styles.comment_form_input_wrap}>
-          <div className={styles.comment_form_containter}>
-            <textarea
-              type="text"
-              name="comment"
-              value={updateText}
-              onChange={event => setUpdateText(event.target.value)}
-              />
-
-
-          <div className={styles.comment_update_button}>
-            <ToolTip content={"Update"}>
-              <a href='/' onClick={event => updateComment(event)}> <GrUpdate /> </a>
-            </ToolTip>
-          </div>
-          </div>
-
-          </div>
-
-        :
-
-        <div className={styles.comment_form_input_wrap}>
-          <div className={styles.comment_form_containter}>
-              <textarea
-                type="text"
-                name="comment"
-                value={commentText}
-                onChange={event => setCommentText(event.target.value)}
-                />
-
-          <div className={styles.comment_add_button}>
-            <ToolTip content={"Comment"}>
-              <a href='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </a>
-            </ToolTip>
-          </div>
-          </div>
-
-          </div>
-        }
+      <CommentForm data={ { pollId } } />
   </>
   );
 

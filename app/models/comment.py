@@ -15,6 +15,10 @@ class Comment(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 
+
+    def get_id(self):
+        return self.id
+
     def get_creation_date(self):
         return {
             "created_at": self.created_at,

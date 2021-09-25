@@ -69,6 +69,8 @@ const Polls = () => {
 
   const handleUpdate = (event, pollId) => {
     event.preventDefault();
+    // set state with the current poll info so it can be passed as props to the
+    // form
     setOpenUpdatePollModal(true);
   }
 
@@ -115,6 +117,11 @@ const Polls = () => {
         appElement={document.getElementById('root')}
       >
 
+        <CreatePollForm
+          update={true}
+          closeModal={closeUpdatePollModal}
+
+        />
 
       </ReactModal>
 

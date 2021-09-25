@@ -8,6 +8,8 @@ import {
   GET_ALL_POLLS,
   DELETE_SPECIFIC_COMMENT,
   CREATE_POLL,
+  CREATE_COMMENT,
+  UPDATE_COMMENT,
 
 } from "../types";
 
@@ -37,15 +39,28 @@ const pollsReducer = (state = { polls: null }, action) => {
 
 
 
+
 const commentReducer = (state = { comments: null }, action) => {
   switch (action.type){
     case GET_COMMENTS_BY_POLL_ID:
-      return { ...action.comments };
+      return { ...state, comments: action.comments.comments  };
+
+    case CREATE_COMMENT:
+      return { ...state, comments: { ...state.comments, ...action.comment } };
 
     case DELETE_SPECIFIC_COMMENT:
       const id = action.comment;
-      delete state[id];
-      return { ...state };
+      delete state.comments[id];
+      // need to know if there are no more comments left
+      const toArr = Object.keys(state.comments);
+      if (!toArr.length){
+        return { ...state, comments: null };
+      }
+
+      return { ...state, comments: { ...state.comments } };
+
+    case UPDATE_COMMENT:
+      return { ...state, comments: { ...state.comments, ...action.comment } };
 
     default:
       return state;
