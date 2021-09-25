@@ -9,7 +9,7 @@ import {
   thunk_deleteSpecificComment,
   thunk_updateSpecificComment
 } from "../../store/thunks/polls.js";
-
+import { useUser } from "../../context/UserContext.js";
 
 import LoadScreen from "../LoadScreen";
 
@@ -29,16 +29,12 @@ import styles from "./comments.module.css";
 const Comments = () => {
   const [ loaded, setLoaded ] = useState(false);
   const [ commentText, setCommentText ] = useState('');
-  const [ updateText, setUpdateText ] = useState('');
 
-
-  const [ show, setShow ] = useState(false);
   const [ updateInfo, setUpdateInfo ] = useState(null);
-
+  const { isUser } = useUser();
   const { pollId } = useParams();
   const dispatch = useDispatch();
   const comments = useSelector(store => store.commentReducer.comments);
-  const user = useSelector((store) => store.usersReducer.user);
   const poll = useSelector(store => store.allPollsReducer.polls);
 
 
@@ -72,19 +68,12 @@ const Comments = () => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
-    setShow(true);
-
     setUpdateInfo(payload);
-    setUpdateText(payload.answer_text);
-  }
-
-
-  const updateComment = event => {
-    event.preventDefault();
-    dispatch(thunk_updateSpecificComment(updateInfo, updateText));
-    setShow(false);
 
   }
+
+
+
 
 
 
@@ -122,10 +111,8 @@ const Comments = () => {
             </div>
           </div>
           </>
-
         :
         <>
-
         <div className={styles.comment_title_wrap}>
         <div className={styles.each_title}>
             <h1> {Object.values(comments)[0].poll_title} </h1>
@@ -146,8 +133,7 @@ const Comments = () => {
             <p> <b>{eachComment.answer_text}</b> </p>
           </li>
 
-          {user.id === eachComment.user_id ?
-              <>
+          {isUser.id === eachComment.user_id ?
               <div className={styles.each_comment_buttons_wrap}>
               <div className={styles.each_comment_delete_button}>
                 <ToolTip content={"Delete"}>
@@ -162,8 +148,6 @@ const Comments = () => {
                   </ToolTip>
                 </div>
                 </div>
-              </>
-
               :
             <></>
           }
@@ -176,51 +160,23 @@ const Comments = () => {
 
 
 
+  <div className={styles.comment_form_input_wrap}>
+    <div className={styles.comment_form_containter}>
+        <textarea
+          type="text"
+          name="comment"
+          value={commentText}
+          onChange={event => setCommentText(event.target.value)}
+          />
 
+    <div className={styles.comment_add_button}>
+      <ToolTip content={"Comment"}>
+        <a href='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </a>
+      </ToolTip>
+    </div>
+    </div>
 
-
-
-
-        {show ?
-        <div className={styles.comment_form_input_wrap}>
-          <div className={styles.comment_form_containter}>
-            <textarea
-              type="text"
-              name="comment"
-              value={updateText}
-              onChange={event => setUpdateText(event.target.value)}
-              />
-
-
-          <div className={styles.comment_update_button}>
-            <ToolTip content={"Update"}>
-              <a href='/' onClick={event => updateComment(event)}> <GrUpdate /> </a>
-            </ToolTip>
-          </div>
-          </div>
-
-          </div>
-
-        :
-
-        <div className={styles.comment_form_input_wrap}>
-          <div className={styles.comment_form_containter}>
-              <textarea
-                type="text"
-                name="comment"
-                value={commentText}
-                onChange={event => setCommentText(event.target.value)}
-                />
-
-          <div className={styles.comment_add_button}>
-            <ToolTip content={"Comment"}>
-              <a href='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </a>
-            </ToolTip>
-          </div>
-          </div>
-
-          </div>
-        }
+    </div>
   </>
   );
 
