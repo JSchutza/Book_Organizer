@@ -14,7 +14,7 @@ import styles from "./commentform.module.css";
 const CommentForm = ({ update=false, data, closeModal }) => {
   const { pollId, commentId, answer_text,  } = data;
   const [ commentText, setCommentText ] = useState('');
-  const [ updateText, setUpdateText ] = useState('');
+  const [ updateText, setUpdateText ] = useState(answer_text);
   const dispatch = useDispatch();
 
 
@@ -24,7 +24,7 @@ const CommentForm = ({ update=false, data, closeModal }) => {
 
   const updateComment = event => {
     event.preventDefault();
-    // dispatch(thunk_updateSpecificComment(updateInfo, updateText));
+    dispatch(thunk_updateSpecificComment({ pollId, commentId, updateText }));
   }
 
 

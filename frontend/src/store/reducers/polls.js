@@ -9,6 +9,7 @@ import {
   DELETE_SPECIFIC_COMMENT,
   CREATE_POLL,
   CREATE_COMMENT,
+  UPDATE_COMMENT,
 
 } from "../types";
 
@@ -51,6 +52,9 @@ const commentReducer = (state = { comments: null }, action) => {
       const id = action.comment;
       delete state[id];
       return { ...state };
+
+    case UPDATE_COMMENT:
+      return { ...state, comments: { ...state.comments, ...action.comment } };
 
     default:
       return state;

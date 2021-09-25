@@ -182,10 +182,11 @@ const thunk_deleteSpecificComment = (pollId, commentId) => async (dispatch) => {
 
 
 
+
 // /api/polls/:pollId/comments/:commentId
-const thunk_updateSpecificComment = ({ pollId, commentId }, answer_text) => async (dispatch) => {
+const thunk_updateSpecificComment = ({ pollId, commentId, updateText }) => async (dispatch) => {
   const formData = new FormData();
-  formData.append("answer_text", answer_text);
+  formData.append("answer_text", updateText);
 
   const response = await fetch(`/api/polls/${pollId}/comments/${commentId}`, {
     method: "PUT",
