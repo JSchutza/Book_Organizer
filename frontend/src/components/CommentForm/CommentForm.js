@@ -6,10 +6,10 @@ import { thunk_updateSpecificComment } from "../../store/thunks/polls.js";
 import { GrUpdate } from "react-icons/gr";
 
 
-import styles from "./updatecommentform.module.css";
+import styles from "./commentform.module.css";
 
 
-const UpdateCommentForm = ({ update=false, data, closeModal }) => {
+const CommentForm = ({ update=false, data, closeModal }) => {
   const [ updateText, setUpdateText ] = useState('');
   const dispatch = useDispatch();
 
@@ -46,4 +46,4 @@ const UpdateCommentForm = ({ update=false, data, closeModal }) => {
   )
 };
 
-export default UpdateCommentForm;
+export default CommentForm;

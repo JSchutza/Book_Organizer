@@ -14,15 +14,15 @@ import { useUser } from "../../context/UserContext.js";
 import LoadScreen from "../LoadScreen";
 
 
-
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { AiOutlinePlus } from "react-icons/ai";
 import ToolTip from "../ToolTip";
+import ReactModal from 'react-modal';
+
+
 
 import styles from "./comments.module.css";
-
-
 
 
 
@@ -95,6 +95,18 @@ const Comments = () => {
 
   return (
   <>
+
+      {/* <ReactModal
+        isOpen={openModal}
+        onRequestClose={closeModal}
+        appElement={document.getElementById('root')}
+      >
+        <CreateCharacterForm closeModal={closeModal} />
+
+      </ReactModal> */}
+
+
+
       {!comments ?
           <>
           <div className={styles.no_comment_wrap}>
