@@ -13,7 +13,7 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import ReactModal from 'react-modal';
 import ToolTip from "../ToolTip";
 import LoadScreen from "../LoadScreen";
-
+import CommentForm from "../CommentForm";
 
 
 import styles from "./comments.module.css";
@@ -142,8 +142,11 @@ const Comments = () => {
 
                 <div className={styles.each_comment_update_button}>
                   <ToolTip content={"Update"}>
-                    <a href='/' onClick={event => handleUpdate(event, { commentId: eachComment.id, answer_text: eachComment.answer_text,
-                        pollId })} > <li> <GrUpdate /> </li> </a>
+                    <a href='/' onClick={event => handleUpdate(event, {
+                      commentId: eachComment.id,
+                      answer_text: eachComment.answer_text,
+                      pollId
+                    })} > <li> <GrUpdate /> </li> </a>
                   </ToolTip>
                 </div>
                 </div>
@@ -155,6 +158,8 @@ const Comments = () => {
       </div>
     </>
     }
+
+      <CommentForm data={ { pollId } } />
   </>
   );
 

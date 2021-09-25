@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { thunk_updateSpecificComment } from "../../store/thunks/polls.js";
+import { thunk_updateSpecificComment, thunk_createComment } from "../../store/thunks/polls.js";
 
 import { GrUpdate } from "react-icons/gr";
 import { AiOutlinePlus } from "react-icons/ai";
+import ToolTip from "../ToolTip";
+
 
 import styles from "./commentform.module.css";
 
 
 const CommentForm = ({ update=false, data, closeModal }) => {
+  const { pollId, commentId, answer_text,  } = data;
   const [ commentText, setCommentText ] = useState('');
   const [ updateText, setUpdateText ] = useState('');
   const dispatch = useDispatch();
@@ -29,7 +32,7 @@ const CommentForm = ({ update=false, data, closeModal }) => {
 
   const createComment = event => {
     event.preventDefault();
-    // dispatch(thunk_createComment({ pollId, commentText }));
+    dispatch(thunk_createComment({ pollId, commentText }));
   }
 
 
