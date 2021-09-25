@@ -4,14 +4,19 @@ import { useDispatch } from 'react-redux';
 import { thunk_updateSpecificComment } from "../../store/thunks/polls.js";
 
 import { GrUpdate } from "react-icons/gr";
-
+import { AiOutlinePlus } from "react-icons/ai";
 
 import styles from "./commentform.module.css";
 
 
 const CommentForm = ({ update=false, data, closeModal }) => {
+  const [ commentText, setCommentText ] = useState('');
   const [ updateText, setUpdateText ] = useState('');
   const dispatch = useDispatch();
+
+
+
+
 
 
   const updateComment = event => {
@@ -22,8 +27,16 @@ const CommentForm = ({ update=false, data, closeModal }) => {
 
 
 
-  return (
-    <>
+  const createComment = event => {
+    event.preventDefault();
+    // dispatch(thunk_createComment({ pollId, commentText }));
+  }
+
+
+
+
+  if(update) {
+    return (
       <div className={styles.comment_form_input_wrap}>
         <div className={styles.comment_form_containter}>
           <textarea
@@ -42,7 +55,30 @@ const CommentForm = ({ update=false, data, closeModal }) => {
         </div>
 
       </div>
-    </>
+    )
+  }
+
+
+
+
+
+  return (
+    <div className={styles.comment_form_input_wrap}>
+      <div className={styles.comment_form_containter}>
+        <textarea
+          type="text"
+          name="comment"
+          value={commentText}
+          onChange={event => setCommentText(event.target.value)}
+        />
+
+        <div className={styles.comment_add_button}>
+          <ToolTip content={"Comment"}>
+            <a href='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </a>
+          </ToolTip>
+        </div>
+      </div>
+    </div>
   )
 };
 

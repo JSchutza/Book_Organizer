@@ -2,23 +2,17 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 import { useParams } from "react-router-dom";
-import {
-  thunk_allPolls,
-  thunk_getUsersSpecificComments,
-  thunk_createComment,
-  thunk_deleteSpecificComment,
-  thunk_updateSpecificComment
-} from "../../store/thunks/polls.js";
-import { useUser } from "../../context/UserContext.js";
 
-import LoadScreen from "../LoadScreen";
+import { thunk_allPolls, thunk_getUsersSpecificComments, thunk_deleteSpecificComment } from "../../store/thunks/polls.js";
+import { useUser } from "../../context/UserContext.js";
 
 
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
-import { AiOutlinePlus } from "react-icons/ai";
-import ToolTip from "../ToolTip";
+
 import ReactModal from 'react-modal';
+import ToolTip from "../ToolTip";
+import LoadScreen from "../LoadScreen";
 
 
 
@@ -28,8 +22,6 @@ import styles from "./comments.module.css";
 
 const Comments = () => {
   const [ loaded, setLoaded ] = useState(false);
-  const [ commentText, setCommentText ] = useState('');
-
   const [ updateInfo, setUpdateInfo ] = useState(null);
   const { isUser } = useUser();
   const { pollId } = useParams();
@@ -52,10 +44,6 @@ const Comments = () => {
 
 
 
-  const createComment = event => {
-    event.preventDefault();
-    dispatch(thunk_createComment({ pollId, commentText }));
-  }
 
 
 
@@ -69,7 +57,6 @@ const Comments = () => {
   const handleUpdate = (event, payload) => {
     event.preventDefault();
     setUpdateInfo(payload);
-
   }
 
 
@@ -168,27 +155,6 @@ const Comments = () => {
       </div>
     </>
     }
-
-
-
-
-  <div className={styles.comment_form_input_wrap}>
-    <div className={styles.comment_form_containter}>
-        <textarea
-          type="text"
-          name="comment"
-          value={commentText}
-          onChange={event => setCommentText(event.target.value)}
-          />
-
-    <div className={styles.comment_add_button}>
-      <ToolTip content={"Comment"}>
-        <a href='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </a>
-      </ToolTip>
-    </div>
-    </div>
-
-    </div>
   </>
   );
 
