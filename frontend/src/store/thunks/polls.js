@@ -151,8 +151,9 @@ const thunk_getUsersSpecificComments = (pollId) => async (dispatch) => {
     dispatch(setErrors(data.errors));
     return;
   }
-  dispatch(resetErrors());
+
   dispatch(getUsersSpecificComments(data));
+
 };
 
 
@@ -171,9 +172,9 @@ const thunk_deleteSpecificComment = (pollId, commentId) => async (dispatch) => {
     return;
   }
 
-  dispatch(resetErrors());
+
   dispatch(deleteSpecificComment(commentId));
-  dispatch(thunk_getUsersSpecificComments(pollId));
+
 };
 
 
@@ -195,8 +196,7 @@ const thunk_updateSpecificComment = ({ pollId, commentId }, answer_text) => asyn
     return;
   }
 
-  dispatch(resetErrors());
-  dispatch(thunk_getUsersSpecificComments(pollId));
+  // dispatch();
 
 };
 
@@ -223,8 +223,8 @@ const thunk_createComment = ({ pollId, commentText }) => async (dispatch) => {
     dispatch(setErrors(data.errors));
     return;
   }
-  dispatch(resetErrors());
-  dispatch(thunk_getUsersSpecificComments(pollId));
+
+  // dispatch();
 
 };
 

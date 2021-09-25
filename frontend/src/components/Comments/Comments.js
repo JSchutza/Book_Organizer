@@ -20,7 +20,7 @@ import styles from "./comments.module.css";
 
 
 const Comments = () => {
-  const [loaded, setLoaded] = useState(false);
+  const [ loaded, setLoaded ] = useState(false);
   const [ commentText, setCommentText ] = useState('');
   const [ updateText, setUpdateText ] = useState('');
 
@@ -49,7 +49,7 @@ const Comments = () => {
 
 
 
-  const createComment = (event) => {
+  const createComment = event => {
     event.preventDefault();
     dispatch(thunk_createComment({ pollId, commentText }));
   }
@@ -84,7 +84,7 @@ const Comments = () => {
 
 
 
-  if (comments === null || poll === null || !loaded){
+  if (!poll || !loaded){
     return (
       <>
         <LoadScreen />
@@ -99,8 +99,7 @@ const Comments = () => {
 
   return (
   <>
-
-      {comments === false ?
+      {!comments ?
           <>
           <div className={styles.no_comment_wrap}>
             <div className={styles.each_title}>

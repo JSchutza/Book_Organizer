@@ -37,6 +37,7 @@ const pollsReducer = (state = { polls: null }, action) => {
 
 
 
+
 const commentReducer = (state = { comments: null }, action) => {
   switch (action.type){
     case GET_COMMENTS_BY_POLL_ID:

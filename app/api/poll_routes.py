@@ -36,7 +36,8 @@ def get_all_comments(pollId):
   the_comments = Comment.query.filter_by(poll_id=pollId).all()
   normalized = { each.to_dict()["id"]: each.to_dict() for each in the_comments }
   if len(normalized) == 0:
-    return { "comments": False }
+    return { "comments": None }
+
   return {"comments": normalized }
 
 
