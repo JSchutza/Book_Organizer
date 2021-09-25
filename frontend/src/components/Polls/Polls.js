@@ -21,6 +21,7 @@ import styles from "./polls.module.css";
 const Polls = () => {
   const [ loading, setLoading ] = useState(false);
   const [ openCreatePollModal, setOpenCreatePollModal ] = useState(false);
+  const [ openUpdatePollModal, setOpenUpdatePollModal ] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const polls = useSelector(store => store.pollsReducer.polls);
@@ -68,6 +69,7 @@ const Polls = () => {
 
   const handleUpdate = (event, pollId) => {
     event.preventDefault();
+    setOpenUpdatePollModal(true);
   }
 
 
@@ -76,6 +78,10 @@ const Polls = () => {
     setOpenCreatePollModal(false);
   }
 
+
+  const closeUpdatePollModal = () => {
+    setOpenUpdatePollModal(false);
+  }
 
 
 
@@ -98,6 +104,17 @@ const Polls = () => {
         appElement={document.getElementById('root')}
       >
         <CreatePollForm closeModal={closeCreatePollModal} />
+
+      </ReactModal>
+
+
+
+      <ReactModal
+        isOpen={openUpdatePollModal}
+        onRequestClose={closeUpdatePollModal}
+        appElement={document.getElementById('root')}
+      >
+
 
       </ReactModal>
 
