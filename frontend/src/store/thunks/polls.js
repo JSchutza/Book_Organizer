@@ -7,7 +7,9 @@ import {
   deleteSpecificPoll,
   allPolls,
   deleteSpecificComment,
-  cretatePoll
+  cretatePoll,
+  createComment,
+
 } from "../actions/polls.js";
 
 
@@ -224,7 +226,7 @@ const thunk_createComment = ({ pollId, commentText }) => async (dispatch) => {
     return;
   }
 
-  // dispatch();
+  dispatch(createComment(data));
 
 };
 

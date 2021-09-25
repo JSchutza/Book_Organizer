@@ -55,7 +55,7 @@ def new_comment(pollId):
     new_comment = Comment(answer_text=form.data['answer_text'], poll_id=int(pollId), user_id=current_user.get_id())
     db.session.add(new_comment)
     db.session.commit()
-    return { "comment": new_comment.to_dict() }
+    return { new_comment.get_id(): new_comment.to_dict() }
 
   # if there are errors
   return { "errors": ["errors", "Please try again."] }

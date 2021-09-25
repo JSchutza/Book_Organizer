@@ -2,8 +2,15 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 import { useParams } from "react-router-dom";
-import { thunk_allPolls, thunk_getUsersSpecificComments, thunk_createComment,
-          thunk_deleteSpecificComment, thunk_updateSpecificComment } from "../../store/thunks/polls.js";
+import {
+  thunk_allPolls,
+  thunk_getUsersSpecificComments,
+  thunk_createComment,
+  thunk_deleteSpecificComment,
+  thunk_updateSpecificComment
+} from "../../store/thunks/polls.js";
+
+
 import LoadScreen from "../LoadScreen";
 
 

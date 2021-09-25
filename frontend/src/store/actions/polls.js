@@ -8,6 +8,7 @@ import {
   GET_ALL_POLLS,
   DELETE_SPECIFIC_COMMENT,
   CREATE_POLL,
+  CREATE_COMMENT,
 
 } from "../types";
 
@@ -56,6 +57,12 @@ const deleteSpecificComment = (comment) => ({
 
 
 
+const createComment = (comment) => ({
+  type: CREATE_COMMENT,
+  comment
+});
+
+
 
 export {
   getUsersPolls,
@@ -64,6 +71,7 @@ export {
   allPolls,
   deleteSpecificComment,
   cretatePoll,
+  createComment,
 
 
 }

@@ -8,6 +8,7 @@ import {
   GET_ALL_POLLS,
   DELETE_SPECIFIC_COMMENT,
   CREATE_POLL,
+  CREATE_COMMENT,
 
 } from "../types";
 
@@ -41,7 +42,10 @@ const pollsReducer = (state = { polls: null }, action) => {
 const commentReducer = (state = { comments: null }, action) => {
   switch (action.type){
     case GET_COMMENTS_BY_POLL_ID:
-      return { ...action.comments };
+      return { ...state, comments: action.comments.comments  };
+
+    case CREATE_COMMENT:
+      return { ...state, comments: { ...state.comments, ...action.comment } };
 
     case DELETE_SPECIFIC_COMMENT:
       const id = action.comment;
