@@ -1,18 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import ToolTip from "../ToolTip";
-import { useHistory } from "react-router-dom";
+import ReactModal from 'react-modal';
+
 
 import { resetErrors } from "../../store/actions/errors.js";
 import { thunk_getAllPriChars, thunk_deleteUsersPrivateChars } from "../../store/thunks/books.js";
+
+
+
+
 import styles from "./privatecharacter.module.css";
 
 
 
 const PrivateCharacter = ({ bookId }) => {
   const [backenderrors, setBackenderrors] = useState(null);
+  const [ openModal, setOpenModal ] = useState(false);
   const dispatch = useDispatch();
   const charInfo = useSelector((store) => store.priCharReducer.characters);
   const errors = useSelector((store) => store.errorsReducer.errors);
@@ -48,6 +56,7 @@ const PrivateCharacter = ({ bookId }) => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
+    setOpenModal(true);
   }
 
 
@@ -57,6 +66,13 @@ const PrivateCharacter = ({ bookId }) => {
     dispatch(resetErrors());
     setBackenderrors(null);
   }
+
+
+
+  const closeModal = () => {
+    setOpenModal(false);
+  }
+
 
 
 
@@ -88,6 +104,18 @@ const PrivateCharacter = ({ bookId }) => {
           }
         </div>
         </div>
+
+
+      <ReactModal
+        isOpen={openModal}
+        onRequestClose={closeModal}
+        appElement={document.getElementById('root')}
+      >
+        {/* <CreateCharacterForm closeModal={closeModal} /> */}
+
+      </ReactModal>
+
+
 
 
       <h1>Your Characters</h1>

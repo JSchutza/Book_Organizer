@@ -1,21 +1,28 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { nanoid } from "nanoid";
+
+
 import { thunk_createNewPoll, thunk_updatePoll } from "../../store/thunks/polls.js";
 
-import { useHistory } from "react-router-dom";
+
+
 import styles from "./createpollform.module.css";
 
 
 
 
 
-const CreatePollForm = ({ update=false, data }) => {
-  const dispatch = useDispatch();
+const CreatePollForm = ({ update=false, data, closeModal }) => {
   const [ title, setTitle ] = useState('');
   const [ questionText, setQuestionText ] = useState('');
   const [ errors, setErrors ] = useState([]);
+  const dispatch = useDispatch();
   const history = useHistory();
+
+
+
 
 
   useEffect(() => {
@@ -32,11 +39,13 @@ const CreatePollForm = ({ update=false, data }) => {
 
 
 
+
+
+
   const onSubmit = event => {
     event.preventDefault();
     dispatch(thunk_createNewPoll({ title, questionText }));
-
-    history.push("/polls");
+    closeModal();
   }
 
 
@@ -44,9 +53,11 @@ const CreatePollForm = ({ update=false, data }) => {
   const onUpdate = event => {
     event.preventDefault();
     dispatch(thunk_updatePoll({ pollId: data.pollId, title, questionText }));
-
-    history.push("/polls");
+    closeModal();
   }
+
+
+
 
 
 

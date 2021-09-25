@@ -209,6 +209,7 @@ const thunk_updatePriChar = ({ urlpreview, charname, charlabel, bookId, charId }
   }
 
   // dispatch();
+  
 
 }
 
