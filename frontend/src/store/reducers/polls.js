@@ -51,6 +51,12 @@ const commentReducer = (state = { comments: null }, action) => {
     case DELETE_SPECIFIC_COMMENT:
       const id = action.comment;
       delete state.comments[id];
+      // need to know if there are no more comments left
+      const toArr = Object.keys(state.comments);
+      if (!toArr.length){
+        return { ...state, comments: null };
+      }
+
       return { ...state, comments: { ...state.comments } };
 
     case UPDATE_COMMENT:
