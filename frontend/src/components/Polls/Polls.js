@@ -10,11 +10,11 @@ import { BsFillPlusSquareFill } from "react-icons/bs";
 import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
 import ReactModal from 'react-modal';
+import CreatePollForm from "../CreatePollForm";
+
 
 
 import styles from "./polls.module.css";
-
-
 
 
 
@@ -97,7 +97,7 @@ const Polls = () => {
         onRequestClose={closeCreatePollModal}
         appElement={document.getElementById('root')}
       >
-        {/* <CreateCharacterForm closeModal={closeModal} /> */}
+        <CreatePollForm closeModal={closeCreatePollModal} />
 
       </ReactModal>
 
