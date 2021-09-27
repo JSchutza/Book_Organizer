@@ -11,7 +11,7 @@ import ReactModal from 'react-modal';
 import { resetErrors } from "../../store/actions/errors.js";
 import { thunk_getAllPriChars, thunk_deleteUsersPrivateChars } from "../../store/thunks/books.js";
 
-
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 
 import styles from "./privatecharacter.module.css";
@@ -25,7 +25,7 @@ const PrivateCharacter = ({ bookId }) => {
   const charInfo = useSelector((store) => store.priCharReducer.characters);
   const errors = useSelector((store) => store.errorsReducer.errors);
   const history = useHistory();
-
+  const { currentStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -109,6 +109,7 @@ const PrivateCharacter = ({ bookId }) => {
       <ReactModal
         isOpen={openModal}
         onRequestClose={closeModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
         {/* <CreateCharacterForm closeModal={closeModal} /> */}

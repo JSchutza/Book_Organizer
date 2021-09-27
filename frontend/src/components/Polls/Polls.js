@@ -7,6 +7,7 @@ import { thunk_getUsersPolls, thunk_getUsersSpecificComments, thunk_deleteSpecif
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
 import ReactModal from 'react-modal';
@@ -26,6 +27,7 @@ const Polls = () => {
   const history = useHistory();
   const polls = useSelector(store => store.pollsReducer.polls);
   const allPolls = useSelector(store => store.allPollsReducer.polls);
+  const { currentStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -103,6 +105,7 @@ const Polls = () => {
       <ReactModal
         isOpen={openCreatePollModal}
         onRequestClose={closeCreatePollModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
         <CreatePollForm closeModal={closeCreatePollModal} />
@@ -114,6 +117,7 @@ const Polls = () => {
       <ReactModal
         isOpen={openUpdatePollModal}
         onRequestClose={closeUpdatePollModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
 

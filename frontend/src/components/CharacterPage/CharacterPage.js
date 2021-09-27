@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory, NavLink, Link } from "react-router-dom";
+
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { thunk_getFollowing, thunk_followOrUnfollow } from "../../store/thunks/following.js";
 import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
+
 import { useUser } from "../../context/UserContext.js";
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
+
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+
 import SpecificPubChar from "../SpecificPubChar";
 import CharacterSearch from "../CharacterSearch";
 import CreateCharacterForm from "../CreateCharacterForm";
@@ -15,10 +20,11 @@ import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
 import UpdatePubCharForm from "../UpdatePubCharForm";
 import ReactModal from 'react-modal';
+
+
+
+
 import styles from "./characterpage.module.css"
-
-
-
 
 
 
@@ -41,7 +47,7 @@ const CharacterPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { isUser } = useUser();
-
+  const { currentStyle } = useModalStyle();
 
 
 
@@ -185,6 +191,7 @@ const CharacterPage = () => {
       <ReactModal
         isOpen={openModal}
         onRequestClose={closeModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
         <CreateCharacterForm closeModal={closeModal} />
@@ -253,6 +260,7 @@ const CharacterPage = () => {
         <ReactModal
           isOpen={openUpdateModal}
           onRequestClose={closeUpdateModal}
+          style={currentStyle}
           appElement={document.getElementById('root')}
         >
 

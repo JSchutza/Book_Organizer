@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 import { thunk_getAllBooks, thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books";
 import { thunk_deleteBook } from "../../store/thunks/books";
 
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
+
 
 import CreateBookForm from "../CreateBookForm";
 import ToolTip from "../ToolTip";
@@ -35,7 +37,7 @@ const BookViewer = () => {
   const history = useHistory();
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const dispatch = useDispatch();
-
+  const { currentStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -125,6 +127,7 @@ const BookViewer = () => {
       <ReactModal
         isOpen={openNewBookModal}
         onRequestClose={closeNewBookModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
 
@@ -137,6 +140,7 @@ const BookViewer = () => {
       <ReactModal
         isOpen={openUpdateBookModal}
         onRequestClose={closeUpdateBookModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
 

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 import { thunk_allPolls, thunk_getUsersSpecificComments, thunk_deleteSpecificComment } from "../../store/thunks/polls.js";
 import { useUser } from "../../context/UserContext.js";
-
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
@@ -29,7 +29,7 @@ const Comments = () => {
   const dispatch = useDispatch();
   const comments = useSelector(store => store.commentReducer.comments);
   const poll = useSelector(store => store.allPollsReducer.polls);
-
+  const { currentStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -91,6 +91,7 @@ const Comments = () => {
       <ReactModal
         isOpen={openModal}
         onRequestClose={closeModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
         <CommentForm

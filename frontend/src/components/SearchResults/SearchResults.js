@@ -8,7 +8,7 @@ import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
 
 import { useUser } from '../../context/UserContext';
-
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { RiDeleteBinFill } from "react-icons/ri";
@@ -35,6 +35,7 @@ const SearchResults = () => {
   const chars = useSelector(store => store.searchCharacterPageReducer.characters);
   const { searchId } = useParams();
   const { isUser } = useUser();
+  const { currentStyle } = useModalStyle();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -98,6 +99,7 @@ const SearchResults = () => {
         <ReactModal
           isOpen={openUpdateModal}
           onRequestClose={closeUpdateModal}
+          style={currentStyle}
           appElement={document.getElementById('root')}
         >
 

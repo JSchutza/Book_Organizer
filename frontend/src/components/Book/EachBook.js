@@ -7,6 +7,8 @@ import ToolTip from "../ToolTip";
 import CreatePriCharForm from "../CreatePriCharForm";
 import CreatePageForm from "../CreatePageForm";
 
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
+
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
 
 
@@ -28,7 +30,7 @@ const EachBook = () => {
   const dispatch = useDispatch();
   const { bookId } = useParams();
   const history = useHistory();
-
+  const { currentStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -70,6 +72,7 @@ const EachBook = () => {
         <ReactModal
           isOpen={openNewCharModal}
           onRequestClose={closeNewCharModal}
+          style={currentStyle}
           appElement={document.getElementById('root')}
         >
           <CreatePriCharForm bookId={bookId} closeModal={closeNewCharModal} />
@@ -81,6 +84,7 @@ const EachBook = () => {
         <ReactModal
           isOpen={openNewPageModal}
           onRequestClose={closeNewPageModal}
+          style={currentStyle}
           appElement={document.getElementById('root')}
         >
           <CreatePageForm bookId={bookId} closeModal={closeNewPageModal} />

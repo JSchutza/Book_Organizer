@@ -10,7 +10,7 @@ import { GrUpdate } from "react-icons/gr";
 import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
 import { thunk_followOrUnfollow } from "../../store/thunks/following.js";
 import { useUser } from "../../context/UserContext";
-
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 import UpdatePubCharForm from "../UpdatePubCharForm";
 import ToolTip from "../ToolTip";
@@ -29,7 +29,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
   const history = useHistory();
   const dispatch = useDispatch();
   const { isUser } = useUser();
-
+  const { currentStyle } = useModalStyle();
 
 
 
@@ -102,6 +102,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
         <ReactModal
           isOpen={openModal}
           onRequestClose={closeModal}
+          style={currentStyle}
           appElement={document.getElementById('root')}
         >
           <UpdatePubCharForm
