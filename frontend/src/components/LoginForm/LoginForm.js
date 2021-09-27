@@ -43,6 +43,8 @@ const LoginForm = ({ closeModal }) => {
 
   return(
     <>
+  <div className={styles.login_wrap}>
+
     <div className={styles.login_containter}>
       <form className={styles.the_form} onSubmit={onSubmit}>
         <label>
@@ -79,15 +81,15 @@ const LoginForm = ({ closeModal }) => {
       </form>
 
       <div className={styles.demo_button}>
-        <div className={styles.spacer}>
+
         <ToolTip content={"Demo"}>
           <a href='/' onClick={event => handleDemo(event)}> Demo </a>
         </ToolTip>
-        </div>
+        
       </div>
 
     </div>
-
+  </div>
     </>
   )
 };

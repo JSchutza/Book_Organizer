@@ -1,5 +1,14 @@
 
 
+.login_wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 
@@ -43,17 +52,4 @@
 
 .demo_button a {
   font-size: 1rem;
-}
-
-
-.spacer {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 3%;
-  border-radius: 5px;
 }
