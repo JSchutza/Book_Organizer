@@ -10,14 +10,14 @@ import { thunk_updatePage, thunk_createPage } from "../../store/thunks/books.js"
 
 import styles from "./createpageform.module.css";
 
+const defaultValues = { pageId: '', isTitle: '', isText: '', book_id: '' };
 
 
-const CreatePageForm = ({ bookId, update=false, payload, closeModal }) => {
+
+const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModal }) => {
   const { pageId, isTitle, isText, book_id } = payload;
-  const [ title, setTitle ] = useState('');
-  const [ text, setText ] = useState('');
-  const [ updateTitle, setUpdateTitle ] = useState(isTitle);
-  const [ updateText, setUpdateText ] = useState(isText);
+  const [ title, setTitle ] = useState(isTitle);
+  const [ text, setText ] = useState(isText);
   const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -46,7 +46,7 @@ const CreatePageForm = ({ bookId, update=false, payload, closeModal }) => {
 
   const onUpdate = event => {
     event.preventDefault();
-    dispatch(thunk_updatePage({ title: updateTitle, text: updateText, bookId: book_id, pageId }));
+    dispatch(thunk_updatePage({ title, text, bookId: book_id, pageId }));
     closeModal();
   }
 
@@ -71,8 +71,8 @@ const CreatePageForm = ({ bookId, update=false, payload, closeModal }) => {
             <input
                 type='text'
                 name='title'
-                value={updateTitle}
-                onChange={(e) => setUpdateTitle(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </label>
 
@@ -81,8 +81,8 @@ const CreatePageForm = ({ bookId, update=false, payload, closeModal }) => {
             <input
                 type='text'
                 name='text'
-                value={updateText}
-                onChange={(e) => setUpdateText(e.target.value)}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
               />
             </label>
 
