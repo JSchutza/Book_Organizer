@@ -76,7 +76,7 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
 
   const onUpdate = event => {
     event.preventDefault();
-    dispatch(thunk_updatePriChar({ urlpreview, charname, charlabel, book_id, charId }));
+    dispatch(thunk_updatePriChar({ urlpreview, charname, charlabel, bookId: book_id, charId }));
     closeModal();
   }
 

@@ -9,7 +9,9 @@ import {
   deletePage,
   createBook,
   cratePriChar,
-  createPage
+  createPage,
+  updatePriChar,
+
 } from "../actions/books.js";
 
 import { setErrors, resetErrors } from "../actions/errors.js";
@@ -190,6 +192,7 @@ const thunk_deletePage = (bookId, pageId) => async (dispatch) => {
 
 
 
+
 const thunk_updatePriChar = ({ urlpreview, charname, charlabel, bookId, charId }) => async (dispatch) => {
   const formData = new FormData();
   formData.append("image", urlpreview);
@@ -204,12 +207,11 @@ const thunk_updatePriChar = ({ urlpreview, charname, charlabel, bookId, charId }
   const data = await response.json();
   if (data.errors) {
     dispatch(setErrors(data.errors));
-
     return;
   }
 
-  // dispatch();
-  
+  dispatch(updatePriChar(data));
+
 
 }
 
