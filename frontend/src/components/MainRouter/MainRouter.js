@@ -6,6 +6,7 @@ import NavBar from "../NavBar";
 
 
 import { useUser } from "../../context/UserContext.js";
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 import Profile from "../Profile";
 import EachUsersProfile from "../EachUsersProfile";
@@ -24,6 +25,7 @@ import SignUpForm from "../SignupForm";
 
 const MainRouter = () => {
   const { isUser } = useUser();
+  const { currentStyle } = useModalStyle();
   const [ openModal, setOpenModal ] = useState(false);
   const [ login, setLogin ] = useState(false);
   const [ signup, setSignup ] = useState(false);
@@ -108,6 +110,7 @@ const MainRouter = () => {
               <ReactModal
                 isOpen={openModal}
                 onRequestClose={closeModal}
+                style={currentStyle}
                 appElement={document.getElementById('root')}
               >
                 { login ? <LoginForm closeModal={closeModal} /> : <></> }

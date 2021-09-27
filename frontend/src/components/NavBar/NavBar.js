@@ -94,8 +94,6 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
 
         </nav>
       </div>
-
-
     </>
   );
 

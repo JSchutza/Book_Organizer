@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 
 import { thunk_allPolls, thunk_getUsersSpecificComments, thunk_deleteSpecificComment } from "../../store/thunks/polls.js";
 import { useUser } from "../../context/UserContext.js";
-
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
@@ -29,7 +29,7 @@ const Comments = () => {
   const dispatch = useDispatch();
   const comments = useSelector(store => store.commentReducer.comments);
   const poll = useSelector(store => store.allPollsReducer.polls);
-
+  const { currentStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -72,13 +72,7 @@ const Comments = () => {
 
 
 
-  if (!poll || !loaded){
-    return (
-      <>
-        <LoadScreen />
-      </>
-    );
-  }
+  if (!poll || !loaded) return ( <LoadScreen />);
 
 
 
@@ -91,6 +85,7 @@ const Comments = () => {
       <ReactModal
         isOpen={openModal}
         onRequestClose={closeModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
         <CommentForm
@@ -145,17 +140,17 @@ const Comments = () => {
               <div className={styles.each_comment_buttons_wrap}>
               <div className={styles.each_comment_delete_button}>
                 <ToolTip content={"Delete"}>
-                  <a href='/' onClick={event => handleDelete(event, eachComment.id)} > <li> <RiDeleteBinFill /> </li> </a>
+                  <NavLink to='/' onClick={event => handleDelete(event, eachComment.id)} > <li> <RiDeleteBinFill /> </li> </NavLink>
                 </ToolTip>
               </div>
 
                 <div className={styles.each_comment_update_button}>
                   <ToolTip content={"Update"}>
-                    <a href='/' onClick={event => handleUpdate(event, {
+                  <NavLink to='/' onClick={event => handleUpdate(event, {
                       commentId: eachComment.id,
                       answer_text: eachComment.answer_text,
                       pollId
-                    })} > <li> <GrUpdate /> </li> </a>
+                  })} > <li> <GrUpdate /> </li> </NavLink>
                   </ToolTip>
                 </div>
                 </div>

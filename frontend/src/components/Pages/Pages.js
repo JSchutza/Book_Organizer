@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
@@ -46,36 +46,32 @@ const Pages = ({ bookId }) => {
 
 
 
-  if (!pageInfo) {
-    return (
-      <>
-        <h1>Loading Page information...</h1>
-      </>
-    )
-  }
+  if (!pageInfo) return (<><h1>Loading Page information...</h1></>);
+
 
 
 
 
     return (
       <>
-        <h1>Your Pages</h1>
+      <h1>Your Pages</h1>
       <div className={styles.each_page_container}>
         {Object.values(pageInfo).map(eachPage => (
           <>
-            <a href='/' onClick={ event => event.preventDefault() }>
+          {/* need to create a frontend route to display individual page component */}
+            <NavLink to='/' onClick={ event => event.preventDefault() }>
               <li key={eachPage.id}>
                 <h3>{eachPage.title}</h3>
                 <br />
                 <p>{eachPage.text}</p>
               </li>
-            </a>
+            </NavLink>
 
 
           <div className={styles.each_page_button_wrap}>
           <div className={styles.each_page_delete_button}>
           <Tooltip content={"Delete"}>
-            <a href='/' onClick={event => handleDelete(event, eachPage.id) }> <RiDeleteBinFill /> </a>
+            <NavLink to='/' onClick={event => handleDelete(event, eachPage.id)}> <RiDeleteBinFill /> </NavLink>
           </Tooltip>
           </div>
 
@@ -83,14 +79,14 @@ const Pages = ({ bookId }) => {
 
             <div className={styles.each_page_update_button}>
             <Tooltip content={"Update"}>
-            <a href='/' onClick={event => handleUpdate(event, {
+            <NavLink to='/' onClick={event => handleUpdate(event, {
               pageId: eachPage.id,
               title: eachPage.title,
               text: eachPage.text,
               book_id: eachPage.book_id,
               lastpage: `/books/${bookId}`
 
-            })}> <GrUpdate /> </a>
+              })}> <GrUpdate /> </NavLink>
             </Tooltip>
             </div>
             </div>

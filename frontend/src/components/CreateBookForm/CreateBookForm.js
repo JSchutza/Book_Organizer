@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { thunk_createBook } from "../../store/thunks/books.js";
 
 import ToolTip from "../ToolTip";
@@ -65,7 +66,7 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
 
             <ToolTip content={"Update"}>
               <div className={styles.createbook_update_button}>
-                <a href='/' onClick={(event) => onUpdateSubmit(event)}> <GrUpdate /> </a>
+                <NavLink to='/' onClick={(event) => onUpdateSubmit(event)}> <GrUpdate /> </NavLink>
               </div>
             </ToolTip>
           </form>
@@ -92,7 +93,7 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
 
           <ToolTip content={"Create"}>
             <div className={styles.createbook_create_button}>
-              <a href='/' onClick={(event) => onCreateSubmit(event)}> <AiOutlinePlus /> </a>
+              <NavLink to='/' onClick={(event) => onCreateSubmit(event)}> <AiOutlinePlus /> </NavLink>
             </div>
           </ToolTip>
       </form>

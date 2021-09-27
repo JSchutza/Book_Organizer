@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory, useParams, NavLink } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import PrivateCharacter from "../PrivateCharacters";
 import Pages from "../Pages";
 import ToolTip from "../ToolTip";
 import CreatePriCharForm from "../CreatePriCharForm";
 import CreatePageForm from "../CreatePageForm";
+
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
 
@@ -28,7 +30,7 @@ const EachBook = () => {
   const dispatch = useDispatch();
   const { bookId } = useParams();
   const history = useHistory();
-
+  const { currentStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -70,6 +72,7 @@ const EachBook = () => {
         <ReactModal
           isOpen={openNewCharModal}
           onRequestClose={closeNewCharModal}
+          style={currentStyle}
           appElement={document.getElementById('root')}
         >
           <CreatePriCharForm bookId={bookId} closeModal={closeNewCharModal} />
@@ -81,6 +84,7 @@ const EachBook = () => {
         <ReactModal
           isOpen={openNewPageModal}
           onRequestClose={closeNewPageModal}
+          style={currentStyle}
           appElement={document.getElementById('root')}
         >
           <CreatePageForm bookId={bookId} closeModal={closeNewPageModal} />
@@ -91,14 +95,14 @@ const EachBook = () => {
 
     <div className={styles.create_char_button}>
       <ToolTip content={"New Character"}>
-        <a href='/' onClick={(event) => handleCreateChar(event)}> <BsFillPersonPlusFill/> </a>
+        <NavLink to='/' onClick={(event) => handleCreateChar(event)}> <BsFillPersonPlusFill /> </NavLink>
       </ToolTip>
     </div>
 
 
       <div className={styles.create_page_button}>
       <ToolTip content={"New Page"}>
-        <a href='/' onClick={(event) => handleCreatePage(event)}> <BsFileEarmarkPlus/> </a>
+        <NavLink to='/' onClick={(event) => handleCreatePage(event)}> <BsFileEarmarkPlus /> </NavLink>
       </ToolTip>
     </div>
     </div>

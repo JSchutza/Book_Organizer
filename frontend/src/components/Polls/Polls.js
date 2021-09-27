@@ -1,12 +1,13 @@
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { thunk_getUsersPolls, thunk_getUsersSpecificComments, thunk_deleteSpecificPoll, thunk_allPolls } from "../../store/thunks/polls.js";
 
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
 import ReactModal from 'react-modal';
@@ -26,6 +27,7 @@ const Polls = () => {
   const history = useHistory();
   const polls = useSelector(store => store.pollsReducer.polls);
   const allPolls = useSelector(store => store.allPollsReducer.polls);
+  const { currentStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -87,13 +89,7 @@ const Polls = () => {
 
 
 
-  if (!polls || !allPolls || !loading){
-    return (
-      <>
-        <LoadScreen />
-      </>
-    );
-  }
+  if (!polls || !allPolls || !loading) return ( <LoadScreen /> );
 
 
 
@@ -103,6 +99,7 @@ const Polls = () => {
       <ReactModal
         isOpen={openCreatePollModal}
         onRequestClose={closeCreatePollModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
         <CreatePollForm closeModal={closeCreatePollModal} />
@@ -114,6 +111,7 @@ const Polls = () => {
       <ReactModal
         isOpen={openUpdatePollModal}
         onRequestClose={closeUpdatePollModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
 
@@ -129,7 +127,7 @@ const Polls = () => {
 
       <div className={styles.create_poll_button}>
         <ToolTip content={"New Poll"}>
-          <a href='/' onClick={event => handleCreate(event)} > <BsFillPlusSquareFill /> </a>
+          <NavLink to='/' onClick={event => handleCreate(event)} > <BsFillPlusSquareFill /> </NavLink>
         </ToolTip>
       </div>
 
@@ -144,11 +142,11 @@ const Polls = () => {
           <>
           <div>
             <div className={styles.each_poll_title}>
-              <a href='/' onClick={event => handleEachClick(event, eachPoll.id)}>
-              <li key={eachPoll.id}>
+              <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
+                <li key={eachPoll.id}>
                   <h3> { eachPoll.title } </h3>
-              </li>
-            </a>
+                </li>
+              </NavLink>
             </div>
           </div>
 
@@ -156,13 +154,13 @@ const Polls = () => {
             <div className={styles.each_poll_button_wrap}>
             <div className={styles.each_poll_delete_button}>
               <ToolTip content={"Delete"}>
-                <a href='/' onClick={event => handleDelete(event, eachPoll.id)} > <RiDeleteBinFill /> </a>
+                <NavLink to='/' onClick={event => handleDelete(event, eachPoll.id)} > <RiDeleteBinFill /> </NavLink>
               </ToolTip>
             </div>
 
             <div className={styles.each_poll_update_button}>
               <ToolTip content={"Update"}>
-                <a href='/' onClick={event => handleUpdate(event, eachPoll.id)} > <GrUpdate /> </a>
+                <NavLink to='/' onClick={event => handleUpdate(event, eachPoll.id)} > <GrUpdate /> </NavLink>
               </ToolTip>
             </div>
           </div>
@@ -183,11 +181,11 @@ const Polls = () => {
         {Object.values(allPolls).reverse().map(eachPoll => (
           <>
           <div className={styles.all_polls_each_link}>
-              <a href='/' onClick={event => handleEachClick(event, eachPoll.id)}>
+            <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
               <li key={eachPoll.id}>
                 <h3> {eachPoll.title} </h3>
               </li>
-            </a>
+            </NavLink>
           </div>
           </>
         ))}

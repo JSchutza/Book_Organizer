@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory, NavLink, Link } from "react-router-dom";
+
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { thunk_getFollowing, thunk_followOrUnfollow } from "../../store/thunks/following.js";
 import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
+
 import { useUser } from "../../context/UserContext.js";
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
+
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+
 import SpecificPubChar from "../SpecificPubChar";
 import CharacterSearch from "../CharacterSearch";
 import CreateCharacterForm from "../CreateCharacterForm";
@@ -15,10 +20,11 @@ import LoadScreen from "../LoadScreen";
 import ToolTip from "../ToolTip";
 import UpdatePubCharForm from "../UpdatePubCharForm";
 import ReactModal from 'react-modal';
+
+
+
+
 import styles from "./characterpage.module.css"
-
-
-
 
 
 
@@ -41,7 +47,7 @@ const CharacterPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { isUser } = useUser();
-
+  const { currentStyle } = useModalStyle();
 
 
 
@@ -103,7 +109,6 @@ const CharacterPage = () => {
   const handleDelete = (event, { charId }) => {
     event.preventDefault();
     dispatch(thunk_deleteUsersPubChars(charId));
-
   };
 
 
@@ -138,13 +143,7 @@ const CharacterPage = () => {
 
 
 // loading screen if the character data is not available
-  if (allChars === null || loading) {
-    return (
-      <>
-        <LoadScreen />
-      </>
-    )
-  }
+  if (!allChars || loading) return ( <LoadScreen /> );
 
 
 
@@ -155,14 +154,12 @@ const CharacterPage = () => {
 // displays if a specific character is clicked on
   if(specificChar){
     return (
-      <>
         <SpecificPubChar
           theChar={char}
           followingInfo={followingInfo}
           hideSpecificChar={hideSpecificChar}
           setSpecificChar={setSpecificChar}
         />
-      </>
       )
   }
 
@@ -185,6 +182,7 @@ const CharacterPage = () => {
       <ReactModal
         isOpen={openModal}
         onRequestClose={closeModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
         <CreateCharacterForm closeModal={closeModal} />
@@ -202,7 +200,7 @@ const CharacterPage = () => {
     {Object.values(allChars).reverse().map(eachChar => (
       <>
       <div className={styles.each_card}>
-        <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
+        <NavLink to='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
 
         <li className={styles.each_detail} key={eachChar.id}>
           <div className={styles.each_detail_text}>
@@ -213,7 +211,7 @@ const CharacterPage = () => {
         </li>
 
           <img className={styles.each_img} src={eachChar.avatar} alt={eachChar.character_name} />
-      </a>
+        </NavLink>
       </div>
 
 
@@ -221,7 +219,7 @@ const CharacterPage = () => {
           <div className={styles.users_character_button_wrap}>
             <div className={styles.each_button}>
               <ToolTip content={'Update'} >
-                <a href='/' onClick={event => handleUpdate(event, {
+                <NavLink to='/' onClick={event => handleUpdate(event, {
                   charId: eachChar.id,
                   avatar: eachChar.avatar,
                   character_label: eachChar.character_label,
@@ -231,13 +229,13 @@ const CharacterPage = () => {
                   user_id: eachChar.user_id,
                   username: eachChar.username,
                   search_id: eachChar.search_id
-                })}> <GrUpdate /> </a>
+                })}> <GrUpdate /> </NavLink>
               </ToolTip>
             </div>
 
             <div className={styles.each_button}>
               <ToolTip content={'Delete'} >
-                <a href='/' onClick={event => handleDelete(event, { charId: eachChar.id })} > <RiDeleteBinFill /> </a>
+                <NavLink to='/' onClick={event => handleDelete(event, { charId: eachChar.id })} > <RiDeleteBinFill /> </NavLink>
               </ToolTip>
             </div>
           </div>
@@ -253,6 +251,7 @@ const CharacterPage = () => {
         <ReactModal
           isOpen={openUpdateModal}
           onRequestClose={closeUpdateModal}
+          style={currentStyle}
           appElement={document.getElementById('root')}
         >
 

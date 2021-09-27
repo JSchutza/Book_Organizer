@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { thunk_userSearch } from "../../store/thunks/session.js";
 import LoadScreen from "../LoadScreen";
@@ -29,13 +29,11 @@ const EachUsersProfile = () => {
 
   const handleFollowersClick = event => {
     event.preventDefault();
-
   }
 
 
   const handleFollowingClick = event => {
     event.preventDefault();
-
   }
 
 
@@ -54,13 +52,8 @@ const EachUsersProfile = () => {
 
 
 
-   if(!searchedUserInfo || !loaded) {
-     return (
-        <>
-          <LoadScreen />
-        </>
-      );
-   }
+   if(!searchedUserInfo || !loaded) return ( <LoadScreen /> );
+
 
 
 
@@ -92,13 +85,13 @@ const EachUsersProfile = () => {
                 <p>Address: {each.location} </p>
                 <br />
 
-                <a href='/' onClick={event => handleFollowersClick(event)} >
+                <NavLink to='/' onClick={event => handleFollowersClick(event)} >
                     {Object.values(each.followers).length} followers
-                </a>
+                </NavLink>
 
-                <a href='/' onClick={event => handleFollowingClick(event)} >
+                <NavLink to='/' onClick={event => handleFollowingClick(event)} >
                   {Object.values(each.following).length} following
-                </a>
+                </NavLink>
               </div>
 
 
@@ -112,7 +105,7 @@ const EachUsersProfile = () => {
                     {Object.values(each.characters).map(eachChar => (
                       <>
                       <div className={styles.each_character_containter}>
-                        <a href='/' onClick={event => handleCharacterClick(event)}>
+                        <NavLink to='/' onClick={event => handleCharacterClick(event)}>
                             <div>
                               <img src={eachChar.avatar} alt={eachChar.name}/>
                             </div>
@@ -121,7 +114,7 @@ const EachUsersProfile = () => {
                               <p> <b> {eachChar.character_name} </b> </p>
                                 <p>{eachChar.character_label}</p>
                             </div>
-                        </a>
+                        </NavLink>
                       </div>
                       </>
                     ))}
@@ -137,7 +130,7 @@ const EachUsersProfile = () => {
                     {Object.values(each.polls).map(eachPoll => (
                       <>
                       <div className={styles.each_poll_containter}>
-                        <a href='/' onClick={event => handlePollClick(event, eachPoll.id)}>
+                        <NavLink to='/' onClick={event => handlePollClick(event, eachPoll.id)}>
                           <div>
                               <p> {eachPoll.created_at} </p>
                           </div>
@@ -149,7 +142,7 @@ const EachUsersProfile = () => {
                           <div>
                               <p> <b> <i> {eachPoll.question_text} </i> </b> </p>
                           </div>
-                        </a>
+                        </NavLink>
                       </div>
                       </>
                     ))}

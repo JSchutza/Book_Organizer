@@ -20,10 +20,9 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
 
 
-  const onSignUp = (e) => {
-    e.preventDefault();
+  const onSignUp = event => {
+    event.preventDefault();
     if (password === repeatPassword) {
-
       dispatch(signUp(username, email, password));
     }
     // set password does not match error / state

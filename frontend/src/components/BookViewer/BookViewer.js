@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 
 
 import { thunk_getAllBooks, thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books";
 import { thunk_deleteBook } from "../../store/thunks/books";
+
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 
 import CreateBookForm from "../CreateBookForm";
@@ -35,7 +37,7 @@ const BookViewer = () => {
   const history = useHistory();
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const dispatch = useDispatch();
-
+  const { currentStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -101,7 +103,7 @@ const BookViewer = () => {
 
 
 
-  if (bookInfo === null || !loading) return (<LoadScreen />)
+  if (!bookInfo || !loading) return (<LoadScreen />)
 
 
 
@@ -116,7 +118,7 @@ const BookViewer = () => {
     <div className={styles.book_create_wrapper}>
     <div className={styles.book_create_button}>
       <ToolTip content={"Create"} >
-        <a href='/' onClick={(event) => createBookClick(event)}> <BsFillPlusSquareFill/> </a>
+        <NavLink to='/' onClick={(event) => createBookClick(event)}> <BsFillPlusSquareFill /> </NavLink>
       </ToolTip>
       </div>
     </div>
@@ -125,6 +127,7 @@ const BookViewer = () => {
       <ReactModal
         isOpen={openNewBookModal}
         onRequestClose={closeNewBookModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
 
@@ -137,6 +140,7 @@ const BookViewer = () => {
       <ReactModal
         isOpen={openUpdateBookModal}
         onRequestClose={closeUpdateBookModal}
+        style={currentStyle}
         appElement={document.getElementById('root')}
       >
 
@@ -156,9 +160,7 @@ const BookViewer = () => {
         <>
         <div className={styles.each_book_link}>
         <li>
-            <a href='/' onClick={(event) => handleBookClick(event, eachBook.id)}>
-            { eachBook.the_title }
-          </a>
+          <NavLink to='/' onClick={(event) => handleBookClick(event, eachBook.id)}> { eachBook.the_title } </NavLink>
         </li>
         </div>
 
@@ -167,14 +169,14 @@ const BookViewer = () => {
         <div className={styles.delete_update_wrap}>
           <div className={styles.delete_button}>
             <ToolTip content={"Delete"} >
-              <li> <a href='/' onClick={(event) => handleDeleteBook(event, eachBook.id)}> <RiDeleteBinFill/> </a></li>
+              <li> <NavLink to='/' onClick={(event) => handleDeleteBook(event, eachBook.id)}> <RiDeleteBinFill /> </NavLink></li>
             </ToolTip>
           </div>
 
 
           <div className={styles.update_button}>
             <ToolTip content={"Update"} >
-                <li> <a href='/' onClick={event => handleUpdate(event, eachBook.id)} > <GrUpdate /> </a> </li>
+              <li> <NavLink to='/' onClick={event => handleUpdate(event, eachBook.id)} > <GrUpdate /> </NavLink> </li>
             </ToolTip>
           </div>
         </div>
