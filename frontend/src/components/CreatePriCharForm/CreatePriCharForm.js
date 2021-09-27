@@ -8,14 +8,16 @@ import { nanoid } from "nanoid";
 import styles from "./createpricharform.module.css";
 
 
+const defaultValues = { charId: '', avatar: '', character_name: '', character_label: '', book_id: '' };
 
 
-
-const CreatePriCharForm = ({ bookId, update=false, data, closeModal }) => {
-  const [avatarUrl, setAvatarUrl] = useState("");
-  const [charname, setCharname] = useState("");
-  const [charlabel, setCharlabel] = useState("");
+const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeModal }) => {
+  const { charId, avatar, character_name, character_label, book_id } = payload;
+  const [avatarUrl, setAvatarUrl] = useState(avatar);
+  const [charname, setCharname] = useState(character_name);
+  const [charlabel, setCharlabel] = useState(character_label);
   const [urlpreview, setUrlPreview] = useState(null);
+
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -74,8 +76,8 @@ const CreatePriCharForm = ({ bookId, update=false, data, closeModal }) => {
 
   const onUpdate = event => {
     event.preventDefault();
-    dispatch(thunk_updatePriChar({ urlpreview, charname, charlabel, bookId, charId: data.charId }));
-    history.push(`/books/${bookId}`);
+    dispatch(thunk_updatePriChar({ urlpreview, charname, charlabel, book_id, charId }));
+    closeModal();
   }
 
 
@@ -91,6 +93,9 @@ const CreatePriCharForm = ({ bookId, update=false, data, closeModal }) => {
 
         {/* for previewing the image before it is sent to backend */}
         <div className={styles.url_preview_wrap}>
+          <p>Last avatar: </p>
+          <img src={avatar} alt={"last avatar"} />
+
           {urlpreview === null ?
             <></>
             :
