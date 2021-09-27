@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import { thunk_updateSpecificComment, thunk_createComment } from "../../store/thunks/polls.js";
 
@@ -53,7 +54,7 @@ const CommentForm = ({ update=false, data, closeModal }) => {
 
           <div className={styles.comment_update_button}>
             <ToolTip content={"Update"}>
-              <a href='/' onClick={event => updateComment(event)}> <GrUpdate /> </a>
+              <NavLink to='/' onClick={event => updateComment(event)}> <GrUpdate /> </NavLink>
             </ToolTip>
           </div>
         </div>
@@ -78,7 +79,7 @@ const CommentForm = ({ update=false, data, closeModal }) => {
 
         <div className={styles.comment_add_button}>
           <ToolTip content={"Comment"}>
-            <a href='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </a>
+            <NavLink to='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </NavLink>
           </ToolTip>
         </div>
       </div>

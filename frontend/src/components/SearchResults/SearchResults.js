@@ -90,7 +90,7 @@ const SearchResults = () => {
           <h2>Search Results</h2>
           <div className={styles.search_back_button}>
             <ToolTip content={"Back"} >
-              <a href='/' onClick={event => clearSearch(event)} > <IoIosArrowDropleftCircle /> </a>
+              <NavLink to='/' onClick={event => clearSearch(event)} > <IoIosArrowDropleftCircle /> </NavLink>
             </ToolTip>
           </div>
         </div>
@@ -133,7 +133,7 @@ const SearchResults = () => {
                   <div className={styles.each_result_button_wrap}>
                     <div className={styles.each_result_delete_button}>
                       <ToolTip content={"Delete"} >
-                        <a href='/' onClick={event => handleDelete(event, { charId: eachChar.id })}> <RiDeleteBinFill /> </a>
+                        <NavLink to='/' onClick={event => handleDelete(event, { charId: eachChar.id })}> <RiDeleteBinFill /> </NavLink>
                       </ToolTip>
                     </div>
 
@@ -141,7 +141,7 @@ const SearchResults = () => {
 
                     <div className={styles.each_result_update_button}>
                       <ToolTip content={"Update"} >
-                        <a href='/' onClick={event => handleUpdate(event, {
+                        <NavLink to='/' onClick={event => handleUpdate(event, {
                           charId: eachChar.id,
                           avatar: eachChar.avatar,
                           character_label: eachChar.character_label,
@@ -151,7 +151,7 @@ const SearchResults = () => {
                           user_id: eachChar.user_id,
                           username: eachChar.username,
                           search_id: eachChar.search_id
-                        })}> <GrUpdate /> </a>
+                        })}> <GrUpdate /> </NavLink>
                       </ToolTip>
                     </div>
                   </div>

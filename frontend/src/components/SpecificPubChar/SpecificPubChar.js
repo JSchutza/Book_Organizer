@@ -83,13 +83,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
 
 
   // if theChar is false show loading screen
-  if (!theChar) {
-    return (
-    <>
-      <h1>Loading character information ... </h1>
-    </>
-    );
-  }
+  if (!theChar) return (<h1>Loading character information ... </h1>);
 
 
 
@@ -116,14 +110,14 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
         {theChar.user_id === isUser.id ?
           <>
             <div>
-              <a href='/' onClick={event => toProfile(event)}> Profile </a>
+              <NavLink to='/' onClick={event => toProfile(event)}> Profile </NavLink>
             </div>
 
 
             <div className={styles.specific_char_buttons_wrap}>
               <div className={styles.specific_char_update_button}>
                 <ToolTip content={'Update'} >
-                  <a href='/' onClick={event => handleUpdate(event, {
+                  <NavLink to='/' onClick={event => handleUpdate(event, {
                     charId: theChar.id,
                     avatar: theChar.avatar,
                     character_label: theChar.character_label,
@@ -133,13 +127,13 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
                     user_id: theChar.user_id,
                     username: theChar.username,
                     search_id: theChar.search_id
-                  })}> <GrUpdate /> </a>
+                  })}> <GrUpdate /> </NavLink>
                 </ToolTip>
               </div>
 
               <div className={styles.specific_char_delete_button}>
                 <ToolTip content={'Delete'} >
-                  <a href='/' onClick={event => handleDelete(event, { charId: theChar.id })} > <RiDeleteBinFill /> </a>
+                  <NavLink to='/' onClick={event => handleDelete(event, { charId: theChar.id })} > <RiDeleteBinFill /> </NavLink>
                 </ToolTip>
               </div>
             </div>
@@ -156,17 +150,17 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
 
             {followingInfo.following[theChar.user_id] ?
               <div className={styles.specific_char_follow_unfollow_button}>
-                <a href='/' onClick={event => handleFollowOrUnfollow(event, theChar.user_id)}>
+                <NavLink to='/' onClick={event => handleFollowOrUnfollow(event, theChar.user_id)}>
                   Unfollow
-                </a>
+                </NavLink>
               </div>
 
               :
 
               <div className={styles.specific_char_follow_unfollow_button}>
-                <a href='/' onClick={event => handleFollowOrUnfollow(event, theChar.user_id)}>
+                <NavLink to='/' onClick={event => handleFollowOrUnfollow(event, theChar.user_id)}>
                   Follow
-                </a>
+                </NavLink>
               </div>
             }
           </>
@@ -180,7 +174,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
 
         {/* if the selected char does NOT belong to the currently logged in user */}
         <div className={styles.specific_char_containter}>
-          <a href='/' onClick={(event) => hideSpecificChar(event)}>
+          <NavLink to='/' onClick={(event) => hideSpecificChar(event)}>
 
             <div className={styles.specific_char_username}>
               <h1> {theChar.username} </h1>
@@ -193,7 +187,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
             </li>
 
             <img src={theChar.avatar} alt={theChar.character_name} />
-          </a>
+          </NavLink>
         </div>
 
       </div>

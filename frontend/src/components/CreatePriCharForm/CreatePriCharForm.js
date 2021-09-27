@@ -92,7 +92,7 @@ const CreatePriCharForm = ({ bookId, update=false, data, closeModal }) => {
         {/* for previewing the image before it is sent to backend */}
         <div className={styles.url_preview_wrap}>
           {urlpreview === null ?
-            <p></p>
+            <></>
             :
             <>
               <img src={avatarUrl} alt={"cool"}/>
@@ -153,7 +153,7 @@ const CreatePriCharForm = ({ bookId, update=false, data, closeModal }) => {
       {/* for previewing the image before it is sent to backend */}
       <div className={styles.url_preview_wrap}>
         {urlpreview === null ?
-          <p></p>
+          <></>
           :
           <>
             <img src={avatarUrl} alt={"cool"}/>
@@ -174,7 +174,7 @@ const CreatePriCharForm = ({ bookId, update=false, data, closeModal }) => {
 
           <label>
             Character Name
-      <input
+            <input
               type='text'
               name='character name'
               value={charname}

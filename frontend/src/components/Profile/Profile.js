@@ -95,14 +95,8 @@ const Profile = () => {
 
 
 
-
-  if (isUser === null || !loading) {
-    return (
-      <>
-        <LoadScreen />
-      </>
-    );
-  }
+// if there is not a user session and it is still loading
+  if (!isUser || !loading) return (<LoadScreen />);
 
 
 
@@ -151,17 +145,17 @@ const Profile = () => {
 
 
             {followersInfo ?
-              <a href='/' onClick={event => handleFollowerViewClick(event)}>
+            <NavLink to='/' onClick={event => handleFollowerViewClick(event)}>
                 {Object.keys(followersInfo).length} followers
-              </a>
+            </NavLink>
             :
               <></>
             }
 
             {followingInfo ?
-              <a href='/' onClick={event => handleFollowingViewClick(event)}>
+            <NavLink to='/' onClick={event => handleFollowingViewClick(event)}>
                 {Object.keys(followingInfo.following).length} following
-              </a>
+            </NavLink>
             :
               <></>
             }
@@ -173,20 +167,20 @@ const Profile = () => {
     <div className={styles.user_buttons_wrap}>
       <div className={styles.update_user_button}>
         <ToolTip content={'Update Info'}>
-          <a href='/' onClick={event => handleUpdate(event, {
+          <NavLink to='/' onClick={event => handleUpdate(event, {
             avatar: isUser.avatar,
             username: isUser.user_name,
             email: isUser.email,
             bio: isUser.bio,
             location: isUser.location,
             birthday: isUser.birthday
-          })}> <GrUpdate /> </a>
+            })}> <GrUpdate /> </NavLink>
         </ToolTip>
       </div>
 
       <div className={styles.delete_user_button}>
         <ToolTip content={'Delete Account'}>
-          <a href='/' onClick={event => handleDelete(event)}> <RiDeleteBinFill /> </a>
+          <NavLink to='/' onClick={event => handleDelete(event)}> <RiDeleteBinFill /> </NavLink>
         </ToolTip>
       </div>
     </div>

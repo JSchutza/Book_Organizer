@@ -109,7 +109,6 @@ const CharacterPage = () => {
   const handleDelete = (event, { charId }) => {
     event.preventDefault();
     dispatch(thunk_deleteUsersPubChars(charId));
-
   };
 
 
@@ -144,13 +143,7 @@ const CharacterPage = () => {
 
 
 // loading screen if the character data is not available
-  if (allChars === null || loading) {
-    return (
-      <>
-        <LoadScreen />
-      </>
-    )
-  }
+  if (!allChars || loading) return ( <LoadScreen /> );
 
 
 
@@ -161,14 +154,12 @@ const CharacterPage = () => {
 // displays if a specific character is clicked on
   if(specificChar){
     return (
-      <>
         <SpecificPubChar
           theChar={char}
           followingInfo={followingInfo}
           hideSpecificChar={hideSpecificChar}
           setSpecificChar={setSpecificChar}
         />
-      </>
       )
   }
 
@@ -209,7 +200,7 @@ const CharacterPage = () => {
     {Object.values(allChars).reverse().map(eachChar => (
       <>
       <div className={styles.each_card}>
-        <a href='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
+        <NavLink to='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
 
         <li className={styles.each_detail} key={eachChar.id}>
           <div className={styles.each_detail_text}>
@@ -220,7 +211,7 @@ const CharacterPage = () => {
         </li>
 
           <img className={styles.each_img} src={eachChar.avatar} alt={eachChar.character_name} />
-      </a>
+        </NavLink>
       </div>
 
 
@@ -228,7 +219,7 @@ const CharacterPage = () => {
           <div className={styles.users_character_button_wrap}>
             <div className={styles.each_button}>
               <ToolTip content={'Update'} >
-                <a href='/' onClick={event => handleUpdate(event, {
+                <NavLink to='/' onClick={event => handleUpdate(event, {
                   charId: eachChar.id,
                   avatar: eachChar.avatar,
                   character_label: eachChar.character_label,
@@ -238,13 +229,13 @@ const CharacterPage = () => {
                   user_id: eachChar.user_id,
                   username: eachChar.username,
                   search_id: eachChar.search_id
-                })}> <GrUpdate /> </a>
+                })}> <GrUpdate /> </NavLink>
               </ToolTip>
             </div>
 
             <div className={styles.each_button}>
               <ToolTip content={'Delete'} >
-                <a href='/' onClick={event => handleDelete(event, { charId: eachChar.id })} > <RiDeleteBinFill /> </a>
+                <NavLink to='/' onClick={event => handleDelete(event, { charId: eachChar.id })} > <RiDeleteBinFill /> </NavLink>
               </ToolTip>
             </div>
           </div>

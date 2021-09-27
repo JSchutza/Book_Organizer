@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
@@ -61,11 +61,7 @@ const PrivateCharacter = ({ bookId }) => {
 
 
 
-  const clearErrors = (event) => {
-    event.preventDefault();
-    dispatch(resetErrors());
-    setBackenderrors(null);
-  }
+
 
 
 
@@ -77,34 +73,12 @@ const PrivateCharacter = ({ bookId }) => {
 
 
 
-  if (!charInfo) {
-    return (
-      <>
-        <h1>Loading Character information...</h1>
-      </>
-    )
-  }
+  if (!charInfo) return (<h1>Loading Character information...</h1>);
 
 
 
   return (
     <>
-
-      <div className={''}>
-        <div>
-          {backenderrors !== null ?
-            <>
-              {backenderrors.map(each => (<li> {each} </li>))}
-              <div>
-                <a href='/' onClick={(event) => clearErrors(event)}> Try Again </a>
-              </div>
-            </>
-            :
-            <></>
-          }
-        </div>
-        </div>
-
 
       <ReactModal
         isOpen={openModal}
@@ -124,7 +98,8 @@ const PrivateCharacter = ({ bookId }) => {
     <div className={styles.each_char_container}>
         {Object.values(charInfo).map(eachChar => (
             <>
-              <a href='/' onClick={event => event.preventDefault()}>
+            {/* need to create a component and frontend route for this */}
+            <NavLink to='/' onClick={event => event.preventDefault()}>
                 <li key={eachChar.id}>
 
                   <br />
@@ -133,13 +108,13 @@ const PrivateCharacter = ({ bookId }) => {
                   {eachChar.character_label}
                 </li>
                 <img src={eachChar.avatar} alt={eachChar.character_name} />
-              </a>
+            </NavLink>
 
 
           <div className={styles.each_char_button_wrap}>
           <div className={styles.each_char_delete_button}>
           <ToolTip content={"Delete"}>
-            <a href='/' onClick={event => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </a>
+            <NavLink to='/' onClick={event => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </NavLink>
           </ToolTip>
           </div>
 
@@ -147,14 +122,13 @@ const PrivateCharacter = ({ bookId }) => {
 
             <div className={styles.each_char_update_button}>
             <ToolTip content={"Update"}>
-            <a href='/' onClick={event => handleUpdate(event, {
+            <NavLink to='/' onClick={event => handleUpdate(event, {
               charId: eachChar.id,
               avatar: eachChar.avatar,
               character_name: eachChar.character_name,
               character_label: eachChar.character_label,
               book_id: bookId,
-              lastpage: `/books/${bookId}`
-            })}> <GrUpdate /> </a>
+              })}> <GrUpdate /> </NavLink>
             </ToolTip>
             </div>
             </div>

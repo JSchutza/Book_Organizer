@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory, useParams, NavLink } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import PrivateCharacter from "../PrivateCharacters";
 import Pages from "../Pages";
@@ -95,14 +95,14 @@ const EachBook = () => {
 
     <div className={styles.create_char_button}>
       <ToolTip content={"New Character"}>
-        <a href='/' onClick={(event) => handleCreateChar(event)}> <BsFillPersonPlusFill/> </a>
+        <NavLink to='/' onClick={(event) => handleCreateChar(event)}> <BsFillPersonPlusFill /> </NavLink>
       </ToolTip>
     </div>
 
 
       <div className={styles.create_page_button}>
       <ToolTip content={"New Page"}>
-        <a href='/' onClick={(event) => handleCreatePage(event)}> <BsFileEarmarkPlus/> </a>
+        <NavLink to='/' onClick={(event) => handleCreatePage(event)}> <BsFileEarmarkPlus /> </NavLink>
       </ToolTip>
     </div>
     </div>

@@ -46,7 +46,6 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
     event.preventDefault();
     dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId }));
     closeUpdateModal();
-
   }
 
 

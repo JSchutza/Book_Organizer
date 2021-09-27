@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 
 
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
@@ -73,7 +73,7 @@ const CharacterSearch = () => {
 
       <div className={styles.search_icon}>
           <ToolTip content={"Search"} >
-            <a href='/' onClick={(event) => handleSearch(event)} > <BsSearch/> </a>
+            <NavLink to='/' onClick={(event) => handleSearch(event)} > <BsSearch /> </NavLink>
           </ToolTip>
       </div>
     </div>
