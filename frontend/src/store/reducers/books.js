@@ -8,7 +8,10 @@ import {
   DELETE_USERS_PAGE,
   CREATE_USERS_BOOKS,
   CREATE_PRI_CHAR,
-  CREATE_PAGE
+  CREATE_PAGE,
+  UPDATE_PRI_CHAR,
+  UPDATE_PAGE
+
   } from '../types'
 
 
@@ -48,6 +51,9 @@ const priCharReducer = (state = { characters: null }, action) => {
       delete state.characters[id];
       return { ...state, characters: { ...state.characters } };
 
+    case UPDATE_PRI_CHAR:
+      return { ...state, characters: { ...state.characters, ...action.character } };
+
     default:
       return state;
   }
@@ -67,6 +73,9 @@ const pageReducer = (state = { pages: null }, action) => {
       const id = action.page;
       delete state.pages[id];
       return { ...state, pages: { ...state.pages } };
+
+    case UPDATE_PAGE:
+      return { ...state, pages: { ...state.pages, ...action.page } };
 
     default:
       return state;

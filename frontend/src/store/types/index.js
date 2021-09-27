@@ -30,19 +30,22 @@ const DELETE_BOOK = "books/DELETE_BOOK";
 const GET_USERS_PAGES = "books/GET_USERS_PAGES";
 const CREATE_PAGE = "books/CREATE_PAGE";
 const DELETE_USERS_PAGE = 'books/DELETE_USERS_PAGE';
+const UPDATE_PAGE = 'books/UPDATE_PAGE';
 
 
 
 // pri characters
 const GET_USERS_PRI_CHARS = "books/GET_USERS_PRI_CHARS";
 const CREATE_PRI_CHAR = "books/CREATE_PRI_CHAR";
-const DELETE_USERS_PRI_CHARS = 'characters/DELETE_USERS_PRI_CHARS'
+const DELETE_USERS_PRI_CHARS = 'characters/DELETE_USERS_PRI_CHARS';
+const UPDATE_PRI_CHAR = 'characters/UPDATE_PRI_CHAR';
 
 
 
 // polls
 const GET_USERS_POLLS = 'polls/GET_USERS_POLLS';
 const CREATE_POLL = 'polls/CREATE_POLL';
+const UPDATE_POLL = 'polls/UPDATE_POLL';
 const GET_ALL_POLLS = 'polls/GET_ALL_POLLS';
 const DELETE_SPECIFIC_POLL = 'polls/DELETE_SPECIFIC_POLL';
 
@@ -112,7 +115,9 @@ export {
   CREATE_POLL,
   CREATE_COMMENT,
   UPDATE_COMMENT,
-
+  UPDATE_POLL,
+  UPDATE_PRI_CHAR,
+  UPDATE_PAGE,
 
 
 

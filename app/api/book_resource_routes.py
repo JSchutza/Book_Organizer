@@ -130,7 +130,7 @@ def update_page(bookId, pageId):
     the_page.update_page_data(form.data['title'], form.data["text"])
     db.session.add(the_page)
     db.session.commit()
-    return { "page": the_page.to_dict() }
+    return { the_page.get_id(): the_page.to_dict() }
 
 
 
@@ -176,4 +176,4 @@ def update_pri_char(bookId, characterId):
   old_char.update_character_data(url, charactername, characterlabel)
   db.session.add(old_char)
   db.session.commit()
-  return {"url": url}
+  return { old_char.get_id(): old_char.to_dict() }

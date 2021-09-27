@@ -10,6 +10,7 @@ import {
   cretatePoll,
   createComment,
   updateComment,
+  updatePoll,
 
 } from "../actions/polls.js";
 
@@ -87,8 +88,8 @@ const thunk_updatePoll = ({ pollId, title, questionText }) => async (dispatch) =
     dispatch(setErrors(data.errors));
     return;
   }
-  dispatch(resetErrors());
-  dispatch(thunk_getUsersPolls());
+
+  dispatch(updatePoll(data));
 
 };
 

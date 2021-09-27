@@ -14,9 +14,13 @@ import styles from "./createpollform.module.css";
 
 
 
-const CreatePollForm = ({ update=false, data, closeModal }) => {
+const CreatePollForm = ({ update=false, payload, closeModal }) => {
+  const { pollId, isTitle, isQuestion } = payload;
   const [ title, setTitle ] = useState('');
   const [ questionText, setQuestionText ] = useState('');
+  const [ updateTitle, setUpdateTitle ] = useState(isTitle);
+  const [ updateQuestion, setUpdateQuestion ] = useState(isQuestion);
+
   const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -50,9 +54,10 @@ const CreatePollForm = ({ update=false, data, closeModal }) => {
 
 
 
+
   const onUpdate = event => {
     event.preventDefault();
-    dispatch(thunk_updatePoll({ pollId: data.pollId, title, questionText }));
+    dispatch(thunk_updatePoll({ pollId, title: updateTitle, questionText: updateQuestion }));
     closeModal();
   }
 
@@ -77,8 +82,8 @@ const CreatePollForm = ({ update=false, data, closeModal }) => {
           <input
                 type='text'
                 name='title'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={updateTitle}
+                onChange={(e) => setUpdateTitle(e.target.value)}
               />
             </label>
 
@@ -87,8 +92,8 @@ const CreatePollForm = ({ update=false, data, closeModal }) => {
           <input
                 type='text'
                 name='question'
-                value={questionText}
-                onChange={(e) => setQuestionText(e.target.value)}
+                value={updateQuestion}
+                onChange={(e) => setUpdateQuestion(e.target.value)}
               />
             </label>
 

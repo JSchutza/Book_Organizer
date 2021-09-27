@@ -10,6 +10,7 @@ import {
   CREATE_POLL,
   CREATE_COMMENT,
   UPDATE_COMMENT,
+  UPDATE_POLL,
 
 } from "../types";
 
@@ -29,6 +30,9 @@ const pollsReducer = (state = { polls: null }, action) => {
       const id = action.poll
       delete state.polls[id];
       return { ...state, polls: { ...state.polls } };
+
+    case UPDATE_POLL:
+      return { ...state, polls: { ...state.polls, ...action.poll }}
 
     default:
       return state;

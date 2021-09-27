@@ -5,6 +5,7 @@ import { useHistory, NavLink } from "react-router-dom";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import ToolTip from "../ToolTip";
+import CreatePriCharForm from "../CreatePriCharForm";
 import ReactModal from 'react-modal';
 
 
@@ -21,6 +22,8 @@ import styles from "./privatecharacter.module.css";
 const PrivateCharacter = ({ bookId }) => {
   const [backenderrors, setBackenderrors] = useState(null);
   const [ openModal, setOpenModal ] = useState(false);
+  const [ updatePayload, setUpdatePayload ] = useState(null);
+
   const dispatch = useDispatch();
   const charInfo = useSelector((store) => store.priCharReducer.characters);
   const errors = useSelector((store) => store.errorsReducer.errors);
@@ -56,6 +59,7 @@ const PrivateCharacter = ({ bookId }) => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
+    setUpdatePayload(payload);
     setOpenModal(true);
   }
 
@@ -86,7 +90,11 @@ const PrivateCharacter = ({ bookId }) => {
         style={currentStyle}
         appElement={document.getElementById('root')}
       >
-        {/* <CreateCharacterForm closeModal={closeModal} /> */}
+        <CreatePriCharForm
+          update={true}
+          closeModal={closeModal}
+          payload={updatePayload}
+        />
 
       </ReactModal>
 

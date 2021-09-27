@@ -12,11 +12,12 @@ import styles from "./createpageform.module.css";
 
 
 
-const CreatePageForm = ({ bookId, update=false, data, closeModal }) => {
+const CreatePageForm = ({ bookId, update=false, payload, closeModal }) => {
+  const { pageId, isTitle, isText, book_id } = payload;
   const [ title, setTitle ] = useState('');
   const [ text, setText ] = useState('');
-  const [ updateTitle, setUpdateTitle ] = useState('');
-  const [ updateText, setUpdateText ] = useState('');
+  const [ updateTitle, setUpdateTitle ] = useState(isTitle);
+  const [ updateText, setUpdateText ] = useState(isText);
   const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -45,8 +46,8 @@ const CreatePageForm = ({ bookId, update=false, data, closeModal }) => {
 
   const onUpdate = event => {
     event.preventDefault();
-    dispatch(thunk_updatePage({ title: updateTitle, text: updateText, bookId, pageId: data.pageId }));
-    history.push(`/books/${bookId}`);
+    dispatch(thunk_updatePage({ title: updateTitle, text: updateText, bookId: book_id, pageId }));
+    closeModal();
   }
 
 

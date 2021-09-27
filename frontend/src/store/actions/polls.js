@@ -10,9 +10,16 @@ import {
   CREATE_POLL,
   CREATE_COMMENT,
   UPDATE_COMMENT,
+  UPDATE_POLL,
 
 } from "../types";
 
+
+
+const updatePoll = (poll) => ({
+  type: UPDATE_POLL,
+  poll
+});
 
 
 
@@ -81,5 +88,6 @@ export {
   cretatePoll,
   createComment,
   updateComment,
+  updatePoll,
 
 }
