@@ -151,6 +151,6 @@ def update_poll(pollId):
     the_poll.update_poll_data(form.data['title'], form.data["question_text"])
     db.session.add(the_poll)
     db.session.commit()
-    return { "poll": the_poll.to_dict() }
+    return { the_poll.get_id(): the_poll.to_dict() }
 
   return { "errors": ["error", "Please try again."] }

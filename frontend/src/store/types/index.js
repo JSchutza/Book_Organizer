@@ -43,6 +43,7 @@ const DELETE_USERS_PRI_CHARS = 'characters/DELETE_USERS_PRI_CHARS'
 // polls
 const GET_USERS_POLLS = 'polls/GET_USERS_POLLS';
 const CREATE_POLL = 'polls/CREATE_POLL';
+const UPDATE_POLL = 'polls/UPDATE_POLL';
 const GET_ALL_POLLS = 'polls/GET_ALL_POLLS';
 const DELETE_SPECIFIC_POLL = 'polls/DELETE_SPECIFIC_POLL';
 
@@ -112,7 +113,7 @@ export {
   CREATE_POLL,
   CREATE_COMMENT,
   UPDATE_COMMENT,
-
+  UPDATE_POLL,
 
 
 

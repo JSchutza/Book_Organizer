@@ -23,6 +23,7 @@ const Polls = () => {
   const [ loading, setLoading ] = useState(false);
   const [ openCreatePollModal, setOpenCreatePollModal ] = useState(false);
   const [ openUpdatePollModal, setOpenUpdatePollModal ] = useState(false);
+  const [ updatePollPayload, setUpdatePollPayload ] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
   const polls = useSelector(store => store.pollsReducer.polls);
@@ -69,10 +70,9 @@ const Polls = () => {
 
 
 
-  const handleUpdate = (event, pollId) => {
+  const handleUpdate = (event, payload) => {
     event.preventDefault();
-    // set state with the current poll info so it can be passed as props to the
-    // form
+    setUpdatePollPayload(payload);
     setOpenUpdatePollModal(true);
   }
 
@@ -118,7 +118,7 @@ const Polls = () => {
         <CreatePollForm
           update={true}
           closeModal={closeUpdatePollModal}
-
+          payload={updatePollPayload}
         />
 
       </ReactModal>
@@ -160,7 +160,11 @@ const Polls = () => {
 
             <div className={styles.each_poll_update_button}>
               <ToolTip content={"Update"}>
-                <NavLink to='/' onClick={event => handleUpdate(event, eachPoll.id)} > <GrUpdate /> </NavLink>
+                  <NavLink to='/' onClick={event => handleUpdate(event, {
+                    pollId: eachPoll.id,
+                    isTitle: eachPoll.title,
+                    isQuestion: eachPoll.question_text
+                  })} > <GrUpdate /> </NavLink>
               </ToolTip>
             </div>
           </div>
