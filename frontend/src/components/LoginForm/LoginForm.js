@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/thunks/session.js';
@@ -81,11 +81,9 @@ const LoginForm = ({ closeModal }) => {
       </form>
 
       <div className={styles.demo_button}>
-
         <ToolTip content={"Demo"}>
-          <a href='/' onClick={event => handleDemo(event)}> Demo </a>
+          <NavLink to='/' onClick={event => handleDemo(event)}> Demo </NavLink>
         </ToolTip>
-        
       </div>
 
     </div>

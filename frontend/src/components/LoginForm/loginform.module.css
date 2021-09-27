@@ -44,12 +44,5 @@
 
 
 .demo_button {
-  position: absolute;
-  width: 50%;
-  top: 10%;
-  left: 100%;
-}
-
-.demo_button a {
-  font-size: 1rem;
+  margin-left: -9vw;
 }
