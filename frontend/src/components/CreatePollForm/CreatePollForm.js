@@ -11,16 +11,13 @@ import { thunk_createNewPoll, thunk_updatePoll } from "../../store/thunks/polls.
 import styles from "./createpollform.module.css";
 
 
+const defaultValues = { pollId: '', isTitle: '', isQuestion: '' };
 
 
-
-const CreatePollForm = ({ update=false, payload, closeModal }) => {
+const CreatePollForm = ({ update=false, payload=defaultValues, closeModal }) => {
   const { pollId, isTitle, isQuestion } = payload;
-  const [ title, setTitle ] = useState('');
-  const [ questionText, setQuestionText ] = useState('');
-  const [ updateTitle, setUpdateTitle ] = useState(isTitle);
-  const [ updateQuestion, setUpdateQuestion ] = useState(isQuestion);
-
+  const [ title, setTitle ] = useState(isTitle);
+  const [ questionText, setQuestionText ] = useState(isQuestion);
   const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -57,7 +54,7 @@ const CreatePollForm = ({ update=false, payload, closeModal }) => {
 
   const onUpdate = event => {
     event.preventDefault();
-    dispatch(thunk_updatePoll({ pollId, title: updateTitle, questionText: updateQuestion }));
+    dispatch(thunk_updatePoll({ pollId, title, questionText }));
     closeModal();
   }
 
@@ -82,8 +79,8 @@ const CreatePollForm = ({ update=false, payload, closeModal }) => {
           <input
                 type='text'
                 name='title'
-                value={updateTitle}
-                onChange={(e) => setUpdateTitle(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </label>
 
@@ -92,8 +89,8 @@ const CreatePollForm = ({ update=false, payload, closeModal }) => {
           <input
                 type='text'
                 name='question'
-                value={updateQuestion}
-                onChange={(e) => setUpdateQuestion(e.target.value)}
+                value={questionText}
+                onChange={(e) => setQuestionText(e.target.value)}
               />
             </label>
 
