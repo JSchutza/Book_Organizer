@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 
 import { RiDeleteBinFill } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import Tooltip from "../ToolTip";
-
+import ReactModal from 'react-modal';
+import CreatePageForm from "../CreatePageForm";
 
 import { thunk_getAllPages, thunk_deletePage } from "../../store/thunks/books.js";
-
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 
 
@@ -18,10 +19,12 @@ import styles from "./pages.module.css";
 
 
 const Pages = ({ bookId }) => {
+  const [ openModal, setOpenModal ] = useState(false);
+  const [ updatePayload, setUpdatePayload ] = useState(null);
   const dispatch = useDispatch();
   const pageInfo = useSelector((store) => store.pageReducer.pages)
   const history = useHistory();
-
+  const { currentStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -40,6 +43,14 @@ const Pages = ({ bookId }) => {
 
   const handleUpdate = (event, payload) => {
     event.preventDefault();
+    setUpdatePayload(payload);
+    setOpenModal(true);
+  }
+
+
+
+  const closeModal = () => {
+    setOpenModal(false);
   }
 
 
@@ -55,6 +66,27 @@ const Pages = ({ bookId }) => {
     return (
       <>
       <h1>Your Pages</h1>
+
+
+
+        <ReactModal
+          isOpen={openModal}
+          onRequestClose={closeModal}
+          style={currentStyle}
+          appElement={document.getElementById('root')}
+        >
+          <CreatePageForm
+            update={true}
+            closeModal={closeModal}
+            bookId={bookId}
+            payload={updatePayload}
+          />
+
+
+        </ReactModal>
+
+
+
       <div className={styles.each_page_container}>
         {Object.values(pageInfo).map(eachPage => (
           <>
@@ -81,11 +113,9 @@ const Pages = ({ bookId }) => {
             <Tooltip content={"Update"}>
             <NavLink to='/' onClick={event => handleUpdate(event, {
               pageId: eachPage.id,
-              title: eachPage.title,
-              text: eachPage.text,
+              isTitle: eachPage.title,
+              isText: eachPage.text,
               book_id: eachPage.book_id,
-              lastpage: `/books/${bookId}`
-
               })}> <GrUpdate /> </NavLink>
             </Tooltip>
             </div>

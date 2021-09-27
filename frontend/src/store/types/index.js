@@ -30,6 +30,7 @@ const DELETE_BOOK = "books/DELETE_BOOK";
 const GET_USERS_PAGES = "books/GET_USERS_PAGES";
 const CREATE_PAGE = "books/CREATE_PAGE";
 const DELETE_USERS_PAGE = 'books/DELETE_USERS_PAGE';
+const UPDATE_PAGE = 'books/UPDATE_PAGE';
 
 
 
@@ -116,6 +117,7 @@ export {
   UPDATE_COMMENT,
   UPDATE_POLL,
   UPDATE_PRI_CHAR,
+  UPDATE_PAGE,
 
 
 

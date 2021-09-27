@@ -11,6 +11,7 @@ import {
   cratePriChar,
   createPage,
   updatePriChar,
+  updatePage,
 
 } from "../actions/books.js";
 
@@ -244,6 +245,7 @@ const thunk_createPage = ({ title, text, bookId }) => async (dispatch) => {
 
 
 
+
 const thunk_updatePage = ({ title, text, bookId, pageId }) => async (dispatch) => {
   const formData = new FormData();
   formData.append("title", title);
@@ -258,12 +260,11 @@ const thunk_updatePage = ({ title, text, bookId, pageId }) => async (dispatch) =
   const data = await response.json();
   if (data.errors) {
     dispatch(setErrors(data.errors));
-
     return;
   }
 
-  dispatch(thunk_getAllPages(bookId));
-  dispatch(resetErrors());
+  dispatch(updatePage(data));
+
 }
 
 

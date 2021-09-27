@@ -9,7 +9,9 @@ import {
   CREATE_USERS_BOOKS,
   CREATE_PRI_CHAR,
   CREATE_PAGE,
-  UPDATE_PRI_CHAR
+  UPDATE_PRI_CHAR,
+  UPDATE_PAGE
+
   } from '../types'
 
 
@@ -71,6 +73,9 @@ const pageReducer = (state = { pages: null }, action) => {
       const id = action.page;
       delete state.pages[id];
       return { ...state, pages: { ...state.pages } };
+
+    case UPDATE_PAGE:
+      return { ...state, pages: { ...state.pages, ...action.page } };
 
     default:
       return state;
