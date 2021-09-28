@@ -5,6 +5,7 @@ const REMOVE_USER = "session/REMOVE_USER";
 const VALIDATION_ERRORS = "session/VALIDATION_ERRORS";
 const CLEAR_ERRORS = "session/CLEAR_ERRORS";
 const USER_SEARCH = "session/USER_SEARCH";
+const UPDATE_USER = "session/UPDATE_const UPDATE_USER";
 
 
 
@@ -118,7 +119,7 @@ export {
   UPDATE_POLL,
   UPDATE_PRI_CHAR,
   UPDATE_PAGE,
-
+  UPDATE_USER,
 
 
 
