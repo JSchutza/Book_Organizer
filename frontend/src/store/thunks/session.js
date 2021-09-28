@@ -171,7 +171,7 @@ export {
   resetUser,
   thunk_userSearch,
   thunk_deleteUserAccount,
-
+  thunk_updateUser
 
 
 }
