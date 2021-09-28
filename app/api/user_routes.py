@@ -1,8 +1,9 @@
 
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.validators import check_if_empty, check_right_length
+from app.validators import check_if_empty, check_right_length, check_lengths
 from app.models import db, User
+from app.forms import UpdateUserForm
 
 
 # from app.models.user import follower_to_followee
@@ -14,7 +15,29 @@ user_routes = Blueprint('users', __name__)
 @user_routes.route('/<int:user_id>', methods=['PUT'])
 @login_required
 def update_user_info(user_id):
-    return
+    errors = []
+    form = UpdateUserForm()
+    name = form.data['new_name']
+    email = form.data['new_email']
+    password = form.data['new_password']
+    bio = form.data['new_bio']
+    location = form.data['new_location']
+    avatar = form.data['new_avatar']
+    birthdate = form.data['new_birthdate']
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if int(user_id) == int(current_user.get_id()):
+        if check_lengths(name, email, password, bio, location, avatar, birthdate):
+            errors.append("An error occurred while updating your account.")
+
+        if form.validate_on_submit():
+            current_user.update_user(name, email, password, bio, location, avatar, birthdate)
+            db.session.add(current_user)
+            db.session.commit()
+            return { current_user.get_id(): current_user.to_dict() }
+
+    errors.append("An error occurred while updating your account.")
+    return { "errors":  errors }
 
 
 

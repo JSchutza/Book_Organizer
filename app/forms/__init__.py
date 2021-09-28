@@ -4,3 +4,4 @@ from .book_form import BookForm
 from .page_form import PageForm
 from .poll_form import PollForm
 from .comment_form import CommentForm
+from .update_user_form import UpdateUserForm
