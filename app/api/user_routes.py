@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from app.validators import check_if_empty, check_right_length, check_lengths
 from app.models import db, User
 from app.forms import UpdateUserForm
+from app.aws import allowed_file, get_unique_filename, upload_file, get_s3_location, purge_aws_resource
 
 
 # from app.models.user import follower_to_followee
@@ -16,22 +17,47 @@ user_routes = Blueprint('users', __name__)
 @login_required
 def update_user_info(user_id):
     errors = []
+    if "image" not in request.files:
+        errors.append("An error occurred while updating your account.")
+        return { "errors":  errors }
+
     form = UpdateUserForm()
     name = form.data['new_name']
     email = form.data['new_email']
     password = form.data['new_password']
     bio = form.data['new_bio']
     location = form.data['new_location']
-    avatar = form.data['new_avatar']
     birthdate = form.data['new_birthdate']
+    avatar = request.files["avatar"]
+
+    if not allowed_file(avatar.filename):
+        errors.append("An error occurred while updating your account.")
+        return { "errors":  errors }
+
+
+    avatar.filename = get_unique_filename(avatar.filename)
     form['csrf_token'].data = request.cookies['csrf_token']
 
+
     if int(user_id) == int(current_user.get_id()):
-        if check_lengths(name, email, password, bio, location, avatar, birthdate):
+        if check_lengths(name, email, password, bio, location, birthdate):
             errors.append("An error occurred while updating your account.")
+            return { "errors":  errors }
 
         if form.validate_on_submit():
-            current_user.update_user(name, email, password, bio, location, avatar, birthdate)
+            upload = upload_file(avatar)
+
+            if "url" not in upload:
+                errors.append("An error occurred while updating your account.")
+                return { "errors":  errors }
+
+            url = upload["url"]
+            key = current_user.get_url()
+            if(key.startswith(get_s3_location())):
+                key = key[39:]
+                purge_aws_resource(key)
+
+            current_user.update_user(name, email, password, bio, location, url, birthdate)
             db.session.add(current_user)
             db.session.commit()
             return { current_user.get_id(): current_user.to_dict() }

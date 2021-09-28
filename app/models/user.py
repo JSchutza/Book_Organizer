@@ -215,6 +215,8 @@ class User(db.Model, UserMixin):
         }
 
 
+    def get_url(self):
+        return self.avatar
 
 
     def update_user(self, new_name, new_email, new_password, new_bio, new_location, new_avatar, new_birthdate):
