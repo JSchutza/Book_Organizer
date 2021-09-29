@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ToolTip from "../ToolTip";
 
+import { thunk_updateUser } from "../../store/thunks/session.js";
+import { useUser } from "../../context/UserContext.js";
+
+
 import styles from "./updateuserform.module.css";
-
-
-
-
 
 
 const UpdateUserForm = ({ payload, closeUpdateModal }) => {
@@ -20,8 +20,9 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
   const [ theirBirthday, setTheirBirthday ] = useState(birthday);
   const [ theirNewPassword, setTheirNewPassword ] = useState('');
   const [ paswordConfirm, setPasswordConfirm ] = useState('');
-
+  const [ urlpreview, setUrlPreview ] = useState(null);
   const dispatch = useDispatch();
+  const { isUser } = useUser();
   // const history = useHistory();
 
 
@@ -29,10 +30,36 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
 
   const onSubmit = event => {
     event.preventDefault();
-    // dispatch thunk to update user
+    const payload = {
+      userId: isUser.id,
+      name: theirUsername,
+      email: theirEmail,
+      password: theirNewPassword,
+      bio: theirBio,
+      location: theirLocation,
+      avatar: urlpreview,
+      birthdate: theirBirthday
+
+    }
+    dispatch(thunk_updateUser(payload));
     closeUpdateModal();
   }
 
+
+
+  const updateAvatar = event => {
+    const file = event.target.files[0];
+    setUrlPreview(file);
+    setTheirAvatar(URL.createObjectURL(file));
+  };
+
+
+
+
+  const cancelImgChoice = () => {
+    setUrlPreview(null);
+    setTheirAvatar('');
+  }
 
 
 
@@ -40,6 +67,23 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
   return (
     <>
       <div className={styles.update_containter}>
+
+        <p>Last avatar: </p>
+        <img src={avatar} alt={"last avatar"} />
+
+
+        {!urlpreview ?
+          <></>
+          :
+          <>
+            <img src={theirAvatar} alt='user' />
+            <button onClick={cancelImgChoice}> Cancel </button>
+          </>
+         }
+
+
+
+
         <form className={styles.the_form} onSubmit={onSubmit}>
 
         <label>
@@ -108,9 +152,7 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
 
         <label>
           Avatar
-        <input
-          type="file"
-        />
+            <input id='file' type="file" accept="image/*" onChange={updateAvatar} />
         </label>
 
 
@@ -127,9 +169,9 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
 
 
 
-              <ToolTip content={'Update'}>
-                <button className="" type="submit"> Update </button>
-              </ToolTip>
+        <ToolTip content={'Update'}>
+          <button type="submit"> Update </button>
+        </ToolTip>
 
 
 

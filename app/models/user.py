@@ -213,3 +213,17 @@ class User(db.Model, UserMixin):
             "characters": { each_char.id : each_char.to_dict()    for each_char in self.public_characters },
             "books": { each_book.id : each_book.to_dict()    for each_book in self.books },
         }
+
+
+    def get_url(self):
+        return self.avatar
+
+
+    def update_user(self, new_name, new_email, new_password, new_bio, new_location, new_avatar, new_birthdate):
+        self.user_name = new_name
+        self.email = new_email
+        self.hashed_password = generate_password_hash(new_password)
+        self.bio = new_bio
+        self.location = new_location
+        self.avatar = new_avatar
+        self.birthday = new_birthdate

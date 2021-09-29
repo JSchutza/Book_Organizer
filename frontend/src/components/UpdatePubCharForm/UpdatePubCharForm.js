@@ -92,7 +92,7 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
 
           <label>
               Avatar
-            <input id='file' className="" type="file" accept="image/*" onChange={updateAvatar} />
+            <input id='file' type="file" accept="image/*" onChange={updateAvatar} />
           </label>
 
           <label>

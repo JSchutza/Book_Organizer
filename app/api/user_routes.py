@@ -1,8 +1,10 @@
 
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.validators import check_if_empty, check_right_length
+from app.validators import check_if_empty, check_right_length, check_lengths
 from app.models import db, User
+from app.forms import UpdateUserForm
+from app.aws import allowed_file, get_unique_filename, upload_file, get_s3_location, purge_aws_resource
 
 
 # from app.models.user import follower_to_followee
@@ -14,7 +16,55 @@ user_routes = Blueprint('users', __name__)
 @user_routes.route('/<int:user_id>', methods=['PUT'])
 @login_required
 def update_user_info(user_id):
-    return
+    errors = []
+    error_message = "A error occurred when updating your profile."
+    if "new_avatar" not in request.files:
+        errors.append(error_message)
+        return { "errors":  errors }
+
+    form = UpdateUserForm()
+    name = form.data['new_name']
+    email = form.data['new_email']
+    password = form.data['new_password']
+    bio = form.data['new_bio']
+    location = form.data['new_location']
+    birthdate = form.data['new_birthdate']
+    avatar = request.files["new_avatar"]
+
+    if not allowed_file(avatar.filename):
+        errors.append(error_message)
+        return { "errors":  errors }
+
+
+    avatar.filename = get_unique_filename(avatar.filename)
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+
+    if int(user_id) == int(current_user.get_id()):
+        if check_lengths(name, email, password, bio, location, birthdate):
+            errors.append(error_message)
+            return { "errors":  errors }
+
+        if form.validate_on_submit():
+            upload = upload_file(avatar)
+
+            if "url" not in upload:
+                errors.append(error_message)
+                return { "errors":  errors }
+
+            url = upload["url"]
+            key = current_user.get_url()
+            if(key.startswith(get_s3_location())):
+                key = key[39:]
+                purge_aws_resource(key)
+
+            current_user.update_user(name, email, password, bio, location, url, birthdate)
+            db.session.add(current_user)
+            db.session.commit()
+            return { "user": current_user.to_dict() }
+
+    errors.append(error_message)
+    return { "errors":  errors }
 
 
 

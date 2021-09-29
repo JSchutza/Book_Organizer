@@ -16,3 +16,15 @@ def check_right_length(to_check):
     return True
   else:
     return False
+
+
+
+
+def check_lengths(*things):
+  result = None
+  for each in things:
+    if str(each) == '':
+      result = True
+    else:
+      result = False
+  return result

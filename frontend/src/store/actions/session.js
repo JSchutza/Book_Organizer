@@ -1,5 +1,21 @@
 
-import { SET_USER, REMOVE_USER, VALIDATION_ERRORS, CLEAR_ERRORS, USER_SEARCH } from '../types'
+import {
+  SET_USER,
+  REMOVE_USER,
+  VALIDATION_ERRORS,
+  CLEAR_ERRORS,
+  USER_SEARCH,
+  UPDATE_USER
+
+} from '../types'
+
+
+
+const updateUser = (user) => ({
+  type: UPDATE_USER,
+  user
+});
+
 
 
 const setUser = (user) => ({
@@ -7,9 +23,12 @@ const setUser = (user) => ({
   user,
 });
 
+
+
 const removeUser = () => ({
   type: REMOVE_USER,
 });
+
 
 
 const setErrors = (errors) => ({
@@ -22,6 +41,7 @@ const setErrors = (errors) => ({
 const clearErrors = () => ({
   type: CLEAR_ERRORS
 });
+
 
 
 const userSearch = (searchedUser) => ({
@@ -41,6 +61,7 @@ export {
   setErrors,
   clearErrors,
   userSearch,
+  updateUser,
 
 
 }
