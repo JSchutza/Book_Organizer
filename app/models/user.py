@@ -222,7 +222,7 @@ class User(db.Model, UserMixin):
     def update_user(self, new_name, new_email, new_password, new_bio, new_location, new_avatar, new_birthdate):
         self.user_name = new_name
         self.email = new_email
-        self.hashed_password = new_password
+        self.hashed_password = generate_password_hash(new_password)
         self.bio = new_bio
         self.location = new_location
         self.avatar = new_avatar

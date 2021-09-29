@@ -145,9 +145,6 @@ const thunk_updateUser = ({ userId, name, email, password, bio, location, avatar
 
   const response = await fetch(`/api/users/${userId}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: formData,
   });
 
@@ -172,6 +169,5 @@ export {
   thunk_userSearch,
   thunk_deleteUserAccount,
   thunk_updateUser
-
 
 }

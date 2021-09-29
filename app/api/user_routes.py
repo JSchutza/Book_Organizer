@@ -17,8 +17,9 @@ user_routes = Blueprint('users', __name__)
 @login_required
 def update_user_info(user_id):
     errors = []
-    if "image" not in request.files:
-        errors.append("An error occurred while updating your account.")
+    error_message = "A error occurred when updating your profile."
+    if "new_avatar" not in request.files:
+        errors.append(error_message)
         return { "errors":  errors }
 
     form = UpdateUserForm()
@@ -28,10 +29,10 @@ def update_user_info(user_id):
     bio = form.data['new_bio']
     location = form.data['new_location']
     birthdate = form.data['new_birthdate']
-    avatar = request.files["avatar"]
+    avatar = request.files["new_avatar"]
 
     if not allowed_file(avatar.filename):
-        errors.append("An error occurred while updating your account.")
+        errors.append(error_message)
         return { "errors":  errors }
 
 
@@ -41,14 +42,14 @@ def update_user_info(user_id):
 
     if int(user_id) == int(current_user.get_id()):
         if check_lengths(name, email, password, bio, location, birthdate):
-            errors.append("An error occurred while updating your account.")
+            errors.append(error_message)
             return { "errors":  errors }
 
         if form.validate_on_submit():
             upload = upload_file(avatar)
 
             if "url" not in upload:
-                errors.append("An error occurred while updating your account.")
+                errors.append(error_message)
                 return { "errors":  errors }
 
             url = upload["url"]
@@ -60,9 +61,9 @@ def update_user_info(user_id):
             current_user.update_user(name, email, password, bio, location, url, birthdate)
             db.session.add(current_user)
             db.session.commit()
-            return { current_user.get_id(): current_user.to_dict() }
+            return { "user": current_user.to_dict() }
 
-    errors.append("An error occurred while updating your account.")
+    errors.append(error_message)
     return { "errors":  errors }
 
 

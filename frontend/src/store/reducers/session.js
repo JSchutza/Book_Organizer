@@ -31,7 +31,7 @@ const usersReducer = (state = { user: null, errors: null, searchedUser: null }, 
       return { ...state, searchedUser: action.searchedUser };
 
     case UPDATE_USER:
-      return { user: action.user, searchedUser: null };
+      return { user: action.user.user, searchedUser: null };
 
     default:
       return state;

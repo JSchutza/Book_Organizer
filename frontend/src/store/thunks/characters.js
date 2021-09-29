@@ -128,7 +128,7 @@ const thunk_updatePubCharacter = ({ urlpreview, charname, charlabel, charId }) =
     return;
   }
 
-  // dispatch to update pub char action here
+
   dispatch(updatePubChar(data));
 
 }

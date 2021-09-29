@@ -37,7 +37,7 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
       password: theirNewPassword,
       bio: theirBio,
       location: theirLocation,
-      avatar: theirAvatar,
+      avatar: urlpreview,
       birthdate: theirBirthday
 
     }
@@ -170,7 +170,7 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
 
 
         <ToolTip content={'Update'}>
-          <button className="" type="submit"> Update </button>
+          <button type="submit"> Update </button>
         </ToolTip>
 
 
