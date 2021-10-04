@@ -6,6 +6,9 @@ import { useParams } from "react-router-dom";
 import { thunk_getAllPages } from "../../store/thunks/books.js";
 
 
+import LoadScreen from "../LoadScreen";
+
+
 
 const EachPage = () => {
   const { bookId, pageId } = useParams();
@@ -18,6 +21,7 @@ const EachPage = () => {
   },[dispatch]);
 
 
+  if (!pageInfo) return (<LoadScreen />);
 
   return pageInfo && (
     <>

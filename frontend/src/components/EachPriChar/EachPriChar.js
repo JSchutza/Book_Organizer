@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 
 import { thunk_getAllPriChars } from "../../store/thunks/books.js";
 
+import LoadScreen from "../LoadScreen";
+
 
 
 const EachPriChar = () => {
@@ -19,7 +21,7 @@ const EachPriChar = () => {
   },[dispatch]);
 
 
-
+  if (!charInfo) return (<LoadScreen />);
 
 
   return charInfo && (
