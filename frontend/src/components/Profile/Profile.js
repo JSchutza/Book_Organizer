@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
 import { thunk_getUsersFollowers } from "../../store/thunks/followers.js";
 import { thunk_getFollowing } from "../../store/thunks/following.js";
+import { thunk_deleteUserAccount } from "../../store/thunks/session.js";
 
 import {Book} from "../Book";
 import { NavLink, useHistory } from "react-router-dom";
@@ -60,8 +61,10 @@ const Profile = () => {
 
 
 
-  const handleDelete = (event) => {
+  const handleDelete = event => {
     event.preventDefault();
+    dispatch(thunk_deleteUserAccount(isUser.id));
+    history.push("/");
   };
 
 

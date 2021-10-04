@@ -125,8 +125,8 @@ const thunk_deleteUserAccount = (userId) => async (dispatch) => {
     return;
   }
 
-  dispatch(resetErrors());
   dispatch(removeUser());
+
 };
 
 
