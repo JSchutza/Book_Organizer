@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { thunk_getAllBooks } from "../../store/thunks/books.js";
 import { thunk_getUsersFollowers } from "../../store/thunks/followers.js";
 import { thunk_getFollowing } from "../../store/thunks/following.js";
+import { thunk_deleteUserAccount } from "../../store/thunks/session.js";
 
 import {Book} from "../Book";
 import { NavLink, useHistory } from "react-router-dom";
@@ -60,8 +61,10 @@ const Profile = () => {
 
 
 
-  const handleDelete = (event) => {
+  const handleDelete = event => {
     event.preventDefault();
+    dispatch(thunk_deleteUserAccount(isUser.id));
+    history.push("/");
   };
 
 
@@ -163,28 +166,28 @@ const Profile = () => {
     </div>
 
 
+    {isUser.id === 1 ? <></> :
+      <div className={styles.user_buttons_wrap}>
+        <div className={styles.update_user_button}>
+          <ToolTip content={'Update Info'}>
+            <NavLink to='/' onClick={event => handleUpdate(event, {
+              avatar: isUser.avatar,
+              username: isUser.user_name,
+              email: isUser.email,
+              bio: isUser.bio,
+              location: isUser.location,
+              birthday: isUser.birthday
+              })}> <GrUpdate /> </NavLink>
+          </ToolTip>
+        </div>
 
-    <div className={styles.user_buttons_wrap}>
-      <div className={styles.update_user_button}>
-        <ToolTip content={'Update Info'}>
-          <NavLink to='/' onClick={event => handleUpdate(event, {
-            avatar: isUser.avatar,
-            username: isUser.user_name,
-            email: isUser.email,
-            bio: isUser.bio,
-            location: isUser.location,
-            birthday: isUser.birthday
-            })}> <GrUpdate /> </NavLink>
-        </ToolTip>
+        <div className={styles.delete_user_button}>
+          <ToolTip content={'Delete Account'}>
+            <NavLink to='/' onClick={event => handleDelete(event)}> <RiDeleteBinFill /> </NavLink>
+          </ToolTip>
+        </div>
       </div>
-
-      <div className={styles.delete_user_button}>
-        <ToolTip content={'Delete Account'}>
-          <NavLink to='/' onClick={event => handleDelete(event)}> <RiDeleteBinFill /> </NavLink>
-        </ToolTip>
-      </div>
-    </div>
-
+     }
 
 
       <div className={styles.recent_books_header}>

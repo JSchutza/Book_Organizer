@@ -91,7 +91,7 @@ const Pages = ({ bookId }) => {
         {Object.values(pageInfo).map(eachPage => (
           <>
           {/* need to create a frontend route to display individual page component */}
-            <NavLink to='/' onClick={ event => event.preventDefault() }>
+            <NavLink to={`/books/${bookId}/pages/${eachPage.id}`} >
               <li key={eachPage.id}>
                 <h3>{eachPage.title}</h3>
                 <br />

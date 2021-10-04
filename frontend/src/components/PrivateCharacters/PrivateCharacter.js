@@ -106,8 +106,7 @@ const PrivateCharacter = ({ bookId }) => {
     <div className={styles.each_char_container}>
         {Object.values(charInfo).map(eachChar => (
             <>
-            {/* need to create a component and frontend route for this */}
-            <NavLink to='/' onClick={event => event.preventDefault()}>
+            <NavLink to={`/books/${bookId}/characters/${eachChar.id}`}>
                 <li key={eachChar.id}>
 
                   <br />

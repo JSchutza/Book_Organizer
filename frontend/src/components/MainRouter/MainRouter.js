@@ -20,6 +20,9 @@ import SearchResults from "../SearchResults";
 import HomeLoader from "../HomeLoader";
 import LoginForm from "../LoginForm";
 import SignUpForm from "../SignupForm";
+import EachPage from "../EachPage";
+import EachPriChar from "../EachPriChar";
+
 
 
 
@@ -78,6 +81,14 @@ const MainRouter = () => {
 
           <Route path='/comments/:pollId' exact>
             <Comments />
+          </Route>
+
+          <Route path='/books/:bookId/pages/:pageId' exact>
+            <EachPage />
+          </Route>
+
+          <Route path='/books/:bookId/characters/:charId' exact>
+            <EachPriChar />
           </Route>
 
           <Route>
