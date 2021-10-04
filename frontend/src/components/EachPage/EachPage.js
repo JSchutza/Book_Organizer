@@ -21,7 +21,9 @@ const EachPage = () => {
 
   return pageInfo && (
     <>
-      <h1>{pageInfo[pageId].book_title} </h1>
+      <h3> book: {pageInfo[pageId].book_title} </h3>
+      <h1> {pageInfo[pageId].title} </h1>
+      <p> {pageInfo[pageId].text} </p>
     </>
   )
 };
