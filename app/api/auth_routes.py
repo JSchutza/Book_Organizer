@@ -19,6 +19,8 @@ auth_routes = Blueprint('auth', __name__)
 def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
+
+# can not return none -- need to find a correct value to return
     return
 
 

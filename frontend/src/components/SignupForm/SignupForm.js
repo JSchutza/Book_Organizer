@@ -34,6 +34,7 @@ const SignUpForm = ({ closeModal }) => {
         closeModal();
         history.push("/profile");
       }
+      return;
     }
     // if the passwords do not match
     dispatch(setErrors(["Your passwords do not match please try again."]));
