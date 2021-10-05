@@ -15,7 +15,7 @@ const errorsReducer = (state = { errors: null }, action) => {
   switch (action.type) {
     case SET_ERRORS:
       if (Array.isArray(action.errors)){
-        return { errors: { ...action.errors } };
+        return { errors: [ ...action.errors ] };
       }
 
       return { errors: null };

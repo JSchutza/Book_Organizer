@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/thunks/session.js';
 import ToolTip from "../ToolTip";
-
+import Errors from "../Errors";
 
 import styles from "./loginform.module.css"
 
@@ -21,11 +21,17 @@ const LoginForm = ({ closeModal }) => {
 
 
 
-  const onSubmit = event => {
+
+
+
+  const onSubmit = async event => {
     event.preventDefault();
-    dispatch(login(email, password));
-    closeModal();
-    history.push("/profile");
+    const result = await dispatch(login(email, password));
+
+    if(result) {
+      closeModal();
+      history.push("/profile");
+    }
   }
 
 
@@ -43,6 +49,8 @@ const LoginForm = ({ closeModal }) => {
 
   return(
     <>
+      <Errors />
+
   <div className={styles.login_wrap}>
 
     <div className={styles.login_containter}>
