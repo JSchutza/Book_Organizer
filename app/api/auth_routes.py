@@ -55,7 +55,7 @@ def logout():
 
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
-    errors = [ "Invalid sign-in, please try again." ]
+    errors = [ "Invalid sign-up, please try again." ]
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 

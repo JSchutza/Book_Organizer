@@ -128,8 +128,8 @@ const MainRouter = () => {
                 style={currentStyle}
                 appElement={document.getElementById('root')}
               >
-                { login ? <LoginForm closeModal={closeModal} /> : <></> }
-                { signup ? <SignUpForm /> : <></> }
+                { login ? <LoginForm closeModal={closeModal}  /> : <></> }
+                {signup ? <SignUpForm closeModal={closeModal} /> : <></> }
 
               </ReactModal>
             </Route>
