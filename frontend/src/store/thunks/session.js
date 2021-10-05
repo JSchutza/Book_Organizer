@@ -19,10 +19,14 @@ const authenticate = () => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(setUser(data));
+    return true;
   }
-  dispatch(setUser(data));
+
+  dispatch(setErrors(data.errors));
+
 };
 
 
@@ -39,11 +43,13 @@ const login = (email, password) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(setUser(data));
+    return true;
   }
-  dispatch(setUser(data));
+
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -65,19 +71,18 @@ const signUp = (username, email, password) => async (dispatch) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      username,
-      email,
-      password,
-    }),
+    body: JSON.stringify({ username, email, password }),
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(setUser(data));
+    return true;
   }
-  dispatch(setUser(data));
+
+  dispatch(setErrors(data.errors));
+
 };
 
 
