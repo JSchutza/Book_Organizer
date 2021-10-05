@@ -2,12 +2,12 @@
 import {
   setUser,
   removeUser,
-  setErrors,
   userSearch,
   updateUser
 } from '../actions/session.js';
 
-import { setErrors as initErrors, resetErrors } from "../actions/errors.js";
+
+import { setErrors, resetErrors } from "../actions/errors.js";
 
 
 // thunks

@@ -17,9 +17,12 @@ const errorsReducer = (state = { errors: null }, action) => {
       if (Array.isArray(action.errors)){
         return { errors: { ...action.errors } };
       }
-      return { errors: action.errors };
+
+      return { errors: null };
+
     case RESET_ERRORS:
       return { errors: null };
+
     default:
       return state;
   }

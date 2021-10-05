@@ -31,19 +31,6 @@ const removeUser = () => ({
 
 
 
-const setErrors = (errors) => ({
-  type: VALIDATION_ERRORS,
-  errors
-});
-
-
-
-const clearErrors = () => ({
-  type: CLEAR_ERRORS
-});
-
-
-
 const userSearch = (searchedUser) => ({
   type: USER_SEARCH,
   searchedUser
@@ -58,8 +45,6 @@ const userSearch = (searchedUser) => ({
 export {
   setUser,
   removeUser,
-  setErrors,
-  clearErrors,
   userSearch,
   updateUser,
 
