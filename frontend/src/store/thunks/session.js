@@ -87,12 +87,6 @@ const signUp = (username, email, password) => async (dispatch) => {
 
 
 
-const resetUser = () => async (dispatch) => {
-  const response = await fetch(`/api/users/reset`, { credentials: "include" });
-  const data = await response.json();
-
-  dispatch(setUser(data));
-};
 
 
 // userSearch
@@ -105,12 +99,13 @@ const thunk_userSearch = (searchId) => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(userSearch(data));
+    return true;
   }
 
-  dispatch(userSearch(data));
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -125,12 +120,13 @@ const thunk_deleteUserAccount = (userId) => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(removeUser());
+    return true;
   }
 
-  dispatch(removeUser());
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -154,12 +150,13 @@ const thunk_updateUser = ({ userId, name, email, password, bio, location, avatar
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(updateUser(data));
+    return true;
   }
 
-  dispatch(updateUser(data));
+  dispatch(setErrors(data.errors));
 
 }
 
@@ -170,7 +167,6 @@ export {
   login,
   logout,
   signUp,
-  resetUser,
   thunk_userSearch,
   thunk_deleteUserAccount,
   thunk_updateUser
