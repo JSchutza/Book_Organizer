@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import ReactModal from 'react-modal';
 
-import NavBar from "../NavBar";
+import { resetErrors } from "../../store/actions/errors.js";
 
 
 import { useUser } from "../../context/UserContext.js";
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
+
+import NavBar from "../NavBar";
 import Profile from "../Profile";
 import EachUsersProfile from "../EachUsersProfile";
-
 import CharacterPage from "../CharacterPage";
 import BookViewer from "../BookViewer";
 import { EachBook } from "../Book";
@@ -27,6 +29,7 @@ import EachPriChar from "../EachPriChar";
 
 
 const MainRouter = () => {
+  const dispatch = useDispatch();
   const { isUser } = useUser();
   const { currentStyle } = useModalStyle();
   const [ openModal, setOpenModal ] = useState(false);
@@ -35,6 +38,7 @@ const MainRouter = () => {
 
 
   const closeModal = () => {
+    dispatch(resetErrors());
     setLogin(false);
     setSignup(false);
     setOpenModal(false);

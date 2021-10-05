@@ -37,11 +37,9 @@ const login = (email, password) => async (dispatch) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
+    body: JSON.stringify({ email, password }),
   });
+
   const data = await response.json();
   if (!data.errors) {
     dispatch(resetErrors());
@@ -60,6 +58,7 @@ const logout = () => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
+  dispatch(resetErrors());
   dispatch(removeUser());
 };
 
