@@ -12,6 +12,7 @@ from app.aws import allowed_file, get_unique_filename, upload_file, get_s3_locat
 user_routes = Blueprint('users', __name__)
 
 
+
 # /api/users/:userId
 @user_routes.route('/<int:user_id>', methods=['PUT'])
 @login_required
