@@ -121,7 +121,7 @@ const thunk_deleteUserAccount = (userId) => async (dispatch) => {
 
   const data = await response.json();
   if (data.errors) {
-    dispatch(initErrors(data.errors));
+    dispatch(setErrors(data.errors));
     return;
   }
 

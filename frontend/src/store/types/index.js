@@ -2,8 +2,6 @@
 // session
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
-const VALIDATION_ERRORS = "session/VALIDATION_ERRORS";
-const CLEAR_ERRORS = "session/CLEAR_ERRORS";
 const USER_SEARCH = "session/USER_SEARCH";
 const UPDATE_USER = "session/UPDATE_const UPDATE_USER";
 
@@ -84,8 +82,6 @@ const RESET_ERRORS = "errors/RESET_ERRORS";
 export {
   SET_USER,
   REMOVE_USER,
-  VALIDATION_ERRORS,
-  CLEAR_ERRORS,
   ALL_CHARACTERS,
   SEARCH_PUB_CHARACTERS,
   CLEAR_SEARCH_PUB_CHARS,
