@@ -38,10 +38,12 @@ const CreateCharacterForm = ({ closeModal }) => {
 
 
 
-  const onSubmit = event => {
+  const onSubmit = async event => {
     event.preventDefault();
-    dispatch(thunk_newPubCharacter({ urlpreview, charname, charlabel }));
-    closeModal();
+    const result = await dispatch(thunk_newPubCharacter({ urlpreview, charname, charlabel }));
+    if(result){
+      closeModal();
+    }
   };
 
 

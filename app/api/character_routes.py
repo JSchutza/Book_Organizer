@@ -2,8 +2,8 @@ from flask import Blueprint, redirect, request
 from app.models import db, PublicCharacter
 from flask_login import login_required, current_user
 from app.aws import allowed_file, get_unique_filename, upload_file, get_s3_location, purge_aws_resource
+from app.validators import check_lengths
 
-# from app.forms import CreatePostForm, CreateCommentForm
 
 
 character_routes = Blueprint("characters", __name__)
@@ -26,23 +26,27 @@ def all_characters():
 @character_routes.route("", methods=["POST"])
 @login_required
 def new_pub_char():
+  errors= ["Error creating a public character."]
   if "image" not in request.files:
-    return {"errors": "image required"}, 400
+    return { "errors": errors }
 
   image = request.files["image"]
   charactername = request.form['charactername']
   characterlabel = request.form['characterlabel']
 
+  if check_lengths(charactername, characterlabel):
+    return { "errors": errors }
+
 
   if not allowed_file(image.filename):
-      return {"errors": "file type not permitted"}, 400
+      return { "errors": errors }
 
   image.filename = get_unique_filename(image.filename)
 
   upload = upload_file(image)
 
   if "url" not in upload:
-    return upload, 400
+    return { "errors": errors }
 
   url = upload["url"]
 
