@@ -19,7 +19,9 @@ auth_routes = Blueprint('auth', __name__)
 def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
-    return {'errors': ['']}
+
+# can not return none -- need to find a correct value to return
+    return
 
 
 
@@ -28,15 +30,16 @@ def authenticate():
 
 @auth_routes.route('/login', methods=['POST'])
 def login():
+    errors = [ "Invalid login, please try again." ]
     form = LoginForm()
-    print(request.get_json())
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
 
-    return { 'errors': "Invalid login, please try again." }, 401
+    return { 'errors': errors }
 
 
 
@@ -54,8 +57,10 @@ def logout():
 
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
+    errors = [ "Invalid sign-up, please try again." ]
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         user = User(the_search_id=f'{randint(1, 100)}{randint(1, 10000000000)}',
                     user_name=form.data['username'], email=form.data['email'], password=form.data['password'])
@@ -63,7 +68,7 @@ def sign_up():
         db.session.commit()
         login_user(user)
         return user.to_dict()
-    return { 'errors': "Invalid sign-in, please try again." }, 401
+    return { 'errors': errors }
 
 
 
@@ -71,4 +76,4 @@ def sign_up():
 
 @auth_routes.route('/unauthorized')
 def unauthorized():
-    return {'errors': ['']}, 401
+    return {'errors': ['You are not authorized to access this.'] }

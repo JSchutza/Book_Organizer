@@ -1,58 +1,55 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+
 import { signUp } from "../../store/thunks/session.js";
+import { setErrors } from "../../store/actions/errors.js";
 
 
 import styles from "./signupform.module.css"
 import ToolTip from "../ToolTip";
+import Errors from "../Errors";
+
 
 import { IoIosPower } from "react-icons/io";
 
 
 
 
-const SignUpForm = () => {
+const SignUpForm = ({ closeModal }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const [ username, setUsername ] = useState("");
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
+  const [ repeatPassword, setRepeatPassword ] = useState("");
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
 
-
-  const onSignUp = event => {
+  const onSignUp = async event => {
     event.preventDefault();
     if (password === repeatPassword) {
-      dispatch(signUp(username, email, password));
+      const result = await dispatch(signUp(username, email, password));
+      if (result) {
+        closeModal();
+        history.push("/profile");
+      }
+      return;
     }
-    // set password does not match error / state
+    // if the passwords do not match
+    dispatch(setErrors(["Your passwords do not match please try again."]));
   };
 
 
 
-
-
-
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
 
 
 
 
   return (
+    <>
+    <Errors />
+
     <div className={styles.signup_containter}>
 
       <form className={styles.the_form} onSubmit={onSignUp}>
@@ -64,7 +61,7 @@ const SignUpForm = () => {
             className=""
             type="text"
             name="username"
-            onChange={updateUsername}
+            onChange={event => setUsername(event.target.value)}
             value={username}
           ></input>
         </div>
@@ -76,7 +73,7 @@ const SignUpForm = () => {
             className=""
             type="text"
             name="email"
-            onChange={updateEmail}
+            onChange={event => setEmail(event.target.value)}
             value={email}
           ></input>
         </div>
@@ -88,7 +85,7 @@ const SignUpForm = () => {
             className=""
             type="password"
             name="password"
-            onChange={updatePassword}
+            onChange={event => setPassword(event.target.value)}
             value={password}
           ></input>
         </div>
@@ -100,7 +97,7 @@ const SignUpForm = () => {
             className=""
             type="password"
             name="repeat_password"
-            onChange={updateRepeatPassword}
+            onChange={event => setRepeatPassword(event.target.value)}
             value={repeatPassword}
             required={true}
           ></input>
@@ -118,6 +115,7 @@ const SignUpForm = () => {
 
       </form>
     </div>
+    </>
   );
 };
 
