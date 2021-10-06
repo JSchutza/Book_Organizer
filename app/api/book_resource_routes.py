@@ -88,6 +88,7 @@ def delete_char(bookId, characterId):
 @resource_routes.route("/<int:bookId>/page", methods=["POST"])
 @login_required
 def create_page(bookId):
+  errors=["An error occurred while creating a new page."]
   form = PageForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -95,8 +96,9 @@ def create_page(bookId):
     new_page = Page(title=form.data['title'], text=form.data["text"], book_id=bookId)
     db.session.add(new_page)
     db.session.commit()
-  return { new_page.get_id(): new_page.to_dict() }
+    return { new_page.get_id(): new_page.to_dict() }
 
+  return { "errors": errors }
 
 
 

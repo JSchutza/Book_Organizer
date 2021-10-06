@@ -60,6 +60,7 @@ const EachBook = () => {
 
 
   const closeNewPageModal = () => {
+    dispatch(resetErrors());
     setOpenNewPageModal(false);
   };
 
