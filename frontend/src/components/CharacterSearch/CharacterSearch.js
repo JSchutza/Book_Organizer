@@ -42,16 +42,6 @@ const CharacterSearch = () => {
 
 
 
-  const clearSearch = event => {
-    event.preventDefault();
-  }
-
-
-
-  const clearErrors = event => {
-    event.preventDefault();
-    setSearchId("");
-  }
 
 
 
