@@ -25,12 +25,14 @@ const thunk_getAllCharacters = () => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(getAllCharacters(data));
+    return true;
   }
-  dispatch(resetErrors());
-  dispatch(getAllCharacters(data));
+
+  dispatch(setErrors(data.errors));
+
 };
 
 
@@ -46,12 +48,14 @@ const thunk_searchForUsersPubChars = (searchId) => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(searchForUsersPubChars(data));
+    return true;
   }
-  dispatch(resetErrors());
-  dispatch(searchForUsersPubChars(data));
+
+  dispatch(setErrors(data.errors));
+
 };
 
 
@@ -65,19 +69,21 @@ const thunk_deleteUsersPubChars = (characterId, inSearch=false) => async (dispat
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
-  }
+  if (!data.errors) {
+    dispatch(resetErrors());
+    if (inSearch) {
+      // if the thunk was dispatched in the search results component
+      dispatch(deleteUsersPubChars(characterId));
+      dispatch(deleteSearchPubChar(characterId));
+      return true;
+    }
 
-  // if the thunk was dispatched in the search results component
-  if (inSearch) {
+    // if the thunk was NOT dispatched in the search results component
     dispatch(deleteUsersPubChars(characterId));
-    dispatch(deleteSearchPubChar(characterId));
-    return;
+    return true;
   }
 
-  dispatch(deleteUsersPubChars(characterId));
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -86,7 +92,7 @@ const thunk_deleteUsersPubChars = (characterId, inSearch=false) => async (dispat
 
 
 
-
+//  /api/characters
 const thunk_newPubCharacter = ({ urlpreview, charname, charlabel }) => async (dispatch) => {
 
   const formData = new FormData();
@@ -100,16 +106,18 @@ const thunk_newPubCharacter = ({ urlpreview, charname, charlabel }) => async (di
   });
 
   const data = await response.json();
-  if(data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if(!data.errors) {
+    dispatch(resetErrors());
+    dispatch(createPubChar(data));
+    return true;
   }
 
-  dispatch(createPubChar(data));
+  dispatch(setErrors(data.errors));
+
 }
 
 
-
+// /api/characters/:charId
 const thunk_updatePubCharacter = ({ urlpreview, charname, charlabel, charId }) => async (dispatch) => {
   const formData = new FormData();
   formData.append("image", urlpreview);
@@ -123,13 +131,13 @@ const thunk_updatePubCharacter = ({ urlpreview, charname, charlabel, charId }) =
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(updatePubChar(data));
+    return true;
   }
 
-
-  dispatch(updatePubChar(data));
+  dispatch(setErrors(data.errors));
 
 }
 

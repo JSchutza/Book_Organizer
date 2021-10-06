@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory, NavLink } from "react-router-dom";
 
 
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
-
+import { resetErrors } from '../../store/actions/errors.js';
 
 import { useUser } from "../../context/UserContext.js";
 
 import ToolTip from "../ToolTip";
+import Errors from "../Errors";
 
 import styles from "./charactersearch.module.css";
 
@@ -28,26 +29,33 @@ const CharacterSearch = () => {
   const history = useHistory();
 
 
+// cleanup function to make sure that when the component is unmounted any errors
+// are reset
+  useEffect(() => {
+    return () => {
+      dispatch(resetErrors());
+    }
+  });
 
 
-  const handleSearch = event => {
+
+
+  const handleSearch = async event => {
     event.preventDefault();
-    dispatch(thunk_searchForUsersPubChars(searchId));
-    history.push(`/characters/${searchId}`);
+    const result = await dispatch(thunk_searchForUsersPubChars(searchId));
+
+    if (result) {
+      history.push(`/characters/${searchId}`);
+    } else {
+      setTimeout(() => {
+        dispatch(resetErrors());
+      }, 5000)
+    }
+
   }
 
 
 
-  const clearSearch = event => {
-    event.preventDefault();
-  }
-
-
-
-  const clearErrors = event => {
-    event.preventDefault();
-    setSearchId("");
-  }
 
 
 
@@ -56,6 +64,7 @@ const CharacterSearch = () => {
 
   return (
     <>
+      <Errors />
     <div className={styles.search_wrapper}>
 
       <div className={styles.search_input}>

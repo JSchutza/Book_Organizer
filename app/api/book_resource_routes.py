@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import db, PrivateCharacter, Page
 from app.aws import allowed_file, get_unique_filename, upload_file, get_s3_location, purge_aws_resource
 from app.forms import PageForm
-# named this this way because the private characters and pages are scoped to a book --- this was faster
+
 
 resource_routes = Blueprint('resources', __name__)
 
