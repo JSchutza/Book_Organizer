@@ -23,12 +23,8 @@ def check_right_length(to_check):
 def check_lengths(*things):
   result = None
   for each in things:
-    to_str = str(each)
-
-    if to_str == '' or to_str == "":
-      result = True
-    elif len(to_str) == 0:
-      result = True
+    if len(each) == 0:
+      return True
     else:
       result = False
   return result
