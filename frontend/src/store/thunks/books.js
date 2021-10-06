@@ -29,12 +29,14 @@ const thunk_getAllBooks = () => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(getAllBooks(data));
+    return true;
   }
-  dispatch(resetErrors());
-  dispatch(getAllBooks(data));
+
+  dispatch(setErrors(data.errors));
+
 };
 
 
@@ -52,12 +54,13 @@ const thunk_createBook = ({ title, requestUrl, requestMethod }) => async (dispat
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(createBook(data.book));
+    return true;
   }
 
-  dispatch(createBook(data.book));
+  dispatch(setErrors(data.errors));
 
 }
 
@@ -73,12 +76,14 @@ const thunk_getAllPriChars = (bookId) => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(getAllPriChars(data));
+    return true;
   }
-  dispatch(resetErrors());
-  dispatch(getAllPriChars(data));
+
+  dispatch(setErrors(data.errors));
+
 };
 
 
@@ -97,13 +102,13 @@ const thunk_createPriChar = ({ bookId, urlpreview, charname, charlabel }) => asy
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(cratePriChar(data));
+    return true;
   }
 
-  dispatch(cratePriChar(data));
-
+  dispatch(setErrors(data.errors));
 
 }
 
@@ -119,12 +124,14 @@ const thunk_getAllPages = (bookId) => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(getAllPages(data));
+    return true;
   }
-  dispatch(resetErrors());
-  dispatch(getAllPages(data));
+
+  dispatch(setErrors(data.errors));
+
 };
 
 
@@ -138,12 +145,13 @@ const thunk_deleteBook = bookId => async dispatch => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(deleteBook(bookId));
+    return true;
   }
-  dispatch(resetErrors());
-  dispatch(deleteBook(bookId));
+
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -159,13 +167,13 @@ const thunk_deleteUsersPrivateChars = (bookId, characterId) => async (dispatch) 
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(deleteUsersPrivateChars(characterId));
+    return true;
   }
 
-  dispatch(deleteUsersPrivateChars(characterId));
-
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -182,12 +190,13 @@ const thunk_deletePage = (bookId, pageId) => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(deletePage(pageId));
+    return true;
   }
 
-  dispatch(deletePage(pageId));
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -206,13 +215,13 @@ const thunk_updatePriChar = ({ urlpreview, charname, charlabel, bookId, charId }
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(updatePriChar(data));
+    return true;
   }
 
-  dispatch(updatePriChar(data));
-
+  dispatch(setErrors(data.errors));
 
 }
 
@@ -230,13 +239,13 @@ const thunk_createPage = ({ title, text, bookId }) => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(createPage(data));
+    return true;
   }
 
-  dispatch(createPage(data));
-
+  dispatch(setErrors(data.errors));
 
 }
 
@@ -258,12 +267,13 @@ const thunk_updatePage = ({ title, text, bookId, pageId }) => async (dispatch) =
 
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(updatePage(data));
+    return true;
   }
 
-  dispatch(updatePage(data));
+  dispatch(setErrors(data.errors));
 
 }
 
