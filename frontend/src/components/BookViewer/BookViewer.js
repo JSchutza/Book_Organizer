@@ -5,6 +5,7 @@ import { useHistory, NavLink } from 'react-router-dom';
 
 import { thunk_getAllBooks, thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books";
 import { thunk_deleteBook } from "../../store/thunks/books";
+import { resetErrors } from '../../store/actions/errors';
 
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
@@ -87,6 +88,7 @@ const BookViewer = () => {
 
 
   const closeNewBookModal = () => {
+    dispatch(resetErrors());
     setOpenNewBookModal(false);
   }
 

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { thunk_createBook } from "../../store/thunks/books.js";
 
 import ToolTip from "../ToolTip";
+import Errors from "../Errors";
 import { AiOutlinePlus } from "react-icons/ai";
 import { GrUpdate } from "react-icons/gr";
 import styles from "./createbookform.module.css";
@@ -18,7 +19,7 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
 
 
 
-  const onCreateSubmit = event => {
+  const onCreateSubmit = async event => {
     event.preventDefault();
     const payload = {
       title,
@@ -26,8 +27,11 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
       requestMethod: "POST"
     };
 
-    dispatch(thunk_createBook(payload));
-    closeModal();
+    const result = await dispatch(thunk_createBook(payload));
+    if (result) {
+      closeModal();
+    }
+
   }
 
 
@@ -79,6 +83,8 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
 
   return (
     <>
+      <Errors />
+
     <div className={styles.form_wrap}>
       <form onSubmit={onCreateSubmit}>
         <label>
