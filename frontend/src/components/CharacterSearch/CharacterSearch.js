@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory, NavLink } from "react-router-dom";
 
 
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
-
+import { resetErrors } from '../../store/actions/errors.js';
 
 import { useUser } from "../../context/UserContext.js";
 
@@ -29,6 +29,15 @@ const CharacterSearch = () => {
   const history = useHistory();
 
 
+// cleanup function to make sure that when the component is unmounted any errors
+// are reset
+  useEffect(() => {
+    return () => {
+      dispatch(resetErrors());
+    }
+  });
+
+
 
 
   const handleSearch = async event => {
@@ -37,7 +46,12 @@ const CharacterSearch = () => {
 
     if (result) {
       history.push(`/characters/${searchId}`);
+    } else {
+      setTimeout(() => {
+        dispatch(resetErrors());
+      }, 5000)
     }
+
   }
 
 
