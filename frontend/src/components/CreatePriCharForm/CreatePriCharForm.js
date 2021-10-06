@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
 import { useHistory } from "react-router-dom";
+
 import { thunk_updatePriChar, thunk_createPriChar } from "../../store/thunks/books.js";
 import { processFile } from "../../services/protectedFileUpload.js";
-import { nanoid } from "nanoid";
-import styles from "./createpricharform.module.css";
 
+import { nanoid } from "nanoid";
+
+import Errors from "../Errors";
+
+import styles from "./createpricharform.module.css";
 
 const defaultValues = { charId: '', avatar: '', character_name: '', character_label: '', book_id: '' };
 
@@ -18,33 +21,24 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
   const [charlabel, setCharlabel] = useState(character_label);
   const [urlpreview, setUrlPreview] = useState(null);
 
-  const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
-  const history = useHistory();
-
-
-
-  useEffect(() => {
-    const errors = [];
-    if (charlabel.length === 0) {
-      errors.push('You must have a character label to create a character.');
-    }
-
-    if (charname.length === 0){
-      errors.push("You must have character name to create a character.");
-    }
-
-    setErrors(errors);
-  }, [charlabel, charname]);
 
 
 
 
 
-  const onSubmit = event => {
+
+
+
+
+
+  const onSubmit = async event => {
     event.preventDefault();
-    dispatch(thunk_createPriChar({ bookId, urlpreview, charname, charlabel }));
-    closeModal();
+    const result = await dispatch(thunk_createPriChar({ bookId, urlpreview, charname, charlabel }));
+    if (result){
+      closeModal();
+    }
+
   };
 
 
@@ -85,11 +79,7 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
   if (update) {
     return (
       <>
-        <div>
-          {errors.map(each => (
-            <li key={nanoid()}> { each} </li>
-          ))}
-        </div>
+
 
         {/* for previewing the image before it is sent to backend */}
         <div className={styles.url_preview_wrap}>
@@ -149,11 +139,7 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
 
   return (
     <>
-    <div>
-      {errors.map(each => (
-        <li key={nanoid()}> { each } </li>
-      ))}
-    </div>
+      <Errors />
 
       {/* for previewing the image before it is sent to backend */}
       <div className={styles.url_preview_wrap}>

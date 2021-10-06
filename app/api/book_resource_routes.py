@@ -34,26 +34,26 @@ def get_all_pages(bookId):
 @resource_routes.route('/<int:bookId>/character', methods=['POST'])
 @login_required
 def create_pri_char(bookId):
+  errors=["Error creating a private character."]
   if "image" not in request.files:
-    return {"errors": ["Image required.", "Please try again."] }, 400
+    return { "errors": errors }
 
   image = request.files["image"]
   charactername = request.form['charactername']
   characterlabel = request.form['characterlabel']
+
   if len(charactername) == 0 or len(characterlabel) == 0:
-    return {"errors": ["Invalid character submission.", "Please try again."]}, 400
-
-
+    return { "errors": errors }
 
   if not allowed_file(image.filename):
-    return {"errors": ["File type not permitted.", "Please try again." ]}, 400
+    return { "errors": errors }
 
   image.filename = get_unique_filename(image.filename)
 
   upload = upload_file(image)
 
   if "url" not in upload:
-    return upload, 400
+    return { "errors": errors }
 
   url = upload["url"]
 
