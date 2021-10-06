@@ -25,12 +25,14 @@ const thunk_getAllCharacters = () => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(getAllCharacters(data));
+    return true;
   }
-  dispatch(resetErrors());
-  dispatch(getAllCharacters(data));
+
+  dispatch(setErrors(data.errors));
+
 };
 
 
