@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from "react-redux";
+
+
 
 import { thunk_newPubCharacter } from "../../store/thunks/characters.js";
 import { processFile } from "../../services/protectedFileUpload.js";
-import { nanoid } from "nanoid";
+
+import Errors from "../Errors";
+
+
 import styles from "./createcharacterform.module.css";
-import { useHistory } from "react-router-dom";
-
-
-
 
 
 const CreateCharacterForm = ({ closeModal }) => {
@@ -16,22 +17,7 @@ const CreateCharacterForm = ({ closeModal }) => {
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
   const [ urlpreview, setUrlPreview ] = useState(null);
-  const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
-  const history = useHistory();
-
-
-  useEffect(() => {
-  const errors = [];
-  if (charlabel.length === 0) {
-    errors.push('You must enter an character label to create an character.');
-  }
-  if(charname.length === 0) {
-    errors.push('You must enter an character name to create an character.');
-  }
-  setErrors(errors);
-  }, [charlabel, charname]);
-
 
 
 
@@ -72,14 +58,8 @@ const CreateCharacterForm = ({ closeModal }) => {
 
   return (
     <>
-      <div>
-        {errors.map(each => (
-          <li key={nanoid()}> {each} </li>
-        ))}
-      </div>
 
-
-
+      <Errors />
 
       {/* for previewing the image before it is sent to backend */}
       <div className={styles.url_preview_wrap}>
