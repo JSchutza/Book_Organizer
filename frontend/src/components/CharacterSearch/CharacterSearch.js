@@ -9,6 +9,7 @@ import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
 import { useUser } from "../../context/UserContext.js";
 
 import ToolTip from "../ToolTip";
+import Errors from "../Errors";
 
 import styles from "./charactersearch.module.css";
 
@@ -30,10 +31,13 @@ const CharacterSearch = () => {
 
 
 
-  const handleSearch = event => {
+  const handleSearch = async event => {
     event.preventDefault();
-    dispatch(thunk_searchForUsersPubChars(searchId));
-    history.push(`/characters/${searchId}`);
+    const result = await dispatch(thunk_searchForUsersPubChars(searchId));
+
+    if (result) {
+      history.push(`/characters/${searchId}`);
+    }
   }
 
 
@@ -56,6 +60,7 @@ const CharacterSearch = () => {
 
   return (
     <>
+      <Errors />
     <div className={styles.search_wrapper}>
 
       <div className={styles.search_input}>
