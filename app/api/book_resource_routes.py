@@ -147,22 +147,26 @@ def update_page(bookId, pageId):
 @resource_routes.route("/<int:bookId>/character/<int:characterId>", methods=["PUT"])
 @login_required
 def update_pri_char(bookId, characterId):
+  errors=["An error occurred while trying to update a private character."]
   if "image" not in request.files:
-    return {"errors": "image required"}, 400
+    return { "errors": errors }
 
   image = request.files["image"]
   charactername = request.form['charactername']
   characterlabel = request.form['characterlabel']
 
+  if len(charactername) == 0 or len(characterlabel) == 0:
+    return { "errors": errors }
+
   if not allowed_file(image.filename):
-      return {"errors": "file type not permitted"}, 400
+    return { "errors": errors }
 
   image.filename = get_unique_filename(image.filename)
 
   upload = upload_file(image)
 
   if "url" not in upload:
-    return upload, 400
+    return { "errors": errors }
 
   url = upload["url"]
 
