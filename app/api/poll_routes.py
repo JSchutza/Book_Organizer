@@ -106,6 +106,7 @@ def update_comment(pollId, commentId):
 @poll_routes.route('', methods=['POST'])
 @login_required
 def create_new_poll():
+  errors=["An error occurred while creating a poll."]
   form = PollForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -115,9 +116,7 @@ def create_new_poll():
     db.session.commit()
     return { new_poll.get_id(): new_poll.to_dict() }
 
-
-  # if there are errors
-  return { "errors": ["errors", "Please try again."] }
+  return { "errors": errors }
 
 
 
