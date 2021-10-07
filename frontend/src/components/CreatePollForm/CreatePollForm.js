@@ -18,24 +18,11 @@ const CreatePollForm = ({ update=false, payload=defaultValues, closeModal }) => 
   const { pollId, isTitle, isQuestion } = payload;
   const [ title, setTitle ] = useState(isTitle);
   const [ questionText, setQuestionText ] = useState(isQuestion);
-  const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
-  const history = useHistory();
 
 
 
 
-
-  useEffect(() => {
-    const errors = [];
-    if(title.length === 0){
-      errors.push("You must enter a title to create a poll.");
-    }
-    if(questionText.length === 0){
-      errors.push("You must enter a question to create a poll.");
-    }
-    setErrors(errors);
-  },[title, questionText]);
 
 
 
@@ -66,11 +53,7 @@ const CreatePollForm = ({ update=false, payload=defaultValues, closeModal }) => 
   if(update) {
     return (
       <>
-        <div>
-          {errors.map(each => (
-            <li key={nanoid()}> {each} </li>
-          ))}
-        </div>
+
 
         <div>
           <form className={styles.create_poll_container} onSubmit={onUpdate}>
@@ -113,11 +96,7 @@ const CreatePollForm = ({ update=false, payload=defaultValues, closeModal }) => 
 
   return (
     <>
-    <div>
-      {errors.map(each => (
-        <li key={nanoid()}> {each} </li>
-      ))}
-    </div>
+
 
       <div>
         <form className={styles.create_poll_container} onSubmit={onSubmit}>
