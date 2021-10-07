@@ -48,6 +48,7 @@ def get_all_comments(pollId):
 @poll_routes.route("/<int:pollId>/comment", methods=['POST'])
 @login_required
 def new_comment(pollId):
+  errors=["An error occurred while creating a comment."]
   form = CommentForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -57,8 +58,7 @@ def new_comment(pollId):
     db.session.commit()
     return { new_comment.get_id(): new_comment.to_dict() }
 
-  # if there are errors
-  return { "errors": ["errors", "Please try again."] }
+  return { "errors": errors }
 
 
 
@@ -81,6 +81,7 @@ def delete_comment(pollId, commentId):
 @poll_routes.route("/<int:pollId>/comments/<int:commentId>", methods=['PUT'])
 @login_required
 def update_comment(pollId, commentId):
+  errors=["An error occurred while updating your comment."]
   the_comment = Comment.query.get(commentId)
   form = CommentForm()
   form['csrf_token'].data = request.cookies['csrf_token']
@@ -91,7 +92,7 @@ def update_comment(pollId, commentId):
     db.session.commit()
     return { the_comment.get_id(): the_comment.to_dict() }
 
-  return { "errors": ["error", "Please try again."] }
+  return { "errors": errors }
 
 
 
