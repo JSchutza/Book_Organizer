@@ -142,6 +142,7 @@ def delete_poll(pollId):
 @poll_routes.route('/<int:pollId>', methods=['PUT'])
 @login_required
 def update_poll(pollId):
+  errors=["An error occurred while updating your poll."]
   the_poll = Poll.query.get(pollId)
 
   form = PollForm()
@@ -152,4 +153,4 @@ def update_poll(pollId):
     db.session.commit()
     return { the_poll.get_id(): the_poll.to_dict() }
 
-  return { "errors": ["error", "Please try again."] }
+  return { "errors": errors }
