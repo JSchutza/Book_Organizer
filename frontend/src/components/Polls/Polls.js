@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, NavLink } from "react-router-dom";
 import { thunk_getUsersPolls, thunk_getUsersSpecificComments, thunk_deleteSpecificPoll, thunk_allPolls } from "../../store/thunks/polls.js";
+import { resetErrors } from '../../store/actions/errors.js';
 
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
@@ -79,11 +80,13 @@ const Polls = () => {
 
 
   const closeCreatePollModal = () => {
+    dispatch(resetErrors());
     setOpenCreatePollModal(false);
   }
 
 
   const closeUpdatePollModal = () => {
+    dispatch(resetErrors());
     setOpenUpdatePollModal(false);
   }
 

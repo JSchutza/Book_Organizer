@@ -29,12 +29,14 @@ const thunk_getUsersPolls = () => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(getUsersPolls(data));
+    return true;
   }
-  dispatch(resetErrors());
-  dispatch(getUsersPolls(data));
+
+  dispatch(setErrors(data.errors));
+
 };
 
 
@@ -56,12 +58,13 @@ const thunk_createNewPoll = ({ title, questionText }) => async (dispatch) => {
 
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(cretatePoll(data));
+    return true;
   }
 
-  dispatch(cretatePoll(data));
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -84,12 +87,13 @@ const thunk_updatePoll = ({ pollId, title, questionText }) => async (dispatch) =
 
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(updatePoll(data));
+    return true;
   }
 
-  dispatch(updatePoll(data));
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -107,12 +111,14 @@ const thunk_allPolls = () => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(allPolls(data));
+    return true;
   }
-  dispatch(resetErrors());
-  dispatch(allPolls(data));
+
+  dispatch(setErrors(data.errors));
+
 };
 
 
@@ -128,12 +134,13 @@ const thunk_deleteSpecificPoll = (pollId) => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(deleteSpecificPoll(pollId));
+    return true;
   }
 
-  dispatch(deleteSpecificPoll(pollId));
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -151,12 +158,13 @@ const thunk_getUsersSpecificComments = (pollId) => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(getUsersSpecificComments(data));
+    return true;
   }
 
-  dispatch(getUsersSpecificComments(data));
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -171,13 +179,13 @@ const thunk_deleteSpecificComment = (pollId, commentId) => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(deleteSpecificComment(commentId));
+    return true;
   }
 
-
-  dispatch(deleteSpecificComment(commentId));
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -196,12 +204,13 @@ const thunk_updateSpecificComment = ({ pollId, commentId, updateText }) => async
   });
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(updateComment(data));
+    return true;
   }
 
-  dispatch(updateComment(data));
+  dispatch(setErrors(data.errors));
 
 };
 
@@ -224,12 +233,13 @@ const thunk_createComment = ({ pollId, commentText }) => async (dispatch) => {
 
 
   const data = await response.json();
-  if (data.errors) {
-    dispatch(setErrors(data.errors));
-    return;
+  if (!data.errors) {
+    dispatch(resetErrors());
+    dispatch(createComment(data));
+    return true;
   }
 
-  dispatch(createComment(data));
+  dispatch(setErrors(data.errors));
 
 };
 
