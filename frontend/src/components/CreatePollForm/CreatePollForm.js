@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
-import { nanoid } from "nanoid";
+
 
 
 import { thunk_createNewPoll, thunk_updatePoll } from "../../store/thunks/polls.js";
-
+import Errors from "../Errors";
 
 
 import styles from "./createpollform.module.css";
@@ -30,19 +29,25 @@ const CreatePollForm = ({ update=false, payload=defaultValues, closeModal }) => 
 
 
 
-  const onSubmit = event => {
+  const onSubmit = async event => {
     event.preventDefault();
-    dispatch(thunk_createNewPoll({ title, questionText }));
-    closeModal();
+    const result = await dispatch(thunk_createNewPoll({ title, questionText }));
+    if (result){
+      closeModal();
+    }
+
   }
 
 
 
 
-  const onUpdate = event => {
+  const onUpdate = async event => {
     event.preventDefault();
-    dispatch(thunk_updatePoll({ pollId, title, questionText }));
-    closeModal();
+    const result =  await dispatch(thunk_updatePoll({ pollId, title, questionText }));
+    if (result) {
+      closeModal();
+    }
+
   }
 
 
@@ -53,7 +58,7 @@ const CreatePollForm = ({ update=false, payload=defaultValues, closeModal }) => 
   if(update) {
     return (
       <>
-
+        <Errors />
 
         <div>
           <form className={styles.create_poll_container} onSubmit={onUpdate}>
@@ -96,7 +101,7 @@ const CreatePollForm = ({ update=false, payload=defaultValues, closeModal }) => 
 
   return (
     <>
-
+      <Errors />
 
       <div>
         <form className={styles.create_poll_container} onSubmit={onSubmit}>
