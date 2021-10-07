@@ -36,10 +36,13 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
   };
 
 
-  const onUpdate = event => {
+  const onUpdate = async event => {
     event.preventDefault();
-    dispatch(thunk_updatePage({ title, text, bookId: book_id, pageId }));
-    closeModal();
+    const result = await dispatch(thunk_updatePage({ title, text, bookId: book_id, pageId }));
+    if(result) {
+      closeModal();
+    }
+
   }
 
 
@@ -50,7 +53,7 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
     return (
       <>
 
-
+        <Errors />
 
         <div>
           <form className={styles.create_page_container} onSubmit={onUpdate}>

@@ -11,6 +11,7 @@ import CreatePageForm from "../CreatePageForm";
 import { thunk_getAllPages, thunk_deletePage } from "../../store/thunks/books.js";
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
+import { resetErrors } from '../../store/actions/errors';
 
 
 import styles from "./pages.module.css";
@@ -22,8 +23,7 @@ const Pages = ({ bookId }) => {
   const [ openModal, setOpenModal ] = useState(false);
   const [ updatePayload, setUpdatePayload ] = useState(null);
   const dispatch = useDispatch();
-  const pageInfo = useSelector((store) => store.pageReducer.pages)
-  const history = useHistory();
+  const pageInfo = useSelector((store) => store.pageReducer.pages);
   const { currentStyle } = useModalStyle();
 
 
@@ -50,6 +50,7 @@ const Pages = ({ bookId }) => {
 
 
   const closeModal = () => {
+    dispatch(resetErrors());
     setOpenModal(false);
   }
 

@@ -124,6 +124,7 @@ def delete_page(bookId, pageId):
 @resource_routes.route("/<int:bookId>/page/<int:pageId>", methods=["PUT"])
 @login_required
 def update_page(bookId, pageId):
+  errors=["An error occurred while updating your page."]
   the_page = Page.query.get(pageId)
   form = PageForm()
   form['csrf_token'].data = request.cookies['csrf_token']
@@ -133,6 +134,8 @@ def update_page(bookId, pageId):
     db.session.add(the_page)
     db.session.commit()
     return { the_page.get_id(): the_page.to_dict() }
+
+  return { "errors": errors }
 
 
 
