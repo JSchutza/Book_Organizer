@@ -21,6 +21,7 @@ def get_all_books():
 @book_routes.route('', methods=['POST'])
 @login_required
 def create_new_book():
+  errors=["Error creating a new book."]
   form = BookForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -28,7 +29,9 @@ def create_new_book():
     new_book = Book(the_title=form.data['title'], creator_id=current_user.get_id())
     db.session.add(new_book)
     db.session.commit()
-  return { "book": new_book.to_dict() }
+    return { "book": new_book.to_dict() }
+
+  return { "errors": errors }
 
 
 

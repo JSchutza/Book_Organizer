@@ -10,7 +10,7 @@ import CreatePageForm from "../CreatePageForm";
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 import { thunk_getAllPriChars, thunk_getAllPages } from "../../store/thunks/books.js";
-
+import { resetErrors } from '../../store/actions/errors';
 
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { BsFileEarmarkPlus } from "react-icons/bs";
@@ -29,7 +29,6 @@ const EachBook = () => {
   const [ openNewPageModal, setOpenNewPageModal ] = useState(false);
   const dispatch = useDispatch();
   const { bookId } = useParams();
-  const history = useHistory();
   const { currentStyle } = useModalStyle();
 
 
@@ -55,11 +54,13 @@ const EachBook = () => {
 
 
   const closeNewCharModal = () => {
+    dispatch(resetErrors());
     setOpenNewCharModal(false);
   };
 
 
   const closeNewPageModal = () => {
+    dispatch(resetErrors());
     setOpenNewPageModal(false);
   };
 

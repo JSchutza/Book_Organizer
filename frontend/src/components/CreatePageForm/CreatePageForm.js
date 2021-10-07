@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 
+import { thunk_updatePage, thunk_createPage } from "../../store/thunks/books.js";
+import { resetErrors } from '../../store/actions/errors.js';
 
 import { nanoid } from "nanoid"
-import { thunk_updatePage, thunk_createPage } from "../../store/thunks/books.js";
 
-
+import Errors from "../Errors";
 
 import styles from "./createpageform.module.css";
 
@@ -20,34 +20,29 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
   const [ text, setText ] = useState(isText);
   const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
-  const history = useHistory();
-
-
-  useEffect(() => {
-    const errors = []
-    if(title.length === 0){
-      errors.push("You must have a title to create a page.")
-    }
-    if(text.length === 0) {
-      errors.push("You must have text to create a page.")
-    }
-    setErrors(errors);
-  },[title, text]);
 
 
 
 
-  const onSubmit = event => {
+
+
+  const onSubmit = async event => {
     event.preventDefault();
-    dispatch(thunk_createPage({ title, text, bookId }));
-    closeModal();
+    const result = await dispatch(thunk_createPage({ title, text, bookId }));
+    if(result) {
+      closeModal();
+    }
+
   };
 
 
-  const onUpdate = event => {
+  const onUpdate = async event => {
     event.preventDefault();
-    dispatch(thunk_updatePage({ title, text, bookId: book_id, pageId }));
-    closeModal();
+    const result = await dispatch(thunk_updatePage({ title, text, bookId: book_id, pageId }));
+    if(result) {
+      closeModal();
+    }
+
   }
 
 
@@ -57,12 +52,8 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
   if (update) {
     return (
       <>
-        <div>
-          {errors.map(each => (
-            <li key={nanoid()}> {each} </li>
-          ))}
-        </div>
 
+        <Errors />
 
         <div>
           <form className={styles.create_page_container} onSubmit={onUpdate}>
@@ -97,11 +88,7 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
 
   return (
     <>
-      <div>
-        {errors.map(each => (
-          <li key={nanoid()}> {each} </li>
-        ))}
-      </div>
+      <Errors />
 
       <div>
         <form className={styles.create_page_container} onSubmit={onSubmit}>

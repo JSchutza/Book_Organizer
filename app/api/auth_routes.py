@@ -20,8 +20,11 @@ def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
 
-# can not return none -- need to find a correct value to return
-    return
+    # can NOT return none -- need to return an empty string because if its an
+    # dict which turns to JSON it messes with the implementation of my frontend.
+    # also can not return none because my cookies dont show in the browser which
+    # breaks things
+    return ""
 
 
 

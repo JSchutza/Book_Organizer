@@ -34,26 +34,26 @@ def get_all_pages(bookId):
 @resource_routes.route('/<int:bookId>/character', methods=['POST'])
 @login_required
 def create_pri_char(bookId):
+  errors=["Error creating a private character."]
   if "image" not in request.files:
-    return {"errors": ["Image required.", "Please try again."] }, 400
+    return { "errors": errors }
 
   image = request.files["image"]
   charactername = request.form['charactername']
   characterlabel = request.form['characterlabel']
+
   if len(charactername) == 0 or len(characterlabel) == 0:
-    return {"errors": ["Invalid character submission.", "Please try again."]}, 400
-
-
+    return { "errors": errors }
 
   if not allowed_file(image.filename):
-    return {"errors": ["File type not permitted.", "Please try again." ]}, 400
+    return { "errors": errors }
 
   image.filename = get_unique_filename(image.filename)
 
   upload = upload_file(image)
 
   if "url" not in upload:
-    return upload, 400
+    return { "errors": errors }
 
   url = upload["url"]
 
@@ -88,6 +88,7 @@ def delete_char(bookId, characterId):
 @resource_routes.route("/<int:bookId>/page", methods=["POST"])
 @login_required
 def create_page(bookId):
+  errors=["An error occurred while creating a new page."]
   form = PageForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -95,8 +96,9 @@ def create_page(bookId):
     new_page = Page(title=form.data['title'], text=form.data["text"], book_id=bookId)
     db.session.add(new_page)
     db.session.commit()
-  return { new_page.get_id(): new_page.to_dict() }
+    return { new_page.get_id(): new_page.to_dict() }
 
+  return { "errors": errors }
 
 
 
@@ -122,6 +124,7 @@ def delete_page(bookId, pageId):
 @resource_routes.route("/<int:bookId>/page/<int:pageId>", methods=["PUT"])
 @login_required
 def update_page(bookId, pageId):
+  errors=["An error occurred while updating your page."]
   the_page = Page.query.get(pageId)
   form = PageForm()
   form['csrf_token'].data = request.cookies['csrf_token']
@@ -131,6 +134,8 @@ def update_page(bookId, pageId):
     db.session.add(the_page)
     db.session.commit()
     return { the_page.get_id(): the_page.to_dict() }
+
+  return { "errors": errors }
 
 
 
@@ -147,22 +152,26 @@ def update_page(bookId, pageId):
 @resource_routes.route("/<int:bookId>/character/<int:characterId>", methods=["PUT"])
 @login_required
 def update_pri_char(bookId, characterId):
+  errors=["An error occurred while trying to update a private character."]
   if "image" not in request.files:
-    return {"errors": "image required"}, 400
+    return { "errors": errors }
 
   image = request.files["image"]
   charactername = request.form['charactername']
   characterlabel = request.form['characterlabel']
 
+  if len(charactername) == 0 or len(characterlabel) == 0:
+    return { "errors": errors }
+
   if not allowed_file(image.filename):
-      return {"errors": "file type not permitted"}, 400
+    return { "errors": errors }
 
   image.filename = get_unique_filename(image.filename)
 
   upload = upload_file(image)
 
   if "url" not in upload:
-    return upload, 400
+    return { "errors": errors }
 
   url = upload["url"]
 
