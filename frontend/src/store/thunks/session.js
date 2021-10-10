@@ -53,13 +53,14 @@ const login = (email, password) => async (dispatch) => {
 
 
 const logout = () => async (dispatch) => {
-  await fetch("/api/auth/logout", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  dispatch(resetErrors());
-  dispatch(removeUser());
+  const response = await fetch("/api/auth/logout", { headers: { "Content-Type": "application/json", }, });
+
+  if(response.ok) {
+    dispatch(resetErrors());
+    dispatch(removeUser());
+    return true;
+  }
+
 };
 
 

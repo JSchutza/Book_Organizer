@@ -8,25 +8,19 @@ import {FiLogOut} from 'react-icons/fi'
 
 
 
-
-
-
-
-
-
-
-
-
 const LogoutButton = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
 
 
-  const onLogout = event => {
+  const onLogout = async event => {
     event.preventDefault();
-    dispatch(logout());
-    history.push("/");
+    const result = await dispatch(logout());
+    if (result) {
+      history.push("/");
+    }
+
   };
 
 

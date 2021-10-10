@@ -49,50 +49,44 @@ const SignUpForm = ({ closeModal }) => {
   return (
     <>
     <Errors />
+    <div className={styles.signup_wrap}>
 
     <div className={styles.signup_containter}>
-
       <form className={styles.the_form} onSubmit={onSignUp}>
 
-        <div className="">
           <label>User Name</label>
-          <br />
           <input
             className=""
             type="text"
             name="username"
             onChange={event => setUsername(event.target.value)}
             value={username}
-          ></input>
-        </div>
-
-        <div className="">
-          <label>Email</label>
+          />
           <br />
+
+          <label>Email</label>
           <input
             className=""
             type="text"
             name="email"
             onChange={event => setEmail(event.target.value)}
             value={email}
-          ></input>
-        </div>
-
-        <div className="">
-          <label>Password</label>
+          />
           <br />
+
+
+
+          <label>Password</label>
           <input
             className=""
             type="password"
             name="password"
             onChange={event => setPassword(event.target.value)}
             value={password}
-          ></input>
-        </div>
-
-        <div className="">
-          <label>Repeat Password</label>
+          />
           <br />
+
+          <label>Repeat Password</label>
           <input
             className=""
             type="password"
@@ -100,10 +94,8 @@ const SignUpForm = ({ closeModal }) => {
             onChange={event => setRepeatPassword(event.target.value)}
             value={repeatPassword}
             required={true}
-          ></input>
-        </div>
-
-
+          />
+          <br />
 
         <div className={styles.enter_button}>
           <div>
@@ -114,6 +106,7 @@ const SignUpForm = ({ closeModal }) => {
         </div>
 
       </form>
+    </div>
     </div>
     </>
   );

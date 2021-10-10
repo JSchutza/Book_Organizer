@@ -51,7 +51,8 @@ def login():
 @auth_routes.route('/logout')
 def logout():
     logout_user()
-    return {'message': 'User logged out'}
+    return ''
+
 
 
 
