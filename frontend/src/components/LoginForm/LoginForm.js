@@ -37,11 +37,14 @@ const LoginForm = ({ closeModal }) => {
 
 
 
-  const handleDemo = event => {
+  const handleDemo = async event => {
     event.preventDefault();
-    dispatch(login("demo@aa.io", "password"));
-    closeModal();
-    history.push("/profile");
+    const result = await dispatch(login("demo@aa.io", "password"));
+    if (result) {
+      closeModal();
+      history.push("/profile");
+    }
+
   }
 
 
