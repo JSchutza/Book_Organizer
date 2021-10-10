@@ -55,18 +55,15 @@ const LoginForm = ({ closeModal }) => {
 
     <div className={styles.login_containter}>
       <form className={styles.the_form} onSubmit={onSubmit}>
-        <label>
-          Email
+        <label> Email </label>
         <input
           type="text"
           name="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           />
-        </label>
         <br />
-        <label>
-          Password
+        <label> Password </label>
         <input
           type="password"
           name="password"
@@ -74,9 +71,6 @@ const LoginForm = ({ closeModal }) => {
           onChange={(event) => setPassword(event.target.value)}
 
         />
-        </label>
-
-
 
         <div className={styles.enter_button}>
           <div>
