@@ -1,11 +1,12 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { thunk_updatePubCharacter } from "../../store/thunks/characters.js";
-import { nanoid } from "nanoid";
-import styles from "./updatepubcharform.module.css";
 
+import Errors from "../Errors";
+
+import styles from "./updatepubcharform.module.css";
 
 
 const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
@@ -28,10 +29,13 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
 
 
 
-  const onSubmit = event => {
+  const onSubmit = async event => {
     event.preventDefault();
-    dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId }));
-    closeUpdateModal();
+    const result = await dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId }));
+    if(result) {
+      closeUpdateModal();
+    }
+
   }
 
 
@@ -53,18 +57,18 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
     return (
       <>
 
-
+        <Errors />
         <div className={styles.url_preview_wrap}>
           <p>Last avatar: </p>
           <img src={avatar} alt={"last avatar"} />
 
           {urlpreview === null ?
-            <></>
+              null
             :
-            <>
-              <img src={avatarUrl} alt={"cool"} />
-              <button onClick={cancelImgChoice}> Cancel </button>
-            </>
+              <>
+                <img src={avatarUrl} alt={"cool"} />
+                <button onClick={cancelImgChoice}> Cancel </button>
+              </>
           }
         </div>
 
