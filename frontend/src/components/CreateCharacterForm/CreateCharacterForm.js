@@ -60,21 +60,20 @@ const CreateCharacterForm = ({ closeModal }) => {
     <>
 
       <Errors />
-
-      {/* for previewing the image before it is sent to backend */}
       <div className={styles.url_preview_wrap}>
         {urlpreview === null ?
-            null
-        :
+          null
+          :
           <>
             <img src={avatarUrl} alt={"cool"} />
-              <button onClick={cancelImgChoice}> Cancel </button>
+            <button onClick={cancelImgChoice}> Cancel </button>
           </>
         }
       </div>
 
 
-    <div>
+      <div className={styles.create_char_wrap}>
+
       <form className={styles.create_char_container} onSubmit={onSubmit}>
 
       <label className=""> Pick an Avatar </label>
