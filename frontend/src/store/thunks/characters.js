@@ -117,6 +117,7 @@ const thunk_newPubCharacter = ({ urlpreview, charname, charlabel }) => async (di
 }
 
 
+
 // /api/characters/:charId
 const thunk_updatePubCharacter = ({ urlpreview, charname, charlabel, charId }) => async (dispatch) => {
   const formData = new FormData();
