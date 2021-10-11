@@ -64,12 +64,12 @@ const CreateCharacterForm = ({ closeModal }) => {
       {/* for previewing the image before it is sent to backend */}
       <div className={styles.url_preview_wrap}>
         {urlpreview === null ?
-        <p></p>
+            null
         :
-        <>
-          <img src={avatarUrl} alt={"cool"} />
-            <button onClick={cancelImgChoice}> Cancel </button>
-        </>
+          <>
+            <img src={avatarUrl} alt={"cool"} />
+              <button onClick={cancelImgChoice}> Cancel </button>
+          </>
         }
       </div>
 
@@ -77,34 +77,28 @@ const CreateCharacterForm = ({ closeModal }) => {
     <div>
       <form className={styles.create_char_container} onSubmit={onSubmit}>
 
-      <label className="">
-      Pick an Avatar
+      <label className=""> Pick an Avatar </label>
       <input id='file' className="" type="file" accept="image/*" onChange={updateAvatar} />
-      </label>
 
 
-      <label>
-      Name
+      <label> Name </label>
       <input
         type='text'
         name='character name'
         value={charname}
         onChange={(e) => setCharname(e.target.value) }
       />
-      </label>
 
 
-      <label>
-      Character Label
+      <label> Character Label </label>
       <input
         type='text'
         name='character label'
         value={charlabel}
         onChange={(e) => setCharlabel(e.target.value)}
         />
-      </label>
 
-      <button type='submit'> Create </button>
+          <button type='submit'> Create </button>
 
       </form>
 
