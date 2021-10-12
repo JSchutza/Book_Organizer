@@ -15,18 +15,22 @@ const ModalStyleProvider = ({ children }) => {
       backgroundColor: 'transparent'
     },
     content: {
-      position: 'absolute',
-      top: '40px',
-      left: '40px',
-      right: '40px',
-      bottom: '40px',
+      position: 'relative',
+      display: 'flex',
+      inset: '16vw 0vw 0vw 0vw',
       background: '#1f1f35',
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch',
       borderRadius: '4px',
       outline: 'none',
       border: 'transparent',
-      width: '35vw'
+      width: 'auto',
+      height: '70vh',
+      flexDirection: 'column',
+      flexWrap: 'nowrap',
+      alignContent: 'center',
+      justifyContent: 'center',
+      alignItems: 'center',
     }
   };
 
