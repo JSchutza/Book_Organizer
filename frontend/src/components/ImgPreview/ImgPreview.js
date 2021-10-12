@@ -1,16 +1,35 @@
+import { useState } from 'react';
 
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
+
+import ReactModal from 'react-modal';
 
 
 import styles from "./imgpreview.module.css";
 
 
+const ImgPreview = ({ urlpreview, cancelImgChoice, avatarUrl, openModal, setOpenModal  }) => {
+  const { currentStyle } = useModalStyle();
 
 
 
-const ImgPreview = ({ urlpreview, cancelImgChoice, avatarUrl  }) => {
+
+  const closeModal = () => {
+    setOpenModal(false);
+  }
+
+
 
 
   return (
+    <>
+     <ReactModal
+        isOpen={openModal}
+        onRequestClose={closeModal}
+        style={currentStyle}
+        appElement={document.getElementById('root')}
+      >
+
       <div className={styles.url_preview_wrap}>
         {urlpreview === null ?
           null
@@ -21,6 +40,11 @@ const ImgPreview = ({ urlpreview, cancelImgChoice, avatarUrl  }) => {
           </>
         }
       </div>
+
+    </ReactModal>
+
+
+    </>
   )
 };
 

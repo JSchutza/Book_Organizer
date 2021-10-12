@@ -14,6 +14,7 @@ import styles from "./createcharacterform.module.css";
 
 
 const CreateCharacterForm = ({ closeModal }) => {
+  const [ imgModal, setImgModal ] = useState(false);
   const [ avatarUrl, setAvatarUrl ] = useState("");
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
@@ -40,9 +41,14 @@ const CreateCharacterForm = ({ closeModal }) => {
     if (result) {
       setUrlPreview(result);
       setAvatarUrl(URL.createObjectURL(result));
+      // open the img modal
+      setImgModal(true);
+
     } else {
       setUrlPreview(null);
       setAvatarUrl('');
+      // close the img modal
+      setImgModal(false);
     }
   };
 
@@ -51,6 +57,8 @@ const CreateCharacterForm = ({ closeModal }) => {
   const cancelImgChoice = () => {
     setUrlPreview(null);
     setAvatarUrl('');
+    // close the img modal
+    setImgModal(false);
   }
 
 
@@ -66,6 +74,8 @@ const CreateCharacterForm = ({ closeModal }) => {
         urlpreview={urlpreview}
         cancelImgChoice={cancelImgChoice}
         avatarUrl={avatarUrl}
+        openModal={imgModal}
+        setOpenModal={setImgModal}
       />
 
 
