@@ -25,11 +25,9 @@ const ModalStyleProvider = ({ children }) => {
       outline: 'none',
       border: 'transparent',
       width: 'auto',
-      height: '70vh',
-      flexDirection: 'column',
-      flexWrap: 'nowrap',
-      alignContent: 'center',
-      justifyContent: 'center',
+      padding: '30px',
+      flexFlow: 'column nowrap',
+      placeContent: 'center',
       alignItems: 'center',
     }
   };
@@ -61,15 +59,21 @@ const ModalStyleProvider = ({ children }) => {
         backgroundColor: 'transparent'
       },
       content: {
-        position: 'absolute',
-        inset: '6vw 0vw 10vw 75vw',
+        position: 'relative',
+        display: 'flex',
+        inset: '4vw 0vw 10vw 60vw',
         background: '#1f1f35',
         overflow: 'auto',
         WebkitOverflowScrolling: 'touch',
         borderRadius: '4px',
         outline: 'none',
         border: 'transparent',
-        width: '10vw'
+        width: '30vw',
+        flexDirection: 'column',
+        flexWrap: 'nowrap',
+        alignContent: 'center',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
       }
     };
     setCurrentStyle(imgPreviewStyle);
