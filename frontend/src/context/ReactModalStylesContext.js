@@ -26,7 +26,7 @@ const ModalStyleProvider = ({ children }) => {
       borderRadius: '4px',
       outline: 'none',
       border: 'transparent',
-      // width: '35vw'
+      width: '35vw'
     }
   };
 
