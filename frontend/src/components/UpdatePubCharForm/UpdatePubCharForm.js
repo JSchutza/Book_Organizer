@@ -58,8 +58,10 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
       <>
 
         <Errors />
+
+        <p>Last avatar:</p>
+
         <div className={styles.url_preview_wrap}>
-          <p>Last avatar: </p>
           <img src={avatar} alt={"last avatar"} />
 
           {urlpreview === null ?
@@ -73,38 +75,32 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
         </div>
 
 
-      <div>
+
         <form className={styles.create_char_container} onSubmit={onSubmit}>
 
-          <label>
-              Avatar
+            <label> Avatar </label>
             <input id='file' type="file" accept="image/*" onChange={updateAvatar} />
-          </label>
 
-          <label>
-              Name
+          <label> Name </label>
             <input
               type='text'
               name='character name'
               value={charname}
               onChange={(e) => setCharname(e.target.value)}
               />
-          </label>
 
-          <label>
-              Character Label
+          <label> Character Label </label>
             <input
               type='text'
               name='character label'
               value={charlabel}
               onChange={(e) => setCharlabel(e.target.value)}
               />
-          </label>
 
             <button type='submit'> Update </button>
 
         </form>
-      </div>
+
       </>
     )
 
