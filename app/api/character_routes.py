@@ -81,22 +81,26 @@ def delete_char(characterId):
 @character_routes.route("<int:characterId>", methods=["PUT"])
 @login_required
 def update_pub_char(characterId):
+  errors=["An error occurred while updating your character."]
   if "image" not in request.files:
-    return {"errors": "image required"}, 400
+    return { "errors": errors }
 
   image = request.files["image"]
   charactername = request.form['charactername']
   characterlabel = request.form['characterlabel']
 
+  if check_lengths(charactername, characterlabel):
+    return { "errors": errors }
+
   if not allowed_file(image.filename):
-      return {"errors": "file type not permitted"}, 400
+    return { "errors": errors }
 
   image.filename = get_unique_filename(image.filename)
 
   upload = upload_file(image)
 
   if "url" not in upload:
-    return upload, 400
+    return { "errors": errors }
 
   url = upload["url"]
 

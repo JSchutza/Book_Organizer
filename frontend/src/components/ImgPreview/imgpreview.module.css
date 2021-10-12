@@ -1,0 +1,15 @@
+
+.url_preview_wrap {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+.url_preview_wrap img {
+    object-fit: contain;
+    width: 25vw;
+}

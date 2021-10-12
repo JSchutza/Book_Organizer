@@ -3,6 +3,14 @@
 
 
 
+.url_preview_wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+}
 
 
 
@@ -11,7 +19,7 @@
 
 .url_preview_wrap img {
     object-fit: contain;
-    width: 294px;
+    width: 25vw;
 }
 
 
@@ -24,7 +32,6 @@
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-    align-items: flex-end;
-    position: relative;
-    right: 30%;
+    align-items: flex-start;
+    padding: 15px;
 }

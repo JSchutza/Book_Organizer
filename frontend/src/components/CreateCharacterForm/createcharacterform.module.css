@@ -1,12 +1,14 @@
 
 
 
-.url_preview_wrap img {
-    object-fit: contain;
-    width: 294px;
+.create_char_wrap {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
-
-
 
 
 
@@ -16,7 +18,5 @@
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-    align-items: flex-end;
-    position: relative;
-    right: 30%;
+    align-items: flex-start;
 }

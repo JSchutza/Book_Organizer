@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
-import { useHistory, NavLink, Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { thunk_getFollowing, thunk_followOrUnfollow } from "../../store/thunks/following.js";
@@ -45,7 +45,6 @@ const CharacterPage = () => {
   const followingInfo = useSelector(store => store.followingReducer.following);
 
   const dispatch = useDispatch();
-  const history = useHistory();
   const { isUser } = useUser();
   const { currentStyle } = useModalStyle();
 

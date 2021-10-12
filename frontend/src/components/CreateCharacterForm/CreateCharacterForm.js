@@ -7,12 +7,14 @@ import { thunk_newPubCharacter } from "../../store/thunks/characters.js";
 import { processFile } from "../../services/protectedFileUpload.js";
 
 import Errors from "../Errors";
+import ImgPreview from '../ImgPreview';
 
 
 import styles from "./createcharacterform.module.css";
 
 
 const CreateCharacterForm = ({ closeModal }) => {
+  const [ imgModal, setImgModal ] = useState(false);
   const [ avatarUrl, setAvatarUrl ] = useState("");
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
@@ -39,9 +41,14 @@ const CreateCharacterForm = ({ closeModal }) => {
     if (result) {
       setUrlPreview(result);
       setAvatarUrl(URL.createObjectURL(result));
+      // open the img modal
+      setImgModal(true);
+
     } else {
       setUrlPreview(null);
       setAvatarUrl('');
+      // close the img modal
+      setImgModal(false);
     }
   };
 
@@ -50,6 +57,8 @@ const CreateCharacterForm = ({ closeModal }) => {
   const cancelImgChoice = () => {
     setUrlPreview(null);
     setAvatarUrl('');
+    // close the img modal
+    setImgModal(false);
   }
 
 
@@ -61,50 +70,41 @@ const CreateCharacterForm = ({ closeModal }) => {
 
       <Errors />
 
-      {/* for previewing the image before it is sent to backend */}
-      <div className={styles.url_preview_wrap}>
-        {urlpreview === null ?
-        <p></p>
-        :
-        <>
-          <img src={avatarUrl} alt={"cool"} />
-            <button onClick={cancelImgChoice}> Cancel </button>
-        </>
-        }
-      </div>
+      <ImgPreview
+        urlpreview={urlpreview}
+        cancelImgChoice={cancelImgChoice}
+        avatarUrl={avatarUrl}
+        openModal={imgModal}
+        setOpenModal={setImgModal}
+      />
 
 
-    <div>
+      <div className={styles.create_char_wrap}>
+
       <form className={styles.create_char_container} onSubmit={onSubmit}>
 
-      <label className="">
-      Pick an Avatar
+      <label className=""> Pick an Avatar </label>
       <input id='file' className="" type="file" accept="image/*" onChange={updateAvatar} />
-      </label>
 
 
-      <label>
-      Name
+      <label> Name </label>
       <input
         type='text'
         name='character name'
         value={charname}
         onChange={(e) => setCharname(e.target.value) }
       />
-      </label>
 
 
-      <label>
-      Character Label
+      <label> Character Label </label>
       <input
         type='text'
         name='character label'
         value={charlabel}
         onChange={(e) => setCharlabel(e.target.value)}
         />
-      </label>
 
-      <button type='submit'> Create </button>
+          <button type='submit'> Create </button>
 
       </form>
 
