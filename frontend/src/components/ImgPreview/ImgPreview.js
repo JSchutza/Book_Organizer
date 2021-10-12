@@ -9,10 +9,11 @@ import styles from "./imgpreview.module.css";
 
 
 const ImgPreview = ({ urlpreview, cancelImgChoice, avatarUrl, openModal, setOpenModal  }) => {
-  const { currentStyle } = useModalStyle();
+  const { currentStyle, updateStyle } = useModalStyle();
 
 
-
+  updateStyle('content', 'width');
+  
 
   const closeModal = () => {
     setOpenModal(false);

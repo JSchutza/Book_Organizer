@@ -9,7 +9,7 @@ const useModalStyle = () => useContext(ModalStyleContext);
 
 const ModalStyleProvider = ({ children }) => {
 
-  const currentStyle = {
+  const defaultValue = {
     overlay: {
       position: 'fixed',
       backgroundColor: 'transparent'
@@ -30,13 +30,32 @@ const ModalStyleProvider = ({ children }) => {
     }
   };
 
+  const [ currentStyle, setCurrentStyle ] = useState(defaultValue);
+
+
+  const updateStyle = (firstKey, secondKey, newValue='') => {
+    let existedVal = defaultValue?.[firstKey]?.[secondKey];
+    if (existedVal === undefined) {
+      return;
+    } else {
+      const newStyle = {
+        ...currentStyle,
+          [firstKey]: { ...currentStyle[firstKey], [secondKey]: `${newValue}` },
+      };
+
+      console.log(newStyle);
+      // setCurrentStyle();
+    }
+  }
+
+
 
 
   return (
     <ModalStyleContext.Provider value={
       {
         currentStyle,
-
+        updateStyle
       }
 
     } >
