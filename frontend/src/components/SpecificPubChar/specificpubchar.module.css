@@ -1,0 +1,73 @@
+
+
+.specific_char_buttons_wrap {
+    display: flex;
+    background: cornflowerblue;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    width: 10%;
+    padding: 1%;
+    position: relative;
+    border: solid white .1px;
+    border-radius: 15px;
+}
+
+.specific_char_update_button {
+
+}
+
+
+.specific_char_delete_button {
+
+}
+
+
+
+.specific_char_wrap {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.specific_char_containter {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+}
+
+
+.specific_char_username {
+  padding: 5%;
+}
+
+
+.specific_char_userprofile_button {
+  display: flex;
+  padding: 1%;
+  border: solid white .1px;
+  border-radius: 10px;
+  position: relative;
+  left: 20%;
+}
+
+
+
+.specific_char_follow_unfollow_button {
+  display: flex;
+  padding: 1%;
+  border: solid white .1px;
+  border-radius: 10px;
+  position: relative;
+  left: 20%;
+}

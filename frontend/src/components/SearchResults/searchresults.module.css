@@ -1,4 +1,4 @@
-search_title_backbutton {
+.search_title_backbutton {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
