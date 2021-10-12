@@ -33,6 +33,7 @@ const ModalStyleProvider = ({ children }) => {
   const [ currentStyle, setCurrentStyle ] = useState(defaultValue);
 
 
+  // updateStyle('content', 'width', '10vw');
   const updateStyle = (firstKey, secondKey, newValue='') => {
     let existedVal = defaultValue?.[firstKey]?.[secondKey];
     if (existedVal === undefined) {
@@ -49,12 +50,37 @@ const ModalStyleProvider = ({ children }) => {
 
 
 
+  const initImgPreviewStyle = () => {
+    const imgPreviewStyle = {
+      overlay: {
+        position: 'fixed',
+        backgroundColor: 'transparent'
+      },
+      content: {
+        position: 'absolute',
+        inset: '6vw 0vw 10vw 75vw',
+        background: '#1f1f35',
+        overflow: 'auto',
+        WebkitOverflowScrolling: 'touch',
+        borderRadius: '4px',
+        outline: 'none',
+        border: 'transparent',
+        width: '10vw'
+      }
+    };
+    setCurrentStyle(imgPreviewStyle);
+  }
+
+
 
   return (
     <ModalStyleContext.Provider value={
       {
         currentStyle,
-        updateStyle
+        updateStyle,
+        setCurrentStyle,
+        initImgPreviewStyle,
+        defaultStyle: defaultValue
       }
 
     } >
