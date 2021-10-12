@@ -1,11 +1,14 @@
 
 
 
+import styles from "./imgpreview.module.css";
 
 
 
-const ImgPreview = () => {
-  
+
+
+const ImgPreview = ({ urlpreview, cancelImgChoice, avatarUrl  }) => {
+
 
   return (
       <div className={styles.url_preview_wrap}>

@@ -7,6 +7,7 @@ import { thunk_newPubCharacter } from "../../store/thunks/characters.js";
 import { processFile } from "../../services/protectedFileUpload.js";
 
 import Errors from "../Errors";
+import ImgPreview from '../ImgPreview';
 
 
 import styles from "./createcharacterform.module.css";
@@ -60,16 +61,12 @@ const CreateCharacterForm = ({ closeModal }) => {
     <>
 
       <Errors />
-      <div className={styles.url_preview_wrap}>
-        {urlpreview === null ?
-          null
-          :
-          <>
-            <img src={avatarUrl} alt={"cool"} />
-            <button onClick={cancelImgChoice}> Cancel </button>
-          </>
-        }
-      </div>
+
+      <ImgPreview
+        urlpreview={urlpreview}
+        cancelImgChoice={cancelImgChoice}
+        avatarUrl={avatarUrl}
+      />
 
 
       <div className={styles.create_char_wrap}>
