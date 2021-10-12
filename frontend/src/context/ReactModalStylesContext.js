@@ -43,10 +43,9 @@ const ModalStyleProvider = ({ children }) => {
           [firstKey]: { ...currentStyle[firstKey], [secondKey]: `${newValue}` },
       };
 
-      console.log(newStyle);
-      // setCurrentStyle();
+      setCurrentStyle(newStyle);
     }
-  }
+  };
 
 
 

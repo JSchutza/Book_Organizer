@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
@@ -7,13 +7,21 @@ import ReactModal from 'react-modal';
 
 import styles from "./imgpreview.module.css";
 
+// need to have a way to identify this a a modal that needs a different style object
+
+
 
 const ImgPreview = ({ urlpreview, cancelImgChoice, avatarUrl, openModal, setOpenModal  }) => {
   const { currentStyle, updateStyle } = useModalStyle();
 
+  // updateStyle('content', 'width', '10vw');
+  // TESTING
+  // set the style for this modal on first render
+  useEffect(() => {
+    updateStyle('content', 'width', '10vw');
+  },[]);
 
-  updateStyle('content', 'width');
-  
+
 
   const closeModal = () => {
     setOpenModal(false);
