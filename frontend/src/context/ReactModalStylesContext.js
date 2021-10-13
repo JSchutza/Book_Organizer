@@ -64,7 +64,7 @@ const ModalStyleProvider = ({ children }) => {
       content: {
         position: 'relative',
         display: 'flex',
-        inset: '15vw 0vw 10vw 55vw',
+        inset: '3vw 0vw 10vw 65vw',
         background: '#1f1f35',
         overflow: 'auto',
         WebkitOverflowScrolling: 'touch',
@@ -72,10 +72,9 @@ const ModalStyleProvider = ({ children }) => {
         outline: 'none',
         border: 'transparent',
         width: '30vw',
-        flexDirection: 'column',
-        flexWrap: 'nowrap',
-        alignContent: 'center',
-        justifyContent: 'flex-start',
+        padding: '20px',
+        flexFlow: 'column nowrap',
+        placeContent: 'center flex-start',
         alignItems: 'center',
       }
     };
