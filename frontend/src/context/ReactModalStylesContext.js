@@ -9,6 +9,7 @@ const useModalStyle = () => useContext(ModalStyleContext);
 
 const ModalStyleProvider = ({ children }) => {
 
+
   const defaultValue = {
     overlay: {
       position: 'fixed',
@@ -31,6 +32,8 @@ const ModalStyleProvider = ({ children }) => {
       alignItems: 'center',
     }
   };
+
+
 
   const [ currentStyle, setCurrentStyle ] = useState(defaultValue);
 
@@ -61,7 +64,7 @@ const ModalStyleProvider = ({ children }) => {
       content: {
         position: 'relative',
         display: 'flex',
-        inset: '4vw 0vw 10vw 60vw',
+        inset: '15vw 0vw 10vw 55vw',
         background: '#1f1f35',
         overflow: 'auto',
         WebkitOverflowScrolling: 'touch',
@@ -81,6 +84,32 @@ const ModalStyleProvider = ({ children }) => {
 
 
 
+
+  const characterFormStyle = {
+    overlay: {
+      position: 'fixed',
+      backgroundColor: 'transparent'
+    },
+    content: {
+      position: 'relative',
+      display: 'flex',
+      inset: '16vw 0vw 0vw 0vw',
+      background: '#1f1f35',
+      overflow: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      borderRadius: '4px',
+      outline: 'none',
+      border: 'transparent',
+      width: 'auto',
+      padding: '30px',
+      flexFlow: 'column nowrap',
+      placeContent: 'center',
+      alignItems: 'center',
+    }
+  };
+
+
+
   return (
     <ModalStyleContext.Provider value={
       {
@@ -88,7 +117,8 @@ const ModalStyleProvider = ({ children }) => {
         updateStyle,
         setCurrentStyle,
         initImgPreviewStyle,
-        defaultStyle: defaultValue
+        defaultStyle: defaultValue,
+        characterFormStyle,
       }
 
     } >

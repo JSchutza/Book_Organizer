@@ -46,7 +46,7 @@ const CharacterPage = () => {
 
   const dispatch = useDispatch();
   const { isUser } = useUser();
-  const { defaultStyle } = useModalStyle();
+  const { characterFormStyle } = useModalStyle();
 
 
 
@@ -181,7 +181,7 @@ const CharacterPage = () => {
       <ReactModal
         isOpen={openModal}
         onRequestClose={closeModal}
-        style={defaultStyle}
+        style={characterFormStyle}
         appElement={document.getElementById('root')}
       >
         <CreateCharacterForm closeModal={closeModal} />
@@ -250,7 +250,7 @@ const CharacterPage = () => {
         <ReactModal
           isOpen={openUpdateModal}
           onRequestClose={closeUpdateModal}
-          style={defaultStyle}
+          style={characterFormStyle}
           appElement={document.getElementById('root')}
         >
 

@@ -2,6 +2,13 @@
 body {
   font-family: "JetBrains Mono", monospace;
   background-color: black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 li {
