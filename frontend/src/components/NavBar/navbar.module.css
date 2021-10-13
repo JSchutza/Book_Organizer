@@ -1,9 +1,29 @@
 
+.nav_wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+
+
 .nav {
   background-color: black;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 3% 40%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  padding: 15px;
+}
+
+
+
+.nav li {
+  padding: 8px;
 }

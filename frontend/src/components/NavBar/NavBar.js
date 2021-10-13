@@ -43,8 +43,7 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
 
   if (isUser) {
   return (
-    <>
-    <div>
+    <div className={styles.nav_wrap} >
       <nav className={styles.nav}>
           <ToolTip content={'Characters'} >
           <li> <NavLink to="/characters" > <GiCardDraw/> </NavLink></li>
@@ -71,17 +70,13 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
           </ToolTip>
       </nav>
     </div>
-
-
-    </>
   );
 
   }
 
 // if the user is NOT logged in
   return (
-    <>
-      <div>
+      <div className={styles.nav_wrap} >
         <nav className={styles.nav}>
 
           <ToolTip content={'Login'} >
@@ -94,7 +89,6 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
 
         </nav>
       </div>
-    </>
   );
 
 

@@ -31,7 +31,7 @@ import EachPriChar from "../EachPriChar";
 const MainRouter = () => {
   const dispatch = useDispatch();
   const { isUser } = useUser();
-  const { currentStyle } = useModalStyle();
+  const { defaultStyle } = useModalStyle();
   const [ openModal, setOpenModal ] = useState(false);
   const [ login, setLogin ] = useState(false);
   const [ signup, setSignup ] = useState(false);
@@ -125,7 +125,7 @@ const MainRouter = () => {
               <ReactModal
                 isOpen={openModal}
                 onRequestClose={closeModal}
-                style={currentStyle}
+                style={defaultStyle}
                 appElement={document.getElementById('root')}
               >
                 { login ? <LoginForm closeModal={closeModal}  /> : <></> }
