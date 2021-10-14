@@ -219,7 +219,6 @@ const thunk_updateSpecificComment = ({ pollId, commentId, updateText }) => async
 
 
 
-
 // /api/polls/:pollId/comment
 const thunk_createComment = ({ pollId, commentText }) => async (dispatch) => {
 
