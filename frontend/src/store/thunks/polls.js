@@ -239,6 +239,7 @@ const thunk_createComment = ({ pollId, commentText }) => async (dispatch) => {
   }
 
   dispatch(setErrors(data.errors));
+  return false;
 
 };
 
