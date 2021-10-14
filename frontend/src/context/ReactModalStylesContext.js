@@ -17,7 +17,7 @@ const ModalStyleProvider = ({ children }) => {
     content: {
       position: 'relative',
       display: 'flex',
-      inset: '16vw 0vw 0vw 0vw',
+      inset: '0vw 0vw 0vw 0vw',
       background: '#1f1f35',
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch',
