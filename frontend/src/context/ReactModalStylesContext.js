@@ -9,7 +9,6 @@ const useModalStyle = () => useContext(ModalStyleContext);
 
 const ModalStyleProvider = ({ children }) => {
 
-
   const defaultValue = {
     overlay: {
       position: 'fixed',
@@ -30,6 +29,35 @@ const ModalStyleProvider = ({ children }) => {
       flexFlow: 'column nowrap',
       placeContent: 'center',
       alignItems: 'center',
+    }
+  };
+
+
+  const smallForms = {
+    overlay: {
+      position: 'fixed',
+      backgroundColor: 'transparent'
+    },
+    content: {
+      position: 'absolute',
+      display: 'flex',
+      inset: '19vw 0vw 50vw 20vw',
+      background: '#1f1f35',
+      overflow: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      borderRadius: '4px',
+      outline: 'none',
+      border: 'transparent',
+      width: '60vw',
+      height: '70vh',
+      padding: '20px',
+      flexFlow: 'column nowrap',
+      placeContent: 'center flex-start',
+      alignItems: 'center',
+      flexDirection: 'column',
+      flexWrap: 'nowrap',
+      alignContent: 'center',
+      justifyContent: 'center',
     }
   };
 
@@ -116,6 +144,7 @@ const ModalStyleProvider = ({ children }) => {
         initImgPreviewStyle,
         defaultStyle: defaultValue,
         characterFormStyle,
+        smallFormStyle: smallForms,
       }
 
     } >
