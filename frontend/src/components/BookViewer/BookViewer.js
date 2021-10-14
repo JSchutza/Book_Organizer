@@ -38,7 +38,7 @@ const BookViewer = () => {
   const history = useHistory();
   const bookInfo = useSelector((store) => store.booksReducer.books);
   const dispatch = useDispatch();
-  const { currentStyle } = useModalStyle();
+  const { smallFormStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -129,7 +129,7 @@ const BookViewer = () => {
       <ReactModal
         isOpen={openNewBookModal}
         onRequestClose={closeNewBookModal}
-        style={currentStyle}
+        style={smallFormStyle}
         appElement={document.getElementById('root')}
       >
 
@@ -142,7 +142,7 @@ const BookViewer = () => {
       <ReactModal
         isOpen={openUpdateBookModal}
         onRequestClose={closeUpdateBookModal}
-        style={currentStyle}
+        style={smallFormStyle}
         appElement={document.getElementById('root')}
       >
 

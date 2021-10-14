@@ -35,7 +35,7 @@ const SearchResults = () => {
   const chars = useSelector(store => store.searchCharacterPageReducer.characters);
   const { searchId } = useParams();
   const { isUser } = useUser();
-  const { currentStyle } = useModalStyle();
+  const { characterFormStyle } = useModalStyle();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -99,7 +99,7 @@ const SearchResults = () => {
         <ReactModal
           isOpen={openUpdateModal}
           onRequestClose={closeUpdateModal}
-          style={currentStyle}
+          style={characterFormStyle}
           appElement={document.getElementById('root')}
         >
 

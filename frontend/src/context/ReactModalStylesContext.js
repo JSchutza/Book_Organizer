@@ -9,7 +9,6 @@ const useModalStyle = () => useContext(ModalStyleContext);
 
 const ModalStyleProvider = ({ children }) => {
 
-
   const defaultValue = {
     overlay: {
       position: 'fixed',
@@ -18,7 +17,7 @@ const ModalStyleProvider = ({ children }) => {
     content: {
       position: 'relative',
       display: 'flex',
-      inset: '16vw 0vw 0vw 0vw',
+      inset: '0vw 0vw 0vw 0vw',
       background: '#1f1f35',
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch',
@@ -30,6 +29,35 @@ const ModalStyleProvider = ({ children }) => {
       flexFlow: 'column nowrap',
       placeContent: 'center',
       alignItems: 'center',
+    }
+  };
+
+
+  const smallForms = {
+    overlay: {
+      position: 'fixed',
+      backgroundColor: 'transparent'
+    },
+    content: {
+      position: 'absolute',
+      display: 'flex',
+      inset: '19vw 0vw 50vw 20vw',
+      background: '#1f1f35',
+      overflow: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      borderRadius: '4px',
+      outline: 'none',
+      border: 'transparent',
+      width: '60vw',
+      height: '70vh',
+      padding: '20px',
+      flexFlow: 'column nowrap',
+      placeContent: 'center flex-start',
+      alignItems: 'center',
+      flexDirection: 'column',
+      flexWrap: 'nowrap',
+      alignContent: 'center',
+      justifyContent: 'center',
     }
   };
 
@@ -64,7 +92,7 @@ const ModalStyleProvider = ({ children }) => {
       content: {
         position: 'relative',
         display: 'flex',
-        inset: '15vw 0vw 10vw 55vw',
+        inset: '3vw 0vw 10vw 65vw',
         background: '#1f1f35',
         overflow: 'auto',
         WebkitOverflowScrolling: 'touch',
@@ -72,10 +100,9 @@ const ModalStyleProvider = ({ children }) => {
         outline: 'none',
         border: 'transparent',
         width: '30vw',
-        flexDirection: 'column',
-        flexWrap: 'nowrap',
-        alignContent: 'center',
-        justifyContent: 'flex-start',
+        padding: '20px',
+        flexFlow: 'column nowrap',
+        placeContent: 'center flex-start',
         alignItems: 'center',
       }
     };
@@ -117,6 +144,7 @@ const ModalStyleProvider = ({ children }) => {
         initImgPreviewStyle,
         defaultStyle: defaultValue,
         characterFormStyle,
+        smallFormStyle: smallForms,
       }
 
     } >

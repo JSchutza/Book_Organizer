@@ -29,7 +29,7 @@ const EachBook = () => {
   const [ openNewPageModal, setOpenNewPageModal ] = useState(false);
   const dispatch = useDispatch();
   const { bookId } = useParams();
-  const { currentStyle } = useModalStyle();
+  const { characterFormStyle, currentStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const EachBook = () => {
         <ReactModal
           isOpen={openNewCharModal}
           onRequestClose={closeNewCharModal}
-          style={currentStyle}
+          style={characterFormStyle}
           appElement={document.getElementById('root')}
         >
           <CreatePriCharForm bookId={bookId} closeModal={closeNewCharModal} />

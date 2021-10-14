@@ -29,7 +29,7 @@ const Polls = () => {
   const history = useHistory();
   const polls = useSelector(store => store.pollsReducer.polls);
   const allPolls = useSelector(store => store.allPollsReducer.polls);
-  const { currentStyle } = useModalStyle();
+  const { smallFormStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -102,7 +102,7 @@ const Polls = () => {
       <ReactModal
         isOpen={openCreatePollModal}
         onRequestClose={closeCreatePollModal}
-        style={currentStyle}
+        style={smallFormStyle}
         appElement={document.getElementById('root')}
       >
         <CreatePollForm closeModal={closeCreatePollModal} />
@@ -114,7 +114,7 @@ const Polls = () => {
       <ReactModal
         isOpen={openUpdatePollModal}
         onRequestClose={closeUpdatePollModal}
-        style={currentStyle}
+        style={smallFormStyle}
         appElement={document.getElementById('root')}
       >
 

@@ -28,7 +28,7 @@ const PrivateCharacter = ({ bookId }) => {
 
   const dispatch = useDispatch();
   const charInfo = useSelector((store) => store.priCharReducer.characters);
-  const { currentStyle } = useModalStyle();
+  const { characterFormStyle } = useModalStyle();
 
 
 
@@ -81,7 +81,7 @@ const PrivateCharacter = ({ bookId }) => {
       <ReactModal
         isOpen={openModal}
         onRequestClose={closeModal}
-        style={currentStyle}
+        style={characterFormStyle}
         appElement={document.getElementById('root')}
       >
         <Errors />

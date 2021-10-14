@@ -7,6 +7,7 @@ import { thunk_updateSpecificComment, thunk_createComment } from "../../store/th
 import { GrUpdate } from "react-icons/gr";
 import { AiOutlinePlus } from "react-icons/ai";
 import ToolTip from "../ToolTip";
+import Errors from "../Errors";
 
 
 import styles from "./commentform.module.css";
@@ -23,18 +24,21 @@ const CommentForm = ({ update=false, data, closeModal }) => {
 
 
 
-  const updateComment = event => {
+  const updateComment = async event => {
     event.preventDefault();
-    dispatch(thunk_updateSpecificComment({ pollId, commentId, updateText }));
-    closeModal();
-  }
+    const result = await dispatch(thunk_updateSpecificComment({ pollId, commentId, updateText }));
+    if (result) {
+      closeModal();
+    }
+
+  };
 
 
 
 
-  const createComment = event => {
+  const createComment = async event => {
     event.preventDefault();
-    dispatch(thunk_createComment({ pollId, commentText }));
+    const result = await dispatch(thunk_createComment({ pollId, commentText }));
   }
 
 
@@ -42,24 +46,27 @@ const CommentForm = ({ update=false, data, closeModal }) => {
 
   if(update) {
     return (
-      <div className={styles.comment_form_input_wrap}>
-        <div className={styles.comment_form_containter}>
-          <textarea
-            type="text"
-            name="comment"
-            value={updateText}
-            onChange={event => setUpdateText(event.target.value)}
-          />
+      <>
+        <Errors />
+
+        <div className={styles.comment_form_input_wrap}>
+          <div className={styles.comment_form_containter}>
+            <textarea
+              type="text"
+              name="comment"
+              value={updateText}
+              onChange={event => setUpdateText(event.target.value)}
+            />
 
 
-          <div className={styles.comment_update_button}>
-            <ToolTip content={"Update"}>
-              <NavLink to='/' onClick={event => updateComment(event)}> <GrUpdate /> </NavLink>
-            </ToolTip>
+            <div className={styles.comment_update_button}>
+              <ToolTip content={"Update"}>
+                <NavLink to='/' onClick={event => updateComment(event)}> <GrUpdate /> </NavLink>
+              </ToolTip>
+            </div>
           </div>
         </div>
-
-      </div>
+      </>
     )
   }
 

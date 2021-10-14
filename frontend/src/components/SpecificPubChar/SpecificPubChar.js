@@ -29,7 +29,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
   const history = useHistory();
   const dispatch = useDispatch();
   const { isUser } = useUser();
-  const { currentStyle } = useModalStyle();
+  const { characterFormStyle } = useModalStyle();
 
 
 
@@ -96,7 +96,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
         <ReactModal
           isOpen={openModal}
           onRequestClose={closeModal}
-          style={currentStyle}
+          style={characterFormStyle}
           appElement={document.getElementById('root')}
         >
           <UpdatePubCharForm

@@ -6,6 +6,8 @@ import { useParams, NavLink } from "react-router-dom";
 import { thunk_allPolls, thunk_getUsersSpecificComments, thunk_deleteSpecificComment } from "../../store/thunks/polls.js";
 import { useUser } from "../../context/UserContext.js";
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
+import { resetErrors } from '../../store/actions/errors.js';
+
 
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinFill } from "react-icons/ri";
@@ -65,6 +67,7 @@ const Comments = () => {
 
 
   const closeModal = () => {
+    dispatch(resetErrors());
     setOpenModal(false);
   }
 

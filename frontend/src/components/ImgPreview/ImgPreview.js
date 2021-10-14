@@ -11,7 +11,7 @@ import styles from "./imgpreview.module.css";
 
 
 
-const ImgPreview = ({ urlpreview, cancelImgChoice, avatarUrl, openModal, setOpenModal  }) => {
+const ImgPreview = ({ update=false, prevAvatar, urlpreview, cancelImgChoice, avatarUrl, openModal, setOpenModal  }) => {
   const { currentStyle, initImgPreviewStyle } = useModalStyle();
 
 
@@ -27,6 +27,39 @@ const ImgPreview = ({ urlpreview, cancelImgChoice, avatarUrl, openModal, setOpen
 
 
 
+  if(update) {
+    return (
+      <>
+          <div className={styles.url_preview_wrap}>
+            <img src={prevAvatar} alt={"cool"} />
+            <span>Last Avatar: </span>
+          </div>
+
+        <ReactModal
+          isOpen={openModal}
+          onRequestClose={closeModal}
+          style={currentStyle}
+          appElement={document.getElementById('root')}
+        >
+          <div className={styles.url_preview_wrap}>
+
+            {urlpreview === null ?
+              null
+              :
+              <>
+                <img src={avatarUrl} alt={"cool"} />
+                <button onClick={cancelImgChoice}> Cancel </button>
+              </>
+            }
+          </div>
+        </ReactModal>
+      </>
+    )
+  }
+
+
+
+
 
   return (
     <>
@@ -36,7 +69,6 @@ const ImgPreview = ({ urlpreview, cancelImgChoice, avatarUrl, openModal, setOpen
         style={currentStyle}
         appElement={document.getElementById('root')}
       >
-
       <div className={styles.url_preview_wrap}>
         {urlpreview === null ?
           null
@@ -49,10 +81,9 @@ const ImgPreview = ({ urlpreview, cancelImgChoice, avatarUrl, openModal, setOpen
       </div>
 
     </ReactModal>
-
-
     </>
   )
+
 };
 
 export default ImgPreview;
