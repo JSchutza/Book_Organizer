@@ -100,30 +100,6 @@ const Polls = () => {
 
 
 
-  const Tabs = () => {
-
-    return (
-    <>
-        <div className={styles.main_titles}>
-          <NavLink to='/' onClick={event => event.preventDefault()} >
-            <h1 className={styles.polls_title}> Your Polls </h1>
-          </NavLink>
-        </div>
-
-        <div className={styles.main_titles}>
-          <NavLink to='/' onClick={event => event.preventDefault()} >
-            <h1> All Polls </h1>
-          </NavLink>
-        </div>
-    </>
-    );
-
-  };
-
-
-
-
-
   const YourPolls = () => {
 
     return (
@@ -190,6 +166,39 @@ const Polls = () => {
 
 
 
+
+  const Tabs = () => {
+    const components = { onePoll: <YourPolls />, allPolls: <AllPolls /> };
+    const [ eachPoll, setEachPoll ] = useState(components.onePoll);
+
+    const toggle = (event, key) => {
+      event.preventDefault();
+      setEachPoll(components[key]);
+    }
+
+
+    return (
+      <>
+        <div className={styles.main_titles}>
+          <NavLink to='/' onClick={event => toggle(event, 'onePoll')} >
+            <h1 className={styles.polls_title}> Your Polls </h1>
+          </NavLink>
+        </div>
+
+        <div className={styles.main_titles}>
+          <NavLink to='/' onClick={event => toggle(event, 'allPolls')} >
+            <h1> All Polls </h1>
+          </NavLink>
+        </div>
+
+        { eachPoll }
+      </>
+    );
+
+  };
+
+
+
   return (
     <>
       <ReactModal
@@ -228,9 +237,6 @@ const Polls = () => {
       </div>
 
       <Tabs />
-{/*
-      <YourPolls />
-      <AllPolls /> */}
     </>
   )
 };
