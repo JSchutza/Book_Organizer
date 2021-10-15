@@ -183,11 +183,9 @@ const Polls = () => {
           <NavLink to='/' onClick={event => toggle(event, 'onePoll')} >
             <h1 className={styles.polls_title}> Your Polls </h1>
           </NavLink>
-        </div>
 
-        <div className={styles.main_titles}>
           <NavLink to='/' onClick={event => toggle(event, 'allPolls')} >
-            <h1> All Polls </h1>
+            <h1 className={styles.allpolls_title} > All Polls </h1>
           </NavLink>
         </div>
 
