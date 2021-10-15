@@ -110,6 +110,15 @@
   flex-direction: column;
   align-content: center;
   flex-wrap: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: darkslategray;
+  border: solid white 1px;
+  border-radius: 15px;
   justify-content: center;
   align-items: center;
 }
