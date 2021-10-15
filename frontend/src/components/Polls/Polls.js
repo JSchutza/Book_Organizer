@@ -20,6 +20,8 @@ import styles from "./polls.module.css";
 
 
 
+
+
 const Polls = () => {
   const [ loading, setLoading ] = useState(false);
   const [ openCreatePollModal, setOpenCreatePollModal ] = useState(false);
@@ -92,7 +94,98 @@ const Polls = () => {
 
 
 
+
   if (!polls || !allPolls || !loading) return ( <LoadScreen /> );
+
+
+
+
+  const Tabs = () => {
+
+    return (
+    <>
+        <div className={styles.main_titles}>
+          <NavLink to='/' onClick={event => event.preventDefault()} >
+            <h1 className={styles.polls_title}> Your Polls </h1>
+          </NavLink>
+        </div>
+
+        <div className={styles.main_titles}>
+          <NavLink to='/' onClick={event => event.preventDefault()} >
+            <h1> All Polls </h1>
+          </NavLink>
+        </div>
+    </>
+    );
+
+  };
+
+
+
+
+
+  const YourPolls = () => {
+
+    return (
+      <div className={styles.each_personal_poll_wrap}>
+        {Object.values(polls).reverse().map(eachPoll => (
+          <>
+            <div>
+              <div className={styles.each_poll_title}>
+                <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
+                  <li key={eachPoll.id}>
+                    <h3> {eachPoll.title} </h3>
+                  </li>
+                </NavLink>
+              </div>
+            </div>
+
+
+            <div className={styles.each_poll_button_wrap}>
+              <div className={styles.each_poll_delete_button}>
+                <ToolTip content={"Delete"}>
+                  <NavLink to='/' onClick={event => handleDelete(event, eachPoll.id)} > <RiDeleteBinFill /> </NavLink>
+                </ToolTip>
+              </div>
+
+              <div className={styles.each_poll_update_button}>
+                <ToolTip content={"Update"}>
+                  <NavLink to='/' onClick={event => handleUpdate(event, {
+                    pollId: eachPoll.id,
+                    isTitle: eachPoll.title,
+                    isQuestion: eachPoll.question_text
+                  })} > <GrUpdate /> </NavLink>
+                </ToolTip>
+              </div>
+            </div>
+
+          </>
+        ))}
+      </div>
+    );
+  };
+
+
+
+
+  const AllPolls = () => {
+
+    return (
+      <div className={styles.all_polls_wrapper}>
+        {Object.values(allPolls).reverse().map(eachPoll => (
+          <>
+            <div className={styles.all_polls_each_link}>
+              <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
+                <li key={eachPoll.id}>
+                  <h3> {eachPoll.title} </h3>
+                </li>
+              </NavLink>
+            </div>
+          </>
+        ))}
+      </div>
+    );
+  };
 
 
 
@@ -134,70 +227,10 @@ const Polls = () => {
         </ToolTip>
       </div>
 
-
-    <div className={styles.main_titles}>
-      <h1> Your Polls </h1>
-    </div>
-
-
-    <div className={styles.each_personal_poll_wrap}>
-        {Object.values(polls).reverse().map(eachPoll => (
-          <>
-          <div>
-            <div className={styles.each_poll_title}>
-              <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
-                <li key={eachPoll.id}>
-                  <h3> { eachPoll.title } </h3>
-                </li>
-              </NavLink>
-            </div>
-          </div>
-
-
-            <div className={styles.each_poll_button_wrap}>
-            <div className={styles.each_poll_delete_button}>
-              <ToolTip content={"Delete"}>
-                <NavLink to='/' onClick={event => handleDelete(event, eachPoll.id)} > <RiDeleteBinFill /> </NavLink>
-              </ToolTip>
-            </div>
-
-            <div className={styles.each_poll_update_button}>
-              <ToolTip content={"Update"}>
-                  <NavLink to='/' onClick={event => handleUpdate(event, {
-                    pollId: eachPoll.id,
-                    isTitle: eachPoll.title,
-                    isQuestion: eachPoll.question_text
-                  })} > <GrUpdate /> </NavLink>
-              </ToolTip>
-            </div>
-          </div>
-
-          </>
-        ))}
-    </div>
-
-
-
-
-    <div className={styles.main_titles}>
-      <h1> All Polls </h1>
-    </div>
-
-
-    <div className={styles.all_polls_wrapper}>
-        {Object.values(allPolls).reverse().map(eachPoll => (
-          <>
-          <div className={styles.all_polls_each_link}>
-            <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
-              <li key={eachPoll.id}>
-                <h3> {eachPoll.title} </h3>
-              </li>
-            </NavLink>
-          </div>
-          </>
-        ))}
-    </div>
-
+      <Tabs />
+{/*
+      <YourPolls />
+      <AllPolls /> */}
     </>
   )
 };
