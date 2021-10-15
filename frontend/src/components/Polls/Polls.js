@@ -189,7 +189,9 @@ const Polls = () => {
           </NavLink>
         </div>
 
-        { eachPoll }
+        <div>
+          { eachPoll }
+        </div>
       </>
     );
 
