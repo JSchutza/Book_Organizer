@@ -69,19 +69,19 @@ svg {
 }
 
 input {
-    background-color: transparent;
-    border: solid white .1px;
-    color: white;
-    width: 160px;
-    height: 30px;
+  background-color: transparent;
+  border: solid white .1px;
+  color: white;
+  width: 160px;
+  height: 30px;
 }
 
 
 textarea {
-    width: 500px;
-    height: 225px;
-    background-color: transparent;
-    color: white;
+  width: 500px;
+  height: 225px;
+  background-color: transparent;
+  color: white;
 }
 
 

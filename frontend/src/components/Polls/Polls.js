@@ -106,15 +106,13 @@ const Polls = () => {
       <div className={styles.each_personal_poll_wrap}>
         {Object.values(polls).reverse().map(eachPoll => (
           <>
-            <div>
+
               <div className={styles.each_poll_title}>
                 <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
-                  <li key={eachPoll.id}>
-                    <h3> {eachPoll.title} </h3>
-                  </li>
+                  <h3> {eachPoll.title} </h3>
                 </NavLink>
               </div>
-            </div>
+
 
 
             <div className={styles.each_poll_button_wrap}>
@@ -152,9 +150,7 @@ const Polls = () => {
           <>
             <div className={styles.all_polls_each_link}>
               <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
-                <li key={eachPoll.id}>
-                  <h3> {eachPoll.title} </h3>
-                </li>
+                <h3> {eachPoll.title} </h3>
               </NavLink>
             </div>
           </>
@@ -189,7 +185,7 @@ const Polls = () => {
           </NavLink>
         </div>
 
-        <div>
+        <div className={styles.tabs_content_wrap} >
           { eachPoll }
         </div>
       </>
