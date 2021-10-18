@@ -86,6 +86,16 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
     return (
       <>
 
+        <ImgPreview
+          update={true}
+          prevAvatar={avatar}
+          urlpreview={urlpreview}
+          cancelImgChoice={cancelImgChoice}
+          avatarUrl={avatarUrl}
+          openModal={imgModal}
+          setOpenModal={setImgModal}
+        />
+
           <form className={styles.create_char_container} onSubmit={onUpdate}>
 
             <label>Pick an Avatar</label>
