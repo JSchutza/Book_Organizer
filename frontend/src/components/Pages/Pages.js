@@ -24,7 +24,7 @@ const Pages = ({ bookId }) => {
   const [ updatePayload, setUpdatePayload ] = useState(null);
   const dispatch = useDispatch();
   const pageInfo = useSelector((store) => store.pageReducer.pages);
-  const { currentStyle } = useModalStyle();
+  const { smallFormStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const Pages = ({ bookId }) => {
         <ReactModal
           isOpen={openModal}
           onRequestClose={closeModal}
-          style={currentStyle}
+          style={smallFormStyle}
           appElement={document.getElementById('root')}
         >
           <CreatePageForm
