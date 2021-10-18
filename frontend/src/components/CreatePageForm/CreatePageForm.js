@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { useDispatch } from "react-redux";
 
 import { thunk_updatePage, thunk_createPage } from "../../store/thunks/books.js";
-import { resetErrors } from '../../store/actions/errors.js';
 
-import { nanoid } from "nanoid"
 
 import Errors from "../Errors";
+
 
 import styles from "./createpageform.module.css";
 
@@ -18,7 +17,6 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
   const { pageId, isTitle, isText, book_id } = payload;
   const [ title, setTitle ] = useState(isTitle);
   const [ text, setText ] = useState(isText);
-  const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
 
 
