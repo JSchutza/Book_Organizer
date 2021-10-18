@@ -160,32 +160,26 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
       <div>
         <form className={styles.create_char_container} onSubmit={onSubmit}>
 
-          <label className="">
-            Pick an Avatar
+          <label>Pick an Avatar</label>
             <input id='file' className="" type="file" accept="image/*" onChange={updateAvatar} />
-          </label>
 
 
-          <label>
-            Character Name
+          <label>Character Name</label>
             <input
               type='text'
               name='character name'
               value={charname}
               onChange={(e) => setCharname(e.target.value)}
             />
-          </label>
 
 
-          <label>
-            Character Label
+          <label>Character Label</label>
           <input
               type='text'
               name='character label'
               value={charlabel}
               onChange={(e) => setCharlabel(e.target.value)}
             />
-          </label>
 
           <button type='submit'> Create </button>
 
