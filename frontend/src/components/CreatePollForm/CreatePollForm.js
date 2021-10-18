@@ -60,31 +60,27 @@ const CreatePollForm = ({ update=false, payload=defaultValues, closeModal }) => 
       <>
         <Errors />
 
-        <div>
           <form className={styles.create_poll_container} onSubmit={onUpdate}>
-            <label>
-              Title
-          <input
+            <label>Title</label>
+
+              <input
                 type='text'
                 name='title'
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-            </label>
 
-            <label>
-              Question
-          <input
+              <label>Question</label>
+
+              <input
                 type='text'
                 name='question'
                 value={questionText}
                 onChange={(e) => setQuestionText(e.target.value)}
               />
-            </label>
 
             <button type='submit'> Update </button>
           </form>
-        </div>
       </>
     );
   }
@@ -103,31 +99,27 @@ const CreatePollForm = ({ update=false, payload=defaultValues, closeModal }) => 
     <>
       <Errors />
 
-      <div>
         <form className={styles.create_poll_container} onSubmit={onSubmit}>
-          <label>
-            Title
+          <label>Title</label>
+
           <input
               type='text'
               name='title'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-          </label>
 
-          <label>
-            Question
+          <label>Question</label>
+
           <input
               type='text'
               name='question'
               value={questionText}
               onChange={(e) => setQuestionText(e.target.value)}
             />
-          </label>
 
           <button type='submit'> Create </button>
         </form>
-      </div>
     </>
   );
 
