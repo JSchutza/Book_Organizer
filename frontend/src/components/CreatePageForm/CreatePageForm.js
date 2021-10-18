@@ -52,31 +52,27 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
 
         <Errors />
 
-        <div>
           <form className={styles.create_page_container} onSubmit={onUpdate}>
-            <label>
-              Title
+            <label>Title</label>
+
             <input
                 type='text'
                 name='title'
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-            </label>
 
-            <label>
-              Text
+            <label>Text</label>
+
             <input
                 type='text'
                 name='text'
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
-            </label>
 
             <button type='submit'> Update </button>
           </form>
-        </div>
       </>
     )
   }
