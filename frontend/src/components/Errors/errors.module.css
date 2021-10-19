@@ -1,0 +1,11 @@
+
+
+
+.errors_wrap {
+  display: flex;
+  margin-bottom: 25px;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;;
+}

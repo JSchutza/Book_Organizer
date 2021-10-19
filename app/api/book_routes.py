@@ -58,6 +58,7 @@ def delete_book(bookId):
 @book_routes.route('/<int:bookId>', methods=['PUT'])
 @login_required
 def update_book(bookId):
+  errors=["An error occurred while trying to update your book."]
   the_book = Book.query.get(bookId)
   form = BookForm()
   form['csrf_token'].data = request.cookies['csrf_token']
@@ -66,4 +67,6 @@ def update_book(bookId):
     the_book.update_title(form.data['title'])
     db.session.add(the_book)
     db.session.commit()
-  return {"book": the_book.to_dict()}
+    return {"book": the_book.to_dict()}
+
+  return { "errors": errors }

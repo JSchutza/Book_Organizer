@@ -30,7 +30,7 @@ const Comments = () => {
   const dispatch = useDispatch();
   const comments = useSelector(store => store.commentReducer.comments);
   const poll = useSelector(store => store.allPollsReducer.polls);
-  const { smallFormStyle } = useModalStyle();
+  const { commentFormStyle } = useModalStyle();
 
 
 
@@ -162,7 +162,7 @@ const Comments = () => {
       <ReactModal
         isOpen={openModal}
         onRequestClose={closeModal}
-        style={smallFormStyle}
+        style={commentFormStyle}
         appElement={document.getElementById('root')}
       >
         <CommentForm

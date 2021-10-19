@@ -36,7 +36,7 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
 
 
 
-  const onUpdateSubmit = event => {
+  const onUpdateSubmit = async event => {
     event.preventDefault();
     const payload = {
       title: updateTitle,
@@ -44,9 +44,13 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
       requestMethod: "PUT"
     };
 
-    dispatch(thunk_createBook(payload));
-    closeModal();
-  }
+    const result = await dispatch(thunk_createBook(payload));
+    if (result) {
+      closeModal();
+    }
+
+  };
+
 
 
 
@@ -55,17 +59,17 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
   if (isUpdate) {
     return (
       <>
+        <Errors />
+
         <div className={styles.form_wrap}>
           <form onSubmit={onUpdateSubmit}>
-            <label>
-              Title
-          <input
+            <label> Title </label>
+              <input
                 type='text'
                 name="title"
                 value={updateTitle}
                 onChange={(event) => setUpdateTitle(event.target.value)}
               />
-            </label>
 
 
             <ToolTip content={"Update"}>
@@ -87,15 +91,14 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
 
     <div className={styles.form_wrap}>
       <form onSubmit={onCreateSubmit}>
-        <label>
-          Title
+        <label>Title</label>
+
           <input
             type='text'
             name="title"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
           />
-        </label>
 
           <ToolTip content={"Create"}>
             <div className={styles.createbook_create_button}>
