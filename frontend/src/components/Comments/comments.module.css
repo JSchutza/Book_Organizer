@@ -13,6 +13,7 @@
 
 
 
+
 .comment_title_wrap {
   display: flex;
   flex-direction: column;
@@ -23,12 +24,16 @@
 
 
 .each_title {
-  padding: 2%;
+  display: flex;
+  margin-left: 20px;
 }
 
 
 .each_question {
-  padding: 2%;
+  display: flex;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 
@@ -38,31 +43,46 @@
 
 
 
-
-
-.each_comment_wrap {
-  display: -webkit-flex;
+.each_comment_text {
   display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: column;
-  -webkit-align-items: center;
-  padding: 2%;
-  align-items: flex-start;
+}
+
+
+
+.each_comment_text b{
+  padding: 2vw;
+}
+
+
+
+.username_text {
+
+}
+
+
+
+.answer_text {
+  margin-left: 3vw;
+  width: 80vw;
+  margin-bottom: 5vw;
 }
 
 
 
 .each_comment_buttons_wrap {
-    display: flex;
-    flex-direction: row;
-    padding: 2%;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  padding: 2%;
+  border-radius: 10px;
   background: cornflowerblue;
   border: solid white .1px;
   border-radius: 15px;
-    position: relative;
-    left: 80%;
-    flex-wrap: wrap;
+  position: relative;
+  align-content: center;
+  justify-content: flex-start;
+  width: 135px;
+  margin-left: 10vw;
+  margin-bottom: 50px;
 }
 
 

@@ -105,8 +105,7 @@ const CommentForm = ({ update=false, data, closeModal }) => {
       </ReactModal>
 
 
-    <div className={styles.comment_form_input_wrap}>
-      <div className={styles.comment_form_containter}>
+      <div className={styles.comment_form_input_wrap}>
         <textarea
           type="text"
           name="comment"
@@ -119,8 +118,7 @@ const CommentForm = ({ update=false, data, closeModal }) => {
             <NavLink to='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </NavLink>
           </ToolTip>
         </div>
-      </div>
-    </div>
+     </div>
     </>
   )
 };

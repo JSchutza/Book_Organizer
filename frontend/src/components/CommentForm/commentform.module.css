@@ -1,0 +1,19 @@
+
+
+
+
+.comment_form_input_wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+}
+
+
+
+.comment_form_input_wrap textarea {
+  width: 50vw;
+  height: 25vw;
+}
