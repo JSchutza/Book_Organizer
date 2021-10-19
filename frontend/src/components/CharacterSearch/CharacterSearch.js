@@ -4,7 +4,7 @@ import { useHistory, NavLink } from "react-router-dom";
 
 
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
-
+import { resetErrors } from '../../store/actions/errors.js';
 
 import { useUser } from "../../context/UserContext.js";
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
@@ -35,6 +35,7 @@ const CharacterSearch = () => {
 
 
   const closeErrorModal = () => {
+    dispatch(resetErrors());
     setOpenErrorModal(false);
   };
 
