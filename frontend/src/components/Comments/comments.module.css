@@ -43,31 +43,32 @@
 
 
 
-
-
-.each_comment_wrap {
-  display: -webkit-flex;
+.each_comment_text {
   display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: column;
-  -webkit-align-items: center;
-  padding: 2%;
-  align-items: flex-start;
+}
+
+
+
+.each_comment_text b{
+  padding: 2vw;
 }
 
 
 
 .each_comment_buttons_wrap {
-    display: flex;
-    flex-direction: row;
-    padding: 2%;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  padding: 2%;
+  border-radius: 10px;
   background: cornflowerblue;
   border: solid white .1px;
   border-radius: 15px;
-    position: relative;
-    left: 80%;
-    flex-wrap: wrap;
+  position: relative;
+  align-content: center;
+  justify-content: flex-start;
+  width: 135px;
+  margin-left: 10vw;
+  margin-bottom: 50px;
 }
 
 

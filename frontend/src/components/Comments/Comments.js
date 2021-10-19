@@ -110,14 +110,15 @@ const Comments = () => {
 
 
 
-        <div className={styles.each_comment_wrap}>
+
           {Object.values(comments).map(eachComment => (
             <>
-              <p> <i>{eachComment.username}</i> </p>
-              <p> <b>{eachComment.answer_text}</b> </p>
+              <p className={styles.each_comment_text} > <i>{eachComment.username}</i> </p>
+              <p className={styles.each_comment_text} > <b>{eachComment.answer_text}</b> </p>
 
               {isUser.id === eachComment.user_id ?
                 <div className={styles.each_comment_buttons_wrap}>
+
                   <div className={styles.each_comment_delete_button}>
                     <ToolTip content={"Delete"}>
                       <NavLink to='/' onClick={event => handleDelete(event, eachComment.id)} >
@@ -135,13 +136,14 @@ const Comments = () => {
                       })} > <li> <GrUpdate /> </li> </NavLink>
                     </ToolTip>
                   </div>
+
                 </div>
                 :
-                <></>
+                null
               }
             </>
           ))}
-        </div>
+
     </>
     );
   };
