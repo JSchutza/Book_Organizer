@@ -145,6 +145,8 @@ const ModalStyleProvider = ({ children }) => {
         defaultStyle: defaultValue,
         characterFormStyle,
         smallFormStyle: smallForms,
+        commentFormStyle: characterFormStyle,
+
       }
 
     } >
