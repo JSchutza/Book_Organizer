@@ -2,11 +2,9 @@ import { useState } from 'react';
 import { useDispatch } from "react-redux";
 
 import { thunk_updatePage, thunk_createPage } from "../../store/thunks/books.js";
-import { resetErrors } from '../../store/actions/errors.js';
-
-import { nanoid } from "nanoid"
 
 import Errors from "../Errors";
+
 
 import styles from "./createpageform.module.css";
 
@@ -18,7 +16,6 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
   const { pageId, isTitle, isText, book_id } = payload;
   const [ title, setTitle ] = useState(isTitle);
   const [ text, setText ] = useState(isText);
-  const [ errors, setErrors ] = useState([]);
   const dispatch = useDispatch();
 
 
@@ -55,31 +52,27 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
 
         <Errors />
 
-        <div>
           <form className={styles.create_page_container} onSubmit={onUpdate}>
-            <label>
-              Title
+            <label>Title</label>
+
             <input
                 type='text'
                 name='title'
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-            </label>
 
-            <label>
-              Text
+            <label>Text</label>
+
             <input
                 type='text'
                 name='text'
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
-            </label>
 
             <button type='submit'> Update </button>
           </form>
-        </div>
       </>
     )
   }
@@ -90,31 +83,27 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
     <>
       <Errors />
 
-      <div>
         <form className={styles.create_page_container} onSubmit={onSubmit}>
-          <label>
-            Title
+          <label>Title</label>
+
           <input
               type='text'
               name='title'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-          </label>
 
-          <label>
-            Text
+          <label>Text</label>
+
           <input
               type='text'
               name='text'
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
-          </label>
 
           <button type='submit'> Create </button>
         </form>
-      </div>
     </>
   )
 };

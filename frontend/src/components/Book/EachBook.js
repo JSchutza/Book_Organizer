@@ -29,7 +29,7 @@ const EachBook = () => {
   const [ openNewPageModal, setOpenNewPageModal ] = useState(false);
   const dispatch = useDispatch();
   const { bookId } = useParams();
-  const { characterFormStyle, currentStyle } = useModalStyle();
+  const { characterFormStyle, smallFormStyle } = useModalStyle();
 
 
   useEffect(() => {
@@ -66,6 +66,7 @@ const EachBook = () => {
 
 
 
+
   return (
     <>
     <div className={styles.create_wrapper}>
@@ -85,7 +86,7 @@ const EachBook = () => {
         <ReactModal
           isOpen={openNewPageModal}
           onRequestClose={closeNewPageModal}
-          style={currentStyle}
+          style={smallFormStyle}
           appElement={document.getElementById('root')}
         >
           <CreatePageForm bookId={bookId} closeModal={closeNewPageModal} />

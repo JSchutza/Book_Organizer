@@ -12,7 +12,6 @@
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-    align-items: flex-end;
+    align-items: flex-start;
     position: relative;
-    right: 30%;
 }

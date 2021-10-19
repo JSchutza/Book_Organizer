@@ -1,4 +1,7 @@
 
+.tabs_content_wrap {
+
+}
 
 
 .create_poll_button {
@@ -33,12 +36,27 @@
 
 
 
+.polls_title:hover {
+  color: blue;
+  background-color: white;
+  border-radius: 5px;
+}
+
+
+
 .allpolls_title {
   display: flex;
   justify-content: flex-end;
   padding: 10px;
 }
 
+
+
+.allpolls_title:hover {
+  color: blue;
+  background-color: white;
+  border-radius: 5px;
+}
 
 
 
@@ -49,9 +67,10 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   padding: 10px;
-  background-color: darkslategray;
   border: solid white 1px;
   border-radius: 15px;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 
@@ -59,7 +78,16 @@
 
 .each_poll_title {
   line-break: auto;
-  padding: 1%;
+  padding: 25px;
+}
+
+
+
+
+.each_poll_title:hover h3{
+  color: blue;
+  background-color: white;
+  border-radius: 5px;
 }
 
 
@@ -109,9 +137,13 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 10px;
+  border: solid white 1px;
+  border-radius: 15px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 
@@ -120,5 +152,13 @@
 
 .all_polls_each_link {
   line-break: auto;
-  padding: 5%;
+  padding: 25px;
+}
+
+
+
+.all_polls_each_link:hover h3{
+  color: blue;
+  background-color: white;
+  border-radius: 5px;
 }
