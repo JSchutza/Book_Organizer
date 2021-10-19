@@ -24,12 +24,16 @@
 
 
 .each_title {
-  padding: 2%;
+  display: flex;
+  margin-left: 20px;
 }
 
 
 .each_question {
-  padding: 2%;
+  display: flex;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 
