@@ -98,50 +98,50 @@ const Comments = () => {
   const EachComment = () => {
     return (
       <>
-      <div className={styles.comment_title_wrap}>
-        <div className={styles.each_title}>
-          <h1> {Object.values(comments)[0].poll_title} </h1>
+        <div className={styles.comment_title_wrap}>
+          <div className={styles.each_title}>
+            <h1> {Object.values(comments)[0].poll_title} </h1>
+          </div>
+
+          <div className={styles.each_question}>
+            <p> {Object.values(comments)[0].poll_text} </p>
+          </div>
         </div>
 
-        <div className={styles.each_question}>
-          <p> {Object.values(comments)[0].poll_text} </p>
+
+
+        <div className={styles.each_comment_wrap}>
+          {Object.values(comments).map(eachComment => (
+            <>
+              <p> <i>{eachComment.username}</i> </p>
+              <p> <b>{eachComment.answer_text}</b> </p>
+
+              {isUser.id === eachComment.user_id ?
+                <div className={styles.each_comment_buttons_wrap}>
+                  <div className={styles.each_comment_delete_button}>
+                    <ToolTip content={"Delete"}>
+                      <NavLink to='/' onClick={event => handleDelete(event, eachComment.id)} >
+                        <li> <RiDeleteBinFill /> </li>
+                      </NavLink>
+                    </ToolTip>
+                  </div>
+
+                  <div className={styles.each_comment_update_button}>
+                    <ToolTip content={"Update"}>
+                      <NavLink to='/' onClick={event => handleUpdate(event, {
+                        commentId: eachComment.id,
+                        answer_text: eachComment.answer_text,
+                        pollId
+                      })} > <li> <GrUpdate /> </li> </NavLink>
+                    </ToolTip>
+                  </div>
+                </div>
+                :
+                <></>
+              }
+            </>
+          ))}
         </div>
-      </div>
-
-
-
-      <div className={styles.each_comment_wrap}>
-        {Object.values(comments).map(eachComment => (
-          <>
-            <p> <i>{eachComment.username}</i> </p>
-            <p> <b>{eachComment.answer_text}</b> </p>
-
-            {isUser.id === eachComment.user_id ?
-              <div className={styles.each_comment_buttons_wrap}>
-                <div className={styles.each_comment_delete_button}>
-                  <ToolTip content={"Delete"}>
-                    <NavLink to='/' onClick={event => handleDelete(event, eachComment.id)} >
-                      <li> <RiDeleteBinFill /> </li>
-                    </NavLink>
-                  </ToolTip>
-                </div>
-
-                <div className={styles.each_comment_update_button}>
-                  <ToolTip content={"Update"}>
-                    <NavLink to='/' onClick={event => handleUpdate(event, {
-                      commentId: eachComment.id,
-                      answer_text: eachComment.answer_text,
-                      pollId
-                    })} > <li> <GrUpdate /> </li> </NavLink>
-                  </ToolTip>
-                </div>
-              </div>
-              :
-              <></>
-            }
-          </>
-        ))}
-      </div>
     </>
     );
   };
