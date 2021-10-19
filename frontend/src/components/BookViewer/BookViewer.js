@@ -95,6 +95,7 @@ const BookViewer = () => {
 
 
   const closeUpdateBookModal = () => {
+    dispatch(resetErrors());
     setOpenUpdateBookModal(false);
   }
 
