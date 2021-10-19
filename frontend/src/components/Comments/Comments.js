@@ -113,8 +113,13 @@ const Comments = () => {
 
           {Object.values(comments).map(eachComment => (
             <>
+            <div className={styles.username_text} >
               <p className={styles.each_comment_text} > <i>{eachComment.username}</i> </p>
+            </div>
+
+            <div className={styles.answer_text}>
               <p className={styles.each_comment_text} > <b>{eachComment.answer_text}</b> </p>
+            </div>
 
               {isUser.id === eachComment.user_id ?
                 <div className={styles.each_comment_buttons_wrap}>

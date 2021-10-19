@@ -55,6 +55,20 @@
 
 
 
+.username_text {
+
+}
+
+
+
+.answer_text {
+  margin-left: 3vw;
+  width: 80vw;
+  margin-bottom: 5vw;
+}
+
+
+
 .each_comment_buttons_wrap {
   display: flex;
   flex-direction: row;
