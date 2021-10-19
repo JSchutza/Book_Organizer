@@ -3,24 +3,33 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { thunk_updatePubCharacter } from "../../store/thunks/characters.js";
+import { resetErrors } from '../../store/actions/errors.js';
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 import Errors from "../Errors";
 import ImgPreview from "../ImgPreview";
+import ReactModal from 'react-modal';
 
 import styles from "./updatepubcharform.module.css";
 
 
 const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
   const { charId, avatar, character_label, character_name } = payload;
+  const [ errorModal, setOpenErrorModal ] = useState(false);
   const [ imgModal, setImgModal ] = useState(false);
   const [ avatarUrl, setAvatarUrl ] = useState('');
   const [ charname, setCharname ] = useState(character_name);
   const [ charlabel, setCharlabel ] = useState(character_label);
   const [ urlpreview, setUrlPreview ] = useState(null);
   const dispatch = useDispatch();
+  const { characterFormStyle } = useModalStyle();
 
 
 
+  const closeErrorModal = () => {
+    dispatch(resetErrors());
+    setOpenErrorModal(false);
+  }
 
 
 
@@ -46,6 +55,8 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
     const result = await dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId }));
     if(result) {
       closeUpdateModal();
+    } else {
+      setOpenErrorModal(true);
     }
 
   }
@@ -72,7 +83,16 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
     return (
       <>
 
-        <Errors />
+        <ReactModal
+          isOpen={errorModal}
+          onRequestClose={closeErrorModal}
+          style={characterFormStyle}
+          appElement={document.getElementById('root')}
+        >
+          <Errors />
+
+        </ReactModal>
+
 
         <ImgPreview
           update={true}
