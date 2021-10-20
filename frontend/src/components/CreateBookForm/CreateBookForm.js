@@ -70,9 +70,8 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
                 onChange={(event) => setUpdateTitle(event.target.value)}
               />
 
-            <ToolTip content={"Update"}>
-              <NavLink to='/' onClick={(event) => onUpdateSubmit(event)}> Update </NavLink>
-            </ToolTip>
+
+            <button onClick={(event) => onUpdateSubmit(event)}> Update </button>
           </form>
 
       </>
@@ -96,7 +95,7 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
           />
 
           <ToolTip content={"Create"}>
-            <NavLink to='/' onClick={(event) => onCreateSubmit(event)}> <AiOutlinePlus /> </NavLink>
+            <button onClick={(event) => onCreateSubmit(event)}> <AiOutlinePlus /> </button>
           </ToolTip>
       </form>
     </>
