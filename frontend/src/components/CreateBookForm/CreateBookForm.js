@@ -6,7 +6,7 @@ import { thunk_createBook } from "../../store/thunks/books.js";
 import ToolTip from "../ToolTip";
 import Errors from "../Errors";
 import { AiOutlinePlus } from "react-icons/ai";
-import { GrUpdate } from "react-icons/gr";
+
 import styles from "./createbookform.module.css";
 
 
@@ -61,8 +61,7 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
       <>
         <Errors />
 
-        <div className={styles.form_wrap}>
-          <form onSubmit={onUpdateSubmit}>
+          <form onSubmit={onUpdateSubmit} className={styles.form_wrap} >
             <label> Title </label>
               <input
                 type='text'
@@ -71,14 +70,11 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
                 onChange={(event) => setUpdateTitle(event.target.value)}
               />
 
-
             <ToolTip content={"Update"}>
-              <div className={styles.createbook_update_button}>
-                <NavLink to='/' onClick={(event) => onUpdateSubmit(event)}> <GrUpdate /> </NavLink>
-              </div>
+              <NavLink to='/' onClick={(event) => onUpdateSubmit(event)}> Update </NavLink>
             </ToolTip>
           </form>
-        </div>
+
       </>
     )
   }
@@ -89,8 +85,7 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
     <>
       <Errors />
 
-    <div className={styles.form_wrap}>
-      <form onSubmit={onCreateSubmit}>
+      <form onSubmit={onCreateSubmit} className={styles.form_wrap}>
         <label>Title</label>
 
           <input
@@ -101,12 +96,9 @@ const CreateBookForm = ({ isUpdate=false, data, closeModal }) => {
           />
 
           <ToolTip content={"Create"}>
-            <div className={styles.createbook_create_button}>
-              <NavLink to='/' onClick={(event) => onCreateSubmit(event)}> <AiOutlinePlus /> </NavLink>
-            </div>
+            <NavLink to='/' onClick={(event) => onCreateSubmit(event)}> <AiOutlinePlus /> </NavLink>
           </ToolTip>
       </form>
-    </div>
     </>
   )
 };
