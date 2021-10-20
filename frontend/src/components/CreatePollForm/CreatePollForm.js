@@ -79,7 +79,7 @@ const CreatePollForm = ({ update=false, payload=defaultValues, closeModal }) => 
                 onChange={(e) => setQuestionText(e.target.value)}
               />
 
-            <button type='submit'> Update </button>
+            <button> Update </button>
           </form>
       </>
     );
@@ -118,7 +118,7 @@ const CreatePollForm = ({ update=false, payload=defaultValues, closeModal }) => 
               onChange={(e) => setQuestionText(e.target.value)}
             />
 
-          <button type='submit'> Create </button>
+          <button> Create </button>
         </form>
     </>
   );
