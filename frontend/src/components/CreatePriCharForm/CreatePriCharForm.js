@@ -120,7 +120,7 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
                 onChange={(e) => setCharlabel(e.target.value)}
               />
 
-            <button type='submit'> Update </button>
+            <button> Update </button>
           </form>
       </>
     )
@@ -165,7 +165,7 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
               onChange={(e) => setCharlabel(e.target.value)}
             />
 
-          <button type='submit'> Create </button>
+          <button> Create </button>
 
         </form>
     </>
