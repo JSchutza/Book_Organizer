@@ -134,11 +134,6 @@ const MainRouter = () => {
               </ReactModal>
             </Route>
 
-
-            {/* <Route path='/' exact>
-            </Route> */}
-
-
             <Route>
               <h2>Page Not Found</h2>
             </Route>

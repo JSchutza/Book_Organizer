@@ -75,24 +75,26 @@ const CharacterSearch = () => {
 
     <div className={styles.search_wrapper}>
 
-      <div className={styles.search_input}>
-        <label>
-          Search
-          <input
-            type="text"
-            name="search"
-            value={searchId}
-            onChange={(event) => setSearchId(event.target.value)}
-            />
-        </label>
-      </div>
+      <form onSubmit={handleSearch} >
+        <div className={styles.search_input}>
+          <label>
+            Search
+            <input
+              type="text"
+              name="search"
+              value={searchId}
+              onChange={(event) => setSearchId(event.target.value)}
+              />
+          </label>
+        </div>
 
 
-      <div className={styles.search_icon}>
+        <div className={styles.search_icon}>
           <ToolTip content={"Search"} >
-            <NavLink to='/' onClick={(event) => handleSearch(event)} > <BsSearch /> </NavLink>
+            <button> <BsSearch /> </button>
           </ToolTip>
-      </div>
+        </div>
+      </form>
     </div>
     </>
   );

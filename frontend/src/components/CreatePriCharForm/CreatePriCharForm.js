@@ -22,7 +22,7 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
   const [ charname, setCharname ] = useState(character_name);
   const [ charlabel, setCharlabel ] = useState(character_label);
   const [ urlpreview, setUrlPreview ] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
 
@@ -30,9 +30,12 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
 
   const onSubmit = async event => {
     event.preventDefault();
+    setLoading(true);
     const result = await dispatch(thunk_createPriChar({ bookId, urlpreview, charname, charlabel }));
     if (result){
       closeModal();
+    } else {
+      setLoading(false);
     }
 
   };
@@ -73,9 +76,12 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
 
   const onUpdate = async event => {
     event.preventDefault();
+    setLoading(true);
     const result = await dispatch(thunk_updatePriChar({ urlpreview, charname, charlabel, bookId: book_id, charId }));
     if (result) {
       closeModal();
+    } else {
+      setLoading(false);
     }
 
   }
@@ -95,6 +101,8 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
           openModal={imgModal}
           setOpenModal={setImgModal}
         />
+
+        {loading ? <p>Updating your character </p> : null}
 
           <form className={styles.create_char_container} onSubmit={onUpdate}>
 
@@ -120,7 +128,7 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
                 onChange={(e) => setCharlabel(e.target.value)}
               />
 
-            <button type='submit'> Update </button>
+            <button> Update </button>
           </form>
       </>
     )
@@ -141,6 +149,8 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
         openModal={imgModal}
         setOpenModal={setImgModal}
       />
+
+      {loading ? <p>Creating your character </p> : null}
 
         <form className={styles.create_char_container} onSubmit={onSubmit}>
 
@@ -165,7 +175,7 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
               onChange={(e) => setCharlabel(e.target.value)}
             />
 
-          <button type='submit'> Create </button>
+          <button> Create </button>
 
         </form>
     </>

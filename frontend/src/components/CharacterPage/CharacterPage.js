@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux"
 import { NavLink, Link } from "react-router-dom";
 
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
-import { thunk_getFollowing, thunk_followOrUnfollow } from "../../store/thunks/following.js";
+import { thunk_getFollowing } from "../../store/thunks/following.js";
 import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
+import { resetErrors } from '../../store/actions/errors.js';
 
 import { useUser } from "../../context/UserContext.js";
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
@@ -81,6 +82,7 @@ const CharacterPage = () => {
 
 
   const closeModal = () => {
+    dispatch(resetErrors());
     setOpenModal(false);
   };
 
