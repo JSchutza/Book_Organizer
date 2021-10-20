@@ -126,7 +126,7 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
               onChange={(e) => setCharlabel(e.target.value)}
               />
 
-            <button type='submit'> Update </button>
+            <button> Update </button>
 
         </form>
 
