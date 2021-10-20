@@ -80,7 +80,7 @@ const CommentForm = ({ update=false, data, closeModal }) => {
 
             <div className={styles.comment_update_button}>
               <ToolTip content={"Update"}>
-                <NavLink to='/' onClick={event => updateComment(event)}> <GrUpdate /> </NavLink>
+                <NavLink to='/' onClick={event => updateComment(event)}> Update </NavLink>
               </ToolTip>
             </div>
           </div>
