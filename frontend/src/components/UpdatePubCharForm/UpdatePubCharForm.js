@@ -21,6 +21,7 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
   const [ charname, setCharname ] = useState(character_name);
   const [ charlabel, setCharlabel ] = useState(character_label);
   const [ urlpreview, setUrlPreview ] = useState(null);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { characterFormStyle } = useModalStyle();
 
@@ -52,10 +53,12 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
 
   const onSubmit = async event => {
     event.preventDefault();
+    setLoading(true);
     const result = await dispatch(thunk_updatePubCharacter({ urlpreview, charname, charlabel, charId }));
     if(result) {
       closeUpdateModal();
     } else {
+      setLoading(false);
       setOpenErrorModal(true);
     }
 
@@ -104,6 +107,7 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
           setOpenModal={setImgModal}
         />
 
+        {loading ? <p>Updating your character </p> : null}
 
         <form className={styles.create_char_container} onSubmit={onSubmit}>
 
