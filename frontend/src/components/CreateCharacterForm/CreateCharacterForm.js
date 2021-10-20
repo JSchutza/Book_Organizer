@@ -63,7 +63,7 @@ const CreateCharacterForm = ({ closeModal }) => {
 
 
 
- 
+
 
   return (
     <>
@@ -81,33 +81,32 @@ const CreateCharacterForm = ({ closeModal }) => {
 
       <div className={styles.create_char_wrap}>
 
-      <form className={styles.create_char_container} onSubmit={onSubmit}>
+        <form className={styles.create_char_container} onSubmit={onSubmit}>
 
-      <label className=""> Pick an Avatar </label>
-      <input id='file' className="" type="file" accept="image/*" onChange={updateAvatar} />
-
-
-      <label> Name </label>
-      <input
-        type='text'
-        name='character name'
-        value={charname}
-        onChange={(e) => setCharname(e.target.value) }
-      />
+          <label className=""> Pick an Avatar </label>
+            <input id='file' className="" type="file" accept="image/*" onChange={updateAvatar} />
 
 
-      <label> Character Label </label>
-      <input
-        type='text'
-        name='character label'
-        value={charlabel}
-        onChange={(e) => setCharlabel(e.target.value)}
-        />
+          <label> Name </label>
+            <input
+              type='text'
+              name='character name'
+              value={charname}
+              onChange={(e) => setCharname(e.target.value) }
+            />
 
-          <button type='submit'> Create </button>
 
-      </form>
+          <label> Character Label </label>
+            <input
+              type='text'
+              name='character label'
+              value={charlabel}
+              onChange={(e) => setCharlabel(e.target.value)}
+              />
 
+            <button> Create </button>
+
+        </form>
     </div>
     </>
   )
