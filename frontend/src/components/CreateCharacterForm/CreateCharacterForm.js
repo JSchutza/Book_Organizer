@@ -19,6 +19,7 @@ const CreateCharacterForm = ({ closeModal }) => {
   const [ charname, setCharname ] = useState("");
   const [ charlabel, setCharlabel ] = useState("");
   const [ urlpreview, setUrlPreview ] = useState(null);
+  const [ loading, setLoading ] = useState(false);
   const dispatch = useDispatch();
 
 
@@ -28,9 +29,12 @@ const CreateCharacterForm = ({ closeModal }) => {
 
   const onSubmit = async event => {
     event.preventDefault();
+    setLoading(true);
     const result = await dispatch(thunk_newPubCharacter({ urlpreview, charname, charlabel }));
     if(result){
       closeModal();
+    } else {
+      setLoading(false);
     }
   };
 
@@ -78,6 +82,7 @@ const CreateCharacterForm = ({ closeModal }) => {
         setOpenModal={setImgModal}
       />
 
+      {loading ? <p>Creating your character </p> : null}
 
       <div className={styles.create_char_wrap}>
 
