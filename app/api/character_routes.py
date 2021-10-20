@@ -17,9 +17,7 @@ def all_characters():
   pub_chars = PublicCharacter.query.order_by(PublicCharacter.created_at).all()
   result = { each.id:each.to_dict()    for each in pub_chars }
 
-  return {
-    "characters": result,
-  }
+  return { "characters": result }
 
 
 # /api/characters
@@ -39,7 +37,7 @@ def new_pub_char():
 
 
   if not allowed_file(image.filename):
-      return { "errors": errors }
+    return { "errors": errors }
 
   image.filename = get_unique_filename(image.filename)
 
