@@ -71,7 +71,7 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
                 onChange={(e) => setText(e.target.value)}
               />
 
-            <button type='submit'> Update </button>
+            <button> Update </button>
           </form>
       </>
     )
@@ -102,7 +102,7 @@ const CreatePageForm = ({ bookId, update=false, payload=defaultValues, closeModa
               onChange={(e) => setText(e.target.value)}
             />
 
-          <button type='submit'> Create </button>
+          <button> Create </button>
         </form>
     </>
   )
