@@ -100,7 +100,7 @@ const SignUpForm = ({ closeModal }) => {
         <div className={styles.enter_button}>
           <div>
           <ToolTip content={"Enter"}>
-            <button className="" type="submit"> <IoIosPower /> </button>
+            <button> <IoIosPower /> </button>
           </ToolTip>
           </div>
         </div>
