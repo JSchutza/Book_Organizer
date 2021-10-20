@@ -69,21 +69,22 @@ const CommentForm = ({ update=false, data, closeModal }) => {
         <Errors />
 
         <div className={styles.comment_form_input_wrap}>
-          <div className={styles.comment_form_containter}>
-            <textarea
-              type="text"
-              name="comment"
-              value={updateText}
-              onChange={event => setUpdateText(event.target.value)}
-            />
+          <form onSubmit={updateComment}>
+
+            <div className={styles.comment_form_containter}>
+              <textarea
+                type="text"
+                name="comment"
+                value={updateText}
+                onChange={event => setUpdateText(event.target.value)}
+                />
 
 
-            <div className={styles.comment_update_button}>
-              <ToolTip content={"Update"}>
-                <NavLink to='/' onClick={event => updateComment(event)}> Update </NavLink>
-              </ToolTip>
+              <div className={styles.comment_update_button}>
+                <button> Update </button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </>
     )
@@ -104,21 +105,22 @@ const CommentForm = ({ update=false, data, closeModal }) => {
         <Errors />
       </ReactModal>
 
+      <form onSubmit={createComment}>
 
-      <div className={styles.comment_form_input_wrap}>
-        <textarea
-          type="text"
-          name="comment"
-          value={commentText}
-          onChange={event => setCommentText(event.target.value)}
-        />
+        <div className={styles.comment_form_input_wrap}>
 
-        <div className={styles.comment_add_button}>
-          <ToolTip content={"Comment"}>
-            <NavLink to='/' onClick={event => createComment(event)}> <AiOutlinePlus /> </NavLink>
-          </ToolTip>
+          <textarea
+            type="text"
+            name="comment"
+            value={commentText}
+            onChange={event => setCommentText(event.target.value)}
+            />
+
+          <div className={styles.comment_add_button}>
+            <button> <AiOutlinePlus /> </button>
+          </div>
         </div>
-     </div>
+      </form>
     </>
   )
 };
