@@ -90,7 +90,7 @@ const CharacterSearch = () => {
 
       <div className={styles.search_icon}>
           <ToolTip content={"Search"} >
-            <NavLink to='/' onClick={(event) => handleSearch(event)} > <BsSearch /> </NavLink>
+            <button onClick={(event) => handleSearch(event)} > <BsSearch /> </button>
           </ToolTip>
       </div>
     </div>
