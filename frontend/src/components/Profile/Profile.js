@@ -166,7 +166,7 @@ const Profile = () => {
     </div>
 
 
-    {isUser.id === 1 ? <></> :
+    {isUser.id === 1 ? null :
       <div className={styles.user_buttons_wrap}>
         <div className={styles.update_user_button}>
           <ToolTip content={'Update Info'}>
