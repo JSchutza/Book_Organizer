@@ -74,9 +74,7 @@ const SignUpForm = ({ closeModal }) => {
       })
       .then(result => {
         setIsLoaded(true);
-        const nowFile = new File([result], "default_user.svg", {
-          type: "image"
-        })
+        const nowFile = new File([result], "default_user.svg", { type: "image" });
         setImage(nowFile);
       },
         (error) => {
@@ -95,7 +93,8 @@ const SignUpForm = ({ closeModal }) => {
   const onSignUp = async event => {
     event.preventDefault();
     if (password === repeatPassword) {
-      const result = await dispatch(signUp(username, email, password, image));
+      const payload = { username, email, password, image };
+      const result = await dispatch(signUp(payload));
       if (result) {
         closeModal();
         history.push("/profile");
@@ -115,13 +114,11 @@ const SignUpForm = ({ closeModal }) => {
     if (result) {
       setImage(result);
     }
-
-
   };
 
 
 
-  console.log(image);
+
 
 
 
