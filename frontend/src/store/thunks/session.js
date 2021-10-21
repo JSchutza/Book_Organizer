@@ -65,13 +65,14 @@ const logout = () => async (dispatch) => {
 
 
 
-const signUp = (username, email, password) => async (dispatch) => {
+
+const signUp = (username, email, password, image) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username, email, password }),
+    body: JSON.stringify({ username, email, password, image }),
   });
 
   const data = await response.json();
