@@ -3,7 +3,9 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.aws import allowed_file, get_unique_filename, upload_file, get_s3_location
 from random import randint
+
 
 
 auth_routes = Blueprint('auth', __name__)
@@ -56,7 +58,7 @@ def logout():
 
 
 
- 
+
 
 
 @auth_routes.route('/signup', methods=['POST'])
@@ -65,14 +67,39 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    if "image" not in request.files:
+        return { "errors": errors }
+
+    image = request.files["image"]
+    username = request.form['username']
+    email = request.form['email']
+    password = request.form['password']
+
+    if not allowed_file(image.filename):
+        return { "errors": errors }
+
+    image.filename = get_unique_filename(image.filename)
+
     if form.validate_on_submit():
+        upload = upload_file(image)
+
+        if "url" not in upload:
+            return { "errors": errors }
+
+        url = upload["url"]
         user = User(the_search_id=f'{randint(1, 100)}{randint(1, 10000000000)}',
-                    user_name=form.data['username'], email=form.data['email'], password=form.data['password'])
+            user_name=username,
+            email=email,
+            password=password,
+            avatar=url
+        )
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return user.to_dict()
-    return { 'errors': errors }
+
+    return { "errors": errors }
+
 
 
 

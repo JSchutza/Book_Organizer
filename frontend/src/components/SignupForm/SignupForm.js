@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-
+import { processFile } from "../../services/protectedFileUpload.js";
 import { signUp } from "../../store/thunks/session.js";
 import { setErrors } from "../../store/actions/errors.js";
 
@@ -10,6 +10,8 @@ import { setErrors } from "../../store/actions/errors.js";
 import styles from "./signupform.module.css"
 import ToolTip from "../ToolTip";
 import Errors from "../Errors";
+
+
 
 
 import { IoIosPower } from "react-icons/io";
@@ -24,16 +26,28 @@ const SignUpForm = ({ closeModal }) => {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ repeatPassword, setRepeatPassword ] = useState("");
+  const [ image, setImage ] = useState('');
+  const [ loading, setLoading ] = useState(false);
+
+
+
+
+
+
+
 
 
   const onSignUp = async event => {
     event.preventDefault();
     if (password === repeatPassword) {
-      const result = await dispatch(signUp(username, email, password));
+      setLoading(true);
+      const payload = { username, email, password, image };
+      const result = await dispatch(signUp(payload));
       if (result) {
         closeModal();
         history.push("/profile");
       }
+      setLoading(false);
       return;
     }
     // if the passwords do not match
@@ -44,15 +58,36 @@ const SignUpForm = ({ closeModal }) => {
 
 
 
+  const updateAvatar = event => {
+    const result = processFile(event.target.files);
+    if (result) {
+      setImage(result);
+    }
+  };
+
+
+
+
 
 
   return (
     <>
     <Errors />
+
+      {loading ? <p>Creating your account </p> : null}
+
     <div className={styles.signup_wrap}>
 
     <div className={styles.signup_containter}>
       <form className={styles.the_form} onSubmit={onSignUp}>
+          <label>Pick an Avatar</label>
+          <input
+            id='file'
+            type="file"
+            accept="image/*"
+            onChange={updateAvatar}
+          />
+          <br />
 
           <label>User Name</label>
           <input
@@ -98,11 +133,9 @@ const SignUpForm = ({ closeModal }) => {
           <br />
 
         <div className={styles.enter_button}>
-          <div>
           <ToolTip content={"Enter"}>
             <button> <IoIosPower /> </button>
           </ToolTip>
-          </div>
         </div>
 
       </form>
@@ -110,6 +143,8 @@ const SignUpForm = ({ closeModal }) => {
     </div>
     </>
   );
+
+
 };
 
 

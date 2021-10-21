@@ -17,10 +17,8 @@ user_routes = Blueprint('users', __name__)
 @user_routes.route('/<int:user_id>', methods=['PUT'])
 @login_required
 def update_user_info(user_id):
-    errors = []
-    error_message = "A error occurred when updating your profile."
+    errors = ["An error occurred while updating your profile."]
     if "new_avatar" not in request.files:
-        errors.append(error_message)
         return { "errors":  errors }
 
     form = UpdateUserForm()
@@ -33,7 +31,6 @@ def update_user_info(user_id):
     avatar = request.files["new_avatar"]
 
     if not allowed_file(avatar.filename):
-        errors.append(error_message)
         return { "errors":  errors }
 
 
@@ -43,14 +40,12 @@ def update_user_info(user_id):
 
     if int(user_id) == int(current_user.get_id()):
         if check_lengths(name, email, password, bio, location, birthdate):
-            errors.append(error_message)
             return { "errors":  errors }
 
         if form.validate_on_submit():
             upload = upload_file(avatar)
 
             if "url" not in upload:
-                errors.append(error_message)
                 return { "errors":  errors }
 
             url = upload["url"]
@@ -64,7 +59,6 @@ def update_user_info(user_id):
             db.session.commit()
             return { "user": current_user.to_dict() }
 
-    errors.append(error_message)
     return { "errors":  errors }
 
 
@@ -74,12 +68,18 @@ def update_user_info(user_id):
 @user_routes.route('/<int:user_id>', methods=['DELETE'])
 @login_required
 def delete_user(user_id):
+    errors = ["An error occurred while deleting your profile."]
     if int(user_id) == int(current_user.get_id()):
+        key = current_user.get_url()
+        if(key.startswith(get_s3_location())):
+            key = key[39:]
+            purge_aws_resource(key)
+
         db.session.delete(current_user)
         db.session.commit()
-        return { "Success": "Your accont was successfully deleted." }
+        return { "success": "Your accont was successfully deleted." }
     else:
-        return { "errors" : [ "You can not remove another user.", "Please try again." ] }
+        return { "errors" : errors }
 
 
 

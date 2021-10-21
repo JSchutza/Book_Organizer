@@ -4,6 +4,7 @@ import { thunk_getAllBooks } from "../../store/thunks/books.js";
 import { thunk_getUsersFollowers } from "../../store/thunks/followers.js";
 import { thunk_getFollowing } from "../../store/thunks/following.js";
 import { thunk_deleteUserAccount } from "../../store/thunks/session.js";
+import { resetErrors } from '../../store/actions/errors.js';
 
 import {Book} from "../Book";
 import { NavLink, useHistory } from "react-router-dom";
@@ -15,7 +16,7 @@ import ReactModal from 'react-modal';
 import ToolTip from "../ToolTip";
 
 import styles from "./profile.module.css";
-import defaultImg from "../../icons/default_user.svg";
+import defaultImg from "../../icons/default_user.jpg";
 import LoadScreen from "../LoadScreen";
 import UpdateUserForm from "../UpdateUserForm";
 
@@ -61,10 +62,12 @@ const Profile = () => {
 
 
 
-  const handleDelete = event => {
+  const handleDelete = async event => {
     event.preventDefault();
-    dispatch(thunk_deleteUserAccount(isUser.id));
-    history.push("/");
+    const result = await dispatch(thunk_deleteUserAccount(isUser.id));
+    if (result) {
+      history.push("/");
+    }
   };
 
 
@@ -80,6 +83,7 @@ const Profile = () => {
 
 
   const closeUpdateModal = () => {
+    dispatch(resetErrors());
     setUpdateModal(false);
   }
 

@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import ToolTip from "../ToolTip";
 
 import { thunk_updateUser } from "../../store/thunks/session.js";
 import { useUser } from "../../context/UserContext.js";
 
+import Errors from '../Errors';
 
 import styles from "./updateuserform.module.css";
 
@@ -21,15 +20,17 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
   const [ theirNewPassword, setTheirNewPassword ] = useState('');
   const [ paswordConfirm, setPasswordConfirm ] = useState('');
   const [ urlpreview, setUrlPreview ] = useState(null);
+  const [ loading, setLoading ] = useState(false);
   const dispatch = useDispatch();
   const { isUser } = useUser();
-  // const history = useHistory();
 
 
 
 
-  const onSubmit = event => {
+
+  const onSubmit = async event => {
     event.preventDefault();
+    setLoading(true);
     const payload = {
       userId: isUser.id,
       name: theirUsername,
@@ -41,8 +42,12 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
       birthdate: theirBirthday
 
     }
-    dispatch(thunk_updateUser(payload));
-    closeUpdateModal();
+
+    const result = await dispatch(thunk_updateUser(payload));
+    if (result) {
+      closeUpdateModal();
+    }
+    setLoading(false);
   }
 
 
@@ -66,6 +71,10 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
 
   return (
     <>
+      <Errors />
+
+      {loading ? <p>Updating your account </p> : null}
+
       <div className={styles.update_containter}>
 
         <p>Last avatar: </p>
@@ -86,95 +95,71 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
 
         <form className={styles.the_form} onSubmit={onSubmit}>
 
-        <label>
-          User Name
-        <input
-          type="text"
-          name="username"
-          value={theirUsername}
-          onChange={event => setTheirUsername(event.target.value)}
-        />
-        </label>
+          <label>User Name</label>
+          <input
+            type="text"
+            name="username"
+            value={theirUsername}
+            onChange={event => setTheirUsername(event.target.value)}
+          />
 
 
-        <label>
-          Email
-        <input
-          type="email"
-          name="email"
-          value={theirEmail}
-          onChange={event => setTheirEmail(event.target.value)}
-        />
-        </label>
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={theirEmail}
+            onChange={event => setTheirEmail(event.target.value)}
+          />
 
 
-        <label>
-          Password
-        <input
-          type="password"
-          name="password"
-          value={theirNewPassword}
-          onChange={event => setTheirNewPassword(event.target.value)}
-        />
-        </label>
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={theirNewPassword}
+            onChange={event => setTheirNewPassword(event.target.value)}
+          />
 
 
-        <label>
-          Confirm Password
-        <input
-          type="password"
-          name="password"
-          value={paswordConfirm}
-          onChange={event => setPasswordConfirm(event.target.value)}
-        />
-        </label>
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            name="password"
+            value={paswordConfirm}
+            onChange={event => setPasswordConfirm(event.target.value)}
+          />
 
 
-        <label>
-          Bio
-        <textarea
-          value={theirBio}
-          onChange={event => setTheirBio(event.target.value)}
-        />
-        </label>
+          <label>Bio</label>
+          <textarea
+            value={theirBio}
+            onChange={event => setTheirBio(event.target.value)}
+          />
 
 
-        <label>
-          Location
-        <input
-          type="text"
-          name="location"
-          value={theirLocation}
-          onChange={event => setTheirLocation(event.target.value)}
-        />
-        </label>
+          <label>Location</label>
+          <input
+            type="text"
+            name="location"
+            value={theirLocation}
+            onChange={event => setTheirLocation(event.target.value)}
+          />
 
 
-        <label>
-          Avatar
-            <input id='file' type="file" accept="image/*" onChange={updateAvatar} />
-        </label>
+          <label>Avatar</label>
+          <input id='file' type="file" accept="image/*" onChange={updateAvatar} />
 
 
-        <label>
-          Birthday
-        <input
-          type="date"
-          name="birthday"
-          value={theirBirthday}
-          onChange={event => setTheirBirthday(event.target.value)}
-        />
-        </label>
+          <label>Birthday</label>
+          <input
+            type="date"
+            name="birthday"
+            value={theirBirthday}
+            onChange={event => setTheirBirthday(event.target.value)}
+          />
 
-
-
-
-        <ToolTip content={'Update'}>
-          <button type="submit"> Update </button>
-        </ToolTip>
-
-
-
+          <button> Update </button>
       </form>
     </div>
     </>
