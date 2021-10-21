@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import ToolTip from "../ToolTip";
 
 import { thunk_updateUser } from "../../store/thunks/session.js";
 import { useUser } from "../../context/UserContext.js";
 
+import Errors from '../Errors';
 
 import styles from "./updateuserform.module.css";
 
@@ -27,7 +27,7 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
 
 
 
-  const onSubmit = event => {
+  const onSubmit = async event => {
     event.preventDefault();
     const payload = {
       userId: isUser.id,
@@ -40,8 +40,11 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
       birthdate: theirBirthday
 
     }
-    dispatch(thunk_updateUser(payload));
-    closeUpdateModal();
+
+    const result = await dispatch(thunk_updateUser(payload));
+    if (result) {
+      closeUpdateModal();
+    }
   }
 
 
@@ -65,6 +68,8 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
 
   return (
     <>
+      <Errors />
+
       <div className={styles.update_containter}>
 
         <p>Last avatar: </p>

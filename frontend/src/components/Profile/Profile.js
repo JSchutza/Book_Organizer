@@ -4,6 +4,7 @@ import { thunk_getAllBooks } from "../../store/thunks/books.js";
 import { thunk_getUsersFollowers } from "../../store/thunks/followers.js";
 import { thunk_getFollowing } from "../../store/thunks/following.js";
 import { thunk_deleteUserAccount } from "../../store/thunks/session.js";
+import { resetErrors } from '../../store/actions/errors.js';
 
 import {Book} from "../Book";
 import { NavLink, useHistory } from "react-router-dom";
@@ -80,6 +81,7 @@ const Profile = () => {
 
 
   const closeUpdateModal = () => {
+    dispatch(resetErrors());
     setUpdateModal(false);
   }
 
