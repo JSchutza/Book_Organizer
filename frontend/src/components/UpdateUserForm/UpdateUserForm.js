@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ToolTip from "../ToolTip";
 
@@ -23,7 +22,7 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
   const [ urlpreview, setUrlPreview ] = useState(null);
   const dispatch = useDispatch();
   const { isUser } = useUser();
-  // const history = useHistory();
+
 
 
 
@@ -86,95 +85,71 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
 
         <form className={styles.the_form} onSubmit={onSubmit}>
 
-        <label>
-          User Name
-        <input
-          type="text"
-          name="username"
-          value={theirUsername}
-          onChange={event => setTheirUsername(event.target.value)}
-        />
-        </label>
+          <label>User Name</label>
+          <input
+            type="text"
+            name="username"
+            value={theirUsername}
+            onChange={event => setTheirUsername(event.target.value)}
+          />
 
 
-        <label>
-          Email
-        <input
-          type="email"
-          name="email"
-          value={theirEmail}
-          onChange={event => setTheirEmail(event.target.value)}
-        />
-        </label>
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={theirEmail}
+            onChange={event => setTheirEmail(event.target.value)}
+          />
 
 
-        <label>
-          Password
-        <input
-          type="password"
-          name="password"
-          value={theirNewPassword}
-          onChange={event => setTheirNewPassword(event.target.value)}
-        />
-        </label>
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={theirNewPassword}
+            onChange={event => setTheirNewPassword(event.target.value)}
+          />
 
 
-        <label>
-          Confirm Password
-        <input
-          type="password"
-          name="password"
-          value={paswordConfirm}
-          onChange={event => setPasswordConfirm(event.target.value)}
-        />
-        </label>
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            name="password"
+            value={paswordConfirm}
+            onChange={event => setPasswordConfirm(event.target.value)}
+          />
 
 
-        <label>
-          Bio
-        <textarea
-          value={theirBio}
-          onChange={event => setTheirBio(event.target.value)}
-        />
-        </label>
+          <label>Bio</label>
+          <textarea
+            value={theirBio}
+            onChange={event => setTheirBio(event.target.value)}
+          />
 
 
-        <label>
-          Location
-        <input
-          type="text"
-          name="location"
-          value={theirLocation}
-          onChange={event => setTheirLocation(event.target.value)}
-        />
-        </label>
+          <label>Location</label>
+          <input
+            type="text"
+            name="location"
+            value={theirLocation}
+            onChange={event => setTheirLocation(event.target.value)}
+          />
 
 
-        <label>
-          Avatar
-            <input id='file' type="file" accept="image/*" onChange={updateAvatar} />
-        </label>
+          <label>Avatar</label>
+          <input id='file' type="file" accept="image/*" onChange={updateAvatar} />
 
 
-        <label>
-          Birthday
-        <input
-          type="date"
-          name="birthday"
-          value={theirBirthday}
-          onChange={event => setTheirBirthday(event.target.value)}
-        />
-        </label>
+          <label>Birthday</label>
+          <input
+            type="date"
+            name="birthday"
+            value={theirBirthday}
+            onChange={event => setTheirBirthday(event.target.value)}
+          />
 
-
-
-
-        <ToolTip content={'Update'}>
-          <button type="submit"> Update </button>
-        </ToolTip>
-
-
-
+          <button> Update </button>
       </form>
     </div>
     </>
