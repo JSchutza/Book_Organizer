@@ -27,6 +27,7 @@ const SignUpForm = ({ closeModal }) => {
   const [ password, setPassword ] = useState("");
   const [ repeatPassword, setRepeatPassword ] = useState("");
   const [ image, setImage ] = useState('');
+  const [ loading, setLoading ] = useState(false);
 
 
 
@@ -39,12 +40,14 @@ const SignUpForm = ({ closeModal }) => {
   const onSignUp = async event => {
     event.preventDefault();
     if (password === repeatPassword) {
+      setLoading(true);
       const payload = { username, email, password, image };
       const result = await dispatch(signUp(payload));
       if (result) {
         closeModal();
         history.push("/profile");
       }
+      setLoading(false);
       return;
     }
     // if the passwords do not match
@@ -70,6 +73,9 @@ const SignUpForm = ({ closeModal }) => {
   return (
     <>
     <Errors />
+
+      {loading ? <p>Creating your character </p> : null}
+
     <div className={styles.signup_wrap}>
 
     <div className={styles.signup_containter}>
@@ -127,11 +133,9 @@ const SignUpForm = ({ closeModal }) => {
           <br />
 
         <div className={styles.enter_button}>
-          <div>
           <ToolTip content={"Enter"}>
             <button> <IoIosPower /> </button>
           </ToolTip>
-          </div>
         </div>
 
       </form>
