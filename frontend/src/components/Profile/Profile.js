@@ -15,7 +15,7 @@ import ReactModal from 'react-modal';
 import ToolTip from "../ToolTip";
 
 import styles from "./profile.module.css";
-import defaultImg from "../../icons/default_user.svg";
+import defaultImg from "../../icons/default_user.jpg";
 import LoadScreen from "../LoadScreen";
 import UpdateUserForm from "../UpdateUserForm";
 
