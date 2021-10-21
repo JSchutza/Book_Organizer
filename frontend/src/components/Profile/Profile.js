@@ -62,10 +62,12 @@ const Profile = () => {
 
 
 
-  const handleDelete = event => {
+  const handleDelete = async event => {
     event.preventDefault();
-    dispatch(thunk_deleteUserAccount(isUser.id));
-    history.push("/");
+    const result = await dispatch(thunk_deleteUserAccount(isUser.id));
+    if (result) {
+      history.push("/");
+    }
   };
 
 
