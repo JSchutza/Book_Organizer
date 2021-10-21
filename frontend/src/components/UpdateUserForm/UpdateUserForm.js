@@ -20,6 +20,7 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
   const [ theirNewPassword, setTheirNewPassword ] = useState('');
   const [ paswordConfirm, setPasswordConfirm ] = useState('');
   const [ urlpreview, setUrlPreview ] = useState(null);
+  const [ loading, setLoading ] = useState(false);
   const dispatch = useDispatch();
   const { isUser } = useUser();
 
@@ -29,6 +30,7 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
 
   const onSubmit = async event => {
     event.preventDefault();
+    setLoading(true);
     const payload = {
       userId: isUser.id,
       name: theirUsername,
@@ -45,6 +47,7 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
     if (result) {
       closeUpdateModal();
     }
+    setLoading(false);
   }
 
 
@@ -69,6 +72,8 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
   return (
     <>
       <Errors />
+
+      {loading ? <p>Updating your account </p> : null}
 
       <div className={styles.update_containter}>
 

@@ -74,7 +74,7 @@ const SignUpForm = ({ closeModal }) => {
     <>
     <Errors />
 
-      {loading ? <p>Creating your character </p> : null}
+      {loading ? <p>Creating your account </p> : null}
 
     <div className={styles.signup_wrap}>
 
