@@ -148,7 +148,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
               </NavLink>
             </div>
 
-            {followingInfo.following[theChar.user_id] ?
+            {followingInfo[theChar.user_id] ?
               <div className={styles.specific_char_follow_unfollow_button}>
                 <NavLink to='/' onClick={event => handleFollowOrUnfollow(event, theChar.user_id)}>
                   Unfollow
