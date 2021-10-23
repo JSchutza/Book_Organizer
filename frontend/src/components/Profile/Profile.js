@@ -19,6 +19,7 @@ import styles from "./profile.module.css";
 import defaultImg from "../../icons/default_user.jpg";
 import LoadScreen from "../LoadScreen";
 import UpdateUserForm from "../UpdateUserForm";
+import Followers from "../Followers";
 
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
@@ -28,6 +29,7 @@ const Profile = () => {
   const [ loading, setLoading ] = useState(false);
   const [ updatePayload, setUpdatePayload ] = useState(null);
   const [ openUpdateModal, setUpdateModal ] = useState(false);
+  const [ followers, setFollowersModal ] = useState(false);
 
   const { isUser } = useUser();
   const bookInfo = useSelector((store) => store.booksReducer.books);
@@ -85,20 +87,26 @@ const Profile = () => {
   const closeUpdateModal = () => {
     dispatch(resetErrors());
     setUpdateModal(false);
-  }
+  };
 
 
 
   const handleFollowerViewClick = event => {
     event.preventDefault();
-  }
+    setFollowersModal(true);
+  };
 
 
 
   const handleFollowingViewClick = event => {
     event.preventDefault();
-  }
+  };
 
+
+
+  const closeFollowersModal = () => {
+    setFollowersModal(false);
+  };
 
 
 
@@ -133,17 +141,22 @@ const Profile = () => {
 
 
           {followersInfo ?
-            <NavLink to='/' onClick={event => handleFollowerViewClick(event)}>
-              {Object.keys(followersInfo).length} followers
-            </NavLink>
+            <li>
+              <NavLink to='/' onClick={event => handleFollowerViewClick(event)}>
+                {Object.keys(followersInfo).length} followers
+              </NavLink>
+            </li>
             :
             <></>
           }
 
+
           {followingInfo ?
-            <NavLink to='/' onClick={event => handleFollowingViewClick(event)}>
-              {Object.keys(followingInfo).length} following
-            </NavLink>
+            <li>
+              <NavLink to='/' onClick={event => handleFollowingViewClick(event)}>
+                {Object.keys(followingInfo).length} following
+              </NavLink>
+            </li>
             :
             <></>
           }
@@ -244,6 +257,27 @@ const Profile = () => {
 
 
 
+
+  const FollowersModal = () => {
+    return (
+      <>
+        <ReactModal
+          isOpen={followers}
+          onRequestClose={closeFollowersModal}
+          style={characterFormStyle}
+          appElement={document.getElementById('root')}
+        >
+          <Followers />
+
+        </ReactModal>
+      </>
+    );
+  };
+
+
+
+
+
 // only return if all of the information is available
   return bookInfo && pollInfo && followersInfo && followingInfo && (
     <>
@@ -275,6 +309,8 @@ const Profile = () => {
       <UsersBooks />
 
       <UsersPolls />
+
+      <FollowersModal />
 
     </>
   )
