@@ -1,9 +1,13 @@
 
 
-// important
+// NOTES
 // used within a modal. need the dispatch and selector in the outer component
 // that renders this one so that you can just pass the selected object into the
 // payload prop
+
+import Book from "../Book";
+
+import styles from "./followers.module.css";
 
 
 const Followers = ({ payload }) => {
@@ -11,31 +15,48 @@ const Followers = ({ payload }) => {
 
 
 
-  const UserInfo = () => {
+  const UserInfo = ({ each }) => {
+    return (
+      <div>
+        <div>
+          <img src={each.avatar} />
+        </div>
+
+        <div>
+          <li>Search Id: {each.search_id} </li>
+          <li>Username: {each.user_name}</li>
+          <li>Email: {each.email}</li>
+          <li>Bio: {each.bio} </li>
+          <li>Birthday: {each.birthday} </li>
+          <li>Address: {each.location} </li>
+        </div>
+      </div>
+    );
+  };
+
+
+
+  const TheirBooks = ({ each }) => {
     return (
       <>
-        {/* avatar */}
-        <div></div>
-        {/* text information */}
-        <div></div>
+        <div>
+          <h2> Books </h2>
+        </div>
+
+        <div>
+          {Object.values(each.books).map(eachBook => (
+            <div>
+
+            </div>
+          ))}
+        </div>
       </>
     );
   };
 
 
 
-  const TheirBooks = () => {
-    return (
-      <>
-        {/* books */}
-        <div></div>
-      </>
-    );
-  };
-
-
-
-  const TheirCharacters = () => {
+  const TheirCharacters = ({ each }) => {
     return (
       <>
         {/* characters */}
@@ -46,7 +67,7 @@ const Followers = ({ payload }) => {
 
 
 
-  const TheirPolls = () => {
+  const TheirPolls = ({ each }) => {
     return (
       <>
         {/* polls */}
@@ -57,7 +78,7 @@ const Followers = ({ payload }) => {
 
 
 
-  const TheirFollowers = () => {
+  const TheirFollowers = ({ each }) => {
     return (
       <>
         {/* followers */}
@@ -68,7 +89,7 @@ const Followers = ({ payload }) => {
 
 
 
-  const TheirFollowing = () => {
+  const TheirFollowing = ({ each }) => {
     return (
       <>
         {/* following */}
@@ -83,6 +104,12 @@ const Followers = ({ payload }) => {
     <>
     {Object.values(payload).map(eachFollower => (
       <>
+        <UserInfo each={eachFollower} />
+        <TheirBooks each={eachFollower} />
+        <TheirCharacters each={eachFollower} />
+        <TheirPolls each={eachFollower} />
+        <TheirFollowers each={eachFollower} />
+        <TheirFollowing each={eachFollower} />
       </>
     ))}
     </>
