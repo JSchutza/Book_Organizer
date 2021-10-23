@@ -267,7 +267,7 @@ const Profile = () => {
           style={characterFormStyle}
           appElement={document.getElementById('root')}
         >
-          <Followers />
+          <Followers payload={followersInfo} />
 
         </ReactModal>
       </>
