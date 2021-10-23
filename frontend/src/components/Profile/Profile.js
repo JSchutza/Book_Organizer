@@ -161,7 +161,7 @@ const Profile = () => {
 
             {followingInfo ?
             <NavLink to='/' onClick={event => handleFollowingViewClick(event)}>
-                {Object.keys(followingInfo.following).length} following
+                {Object.keys(followingInfo).length} following
             </NavLink>
             :
               <></>
