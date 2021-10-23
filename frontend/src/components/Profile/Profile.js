@@ -30,6 +30,7 @@ const Profile = () => {
   const [ updatePayload, setUpdatePayload ] = useState(null);
   const [ openUpdateModal, setUpdateModal ] = useState(false);
   const [ followers, setFollowersModal ] = useState(false);
+  const [ following, setFollowingModal ] = useState(false);
 
   const { isUser } = useUser();
   const bookInfo = useSelector((store) => store.booksReducer.books);
@@ -100,6 +101,7 @@ const Profile = () => {
 
   const handleFollowingViewClick = event => {
     event.preventDefault();
+    setFollowingModal(true);
   };
 
 
@@ -107,6 +109,12 @@ const Profile = () => {
   const closeFollowersModal = () => {
     setFollowersModal(false);
   };
+
+
+
+  const closeFollowingModal = () => {
+    setFollowingModal(false);
+  }
 
 
 
@@ -276,6 +284,25 @@ const Profile = () => {
 
 
 
+  const FollowingModal = () => {
+    return (
+      <>
+        <ReactModal
+          isOpen={following}
+          onRequestClose={closeFollowingModal}
+          style={characterFormStyle}
+          appElement={document.getElementById('root')}
+        >
+          {/* <Followers payload={followersInfo} /> */}
+
+        </ReactModal>
+      </>
+    );
+  };
+
+
+
+
 
 
 // only return if all of the information is available
@@ -311,6 +338,8 @@ const Profile = () => {
       <UsersPolls />
 
       <FollowersModal />
+
+      <FollowingModal />
 
     </>
   )
