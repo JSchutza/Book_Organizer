@@ -5,7 +5,7 @@
 // that renders this one so that you can just pass the selected object into the
 // payload prop
 
-import Book from "../Book";
+import { Book } from "../Book";
 
 import styles from "./followers.module.css";
 
@@ -46,7 +46,12 @@ const Followers = ({ payload }) => {
         <div>
           {Object.values(each.books).map(eachBook => (
             <div>
-
+              <Book
+                bookId={eachBook.id}
+                title={eachBook.the_title}
+                creatorId={eachBook.creator_id}
+                creationDate={eachBook.created_at}
+              />
             </div>
           ))}
         </div>
@@ -59,8 +64,24 @@ const Followers = ({ payload }) => {
   const TheirCharacters = ({ each }) => {
     return (
       <>
-        {/* characters */}
-        <div></div>
+        <div>
+          <h2> Characters </h2>
+        </div>
+
+        <div>
+          {Object.values(each.characters).map(eachChar => (
+            <div>
+                <div>
+                  <img src={eachChar.avatar} />
+                </div>
+
+                <div>
+                  <h3> {eachChar.character_name} </h3>
+                  <p> {eachChar.character_label} </p>
+                </div>
+            </div>
+          ))}
+        </div>
       </>
     );
   };
@@ -70,7 +91,6 @@ const Followers = ({ payload }) => {
   const TheirPolls = ({ each }) => {
     return (
       <>
-        {/* polls */}
         <div></div>
       </>
     );
