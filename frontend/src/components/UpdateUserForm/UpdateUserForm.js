@@ -2,11 +2,14 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { thunk_updateUser } from "../../store/thunks/session.js";
+import { resetErrors } from '../../store/actions/errors.js';
 import { useUser } from "../../context/UserContext.js";
+import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 import Errors from '../Errors';
 import ImgPreview from '../ImgPreview';
 
+import ReactModal from 'react-modal';
 
 import styles from "./updateuserform.module.css";
 
@@ -24,10 +27,18 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
   const [ urlpreview, setUrlPreview ] = useState(null);
   const [ imgModal, setImgModal ] = useState(false);
   const [ loading, setLoading ] = useState(false);
+  const [ errorModal, setOpenErrorModal ] = useState(false);
   const dispatch = useDispatch();
   const { isUser } = useUser();
+  const { characterFormStyle } = useModalStyle();
 
 
+
+
+  const closeErrorModal = () => {
+    dispatch(resetErrors());
+    setOpenErrorModal(false);
+  }
 
 
 
@@ -51,6 +62,7 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
       closeUpdateModal();
     }
     setLoading(false);
+    setOpenErrorModal(true);
   }
 
 
@@ -85,7 +97,17 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
 
   return (
     <>
-      <Errors />
+
+      <ReactModal
+        isOpen={errorModal}
+        onRequestClose={closeErrorModal}
+        style={characterFormStyle}
+        appElement={document.getElementById('root')}
+      >
+        <Errors />
+
+      </ReactModal>
+
 
       <ImgPreview
         urlpreview={urlpreview}
@@ -94,6 +116,7 @@ const UpdateUserForm = ({ payload, closeUpdateModal }) => {
         openModal={imgModal}
         setOpenModal={setImgModal}
       />
+
 
       {loading ? <p>Updating your account </p> : null}
 

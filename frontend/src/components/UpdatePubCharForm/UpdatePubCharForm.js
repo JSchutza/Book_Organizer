@@ -21,7 +21,7 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
   const [ charname, setCharname ] = useState(character_name);
   const [ charlabel, setCharlabel ] = useState(character_label);
   const [ urlpreview, setUrlPreview ] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [ loading, setLoading ] = useState(false);
   const dispatch = useDispatch();
   const { characterFormStyle } = useModalStyle();
 
