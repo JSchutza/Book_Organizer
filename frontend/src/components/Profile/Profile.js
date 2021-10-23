@@ -108,6 +108,142 @@ const Profile = () => {
 
 
 
+
+  // clean up some of the Profile page component logic
+  const UserInfo = () => {
+    return (
+      <div className={styles.user_info_wrap}>
+        <div className={styles.user_avatar}>
+          {isUser.avatar === null ?
+            <img src={defaultImg} alt='avatar' />
+            :
+            <img src={isUser.avatar} alt='avatar' />
+          }
+        </div>
+
+        <div className={styles.user_text}>
+
+          <li>Search Id: {isUser.search_id} </li>
+          <li>Username: {isUser.user_name}</li>
+          <li>Email: {isUser.email}</li>
+          <li>Bio: {isUser.bio} </li>
+          <li>Birthday: {isUser.birthday} </li>
+          <li>Address: {isUser.location} </li>
+
+
+
+          {followersInfo ?
+            <NavLink to='/' onClick={event => handleFollowerViewClick(event)}>
+              {Object.keys(followersInfo).length} followers
+            </NavLink>
+            :
+            <></>
+          }
+
+          {followingInfo ?
+            <NavLink to='/' onClick={event => handleFollowingViewClick(event)}>
+              {Object.keys(followingInfo).length} following
+            </NavLink>
+            :
+            <></>
+          }
+        </div>
+      </div>
+    );
+  };
+
+
+
+  const DeleteOrUpdateAccount = () => {
+    return (
+      <>
+        {isUser.id === 1 ? null :
+          <div className={styles.user_buttons_wrap}>
+            <div className={styles.update_user_button}>
+              <ToolTip content={'Update Info'}>
+                <NavLink to='/' onClick={event => handleUpdate(event, {
+                  avatar: isUser.avatar,
+                  username: isUser.user_name,
+                  email: isUser.email,
+                  bio: isUser.bio,
+                  location: isUser.location,
+                  birthday: isUser.birthday
+                })}> <GrUpdate /> </NavLink>
+              </ToolTip>
+            </div>
+
+            <div className={styles.delete_user_button}>
+              <ToolTip content={'Delete Account'}>
+                <NavLink to='/' onClick={event => handleDelete(event)}> <RiDeleteBinFill /> </NavLink>
+              </ToolTip>
+            </div>
+          </div>
+        }
+      </>
+    );
+  };
+
+
+
+  const UsersBooks = () => {
+    return (
+      <>
+        <div className={styles.recent_books_header}>
+          <h2>Recently Created Books</h2>
+        </div>
+
+        {/* book info here */}
+        {Object.values(bookInfo).length !== 0 ?
+          <div className={styles.book_link_wrap}>
+            {Object.values(bookInfo).map(eachBook => (
+              <div className={styles.each_book_link}>
+                <Book
+                  bookId={eachBook.id}
+                  title={eachBook.the_title}
+                  creatorId={eachBook.creator_id}
+                  creationDate={eachBook.created_at}
+                />
+              </div>
+            ))}
+          </div>
+          :
+          <h3> You currently do not have any books. </h3>
+        }
+      </>
+    );
+  };
+
+
+
+  const UsersPolls = () => {
+    return (
+      <>
+        <div className={styles.recent_polls_header}>
+          <h2>Recently Created polls</h2>
+        </div>
+
+
+        {Object.values(pollInfo).length !== 0 ?
+          <>
+            <div className={styles.poll_link_wrap}>
+              {Object.values(pollInfo).map(eachPoll => (
+                <div className={styles.each_poll_link}>
+                  <NavLink to={`/comments/${eachPoll.id}`} exact>
+                    <h3> {eachPoll.title} </h3>
+                  </NavLink>
+                </div>
+              ))}
+            </div>
+          </>
+          :
+          <h3> You currently do not have any polls. </h3>
+        }
+      </>
+    );
+  };
+
+
+
 // only return if all of the information is available
   return bookInfo && pollInfo && followersInfo && followingInfo && (
     <>
@@ -131,107 +267,15 @@ const Profile = () => {
       </div>
 
       {/* users info here */}
-    <div className={styles.user_info_wrap}>
-          <div className={styles.user_avatar}>
-            {isUser.avatar === null ?
-              <img src={defaultImg} alt='avatar' />
-            :
-              <img src={isUser.avatar} alt='avatar' />
-            }
-          </div>
+      <UserInfo />
 
-            <div className={styles.user_text}>
-
-            <li>Search Id: {isUser.search_id} </li>
-            <li>Username: {isUser.user_name}</li>
-            <li>Email: {isUser.email}</li>
-            <li>Bio: {isUser.bio} </li>
-            <li>Birthday: {isUser.birthday} </li>
-            <li>Address: {isUser.location} </li>
+      <DeleteOrUpdateAccount />
 
 
+      <UsersBooks />
 
-            {followersInfo ?
-            <NavLink to='/' onClick={event => handleFollowerViewClick(event)}>
-                {Object.keys(followersInfo).length} followers
-            </NavLink>
-            :
-              <></>
-            }
+      <UsersPolls />
 
-            {followingInfo ?
-            <NavLink to='/' onClick={event => handleFollowingViewClick(event)}>
-                {Object.keys(followingInfo).length} following
-            </NavLink>
-            :
-              <></>
-            }
-            </div>
-    </div>
-
-
-    {isUser.id === 1 ? null :
-      <div className={styles.user_buttons_wrap}>
-        <div className={styles.update_user_button}>
-          <ToolTip content={'Update Info'}>
-            <NavLink to='/' onClick={event => handleUpdate(event, {
-              avatar: isUser.avatar,
-              username: isUser.user_name,
-              email: isUser.email,
-              bio: isUser.bio,
-              location: isUser.location,
-              birthday: isUser.birthday
-              })}> <GrUpdate /> </NavLink>
-          </ToolTip>
-        </div>
-
-        <div className={styles.delete_user_button}>
-          <ToolTip content={'Delete Account'}>
-            <NavLink to='/' onClick={event => handleDelete(event)}> <RiDeleteBinFill /> </NavLink>
-          </ToolTip>
-        </div>
-      </div>
-     }
-
-
-      <div className={styles.recent_books_header}>
-        <h2>Recently Created Books</h2>
-      </div>
-
-      {/* book info here */}
-        {bookInfo ?
-        <div className={styles.book_link_wrap}>
-        {Object.values(bookInfo).map(eachBook => (
-          <div className={styles.each_book_link}>
-            <Book bookId={eachBook.id} title={eachBook.the_title} creatorId={eachBook.creator_id} creationDate={eachBook.created_at} />
-          </div>
-        ))}
-      </div>
-          :
-        <h1>Loading books... </h1>
-        }
-
-
-        <div className={styles.recent_polls_header}>
-          <h2>Recently Created polls</h2>
-        </div>
-
-
-          {pollInfo ?
-            <>
-            <div className={styles.poll_link_wrap}>
-            {Object.values(pollInfo).map(eachPoll => (
-              <div className={styles.each_poll_link}>
-                <NavLink to={`/comments/${eachPoll.id}`} exact>
-                  <h3> {eachPoll.title} </h3>
-                </NavLink>
-              </div>
-            ))}
-            </div>
-            </>
-            :
-            <h3> You currently do not have any polls. </h3>
-          }
     </>
   )
 
