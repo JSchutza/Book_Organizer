@@ -4,6 +4,7 @@
 // used within a modal. need the dispatch and selector in the outer component
 // that renders this one so that you can just pass the selected object into the
 // payload prop
+import { NavLink } from 'react-router-dom';
 
 import { Book } from "../Book";
 
@@ -91,7 +92,19 @@ const Followers = ({ payload }) => {
   const TheirPolls = ({ each }) => {
     return (
       <>
-        <div></div>
+        <div className={styles.recent_polls_header}>
+          <h2> Polls </h2>
+        </div>
+
+        <div className={styles.poll_link_wrap}>
+          {Object.values(each.polls).map(eachPoll => (
+            <div className={styles.each_poll_link}>
+              <NavLink to={`/comments/${eachPoll.id}`} exact>
+                <h3> {eachPoll.title} </h3>
+              </NavLink>
+            </div>
+          ))}
+        </div>
       </>
     );
   };
@@ -101,8 +114,17 @@ const Followers = ({ payload }) => {
   const TheirFollowers = ({ each }) => {
     return (
       <>
-        {/* followers */}
-        <div></div>
+        <div>
+          <h2> Followers </h2>
+        </div>
+
+        <div>
+          {Object.values(each.followers).map(eachFollower => (
+            <div>
+              <li> {eachFollower} </li>
+            </div>
+          ))}
+        </div>
       </>
     );
   };
@@ -112,8 +134,17 @@ const Followers = ({ payload }) => {
   const TheirFollowing = ({ each }) => {
     return (
       <>
-        {/* following */}
-        <div></div>
+        <div>
+          <h2> Following </h2>
+        </div>
+
+        <div>
+          {Object.values(each.following).map(eachUser => (
+            <div>
+              <li> {eachUser} </li>
+            </div>
+          ))}
+        </div>
       </>
     );
   };
