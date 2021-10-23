@@ -155,7 +155,12 @@ const BookViewer = () => {
       </ReactModal>
 
 
-
+    {/* if the books data is empty */}
+    {Object.values(bookInfo).length === 0 ?
+      <h1>You currently do not have any books!</h1>
+      :
+      null
+    }
 
 
     <div className={styles.book_link_wrapper}>
