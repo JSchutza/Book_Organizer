@@ -36,7 +36,7 @@ const Profile = () => {
   const followingInfo = useSelector(store => store.followingReducer.following);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentStyle } = useModalStyle();
+  const { characterFormStyle } = useModalStyle();
 
   let endLoad;
 
@@ -115,7 +115,7 @@ const Profile = () => {
       <ReactModal
         isOpen={openUpdateModal}
         onRequestClose={closeUpdateModal}
-        style={currentStyle}
+        style={characterFormStyle}
         appElement={document.getElementById('root')}
       >
 
