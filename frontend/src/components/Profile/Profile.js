@@ -19,6 +19,7 @@ import styles from "./profile.module.css";
 import defaultImg from "../../icons/default_user.jpg";
 import LoadScreen from "../LoadScreen";
 import UpdateUserForm from "../UpdateUserForm";
+import Followers from "../Followers";
 
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
@@ -28,6 +29,8 @@ const Profile = () => {
   const [ loading, setLoading ] = useState(false);
   const [ updatePayload, setUpdatePayload ] = useState(null);
   const [ openUpdateModal, setUpdateModal ] = useState(false);
+  const [ followers, setFollowersModal ] = useState(false);
+  const [ following, setFollowingModal ] = useState(false);
 
   const { isUser } = useUser();
   const bookInfo = useSelector((store) => store.booksReducer.books);
@@ -36,7 +39,7 @@ const Profile = () => {
   const followingInfo = useSelector(store => store.followingReducer.following);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentStyle } = useModalStyle();
+  const { characterFormStyle } = useModalStyle();
 
   let endLoad;
 
@@ -85,25 +88,219 @@ const Profile = () => {
   const closeUpdateModal = () => {
     dispatch(resetErrors());
     setUpdateModal(false);
-  }
+  };
 
 
 
   const handleFollowerViewClick = event => {
     event.preventDefault();
-  }
+    setFollowersModal(true);
+  };
 
 
 
   const handleFollowingViewClick = event => {
     event.preventDefault();
-  }
+    setFollowingModal(true);
+  };
 
+
+
+  const closeFollowersModal = () => {
+    setFollowersModal(false);
+  };
+
+
+
+  const closeFollowingModal = () => {
+    setFollowingModal(false);
+  }
 
 
 
 // if there is not a user session and it is still loading
   if (!isUser || !loading) return (<LoadScreen />);
+
+
+
+
+
+  // clean up some of the Profile page component logic
+  const UserInfo = () => {
+    return (
+      <div className={styles.user_info_wrap}>
+        <div className={styles.user_avatar}>
+          {isUser.avatar === null ?
+            <img src={defaultImg} alt='avatar' />
+            :
+            <img src={isUser.avatar} alt='avatar' />
+          }
+        </div>
+
+        <div className={styles.user_text}>
+
+          <li>Search Id: {isUser.search_id} </li>
+          <li>Username: {isUser.user_name}</li>
+          <li>Email: {isUser.email}</li>
+          <li>Bio: {isUser.bio} </li>
+          <li>Birthday: {isUser.birthday} </li>
+          <li>Address: {isUser.location} </li>
+
+
+
+          {followersInfo ?
+            <li>
+              <NavLink to='/' onClick={event => handleFollowerViewClick(event)}>
+                {Object.keys(followersInfo).length} followers
+              </NavLink>
+            </li>
+            :
+            <></>
+          }
+
+
+          {followingInfo ?
+            <li>
+              <NavLink to='/' onClick={event => handleFollowingViewClick(event)}>
+                {Object.keys(followingInfo).length} following
+              </NavLink>
+            </li>
+            :
+            <></>
+          }
+        </div>
+      </div>
+    );
+  };
+
+
+
+  const DeleteOrUpdateAccount = () => {
+    return (
+      <>
+        {isUser.id === 1 ? null :
+          <div className={styles.user_buttons_wrap}>
+            <div className={styles.update_user_button}>
+              <ToolTip content={'Update Info'}>
+                <NavLink to='/' onClick={event => handleUpdate(event, {
+                  avatar: isUser.avatar,
+                  username: isUser.user_name,
+                  email: isUser.email,
+                  bio: isUser.bio,
+                  location: isUser.location,
+                  birthday: isUser.birthday
+                })}> <GrUpdate /> </NavLink>
+              </ToolTip>
+            </div>
+
+            <div className={styles.delete_user_button}>
+              <ToolTip content={'Delete Account'}>
+                <NavLink to='/' onClick={event => handleDelete(event)}> <RiDeleteBinFill /> </NavLink>
+              </ToolTip>
+            </div>
+          </div>
+        }
+      </>
+    );
+  };
+
+
+
+  const UsersBooks = () => {
+    return (
+      <>
+        <div className={styles.recent_books_header}>
+          <h2>Recently Created Books</h2>
+        </div>
+
+        {/* book info here */}
+        {Object.values(bookInfo).length !== 0 ?
+          <div className={styles.book_link_wrap}>
+            {Object.values(bookInfo).map(eachBook => (
+              <div className={styles.each_book_link}>
+                <Book
+                  bookId={eachBook.id}
+                  title={eachBook.the_title}
+                  creatorId={eachBook.creator_id}
+                  creationDate={eachBook.created_at}
+                />
+              </div>
+            ))}
+          </div>
+          :
+          <h3> You currently do not have any books. </h3>
+        }
+      </>
+    );
+  };
+
+
+
+  const UsersPolls = () => {
+    return (
+      <>
+        <div className={styles.recent_polls_header}>
+          <h2>Recently Created polls</h2>
+        </div>
+
+
+        {Object.values(pollInfo).length !== 0 ?
+          <>
+            <div className={styles.poll_link_wrap}>
+              {Object.values(pollInfo).map(eachPoll => (
+                <div className={styles.each_poll_link}>
+                  <NavLink to={`/comments/${eachPoll.id}`} exact>
+                    <h3> {eachPoll.title} </h3>
+                  </NavLink>
+                </div>
+              ))}
+            </div>
+          </>
+          :
+          <h3> You currently do not have any polls. </h3>
+        }
+      </>
+    );
+  };
+
+
+
+
+  const FollowersModal = () => {
+    return (
+      <>
+        <ReactModal
+          isOpen={followers}
+          onRequestClose={closeFollowersModal}
+          style={characterFormStyle}
+          appElement={document.getElementById('root')}
+        >
+          <Followers payload={followersInfo} />
+
+        </ReactModal>
+      </>
+    );
+  };
+
+
+
+  const FollowingModal = () => {
+    return (
+      <>
+        <ReactModal
+          isOpen={following}
+          onRequestClose={closeFollowingModal}
+          style={characterFormStyle}
+          appElement={document.getElementById('root')}
+        >
+          {/* <Followers payload={followersInfo} /> */}
+
+        </ReactModal>
+      </>
+    );
+  };
+
+
 
 
 
@@ -115,7 +312,7 @@ const Profile = () => {
       <ReactModal
         isOpen={openUpdateModal}
         onRequestClose={closeUpdateModal}
-        style={currentStyle}
+        style={characterFormStyle}
         appElement={document.getElementById('root')}
       >
 
@@ -131,107 +328,19 @@ const Profile = () => {
       </div>
 
       {/* users info here */}
-    <div className={styles.user_info_wrap}>
-          <div className={styles.user_avatar}>
-            {isUser.avatar === null ?
-              <img src={defaultImg} alt='avatar' />
-            :
-              <img src={isUser.avatar} alt='avatar' />
-            }
-          </div>
+      <UserInfo />
 
-            <div className={styles.user_text}>
-
-            <li>Search Id: {isUser.search_id} </li>
-            <li>Username: {isUser.user_name}</li>
-            <li>Email: {isUser.email}</li>
-            <li>Bio: {isUser.bio} </li>
-            <li>Birthday: {isUser.birthday} </li>
-            <li>Address: {isUser.location} </li>
+      <DeleteOrUpdateAccount />
 
 
+      <UsersBooks />
 
-            {followersInfo ?
-            <NavLink to='/' onClick={event => handleFollowerViewClick(event)}>
-                {Object.keys(followersInfo).length} followers
-            </NavLink>
-            :
-              <></>
-            }
+      <UsersPolls />
 
-            {followingInfo ?
-            <NavLink to='/' onClick={event => handleFollowingViewClick(event)}>
-                {Object.keys(followingInfo.following).length} following
-            </NavLink>
-            :
-              <></>
-            }
-            </div>
-    </div>
+      <FollowersModal />
 
+      <FollowingModal />
 
-    {isUser.id === 1 ? null :
-      <div className={styles.user_buttons_wrap}>
-        <div className={styles.update_user_button}>
-          <ToolTip content={'Update Info'}>
-            <NavLink to='/' onClick={event => handleUpdate(event, {
-              avatar: isUser.avatar,
-              username: isUser.user_name,
-              email: isUser.email,
-              bio: isUser.bio,
-              location: isUser.location,
-              birthday: isUser.birthday
-              })}> <GrUpdate /> </NavLink>
-          </ToolTip>
-        </div>
-
-        <div className={styles.delete_user_button}>
-          <ToolTip content={'Delete Account'}>
-            <NavLink to='/' onClick={event => handleDelete(event)}> <RiDeleteBinFill /> </NavLink>
-          </ToolTip>
-        </div>
-      </div>
-     }
-
-
-      <div className={styles.recent_books_header}>
-        <h2>Recently Created Books</h2>
-      </div>
-
-      {/* book info here */}
-        {bookInfo ?
-        <div className={styles.book_link_wrap}>
-        {Object.values(bookInfo).map(eachBook => (
-          <div className={styles.each_book_link}>
-            <Book bookId={eachBook.id} title={eachBook.the_title} creatorId={eachBook.creator_id} creationDate={eachBook.created_at} />
-          </div>
-        ))}
-      </div>
-          :
-        <h1>Loading books... </h1>
-        }
-
-
-        <div className={styles.recent_polls_header}>
-          <h2>Recently Created polls</h2>
-        </div>
-
-
-          {pollInfo ?
-            <>
-            <div className={styles.poll_link_wrap}>
-            {Object.values(pollInfo).map(eachPoll => (
-              <div className={styles.each_poll_link}>
-                <NavLink to={`/comments/${eachPoll.id}`} exact>
-                  <h3> {eachPoll.title} </h3>
-                </NavLink>
-              </div>
-            ))}
-            </div>
-            </>
-            :
-            <h3> You currently do not have any polls. </h3>
-          }
     </>
   )
 

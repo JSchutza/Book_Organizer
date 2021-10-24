@@ -1,14 +1,12 @@
-import { GET_WHO_THEIR_FOLLOWING, FOLLOW_OR_UNFOLLOW_TRIGGERED } from '../types'
+import { GET_WHO_THEIR_FOLLOWING } from '../types'
 
 
 
 
-const followingReducer = (state = { following: null, message: null }, action) => {
+const followingReducer = (state = { following: null }, action) => {
   switch (action.type) {
     case GET_WHO_THEIR_FOLLOWING:
-      return { ...state, following: action.following };
-    case FOLLOW_OR_UNFOLLOW_TRIGGERED:
-      return { ...state, message: action.message };
+      return { ...state, following: { ...action.following.following } };
     default:
       return state;
   }

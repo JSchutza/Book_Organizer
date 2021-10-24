@@ -104,6 +104,13 @@ const Polls = () => {
 
     return (
       <div className={styles.each_personal_poll_wrap}>
+        {/* if the polls data is empty */}
+        {Object.values(polls).length === 0 ?
+          <h1>You currently do not have any polls!</h1>
+          :
+          null
+        }
+
         {Object.values(polls).reverse().map(eachPoll => (
           <>
 
