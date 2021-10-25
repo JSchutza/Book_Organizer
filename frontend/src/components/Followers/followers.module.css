@@ -19,3 +19,9 @@
   object-fit: contain;
   width: 10vw;
 }
+
+
+
+.user_info_wrap li {
+  padding: 15px;
+}

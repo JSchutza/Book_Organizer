@@ -19,10 +19,7 @@ const Followers = ({ payload }) => {
       <>
         <NavLink to={`/user/${each.search_id}`} >
             <img src={each.avatar} />
-
-          <div>
             <li> {each.user_name}</li>
-          </div>
           </NavLink>
       </>
     );
