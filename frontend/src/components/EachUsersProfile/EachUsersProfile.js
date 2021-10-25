@@ -44,6 +44,42 @@ const EachUsersProfile = () => {
 
 
 
+  const UserInfo = ({ each }) => {
+     return (
+       <>
+        <div className={styles.user_avatar}>
+          <img src={each.avatar} alt='avatar' />
+        </div>
+
+
+        <div className={styles.user_text}>
+          <p>Search Id: {each.search_id} </p>
+          <br />
+          <p>Username: {each.user_name}</p>
+          <br />
+          <p>Email: {each.email}</p>
+          <br />
+          <p>Bio: {each.bio} </p>
+          <br />
+          <p>Birthday: {each.birthday} </p>
+          <br />
+          <p>Address: {each.location} </p>
+          <br />
+
+          <li>
+            {Object.values(each.followers).length} followers
+          </li>
+
+
+          <li>
+            {Object.values(each.following).length} following
+          </li>
+        </div>
+      </>
+     );
+
+   };
+
 
 
 
@@ -52,38 +88,8 @@ const EachUsersProfile = () => {
       <div className={styles.user_info_wrap}>
         {Object.values(searchedUserInfo).map(each => (
           <>
-            <div className={styles.user_avatar}>
-              <img src={each.avatar} alt='avatar' />
-            </div>
 
-
-            <div className={styles.user_text}>
-
-              <p>Search Id: {each.search_id} </p>
-              <br />
-              <p>Username: {each.user_name}</p>
-              <br />
-              <p>Email: {each.email}</p>
-              <br />
-              <p>Bio: {each.bio} </p>
-              <br />
-              <p>Birthday: {each.birthday} </p>
-              <br />
-              <p>Address: {each.location} </p>
-              <br />
-
-              <li>
-                {Object.values(each.followers).length} followers
-              </li>
-
-
-              <li>
-                {Object.values(each.following).length} following
-              </li>
-
-            </div>
-
-
+            <UserInfo each={each} />
 
 
             <div className={styles.users_characters_header}>
