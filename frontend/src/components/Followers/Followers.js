@@ -17,18 +17,20 @@ const Followers = ({ payload }) => {
   const UserInfo = ({ each }) => {
     return (
       <div>
-        <div>
-          <img src={each.avatar} />
-        </div>
+        <NavLink to={`/user/${each.search_id}`} >
+          <div>
+            <img src={each.avatar} />
+          </div>
 
-        <div>
-          <li>Search Id: {each.search_id} </li>
-          <li>Username: {each.user_name}</li>
-          <li>Email: {each.email}</li>
-          <li>Bio: {each.bio} </li>
-          <li>Birthday: {each.birthday} </li>
-          <li>Address: {each.location} </li>
-        </div>
+          <div>
+            <li>Search Id: {each.search_id} </li>
+            <li>Username: {each.user_name}</li>
+            <li>Email: {each.email}</li>
+            <li>Bio: {each.bio} </li>
+            <li>Birthday: {each.birthday} </li>
+            <li>Address: {each.location} </li>
+          </div>
+          </NavLink>
       </div>
     );
   };

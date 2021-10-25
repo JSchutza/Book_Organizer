@@ -273,7 +273,7 @@ const Profile = () => {
         <ReactModal
           isOpen={followers}
           onRequestClose={closeFollowersModal}
-          // style={characterFormStyle}
+          style={characterFormStyle}
           appElement={document.getElementById('root')}
         >
           {Object.values(followersInfo).length === 0 ?
