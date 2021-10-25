@@ -1,7 +1,7 @@
 
 
 import MainRouter from "./components/MainRouter";
-
+import LoadScreen from "./components/LoadScreen";
 
 
 const App = () => {

@@ -5,40 +5,38 @@
 
 
 .loader_wraper {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 
 
-.loader_header {
-
-}
 
 
 
 .loader_img {
-    display: flex;
-    width: 100%;
-    background: black;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    height: 1000px;
+  display: flex;
+  width: 100%;
+  background: black;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 
 .loader_img img {
-    display: flex;
-    width: 75%;
-    animation: grow 1s infinite;
+  display: flex;
+  width: 75%;
+  animation: grow 1s infinite;
 }
+
+
 
 @keyframes grow {
   0% {
