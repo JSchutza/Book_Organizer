@@ -69,7 +69,7 @@ const SignUpForm = ({ closeModal }) => {
 
 
 
-  if (loading) return (<SuccessMessage />);
+  if (loading) return (<SuccessMessage message='Creating your account.' />);
 
 
 
