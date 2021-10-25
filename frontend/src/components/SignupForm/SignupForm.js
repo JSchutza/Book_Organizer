@@ -107,7 +107,7 @@ const SignUpForm = ({ closeModal }) => {
 
             <label>Email</label>
             <input
-              type="text"
+              type="email"
               name="email"
               aria-label='Email'
               placeholder="Your Email Here"
