@@ -8,6 +8,7 @@ import { processFile } from "../../services/protectedFileUpload.js";
 
 import Errors from "../Errors";
 import ImgPreview from '../ImgPreview';
+import SuccessMessage from "../SuccessMessage";
 
 
 import styles from "./createcharacterform.module.css";
@@ -67,6 +68,9 @@ const CreateCharacterForm = ({ closeModal }) => {
 
 
 
+  if (loading) return (<SuccessMessage message='Creating your character.' />);
+
+
 
 
   return (
@@ -81,8 +85,6 @@ const CreateCharacterForm = ({ closeModal }) => {
         openModal={imgModal}
         setOpenModal={setImgModal}
       />
-
-      {loading ? <p>Creating your character </p> : null}
 
       <div className={styles.create_char_wrap}>
 
