@@ -154,6 +154,8 @@ const CharacterPage = () => {
 
 // displays if a specific character is clicked on
   if(specificChar){
+    
+
     return (
         <SpecificPubChar
           theChar={char}
