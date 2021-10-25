@@ -39,14 +39,15 @@ const Followers = ({ payload }) => {
 
 
   return (
-    <>
+    <div className={styles.user_info_wrap} >
     {Object.values(payload).map(eachFollower => (
-      <>
+      <div>
         <UserInfo each={eachFollower} />
-      </>
+      </div>
     ))}
-    </>
-  )
+    </div>
+  );
+
 };
 
 export default Followers;

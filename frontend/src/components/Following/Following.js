@@ -37,13 +37,13 @@ const Following = ({ payload }) => {
 
 
   return (
-    <>
+    <div className={styles.user_info_wrap} >
       {Object.values(payload).map(eachFollower => (
         <>
           <UserInfo each={eachFollower} />
         </>
       ))}
-    </>
+    </div>
   )
 };
 

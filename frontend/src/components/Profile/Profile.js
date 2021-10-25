@@ -40,7 +40,7 @@ const Profile = () => {
   const followingInfo = useSelector(store => store.followingReducer.following);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { characterFormStyle } = useModalStyle();
+  const { followerStyle, characterFormStyle } = useModalStyle();
 
   let endLoad;
 
@@ -273,7 +273,7 @@ const Profile = () => {
         <ReactModal
           isOpen={followers}
           onRequestClose={closeFollowersModal}
-          style={characterFormStyle}
+          style={followerStyle}
           appElement={document.getElementById('root')}
         >
           {Object.values(followersInfo).length === 0 ?
@@ -295,7 +295,7 @@ const Profile = () => {
         <ReactModal
           isOpen={following}
           onRequestClose={closeFollowingModal}
-          style={characterFormStyle}
+          style={followerStyle}
           appElement={document.getElementById('root')}
         >
 
