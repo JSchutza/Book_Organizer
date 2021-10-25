@@ -218,7 +218,10 @@ const Profile = () => {
         {Object.values(bookInfo).length !== 0 ?
           <div className={styles.book_link_wrap}>
             {Object.values(bookInfo).map(eachBook => (
-              <div className={styles.each_book_link}>
+              <div
+                className={styles.each_book_link}
+                key={eachBook.id}
+              >
                 <Book
                   bookId={eachBook.id}
                   title={eachBook.the_title}
@@ -246,17 +249,18 @@ const Profile = () => {
 
 
         {Object.values(pollInfo).length !== 0 ?
-          <>
             <div className={styles.poll_link_wrap}>
               {Object.values(pollInfo).map(eachPoll => (
-                <div className={styles.each_poll_link}>
+                <div
+                  className={styles.each_poll_link}
+                  key={eachPoll.id}
+                >
                   <NavLink to={`/comments/${eachPoll.id}`} exact>
                     <h3> {eachPoll.title} </h3>
                   </NavLink>
                 </div>
               ))}
             </div>
-          </>
           :
           <h3> You currently do not have any polls. </h3>
         }
