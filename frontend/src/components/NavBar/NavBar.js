@@ -1,6 +1,6 @@
 import { NavLink, useHistory } from "react-router-dom";
 
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import { FiLogIn } from 'react-icons/fi'
 import { ImUserPlus } from "react-icons/im";
@@ -17,9 +17,11 @@ import styles from "./navbar.module.css";
 
 
 const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
+  const globalFunc = useSelector(store => store.globalReducer.setters);
   const { isUser } = useUser();
   const history = useHistory();
   const dispatch = useDispatch();
+
 
 
 
@@ -39,6 +41,19 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
 
 
 
+  const handleCharacterPage = event => {
+    event.preventDefault();
+    if(!globalFunc) {
+      history.push('/characters');
+      return;
+    } else {
+      globalFunc.setterFunc(false);
+    }
+  };
+
+
+
+
   // if the user IS logged in
 
   if (isUser) {
@@ -46,7 +61,7 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     <div className={styles.nav_wrap} >
       <nav className={styles.nav}>
           <ToolTip content={'Characters'} >
-          <li> <NavLink to="/characters" > <GiCardDraw/> </NavLink></li>
+            <li> <NavLink to="/characters" onClick={event => handleCharacterPage(event)}> <GiCardDraw/> </NavLink></li>
           </ToolTip>
 
 

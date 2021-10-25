@@ -7,6 +7,7 @@ import { thunk_getFollowing } from "../../store/thunks/following.js";
 import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
 import { resetErrors } from '../../store/actions/errors.js';
 
+import { setSetters } from "../../store/actions/global.js";
 import { useUser } from "../../context/UserContext.js";
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
@@ -92,6 +93,8 @@ const CharacterPage = () => {
     event.preventDefault();
     setChar(allChars[charId]);
     setSpecificChar(true);
+    // pass setter function to global reducer so that it can be called in nav component
+    dispatch(setSetters({ setterFunc: setSpecificChar }));
   }
 
 
@@ -154,7 +157,6 @@ const CharacterPage = () => {
 
 // displays if a specific character is clicked on
   if(specificChar){
-    
 
     return (
         <SpecificPubChar
