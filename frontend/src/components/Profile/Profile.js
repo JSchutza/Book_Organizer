@@ -276,7 +276,11 @@ const Profile = () => {
           style={characterFormStyle}
           appElement={document.getElementById('root')}
         >
-          <Followers payload={followersInfo} />
+          {Object.values(followersInfo).length === 0 ?
+            <h1>You currently do not have any followers!</h1>
+            :
+            <Followers payload={followersInfo} />
+          }
 
         </ReactModal>
       </>

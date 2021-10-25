@@ -208,7 +208,6 @@ const CharacterPage = () => {
           <b> {eachChar.username} </b>
             <p> {eachChar.character_name} </p>
             <p> {eachChar.character_label} </p>
-                <p>{eachChar.id}</p>
           </div>
         </li>
 
