@@ -1,6 +1,6 @@
 
 
-import { SET_GLOBAL_FUNCTIONS } from "../types";
+import { SET_GLOBAL_FUNCTIONS, CLEAR_GLOBAL_FUNCTIONS } from "../types";
 
 
 
@@ -12,8 +12,14 @@ const setSetters = (setterFunc) => ({
 
 
 
+const clearSetters = () => ({
+  type: CLEAR_GLOBAL_FUNCTIONS
+});
+
+
 
 export {
   setSetters,
+  clearSetters,
 
 };

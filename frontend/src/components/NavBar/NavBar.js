@@ -9,6 +9,7 @@ import { CgProfile } from "react-icons/cg";
 import { BsQuestionSquareFill } from "react-icons/bs";
 
 import { useUser } from "../../context/UserContext";
+import { clearSetters } from "../../store/actions/global.js";
 
 import LogoutButton from "../LogoutButton"
 import ToolTip from "../ToolTip";
@@ -53,6 +54,14 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
 
 
 
+  const handleClick = (event, route) => {
+    event.preventDefault();
+    dispatch(clearSetters());
+    history.push(`/${route}`);
+  };
+
+
+
 
   // if the user IS logged in
 
@@ -61,22 +70,22 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     <div className={styles.nav_wrap} >
       <nav className={styles.nav}>
           <ToolTip content={'Characters'} >
-            <li> <NavLink to="/characters" onClick={event => handleCharacterPage(event)}> <GiCardDraw/> </NavLink></li>
+            <li> <NavLink to="/" onClick={event => handleCharacterPage(event)}> <GiCardDraw/> </NavLink></li>
           </ToolTip>
 
 
           <ToolTip content={'Profile'} >
-            <li> <NavLink to="/profile" > <CgProfile/> </NavLink></li>
+          <li> <NavLink to="/" onClick={event => handleClick(event, 'profile')} > <CgProfile/> </NavLink></li>
           </ToolTip>
 
 
           <ToolTip content={'Books'} >
-            <li> <NavLink to="/books" > <GiBookshelf/> </NavLink></li>
+            <li> <NavLink to="/" onClick={event => handleClick(event, 'books')} > <GiBookshelf/> </NavLink></li>
           </ToolTip>
 
 
           <ToolTip content={'Polls'}>
-            <li> <NavLink to='/polls' > <BsQuestionSquareFill/> </NavLink> </li>
+            <li> <NavLink to='/' onClick={event => handleClick(event, 'polls')} > <BsQuestionSquareFill/> </NavLink> </li>
           </ToolTip>
 
 
@@ -89,21 +98,23 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
 
   }
 
+
+
 // if the user is NOT logged in
   return (
-      <div className={styles.nav_wrap} >
-        <nav className={styles.nav}>
+    <div className={styles.nav_wrap} >
+      <nav className={styles.nav}>
 
-          <ToolTip content={'Login'} >
-            <li> <NavLink to='/login' onClick={event => handleLogin(event)}> <FiLogIn /> </NavLink> </li>
-          </ToolTip>
+        <ToolTip content={'Login'} >
+          <li> <NavLink to='/login' onClick={event => handleLogin(event)}> <FiLogIn /> </NavLink> </li>
+        </ToolTip>
 
-          <ToolTip content={'Signup'} >
-            <li> <NavLink to='/signup' onClick={event => handleSignup(event)}> <ImUserPlus /> </NavLink> </li>
-          </ToolTip>
+        <ToolTip content={'Signup'} >
+          <li> <NavLink to='/signup' onClick={event => handleSignup(event)}> <ImUserPlus /> </NavLink> </li>
+        </ToolTip>
 
-        </nav>
-      </div>
+      </nav>
+    </div>
   );
 
 
