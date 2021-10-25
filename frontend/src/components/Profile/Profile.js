@@ -295,11 +295,15 @@ const Profile = () => {
         <ReactModal
           isOpen={following}
           onRequestClose={closeFollowingModal}
-          // style={characterFormStyle}
+          style={characterFormStyle}
           appElement={document.getElementById('root')}
         >
 
-          <Following payload={followingInfo} />
+          {Object.values(followingInfo).length === 0 ?
+            <h1>You are currently not following any users!</h1>
+            :
+            <Following payload={followingInfo} />
+          }
 
         </ReactModal>
       </>
