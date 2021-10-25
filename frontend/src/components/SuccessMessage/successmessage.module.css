@@ -7,9 +7,14 @@
   flex-wrap: nowrap;
   align-content: center;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
+
+
+.success_wrap h1 {
+  margin-bottom: 30px;
+}
 
 
 
