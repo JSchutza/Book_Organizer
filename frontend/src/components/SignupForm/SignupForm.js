@@ -10,7 +10,7 @@ import { setErrors } from "../../store/actions/errors.js";
 import styles from "./signupform.module.css"
 import ToolTip from "../ToolTip";
 import Errors from "../Errors";
-
+import SuccessMessage from "../SuccessMessage";
 
 
 
@@ -69,12 +69,13 @@ const SignUpForm = ({ closeModal }) => {
 
 
 
+  if (loading) return (<SuccessMessage />);
+
+
 
   return (
     <>
     <Errors />
-
-      {loading ? <p>Creating your account </p> : null}
 
     <div className={styles.signup_wrap}>
 
