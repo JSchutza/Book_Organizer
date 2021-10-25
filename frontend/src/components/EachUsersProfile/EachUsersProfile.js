@@ -84,17 +84,21 @@ const EachUsersProfile = () => {
          </div>
 
          <div className={styles.users_characters_wrap}>
-           {Object.values(each.characters).map(eachChar => (
-               <div className={styles.each_character_containter}>
-                 <div>
-                   <img src={eachChar.avatar} alt={eachChar.name} />
-                 </div>
-                 <div>
-                   <p> <b> {eachChar.character_name} </b> </p>
-                   <p>{eachChar.character_label}</p>
-                 </div>
-               </div>
-           ))}
+           {Object.values(each.characters).length !== 0 ?
+              Object.values(each.characters).map(eachChar => (
+                <div className={styles.each_character_containter}>
+                  <div>
+                    <img src={eachChar.avatar} alt={eachChar.name} />
+                  </div>
+                  <div>
+                    <p> <b> {eachChar.character_name} </b> </p>
+                    <p>{eachChar.character_label}</p>
+                  </div>
+                </div>
+              ))
+            :
+              <h3> {each.user_name} currently does not have any characters. </h3>
+            }
          </div>
        </>
      );
@@ -110,15 +114,19 @@ const EachUsersProfile = () => {
          </div>
 
          <div className={styles.users_polls_wrap}>
-           {Object.values(each.polls).map(eachPoll => (
-             <div className={styles.each_poll_containter}>
-               <NavLink to='/' onClick={event => handlePollClick(event, eachPoll.id)}>
-                 <p> {eachPoll.created_at} </p>
-                 <h3> {eachPoll.title} </h3>
-                 <p> <b> <i> {eachPoll.question_text} </i> </b> </p>
-               </NavLink>
-             </div>
-           ))}
+           {Object.values(each.polls). length !== 0 ?
+            Object.values(each.polls).map(eachPoll => (
+              <div className={styles.each_poll_containter}>
+                <NavLink to='/' onClick={event => handlePollClick(event, eachPoll.id)}>
+                  <p> {eachPoll.created_at} </p>
+                  <h3> {eachPoll.title} </h3>
+                  <p> <b> <i> {eachPoll.question_text} </i> </b> </p>
+                </NavLink>
+              </div>
+            ))
+           :
+            <h3> {each.user_name} currently does not have any polls. </h3>
+           }
          </div>
        </>
      );
