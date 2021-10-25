@@ -8,6 +8,7 @@ import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 import Errors from "../Errors";
 import ImgPreview from "../ImgPreview";
+import SuccessMessage from "../SuccessMessage";
 import ReactModal from 'react-modal';
 
 import styles from "./updatepubcharform.module.css";
@@ -80,62 +81,61 @@ const UpdatePubCharForm = ({ payload, closeUpdateModal }) => {
 
 
 
+  if (loading) return (<SuccessMessage message='Updating your character.' />);
 
 
 
-    return (
-      <>
+  return (
+    <>
 
-        <ReactModal
-          isOpen={errorModal}
-          onRequestClose={closeErrorModal}
-          style={characterFormStyle}
-          appElement={document.getElementById('root')}
-        >
-          <Errors />
+      <ReactModal
+        isOpen={errorModal}
+        onRequestClose={closeErrorModal}
+        style={characterFormStyle}
+        appElement={document.getElementById('root')}
+      >
+        <Errors />
 
-        </ReactModal>
+      </ReactModal>
 
 
-        <ImgPreview
-          update={true}
-          prevAvatar={avatar}
-          urlpreview={urlpreview}
-          cancelImgChoice={cancelImgChoice}
-          avatarUrl={avatarUrl}
-          openModal={imgModal}
-          setOpenModal={setImgModal}
-        />
+      <ImgPreview
+        update={true}
+        prevAvatar={avatar}
+        urlpreview={urlpreview}
+        cancelImgChoice={cancelImgChoice}
+        avatarUrl={avatarUrl}
+        openModal={imgModal}
+        setOpenModal={setImgModal}
+      />
 
-        {loading ? <p>Updating your character </p> : null}
+      <form className={styles.create_char_container} onSubmit={onSubmit}>
 
-        <form className={styles.create_char_container} onSubmit={onSubmit}>
+          <label> Avatar </label>
+          <input id='file' type="file" accept="image/*" onChange={updateAvatar} />
 
-            <label> Avatar </label>
-            <input id='file' type="file" accept="image/*" onChange={updateAvatar} />
+        <label> Name </label>
+          <input
+            type='text'
+            name='character name'
+            value={charname}
+            onChange={(e) => setCharname(e.target.value)}
+            />
 
-          <label> Name </label>
-            <input
-              type='text'
-              name='character name'
-              value={charname}
-              onChange={(e) => setCharname(e.target.value)}
-              />
+        <label> Character Label </label>
+          <input
+            type='text'
+            name='character label'
+            value={charlabel}
+            onChange={(e) => setCharlabel(e.target.value)}
+            />
 
-          <label> Character Label </label>
-            <input
-              type='text'
-              name='character label'
-              value={charlabel}
-              onChange={(e) => setCharlabel(e.target.value)}
-              />
+          <button> Update </button>
 
-            <button> Update </button>
+      </form>
 
-        </form>
-
-      </>
-    )
+    </>
+  )
 
 };
 
