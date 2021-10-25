@@ -27,7 +27,6 @@
 .user_avatar img {
   display: flex;
   position: relative;
-  left: 10%;
 }
 
 
@@ -35,7 +34,12 @@
 
 .user_text {
   position: relative;
-  left: 2%;
+}
+
+
+
+.user_text li {
+  color: white;
 }
 
 
@@ -44,7 +48,6 @@
 .recent_books_header {
   display: flex;
   position: relative;
-  left: 2%;
   box-sizing: border-box;
   padding: 2%;
 }
@@ -58,7 +61,6 @@
   position: relative;
   box-sizing: border-box;
   padding: 2%;
-  left: 4%;
 }
 
 
