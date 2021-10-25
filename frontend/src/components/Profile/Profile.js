@@ -20,6 +20,7 @@ import defaultImg from "../../icons/default_user.jpg";
 import LoadScreen from "../LoadScreen";
 import UpdateUserForm from "../UpdateUserForm";
 import Followers from "../Followers";
+import Following from "../Following";
 
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
@@ -293,7 +294,8 @@ const Profile = () => {
           style={characterFormStyle}
           appElement={document.getElementById('root')}
         >
-          {/* <Followers payload={followersInfo} /> */}
+
+          <Following payload={followingInfo} />
 
         </ReactModal>
       </>
