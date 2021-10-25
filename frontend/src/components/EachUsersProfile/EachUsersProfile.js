@@ -50,8 +50,6 @@ const EachUsersProfile = () => {
         <div className={styles.user_avatar}>
           <img src={each.avatar} alt='avatar' />
         </div>
-
-
         <div className={styles.user_text}>
           <p>Search Id: {each.search_id} </p>
           <br />
@@ -65,21 +63,66 @@ const EachUsersProfile = () => {
           <br />
           <p>Address: {each.location} </p>
           <br />
-
           <li>
             {Object.values(each.followers).length} followers
           </li>
-
-
           <li>
             {Object.values(each.following).length} following
           </li>
         </div>
       </>
      );
-
    };
 
+
+
+   const Characters = ({ each }) => {
+     return (
+       <>
+         <div className={styles.users_characters_header}>
+           <h2>{each.user_name}'s Characters</h2>
+         </div>
+
+         <div className={styles.users_characters_wrap}>
+           {Object.values(each.characters).map(eachChar => (
+               <div className={styles.each_character_containter}>
+                 <div>
+                   <img src={eachChar.avatar} alt={eachChar.name} />
+                 </div>
+                 <div>
+                   <p> <b> {eachChar.character_name} </b> </p>
+                   <p>{eachChar.character_label}</p>
+                 </div>
+               </div>
+           ))}
+         </div>
+       </>
+     );
+   };
+
+
+
+   const Polls = ({ each }) => {
+     return (
+       <>
+         <div className={styles.users_polls_header}>
+           <h2> {each.user_name}'s Polls </h2>
+         </div>
+
+         <div className={styles.users_polls_wrap}>
+           {Object.values(each.polls).map(eachPoll => (
+             <div className={styles.each_poll_containter}>
+               <NavLink to='/' onClick={event => handlePollClick(event, eachPoll.id)}>
+                 <p> {eachPoll.created_at} </p>
+                 <h3> {eachPoll.title} </h3>
+                 <p> <b> <i> {eachPoll.question_text} </i> </b> </p>
+               </NavLink>
+             </div>
+           ))}
+         </div>
+       </>
+     );
+   };
 
 
 
@@ -88,60 +131,9 @@ const EachUsersProfile = () => {
       <div className={styles.user_info_wrap}>
         {Object.values(searchedUserInfo).map(each => (
           <>
-
             <UserInfo each={each} />
-
-
-            <div className={styles.users_characters_header}>
-              <h2>{each.user_name}'s Characters</h2>
-            </div>
-
-            <div className={styles.users_characters_wrap}>
-                  {Object.values(each.characters).map(eachChar => (
-                    <>
-                    <div className={styles.each_character_containter}>
-
-                          <div>
-                            <img src={eachChar.avatar} alt={eachChar.name}/>
-                          </div>
-
-                          <div>
-                            <p> <b> {eachChar.character_name} </b> </p>
-                              <p>{eachChar.character_label}</p>
-                          </div>
-
-                    </div>
-                    </>
-                  ))}
-            </div>
-
-
-
-            <div className={styles.users_polls_header}>
-              <h2> {each.user_name}'s Polls </h2>
-            </div>
-
-            <div className={styles.users_polls_wrap}>
-                  {Object.values(each.polls).map(eachPoll => (
-                    <>
-                    <div className={styles.each_poll_containter}>
-                      <NavLink to='/' onClick={event => handlePollClick(event, eachPoll.id)}>
-                        <div>
-                            <p> {eachPoll.created_at} </p>
-                        </div>
-
-                        <div>
-                            <h3> {eachPoll.title} </h3>
-                        </div>
-
-                        <div>
-                            <p> <b> <i> {eachPoll.question_text} </i> </b> </p>
-                        </div>
-                      </NavLink>
-                    </div>
-                    </>
-                  ))}
-            </div>
+            <Characters each={each} />
+            <Polls each={each} />
           </>
         ))}
       </div>
