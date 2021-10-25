@@ -16,22 +16,15 @@ const Followers = ({ payload }) => {
 
   const UserInfo = ({ each }) => {
     return (
-      <div>
+      <>
         <NavLink to={`/user/${each.search_id}`} >
-          <div>
             <img src={each.avatar} />
-          </div>
 
           <div>
-            <li>Search Id: {each.search_id} </li>
-            <li>Username: {each.user_name}</li>
-            <li>Email: {each.email}</li>
-            <li>Bio: {each.bio} </li>
-            <li>Birthday: {each.birthday} </li>
-            <li>Address: {each.location} </li>
+            <li> {each.user_name}</li>
           </div>
           </NavLink>
-      </div>
+      </>
     );
   };
 
@@ -41,9 +34,7 @@ const Followers = ({ payload }) => {
   return (
     <div className={styles.user_info_wrap} >
     {Object.values(payload).map(eachFollower => (
-      <div>
-        <UserInfo each={eachFollower} />
-      </div>
+      <UserInfo each={eachFollower} />
     ))}
     </div>
   );

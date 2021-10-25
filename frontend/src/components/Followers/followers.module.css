@@ -11,3 +11,11 @@
   justify-content: center;
   align-items: flex-start;
 }
+
+
+
+
+.user_info_wrap img {
+  object-fit: contain;
+  width: 10vw;
+}
