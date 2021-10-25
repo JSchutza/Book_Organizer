@@ -100,44 +100,44 @@ const PrivateCharacter = ({ bookId }) => {
       <h1>Your Characters</h1>
 
     <div className={styles.each_char_container}>
-        {Object.values(charInfo).map(eachChar => (
-            <>
-            <NavLink to={`/books/${bookId}/characters/${eachChar.id}`}>
-                <li key={eachChar.id}>
+        {Object.values(charInfo).length !== 0 ?
 
-                  <br />
-                  {eachChar.character_name}
-                  <br />
-                  {eachChar.character_label}
-                </li>
-                <img src={eachChar.avatar} alt={eachChar.character_name} />
-            </NavLink>
-
+          Object.values(charInfo).map(eachChar => (
+          <>
+          <NavLink to={`/books/${bookId}/characters/${eachChar.id}`}>
+              <li key={eachChar.id}>
+                <br />
+                {eachChar.character_name}
+                <br />
+                {eachChar.character_label}
+              </li>
+            <img src={eachChar.avatar} alt={eachChar.character_name} />
+          </NavLink>
 
           <div className={styles.each_char_button_wrap}>
-          <div className={styles.each_char_delete_button}>
-          <ToolTip content={"Delete"}>
-            <NavLink to='/' onClick={event => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </NavLink>
-          </ToolTip>
-          </div>
-
-
+            <div className={styles.each_char_delete_button}>
+              <ToolTip content={"Delete"}>
+                <NavLink to='/' onClick={event => handleDelete(event, eachChar.id)}> <RiDeleteBinFill /> </NavLink>
+              </ToolTip>
+            </div>
 
             <div className={styles.each_char_update_button}>
-            <ToolTip content={"Update"}>
-            <NavLink to='/' onClick={event => handleUpdate(event, {
-              charId: eachChar.id,
-              avatar: eachChar.avatar,
-              character_name: eachChar.character_name,
-              character_label: eachChar.character_label,
-              book_id: bookId,
-              })}> <GrUpdate /> </NavLink>
-            </ToolTip>
+              <ToolTip content={"Update"}>
+                <NavLink to='/' onClick={event => handleUpdate(event, {
+                  charId: eachChar.id,
+                  avatar: eachChar.avatar,
+                  character_name: eachChar.character_name,
+                  character_label: eachChar.character_label,
+                  book_id: bookId,
+                  })}> <GrUpdate /> </NavLink>
+              </ToolTip>
             </div>
-            </div>
-
-            </>
+          </div>
+          </>
           ))
+
+        :
+          <h3>You currently do not have any characters!</h3>
         }
 
     </div>
