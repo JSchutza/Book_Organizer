@@ -89,7 +89,8 @@ const Pages = ({ bookId }) => {
 
 
       <div className={styles.each_page_container}>
-        {Object.values(pageInfo).map(eachPage => (
+          {Object.values(pageInfo).length !== 0 ?
+        Object.values(pageInfo).map(eachPage => (
           <>
           {/* need to create a frontend route to display individual page component */}
             <NavLink to={`/books/${bookId}/pages/${eachPage.id}`} >
@@ -125,6 +126,9 @@ const Pages = ({ bookId }) => {
 
           </>
         ))
+
+      :
+        <h3>You currently do not have any pages!</h3>
       }
       </div>
 
