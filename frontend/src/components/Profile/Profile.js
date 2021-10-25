@@ -291,7 +291,7 @@ const Profile = () => {
         <ReactModal
           isOpen={following}
           onRequestClose={closeFollowingModal}
-          style={characterFormStyle}
+          // style={characterFormStyle}
           appElement={document.getElementById('root')}
         >
 

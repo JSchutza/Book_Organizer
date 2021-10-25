@@ -38,9 +38,6 @@ const EachUsersProfile = () => {
   }
 
 
-  const handleCharacterClick = event => {
-    event.preventDefault();
-  }
 
 
 
@@ -85,13 +82,19 @@ const EachUsersProfile = () => {
               <p>Address: {each.location} </p>
               <br />
 
-              <NavLink to='/' onClick={event => handleFollowersClick(event)} >
+              <li>
+                <NavLink to='/' onClick={event => handleFollowersClick(event)} >
                   {Object.values(each.followers).length} followers
-              </NavLink>
+                </NavLink>
+              </li>
 
-              <NavLink to='/' onClick={event => handleFollowingClick(event)} >
-                {Object.values(each.following).length} following
-              </NavLink>
+
+              <li>
+                <NavLink to='/' onClick={event => handleFollowingClick(event)} >
+                  {Object.values(each.following).length} following
+                </NavLink>
+              </li>
+
             </div>
 
 
@@ -105,7 +108,7 @@ const EachUsersProfile = () => {
                   {Object.values(each.characters).map(eachChar => (
                     <>
                     <div className={styles.each_character_containter}>
-                      <NavLink to='/' onClick={event => handleCharacterClick(event)}>
+
                           <div>
                             <img src={eachChar.avatar} alt={eachChar.name}/>
                           </div>
@@ -114,7 +117,7 @@ const EachUsersProfile = () => {
                             <p> <b> {eachChar.character_name} </b> </p>
                               <p>{eachChar.character_label}</p>
                           </div>
-                      </NavLink>
+
                     </div>
                     </>
                   ))}
