@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -31,6 +31,11 @@ const SignUpForm = ({ closeModal }) => {
 
 
 
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+    }
+  },[]);
 
 
 
@@ -47,7 +52,6 @@ const SignUpForm = ({ closeModal }) => {
         closeModal();
         history.push("/profile");
       }
-      setLoading(false);
       return;
     }
     // if the passwords do not match
