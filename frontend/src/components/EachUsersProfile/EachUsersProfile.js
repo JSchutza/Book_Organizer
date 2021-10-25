@@ -28,16 +28,6 @@ const EachUsersProfile = () => {
 
 
 
-  const handleFollowersClick = event => {
-    event.preventDefault();
-  }
-
-
-  const handleFollowingClick = event => {
-    event.preventDefault();
-  }
-
-
 
 
 
@@ -83,16 +73,12 @@ const EachUsersProfile = () => {
               <br />
 
               <li>
-                <NavLink to='/' onClick={event => handleFollowersClick(event)} >
-                  {Object.values(each.followers).length} followers
-                </NavLink>
+                {Object.values(each.followers).length} followers
               </li>
 
 
               <li>
-                <NavLink to='/' onClick={event => handleFollowingClick(event)} >
-                  {Object.values(each.following).length} following
-                </NavLink>
+                {Object.values(each.following).length} following
               </li>
 
             </div>
