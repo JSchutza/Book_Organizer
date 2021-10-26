@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { thunk_getFollowing } from "../../store/thunks/following.js";
@@ -172,6 +172,10 @@ const CharacterPage = () => {
 
 
 
+
+
+
+
 // displays all of the characters
   return (
     <>
@@ -179,7 +183,7 @@ const CharacterPage = () => {
 
     <div className={styles.create_button}>
       <ToolTip content='Create'>
-        <Link href='/' onClick={(event) => createCharactersClick(event)}> <BsFillPlusSquareFill /> </Link>
+        <NavLink to='/' onClick={(event) => createCharactersClick(event)}> <BsFillPlusSquareFill /> </NavLink>
       </ToolTip>
     </div>
 
@@ -201,9 +205,11 @@ const CharacterPage = () => {
     </div>
 
 
-    <div className={styles.page_wrapper}>
     {Object.values(allChars).reverse().map(eachChar => (
-      <>
+    <div
+      className={styles.page_wrapper}
+      key={eachChar.id}
+    >
       <div className={styles.each_card}>
         <NavLink to='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
 
@@ -247,7 +253,7 @@ const CharacterPage = () => {
         :
         <></>
         }
-      </>
+      </div>
       ))}
 
 
@@ -265,7 +271,6 @@ const CharacterPage = () => {
             payload={updatePayload}
           />
         </ReactModal>
-    </div>
 
     </>
   )
