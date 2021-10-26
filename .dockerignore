@@ -5,3 +5,4 @@ Pipfile.lock
 .env
 .DS_Store
 Notes/
+heroku_config_vars.txt
