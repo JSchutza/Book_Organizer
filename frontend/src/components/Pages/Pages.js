@@ -88,10 +88,12 @@ const Pages = ({ bookId }) => {
 
 
 
-      <div className={styles.each_page_container}>
         {Object.values(pageInfo).length !== 0 ?
           Object.values(pageInfo).map(eachPage => (
-            <>
+            <div
+              className={styles.each_page_container}
+              key={eachPage.id}
+            >
               <NavLink to={`/books/${bookId}/pages/${eachPage.id}`} >
                 <li key={eachPage.id}>
                   <h3>{eachPage.title}</h3>
@@ -116,12 +118,11 @@ const Pages = ({ bookId }) => {
                   </Tooltip>
                 </div>
               </div>
-            </>
+          </div>
           ))
         :
           <h3>You currently do not have any pages!</h3>
         }
-      </div>
     </>
   )
 
