@@ -163,9 +163,12 @@ const BookViewer = () => {
     }
 
 
-    <div className={styles.book_link_wrapper}>
       {Object.values(bookInfo).map(eachBook => (
-        <>
+        <div
+          className={styles.book_link_wrapper}
+          key={eachBook.id}
+        >
+
         <div className={styles.each_book_link}>
         <li>
           <NavLink to='/' onClick={(event) => handleBookClick(event, eachBook.id)}> { eachBook.the_title } </NavLink>
@@ -188,10 +191,8 @@ const BookViewer = () => {
             </ToolTip>
           </div>
         </div>
-
-        </>
+      </div>
       ))}
-    </div>
     </>
   )
 
