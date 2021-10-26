@@ -112,7 +112,7 @@ const Comments = () => {
 
 
           {Object.values(comments).map(eachComment => (
-            <>
+            <div key={eachComment.id}>
             <div className={styles.username_text} >
               <p className={styles.each_comment_text} > <i>{eachComment.username}</i> </p>
             </div>
@@ -146,7 +146,7 @@ const Comments = () => {
                 :
                 null
               }
-            </>
+            </div>
           ))}
 
     </>

@@ -28,19 +28,6 @@ const EachUsersProfile = () => {
 
 
 
-  const handleFollowersClick = event => {
-    event.preventDefault();
-  }
-
-
-  const handleFollowingClick = event => {
-    event.preventDefault();
-  }
-
-
-  const handleCharacterClick = event => {
-    event.preventDefault();
-  }
 
 
 
@@ -57,6 +44,93 @@ const EachUsersProfile = () => {
 
 
 
+  const UserInfo = ({ each }) => {
+     return (
+       <>
+        <div className={styles.user_avatar}>
+          <img src={each.avatar} alt='avatar' />
+        </div>
+        <div className={styles.user_text}>
+          <p>Search Id: {each.search_id} </p>
+          <br />
+          <p>Username: {each.user_name}</p>
+          <br />
+          <p>Email: {each.email}</p>
+          <br />
+          <p>Bio: {each.bio} </p>
+          <br />
+          <p>Birthday: {each.birthday} </p>
+          <br />
+          <p>Address: {each.location} </p>
+          <br />
+          <li>
+            {Object.values(each.followers).length} followers
+          </li>
+          <li>
+            {Object.values(each.following).length} following
+          </li>
+        </div>
+      </>
+     );
+   };
+
+
+
+   const Characters = ({ each }) => {
+     return (
+       <>
+         <div className={styles.users_characters_header}>
+           <h2>{each.user_name}'s Characters</h2>
+         </div>
+
+         <div className={styles.users_characters_wrap}>
+           {Object.values(each.characters).length !== 0 ?
+              Object.values(each.characters).map(eachChar => (
+                <div className={styles.each_character_containter}>
+                  <div>
+                    <img src={eachChar.avatar} alt={eachChar.name} />
+                  </div>
+                  <div>
+                    <p> <b> {eachChar.character_name} </b> </p>
+                    <p>{eachChar.character_label}</p>
+                  </div>
+                </div>
+              ))
+            :
+              <h3> {each.user_name} currently does not have any characters. </h3>
+            }
+         </div>
+       </>
+     );
+   };
+
+
+
+   const Polls = ({ each }) => {
+     return (
+       <>
+         <div className={styles.users_polls_header}>
+           <h2> {each.user_name}'s Polls </h2>
+         </div>
+
+         <div className={styles.users_polls_wrap}>
+           {Object.values(each.polls). length !== 0 ?
+            Object.values(each.polls).map(eachPoll => (
+              <div className={styles.each_poll_containter}>
+                <NavLink to='/' onClick={event => handlePollClick(event, eachPoll.id)}>
+                  <p> {eachPoll.created_at} </p>
+                  <h3> {eachPoll.title} </h3>
+                  <p> <b> <i> {eachPoll.question_text} </i> </b> </p>
+                </NavLink>
+              </div>
+            ))
+           :
+            <h3> {each.user_name} currently does not have any polls. </h3>
+           }
+         </div>
+       </>
+     );
+   };
 
 
 
@@ -65,88 +139,9 @@ const EachUsersProfile = () => {
       <div className={styles.user_info_wrap}>
         {Object.values(searchedUserInfo).map(each => (
           <>
-            <div className={styles.user_avatar}>
-              <img src={each.avatar} alt='avatar' />
-            </div>
-
-
-            <div className={styles.user_text}>
-
-              <p>Search Id: {each.search_id} </p>
-              <br />
-              <p>Username: {each.user_name}</p>
-              <br />
-              <p>Email: {each.email}</p>
-              <br />
-              <p>Bio: {each.bio} </p>
-              <br />
-              <p>Birthday: {each.birthday} </p>
-              <br />
-              <p>Address: {each.location} </p>
-              <br />
-
-              <NavLink to='/' onClick={event => handleFollowersClick(event)} >
-                  {Object.values(each.followers).length} followers
-              </NavLink>
-
-              <NavLink to='/' onClick={event => handleFollowingClick(event)} >
-                {Object.values(each.following).length} following
-              </NavLink>
-            </div>
-
-
-
-
-            <div className={styles.users_characters_header}>
-              <h2>{each.user_name}'s Characters</h2>
-            </div>
-
-            <div className={styles.users_characters_wrap}>
-                  {Object.values(each.characters).map(eachChar => (
-                    <>
-                    <div className={styles.each_character_containter}>
-                      <NavLink to='/' onClick={event => handleCharacterClick(event)}>
-                          <div>
-                            <img src={eachChar.avatar} alt={eachChar.name}/>
-                          </div>
-
-                          <div>
-                            <p> <b> {eachChar.character_name} </b> </p>
-                              <p>{eachChar.character_label}</p>
-                          </div>
-                      </NavLink>
-                    </div>
-                    </>
-                  ))}
-            </div>
-
-
-
-            <div className={styles.users_polls_header}>
-              <h2> {each.user_name}'s Polls </h2>
-            </div>
-
-            <div className={styles.users_polls_wrap}>
-                  {Object.values(each.polls).map(eachPoll => (
-                    <>
-                    <div className={styles.each_poll_containter}>
-                      <NavLink to='/' onClick={event => handlePollClick(event, eachPoll.id)}>
-                        <div>
-                            <p> {eachPoll.created_at} </p>
-                        </div>
-
-                        <div>
-                            <h3> {eachPoll.title} </h3>
-                        </div>
-
-                        <div>
-                            <p> <b> <i> {eachPoll.question_text} </i> </b> </p>
-                        </div>
-                      </NavLink>
-                    </div>
-                    </>
-                  ))}
-            </div>
+            <UserInfo each={each} />
+            <Characters each={each} />
+            <Polls each={each} />
           </>
         ))}
       </div>

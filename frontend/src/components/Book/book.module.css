@@ -50,9 +50,9 @@
 .pages_wrap {
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   padding: 5%;
 }

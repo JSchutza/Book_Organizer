@@ -1,0 +1,24 @@
+
+
+
+.success_wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.success_wrap h1 {
+  margin-bottom: 30px;
+}
+
+
+
+.success_wrap img {
+  object-fit: contain;
+  width: 25vw;
+}

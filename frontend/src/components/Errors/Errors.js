@@ -10,7 +10,7 @@ const Errors = () => {
 
   return errors && (
     <div className={styles.errors_wrap} >
-      {errors.map(eachError => ( <p> {eachError} </p>))}
+      {errors.map(eachError => ( <p key={eachError} > {eachError} </p>))}
     </div>
   )
 };

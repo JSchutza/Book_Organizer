@@ -112,13 +112,12 @@ const Polls = () => {
         }
 
         {Object.values(polls).reverse().map(eachPoll => (
-          <>
-
-              <div className={styles.each_poll_title}>
-                <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
-                  <h3> {eachPoll.title} </h3>
-                </NavLink>
-              </div>
+          <div key={eachPoll.id} >
+            <div className={styles.each_poll_title}>
+              <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
+                <h3> {eachPoll.title} </h3>
+              </NavLink>
+            </div>
 
 
 
@@ -139,8 +138,7 @@ const Polls = () => {
                 </ToolTip>
               </div>
             </div>
-
-          </>
+          </div>
         ))}
       </div>
     );
@@ -154,13 +152,14 @@ const Polls = () => {
     return (
       <div className={styles.all_polls_wrapper}>
         {Object.values(allPolls).reverse().map(eachPoll => (
-          <>
-            <div className={styles.all_polls_each_link}>
-              <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
-                <h3> {eachPoll.title} </h3>
-              </NavLink>
-            </div>
-          </>
+          <div
+            className={styles.all_polls_each_link}
+            key={eachPoll.id}
+          >
+            <NavLink to='/' onClick={event => handleEachClick(event, eachPoll.id)}>
+              <h3> {eachPoll.title} </h3>
+            </NavLink>
+          </div>
         ))}
       </div>
     );

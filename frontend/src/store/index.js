@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
 // reducer imports here
+import { globalReducer } from "./reducers/global.js";
 import { errorsReducer } from "./reducers/errors.js";
 
 
@@ -16,6 +17,7 @@ import { followingReducer } from "./reducers/following.js";
 
 // root reducer here
 const rootReducer = combineReducers({
+  globalReducer,
   errorsReducer,
   usersReducer,
   characterPageReducer,

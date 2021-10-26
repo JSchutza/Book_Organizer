@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { thunk_getAllCharacters } from "../../store/thunks/characters.js";
 import { thunk_getFollowing } from "../../store/thunks/following.js";
 import { thunk_deleteUsersPubChars } from "../../store/thunks/characters.js";
 import { resetErrors } from '../../store/actions/errors.js';
 
+import { setSetters } from "../../store/actions/global.js";
 import { useUser } from "../../context/UserContext.js";
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
@@ -92,6 +93,8 @@ const CharacterPage = () => {
     event.preventDefault();
     setChar(allChars[charId]);
     setSpecificChar(true);
+    // pass setter function to global reducer so that it can be called in nav component
+    dispatch(setSetters({ setterFunc: setSpecificChar }));
   }
 
 
@@ -154,6 +157,7 @@ const CharacterPage = () => {
 
 // displays if a specific character is clicked on
   if(specificChar){
+
     return (
         <SpecificPubChar
           theChar={char}
@@ -168,6 +172,10 @@ const CharacterPage = () => {
 
 
 
+
+
+
+
 // displays all of the characters
   return (
     <>
@@ -175,7 +183,7 @@ const CharacterPage = () => {
 
     <div className={styles.create_button}>
       <ToolTip content='Create'>
-        <Link href='/' onClick={(event) => createCharactersClick(event)}> <BsFillPlusSquareFill /> </Link>
+        <NavLink to='/' onClick={(event) => createCharactersClick(event)}> <BsFillPlusSquareFill /> </NavLink>
       </ToolTip>
     </div>
 
@@ -197,9 +205,11 @@ const CharacterPage = () => {
     </div>
 
 
-    <div className={styles.page_wrapper}>
     {Object.values(allChars).reverse().map(eachChar => (
-      <>
+    <div
+      className={styles.page_wrapper}
+      key={eachChar.id}
+    >
       <div className={styles.each_card}>
         <NavLink to='/' onClick={(event) => showSpecificChar(event, eachChar.id) }>
 
@@ -208,7 +218,6 @@ const CharacterPage = () => {
           <b> {eachChar.username} </b>
             <p> {eachChar.character_name} </p>
             <p> {eachChar.character_label} </p>
-                <p>{eachChar.id}</p>
           </div>
         </li>
 
@@ -244,7 +253,7 @@ const CharacterPage = () => {
         :
         <></>
         }
-      </>
+      </div>
       ))}
 
 
@@ -262,7 +271,6 @@ const CharacterPage = () => {
             payload={updatePayload}
           />
         </ReactModal>
-    </div>
 
     </>
   )

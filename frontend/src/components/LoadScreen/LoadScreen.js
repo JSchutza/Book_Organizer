@@ -1,9 +1,7 @@
-import React from 'react';
+
 import loadingImg from "../../icons/loading_img.gif";
+
 import styles from "./loadscreen.module.css";
-
-
-
 
 
 

@@ -135,6 +135,34 @@ const ModalStyleProvider = ({ children }) => {
 
 
 
+
+  const followerStyle = {
+    overlay: {
+      position: 'fixed',
+      backgroundColor: 'transparent'
+    },
+    content: {
+      position: 'absolute',
+      display: 'flex',
+      inset: '2vw 15vw 2vw 15vw',
+      background: '#1f1f35',
+      overflow: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      borderRadius: '4px',
+      outline: 'none',
+      border: 'transparent',
+      flexFlow: 'column nowrap',
+      placeContent: 'center',
+      alignItems: 'flex-start',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignContent: 'center',
+      justifyContent: 'center',
+    }
+  };
+
+
+
   return (
     <ModalStyleContext.Provider value={
       {
@@ -146,6 +174,7 @@ const ModalStyleProvider = ({ children }) => {
         characterFormStyle,
         smallFormStyle: smallForms,
         commentFormStyle: characterFormStyle,
+        followerStyle,
 
       }
 

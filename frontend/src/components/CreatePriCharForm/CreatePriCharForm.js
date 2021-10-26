@@ -8,7 +8,7 @@ import { processFile } from "../../services/protectedFileUpload.js";
 
 import Errors from "../Errors";
 import ImgPreview from "../ImgPreview";
-
+import SuccessMessage from "../SuccessMessage";
 
 import styles from "./createpricharform.module.css";
 
@@ -89,6 +89,9 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
 
 
   if (update) {
+
+    if (loading) return (<SuccessMessage message='Updating your character.' />);
+
     return (
       <>
 
@@ -101,8 +104,6 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
           openModal={imgModal}
           setOpenModal={setImgModal}
         />
-
-        {loading ? <p>Updating your character </p> : null}
 
           <form className={styles.create_char_container} onSubmit={onUpdate}>
 
@@ -136,7 +137,7 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
 
 
 
-
+  if (loading) return (<SuccessMessage message='Creating your character.' />);
 
 
   return (
@@ -149,8 +150,6 @@ const CreatePriCharForm = ({ bookId, update=false, payload=defaultValues, closeM
         openModal={imgModal}
         setOpenModal={setImgModal}
       />
-
-      {loading ? <p>Creating your character </p> : null}
 
         <form className={styles.create_char_container} onSubmit={onSubmit}>
 

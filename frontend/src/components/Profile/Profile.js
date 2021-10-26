@@ -20,6 +20,7 @@ import defaultImg from "../../icons/default_user.jpg";
 import LoadScreen from "../LoadScreen";
 import UpdateUserForm from "../UpdateUserForm";
 import Followers from "../Followers";
+import Following from "../Following";
 
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
@@ -39,7 +40,7 @@ const Profile = () => {
   const followingInfo = useSelector(store => store.followingReducer.following);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { characterFormStyle } = useModalStyle();
+  const { followerStyle, characterFormStyle } = useModalStyle();
 
   let endLoad;
 
@@ -217,7 +218,10 @@ const Profile = () => {
         {Object.values(bookInfo).length !== 0 ?
           <div className={styles.book_link_wrap}>
             {Object.values(bookInfo).map(eachBook => (
-              <div className={styles.each_book_link}>
+              <div
+                className={styles.each_book_link}
+                key={eachBook.id}
+              >
                 <Book
                   bookId={eachBook.id}
                   title={eachBook.the_title}
@@ -245,17 +249,18 @@ const Profile = () => {
 
 
         {Object.values(pollInfo).length !== 0 ?
-          <>
             <div className={styles.poll_link_wrap}>
               {Object.values(pollInfo).map(eachPoll => (
-                <div className={styles.each_poll_link}>
+                <div
+                  className={styles.each_poll_link}
+                  key={eachPoll.id}
+                >
                   <NavLink to={`/comments/${eachPoll.id}`} exact>
                     <h3> {eachPoll.title} </h3>
                   </NavLink>
                 </div>
               ))}
             </div>
-          </>
           :
           <h3> You currently do not have any polls. </h3>
         }
@@ -272,10 +277,14 @@ const Profile = () => {
         <ReactModal
           isOpen={followers}
           onRequestClose={closeFollowersModal}
-          style={characterFormStyle}
+          style={followerStyle}
           appElement={document.getElementById('root')}
         >
-          <Followers payload={followersInfo} />
+          {Object.values(followersInfo).length === 0 ?
+            <h1>You currently do not have any followers!</h1>
+            :
+            <Followers payload={followersInfo} />
+          }
 
         </ReactModal>
       </>
@@ -290,10 +299,15 @@ const Profile = () => {
         <ReactModal
           isOpen={following}
           onRequestClose={closeFollowingModal}
-          style={characterFormStyle}
+          style={followerStyle}
           appElement={document.getElementById('root')}
         >
-          {/* <Followers payload={followersInfo} /> */}
+
+          {Object.values(followingInfo).length === 0 ?
+            <h1>You are currently not following any users!</h1>
+            :
+            <Following payload={followingInfo} />
+          }
 
         </ReactModal>
       </>

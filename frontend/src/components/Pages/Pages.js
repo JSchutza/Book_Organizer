@@ -88,46 +88,41 @@ const Pages = ({ bookId }) => {
 
 
 
-      <div className={styles.each_page_container}>
-        {Object.values(pageInfo).map(eachPage => (
-          <>
-          {/* need to create a frontend route to display individual page component */}
-            <NavLink to={`/books/${bookId}/pages/${eachPage.id}`} >
-              <li key={eachPage.id}>
-                <h3>{eachPage.title}</h3>
-                <br />
-                <p>{eachPage.text}</p>
-              </li>
-            </NavLink>
-
-
-          <div className={styles.each_page_button_wrap}>
-          <div className={styles.each_page_delete_button}>
-          <Tooltip content={"Delete"}>
-            <NavLink to='/' onClick={event => handleDelete(event, eachPage.id)}> <RiDeleteBinFill /> </NavLink>
-          </Tooltip>
+        {Object.values(pageInfo).length !== 0 ?
+          Object.values(pageInfo).map(eachPage => (
+            <div
+              className={styles.each_page_container}
+              key={eachPage.id}
+            >
+              <NavLink to={`/books/${bookId}/pages/${eachPage.id}`} >
+                <li key={eachPage.id}>
+                  <h3>{eachPage.title}</h3>
+                  <br />
+                  <p>{eachPage.text}</p>
+                </li>
+              </NavLink>
+              <div className={styles.each_page_button_wrap}>
+                <div className={styles.each_page_delete_button}>
+                  <Tooltip content={"Delete"}>
+                    <NavLink to='/' onClick={event => handleDelete(event, eachPage.id)}> <RiDeleteBinFill /> </NavLink>
+                  </Tooltip>
+                </div>
+                <div className={styles.each_page_update_button}>
+                  <Tooltip content={"Update"}>
+                    <NavLink to='/' onClick={event => handleUpdate(event, {
+                      pageId: eachPage.id,
+                      isTitle: eachPage.title,
+                      isText: eachPage.text,
+                      book_id: eachPage.book_id,
+                    })}> <GrUpdate /> </NavLink>
+                  </Tooltip>
+                </div>
+              </div>
           </div>
-
-
-
-            <div className={styles.each_page_update_button}>
-            <Tooltip content={"Update"}>
-            <NavLink to='/' onClick={event => handleUpdate(event, {
-              pageId: eachPage.id,
-              isTitle: eachPage.title,
-              isText: eachPage.text,
-              book_id: eachPage.book_id,
-              })}> <GrUpdate /> </NavLink>
-            </Tooltip>
-            </div>
-            </div>
-
-
-          </>
-        ))
-      }
-      </div>
-
+          ))
+        :
+          <h3>You currently do not have any pages!</h3>
+        }
     </>
   )
 

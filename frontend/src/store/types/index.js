@@ -74,7 +74,9 @@ const SET_ERRORS = "errors/SET_ERRORS";
 const RESET_ERRORS = "errors/RESET_ERRORS";
 
 
-
+// need access to state setter functions
+const SET_GLOBAL_FUNCTIONS = "global/SET_GLOBAL_FUNCTIONS";
+const CLEAR_GLOBAL_FUNCTIONS = "global/CLEAR_GLOBAL_FUNCTIONS";
 
 
 
@@ -116,8 +118,8 @@ export {
   UPDATE_PRI_CHAR,
   UPDATE_PAGE,
   UPDATE_USER,
-
-
+  SET_GLOBAL_FUNCTIONS,
+  CLEAR_GLOBAL_FUNCTIONS,
 
 
 

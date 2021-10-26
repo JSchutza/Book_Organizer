@@ -123,54 +123,55 @@ const SearchResults = () => {
 
       <div className={styles.search_results_wrap}>
         {Object.values(chars).map(eachChar => (
-          <>
-            <div className={styles.search_results_each_card}>
-              <NavLink to='/' onClick={event => clearSearch(event)} >
+          <div
+            className={styles.search_results_each_card}
+            key={eachChar.id}
+          >
+            <NavLink to='/' onClick={event => clearSearch(event)} >
 
-                <li className={styles.search_results_each_detail} key={eachChar.id}>
-                  <div className={styles.search_results_each_detail_text}>
-                    <b> Name </b>
-                    <p>{eachChar.character_name}</p>
-                    <b>Label</b>
-                    <p>{eachChar.character_label}</p>
-                  </div>
-                </li>
+              <li className={styles.search_results_each_detail} key={eachChar.id}>
+                <div className={styles.search_results_each_detail_text}>
+                  <b> Name </b>
+                  <p>{eachChar.character_name}</p>
+                  <b>Label</b>
+                  <p>{eachChar.character_label}</p>
+                </div>
+              </li>
 
-                <img className={styles.search_results_each_img} src={eachChar.avatar} alt={eachChar.character_name} />
-              </NavLink>
+              <img className={styles.search_results_each_img} src={eachChar.avatar} alt={eachChar.character_name} />
+            </NavLink>
 
-              {searchId === isUser.search_id ?
-                <div className={styles.each_result_button_wrap}>
-                  <div className={styles.each_result_delete_button}>
-                    <ToolTip content={"Delete"} >
-                      <NavLink to='/' onClick={event => handleDelete(event, { charId: eachChar.id })}> <RiDeleteBinFill /> </NavLink>
-                    </ToolTip>
-                  </div>
-
-
-
-                  <div className={styles.each_result_update_button}>
-                    <ToolTip content={"Update"} >
-                      <NavLink to='/' onClick={event => handleUpdate(event, {
-                        charId: eachChar.id,
-                        avatar: eachChar.avatar,
-                        character_label: eachChar.character_label,
-                        character_name: eachChar.character_name,
-                        created_at: eachChar.created_at,
-                        pub_date: eachChar.pub_date,
-                        user_id: eachChar.user_id,
-                        username: eachChar.username,
-                        search_id: eachChar.search_id
-                      })}> <GrUpdate /> </NavLink>
-                    </ToolTip>
-                  </div>
+            {searchId === isUser.search_id ?
+              <div className={styles.each_result_button_wrap}>
+                <div className={styles.each_result_delete_button}>
+                  <ToolTip content={"Delete"} >
+                    <NavLink to='/' onClick={event => handleDelete(event, { charId: eachChar.id })}> <RiDeleteBinFill /> </NavLink>
+                  </ToolTip>
                 </div>
 
-                :
-                <></>
-              }
-            </div>
-          </>
+
+
+                <div className={styles.each_result_update_button}>
+                  <ToolTip content={"Update"} >
+                    <NavLink to='/' onClick={event => handleUpdate(event, {
+                      charId: eachChar.id,
+                      avatar: eachChar.avatar,
+                      character_label: eachChar.character_label,
+                      character_name: eachChar.character_name,
+                      created_at: eachChar.created_at,
+                      pub_date: eachChar.pub_date,
+                      user_id: eachChar.user_id,
+                      username: eachChar.username,
+                      search_id: eachChar.search_id
+                    })}> <GrUpdate /> </NavLink>
+                  </ToolTip>
+                </div>
+              </div>
+
+              :
+              <></>
+            }
+          </div>
         ))}
 
         {searchId === isUser.search_id ?

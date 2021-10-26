@@ -60,18 +60,26 @@ const LoginForm = ({ closeModal }) => {
       <form className={styles.the_form} onSubmit={onSubmit}>
         <label> Email </label>
         <input
-          type="text"
+          type="email"
           name="email"
+          aria-label='Email'
+          placeholder="Your Email Here"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          />
+          required={true}
+        />
         <br />
+
         <label> Password </label>
         <input
           type="password"
           name="password"
+          placeholder="Your Password Here"
+          aria-label='Password'
+          autoComplete='password'
           value={password}
           onChange={(event) => setPassword(event.target.value)}
+          required={true}
 
         />
 
