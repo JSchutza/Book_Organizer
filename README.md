@@ -143,6 +143,44 @@ A app to help authors create and organize books they are currently writting and 
 
 -----------
 # Redux Store
+- ## globalReducer
+- Used to hold global state setter functions for use in other parts of the application.
+
+- ## errorsReducer
+- Used to hold generic backend validation error messages.
+
+- ## usersReducer
+- Holds the authenticated users personal information.
+
+- ## characterPageReducer
+- Allows for full crud on public character information.
+
+- ## searchCharacterPageReducer
+- Holds a searched for users public character data. 
+
+- ## booksReducer
+- Allows for full crud on a authenticated users books.
+
+- ## priCharReducer
+- Allows for full crud on a authenticated users private characters.
+
+- ## pageReducer
+- Allows for full crud on a authenticated users pages.
+
+- ## pollsReducer
+- Allows for full crud on a authenticated users polls.
+
+- ## commentReducer
+- Allows for full crud on a authenticated users comments.
+
+- ## allPollsReducer
+- Holds all of the currently created polls by users of the site.
+
+- ## followersReducer
+- Holds all of the users following the currently authenticated user.
+
+- ## followingReducer
+- Allows for full crud on a users a authenticated user is following.
 
 -----------
 # Technical Details
