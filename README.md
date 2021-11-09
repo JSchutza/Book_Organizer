@@ -13,28 +13,138 @@ A app to help authors create and organize books they are currently writting and 
   * WTForms
   * Postgress
   * Alembic
-  * and more
+  
 
 
 -----------
 # [Feature List](https://github.com/JSchutza/Book_Organizer/wiki/MVP-Feature-List)
+
 -----------
 # [Frontend Routes](https://github.com/JSchutza/Book_Organizer/wiki/Frontend-Routes)
+
 -----------
 # [API Documentation](https://github.com/JSchutza/Book_Organizer/wiki/API-Documentation)
+
 -----------
 # [Database Schema](https://github.com/JSchutza/Book_Organizer/wiki/Database-Schema)
+
 -----------
 # React Components
+- ## Book
+- Reusable component that returns a link to a specific book that the authenticated user has created.
+
+- ## EachBook
+- Displays the PrivateCharacter and Pages components for a specific book that was created by a authenticated user.
+
+- ## BookViewer
+- Displays all of the authenticated users books.
+
+- ## CharacterPage
+- Displays all of the public characters currently created by users on the site.
+
+- ## CharacterSearch
+- Displays characters from a user by their unique search id.
+
+- ## CommentForm
+- Reusable component that allows users to comment on another users poll.
+
+- ## Comments
+- Displays comments for a specific poll. 
+
+- ## CreateBookForm
+- Reusable component that allows an authenticated user to create a new book.
+
+- ## CreateCharacterForm
+-  Reusable component that allows an authenticated user to create a new public character. 
+
+- ## CreatePageForm 
+- Reusable component that allow an authenticated user to create a new page or update an existing page if the update prop is set to true.
+
+- ## CreatePollForm
+- Reusable component that allow an authenticated user to create a new poll or update an existing poll if the update prop is set to true.
+
+- ## CreatePriCharForm
+- Reusable component that allow an authenticated user to create a new private character or update an existing private character if the update prop is set to true.
+
+- ## EachPage
+- Displays all of the pages for a specific book. 
+
+- ## EachPriChar
+- Displays all of the private characters for a specific book.
+
+- ## EachUsersProfile
+- Displays user information for a user that is not the currently authenticated user.
+
+- ## Errors
+- Reusable component that displays generic backend validation errors.
+
+- ## Followers
+- Displays an authenticated users followers. 
+
+- ## Following
+- Displays the users that an authenticated user is following.
+
+- ## Footer
+- Displays basic social links with their coresponding icons.
+
+- ## HomeLoader
+- Displays the splash page. 
+
+- ## ImgPreview
+- Reusable component that will render a selected image when creating a public or private character.
+
+- ## LoadScreen
+- Reusable component that renders a gif when the application is loading.
+
+- ## LoginForm
+- Reusable component for previous users to login to their existing account.
+
+- ## LogoutButton
+- Component that will logout an authenticated user.
+
+- ## MainRouter
+- 
+- ## NavBar
+- 
+- ## Pages
+- 
+- ## Polls
+- 
+- ## PrivateCharacters
+- 
+- ## Profile
+- 
+- ## SearchResults
+- 
+- ## SignupForm
+- 
+- ## SpecificPubChar
+- 
+- ## SuccessMessage
+- 
+- ## ToolTip
+- 
+- ## UpdatePubCharForm
+- 
+- ## UpdateUserForm
+- 
+
 -----------
 # Redux Store
+
 -----------
 # Technical Details
+
 -----------
 # Challenges
 - Snippets to see code for these
 -----------
 # Future Features
+- Allowing users to associate public characters to a private book. 
+- Allowing users to direct message the users they are following.
+- Allowing users to upload pages to a book if they do not want to manually input page data.
+- Allowing users to update a uploaded page file.
+
 -----------
 
 ## Installing / Getting Started / Developing
