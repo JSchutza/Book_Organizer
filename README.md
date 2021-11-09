@@ -103,31 +103,43 @@ A app to help authors create and organize books they are currently writting and 
 - Component that will logout an authenticated user.
 
 - ## MainRouter
-- 
+- Component that sets up all of the authenticated routes and unauthenticated routes based on if a user is currently logged in or not.
+
 - ## NavBar
-- 
+- Component that dynamically changes based on if a user is authenticated or not.
+
 - ## Pages
-- 
+- Displays all of the pages for a specific book created by the user.
+
 - ## Polls
-- 
+- Displays all of the current polls created by users on the site.
+ 
 - ## PrivateCharacters
-- 
+- Displays the private characters for a specific book.
+
 - ## Profile
-- 
+- Displays the authenticated users personal information.
+
 - ## SearchResults
-- 
+- Reusable component that displays the search results returned from a search by a users unique id.
+
 - ## SignupForm
-- 
+- Reusable component that allows an unauthenticated user to create a new account.
+
 - ## SpecificPubChar
-- 
+- Component that displays a specific public character when a character card is clicked on.
+
 - ## SuccessMessage
-- 
+- Reusable component that displays a loading gif on a successful request to an aws image upload.
+
 - ## ToolTip
-- 
+- Reusable component that shows a custom tooltip when hovering over a icon.
+
 - ## UpdatePubCharForm
-- 
+- Reusable component that allows an authenticated user to update an existing public character.
+
 - ## UpdateUserForm
-- 
+- Reusable component that allows an authenticated user to update their personal account information.
 
 -----------
 # Redux Store
