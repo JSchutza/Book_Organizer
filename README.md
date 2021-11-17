@@ -183,11 +183,91 @@ A app to help authors create and organize books they are currently writting and 
 - Allows for full crud on a users a authenticated user is following.
 
 -----------
-# Technical Details
-
------------
 # Challenges
-- Snippets to see code for these
+- One aspect that was particularly challenging for this project was being able to create a reusable component that displayed a preview of a users selected image to upload to AWS. This was challenging because it needed to be completely reusable and have responsive styles. 
+- Related to the challenge above, was a completely reusable and responsive modal that would be used across the site.
+
+```js
+
+
+const ImgPreview = ({ update=false, prevAvatar, urlpreview, cancelImgChoice, avatarUrl, openModal, setOpenModal  }) => {
+  const { currentStyle, initImgPreviewStyle } = useModalStyle();
+
+
+  useEffect(() => {
+    initImgPreviewStyle();
+  },[]);
+
+
+
+  const closeModal = () => {
+    setOpenModal(false);
+  }
+
+
+
+  if(update) {
+    return (
+      <>
+          <div className={styles.url_preview_wrap}>
+            <img src={prevAvatar} alt={"cool"} />
+            <span>Last Avatar: </span>
+          </div>
+
+        <ReactModal
+          isOpen={openModal}
+          onRequestClose={closeModal}
+          style={currentStyle}
+          appElement={document.getElementById('root')}
+        >
+          <div className={styles.url_preview_wrap}>
+
+            {urlpreview === null ?
+              null
+              :
+              <>
+                <img src={avatarUrl} alt={"cool"} />
+                <button onClick={cancelImgChoice}> Cancel </button>
+              </>
+            }
+          </div>
+        </ReactModal>
+      </>
+    )
+  }
+
+
+
+
+
+  return (
+    <>
+     <ReactModal
+        isOpen={openModal}
+        onRequestClose={closeModal}
+        style={currentStyle}
+        appElement={document.getElementById('root')}
+      >
+      <div className={styles.url_preview_wrap}>
+        {urlpreview === null ?
+          null
+          :
+          <>
+            <img src={avatarUrl} alt={"cool"} />
+            <button onClick={cancelImgChoice}> Cancel </button>
+          </>
+        }
+      </div>
+
+    </ReactModal>
+    </>
+  )
+
+};
+
+export default ImgPreview;
+```
+- 
 -----------
 # Future Features
 - Allowing users to associate public characters to a private book. 
