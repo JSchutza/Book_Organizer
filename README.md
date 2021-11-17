@@ -18,91 +18,91 @@ A app to help authors create and organize books they are currently writting and 
 # Splash Page
 - Where a unauthenticated user first comes when they visit the site.
 <img src="https://i.ibb.co/6XL2kTy/splash-page.jpg" alt="splash-page" border="0">
------------
+
 
 -----------
 # Signup Page
 - Where an unauthenticated user can create a new account.
 <img src="https://i.ibb.co/XFqZww6/signup-page.jpg" alt="signup-page" border="0">
------------
+
 
 -----------
 # Login Page
 - Where an unauthenticated user can login to a preexisting account.
 <img src="https://i.ibb.co/s1T7bJ7/login-page.jpg" alt="login-page" border="0">
------------
+
 
 -----------
 # Public Character Page
 - Where authenticated users can create new public characters for people to enjoy.
 <img src="https://i.ibb.co/Yb3d1kR/character-page.jpg" alt="character-page" border="0">
------------
+
 
 -----------
 # Public Character Search
 - Where authenticated users can search for public characters.
 <img src="https://i.ibb.co/v3pQ0k1/character-search.jpg" alt="character-search" border="0">
------------
+
 
 -----------
 # New Public Character Modal
 - Where authenticated users can create new public characters.
 <img src="https://i.ibb.co/BZNBhsk/new-pub-char-page.jpg" alt="new-pub-char-page" border="0">
------------
+
 
 -----------
 # Update Public Charcter Modal
 - Where authenticated users can update preexisting public characters.
 <img src="https://i.ibb.co/W6rVxTh/update-pub-char-page.jpg" alt="update-pub-char-page" border="0">
------------
+
 
 -----------
 # Profile Page
 - Where authenticated users can view their personal account information.
 <img src="https://i.ibb.co/VVj0G7P/profile-page.jpg" alt="profile-page" border="0">
------------
+
 
 -----------
 # Books Page
 - Where authenticated users can view their personal books.
 <img src="https://i.ibb.co/tK5Ww7v/books-page.jpg" alt="books-page" border="0">
------------
+
 
 -----------
 # Each Book Detail Page
 - Where authenticated users can view specific details within a book.
 <img src="https://i.ibb.co/cgk5T4d/each-book-detail-page.jpg" alt="each-book-detail-page" border="0">
------------
+
 
 -----------
 # Private Character Modal
 - Where authenticated users can create new characters for a book.
 <img src="https://i.ibb.co/r3Zf9nz/new-pri-char-page.jpg" alt="new-pri-char-page" border="0">
------------
+
 
 -----------
 # Your Polls
 - Where authenticated users can view their created polls.
 <img src="https://i.ibb.co/nznZHn6/your-polls-page.jpg" alt="your-polls-page" border="0">
------------
+
 
 -----------
 # All Polls
 - Where authenticated users can view all of the currently created polls for the site.
 <img src="https://i.ibb.co/m9pLRX2/all-polls-page.jpg" alt="all-polls-page" border="0">
------------
+
 
 -----------
 # Each Poll Page
 - Where authenticated users can view specific details within a specific poll.
 <img src="https://i.ibb.co/M2QbV3D/each-poll-page.jpg" alt="each-poll-page" border="0">
------------
+
 
 -----------
 # Update Comment Modal
 - Where authenticated users can update their comments on a poll.
 <img src="https://i.ibb.co/ckcxhSc/update-poll-comment-page.jpg" alt="update-poll-comment-page" border="0">
------------
+
 
 
 
