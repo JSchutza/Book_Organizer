@@ -267,7 +267,8 @@ const ImgPreview = ({ update=false, prevAvatar, urlpreview, cancelImgChoice, ava
 
 export default ImgPreview;
 ```
-- 
+- Above is the reusable image preview component. This component was challenging because it had to be responsive and reusable for both first time uploads and updates to previous uploads. Along with what was mentioned before, this component is also a modal that will appear after a user has selected a image to upload to AWS. 
+- In order to know if the component was being used for a update or first time use, the prop `update` will conditionally render JSX based on if it is set to either `true` or `false`. As for solving the styling issues, inline styles are set within a context value which is passed to the `ReactModal` style prop. These styles are constructed in the function call `initImgPreviewStyle();`, which is called when the component initially renders. The modal can be closed either by clicking anywhere on the page besides the modal window or clicking on the cancel button that displays within the modal window. This is accomplished by declaring state outside of the `ImgPreview` component and passing its state and state setter function as props(`openModal, setOpenModal`). 
 -----------
 # Future Features
 - Allowing users to associate public characters to a private book. 
