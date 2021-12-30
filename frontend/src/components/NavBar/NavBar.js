@@ -68,32 +68,35 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
   if (isUser) {
   return (
     <nav className={styles.nav}>
-      <div>
+      <div onClick={event => handleCharacterPage(event)} >
         <ToolTip content={'Characters'} >
           <li> <NavLink to="/" onClick={event => handleCharacterPage(event)}> <GiCardDraw/> </NavLink></li>
         </ToolTip>
       </div>
 
-      <div>
+      <div onClick={event => handleClick(event, 'profile')}>
         <ToolTip content={'Profile'} >
           <li> <NavLink to="/" onClick={event => handleClick(event, 'profile')} > <CgProfile/> </NavLink></li>
         </ToolTip>
       </div>
 
-      <div></div>
+      <div onClick={event => handleClick(event, 'books')}>
         <ToolTip content={'Books'} >
           <li> <NavLink to="/" onClick={event => handleClick(event, 'books')} > <GiBookshelf/> </NavLink></li>
         </ToolTip>
+      </div>
 
-      <div></div>
+      <div onClick={event => handleClick(event, 'polls')}>
         <ToolTip content={'Polls'}>
           <li> <NavLink to='/' onClick={event => handleClick(event, 'polls')} > <BsQuestionSquareFill/> </NavLink> </li>
         </ToolTip>
+      </div>
 
-      <div></div>
+      <div>
         <ToolTip content={'Logout'} >
           <li> <LogoutButton /> </li>
         </ToolTip>
+      </div>
     </nav>
   );
 
