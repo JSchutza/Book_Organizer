@@ -83,7 +83,7 @@ const LoginForm = ({ closeModal }) => {
 
         />
 
-        <div className={styles.enter_button}>
+        <div onClick={onSubmit} className={styles.enter_button}>
           <div>
           <ToolTip content={"Enter"}>
             <button> <IoIosPower/> </button>
