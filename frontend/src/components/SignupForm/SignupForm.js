@@ -81,6 +81,7 @@ const SignUpForm = ({ closeModal }) => {
     <>
     <Errors />
 
+    <h1> Sign Up</h1>
     <div className={styles.signup_wrap}>
 
       <div className={styles.signup_containter}>
