@@ -26,6 +26,12 @@
 
 
 
+.login:hover {
+  cursor: pointer;
+}
+
+
+
 
 .signup {
   padding: 10px;
@@ -33,4 +39,6 @@
 
 
 
-
+.signup:hover {
+  cursor: pointer;
+}
