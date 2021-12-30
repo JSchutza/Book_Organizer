@@ -53,7 +53,7 @@ const LoginForm = ({ closeModal }) => {
   return(
     <>
       <Errors />
-
+    <h1> Login </h1>
   <div className={styles.login_wrap}>
 
     <div className={styles.login_containter}>
