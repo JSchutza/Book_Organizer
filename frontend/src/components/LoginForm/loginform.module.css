@@ -51,6 +51,11 @@
 }
 
 
+
 .demo_button {
-  margin-left: -9vw;
+  padding: 10px;
+  background-color: black;
+  position: absolute;
+  left: 20px;
+  bottom: 30px;
 }
