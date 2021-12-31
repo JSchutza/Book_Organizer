@@ -52,55 +52,56 @@ const LoginForm = ({ closeModal }) => {
 
   return(
     <>
-      <Errors />
+    <Errors />
+    <h1> Login </h1>
+    <div className={styles.login_wrap}>
+      <div className={styles.login_containter}>
+        <form className={styles.the_form} onSubmit={onSubmit}>
+          <label> Email </label>
+          <input
+            type="email"
+            name="email"
+            aria-label='Email'
+            placeholder="Your Email Here"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            required={true}
+          />
+          <br />
 
-  <div className={styles.login_wrap}>
+          <label> Password </label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Your Password Here"
+            aria-label='Password'
+            autoComplete='password'
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required={true}
 
-    <div className={styles.login_containter}>
-      <form className={styles.the_form} onSubmit={onSubmit}>
-        <label> Email </label>
-        <input
-          type="email"
-          name="email"
-          aria-label='Email'
-          placeholder="Your Email Here"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required={true}
-        />
-        <br />
+          />
 
-        <label> Password </label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Your Password Here"
-          aria-label='Password'
-          autoComplete='password'
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          required={true}
-
-        />
-
-        <div className={styles.enter_button}>
-          <div>
-          <ToolTip content={"Enter"}>
-            <button> <IoIosPower/> </button>
-          </ToolTip>
+          <div onClick={onSubmit} className={styles.enter_button}>
+            <div>
+              <ToolTip content={"Enter"}>
+                <button> <IoIosPower/> </button>
+              </ToolTip>
+            </div>
           </div>
-        </div>
 
-      </form>
+        </form>
+      </div>
+    </div>
 
-      <div className={styles.demo_button}>
+
+    <div onClick={handleDemo} className={styles.demo_button}>
+      <div>
         <ToolTip content={"Demo"}>
           <NavLink to='/' onClick={event => handleDemo(event)}> Demo </NavLink>
         </ToolTip>
       </div>
-
     </div>
-  </div>
     </>
   )
 };

@@ -1,20 +1,9 @@
 
-.nav_wrap {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-
 
 .nav {
   background-color: black;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -26,4 +15,30 @@
 
 .nav li {
   padding: 8px;
+}
+
+
+
+
+.login {
+  padding: 10px;
+}
+
+
+
+.login:hover {
+  cursor: pointer;
+}
+
+
+
+
+.signup {
+  padding: 10px;
+}
+
+
+
+.signup:hover {
+  cursor: pointer;
 }
