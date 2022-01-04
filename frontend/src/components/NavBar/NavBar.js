@@ -70,33 +70,23 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     <div className={styles.navbar_container} >
       <nav className={styles.nav}>
         <div onClick={event => handleCharacterPage(event)} >
-          <ToolTip content={'Characters'} >
-            <li> <NavLink to="/" onClick={event => handleCharacterPage(event)}> <GiCardDraw/> </NavLink></li>
-          </ToolTip>
+            <li> <NavLink to="/" onClick={event => handleCharacterPage(event)}> <GiCardDraw/> Characters </NavLink></li>
         </div>
 
         <div onClick={event => handleClick(event, 'profile')}>
-          <ToolTip content={'Profile'} >
-            <li> <NavLink to="/" onClick={event => handleClick(event, 'profile')} > <CgProfile/> </NavLink></li>
-          </ToolTip>
+            <li> <NavLink to="/" onClick={event => handleClick(event, 'profile')} > <CgProfile/> Profile </NavLink></li>
         </div>
 
         <div onClick={event => handleClick(event, 'books')}>
-          <ToolTip content={'Books'} >
-            <li> <NavLink to="/" onClick={event => handleClick(event, 'books')} > <GiBookshelf/> </NavLink></li>
-          </ToolTip>
+            <li> <NavLink to="/" onClick={event => handleClick(event, 'books')} > <GiBookshelf/> Books </NavLink></li>
         </div>
 
         <div onClick={event => handleClick(event, 'polls')}>
-          <ToolTip content={'Polls'}>
-            <li> <NavLink to='/' onClick={event => handleClick(event, 'polls')} > <BsQuestionSquareFill/> </NavLink> </li>
-          </ToolTip>
+            <li> <NavLink to='/' onClick={event => handleClick(event, 'polls')} > <BsQuestionSquareFill/> Polls </NavLink> </li>
         </div>
 
         <div>
-          <ToolTip content={'Logout'} >
             <li> <LogoutButton /> </li>
-          </ToolTip>
         </div>
       </nav>
     </div>
