@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink, useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux"
@@ -7,6 +8,8 @@ import { ImUserPlus } from "react-icons/im";
 import { GiBookshelf, GiCardDraw } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import { BsQuestionSquareFill } from "react-icons/bs";
+import { VscChecklist } from "react-icons/vsc";
+
 
 import { useUser } from "../../context/UserContext";
 import { clearSetters } from "../../store/actions/global.js";
@@ -22,7 +25,13 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
   const { isUser } = useUser();
   const history = useHistory();
   const dispatch = useDispatch();
+  const [ opennav, setOpenNav ] = useState(false);
 
+
+  const handleOpenMenu = event => {
+    event.preventDefault();
+    setOpenNav(!opennav);
+  }
 
 
 
@@ -67,6 +76,12 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
 
   if (isUser) {
   return (
+    <>
+    <div>
+      <NavLink to='/' onClick={handleOpenMenu} > <VscChecklist />  </NavLink>
+    </div>
+
+    {opennav ?
     <div className={styles.navbar_container} >
       <nav className={styles.nav}>
         <div onClick={event => handleCharacterPage(event)} >
@@ -90,6 +105,9 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
         </div>
       </nav>
     </div>
+    : null }
+
+    </>
   );
 
   }
