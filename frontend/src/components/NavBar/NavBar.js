@@ -67,37 +67,39 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
 
   if (isUser) {
   return (
-    <nav className={styles.nav}>
-      <div onClick={event => handleCharacterPage(event)} >
-        <ToolTip content={'Characters'} >
-          <li> <NavLink to="/" onClick={event => handleCharacterPage(event)}> <GiCardDraw/> </NavLink></li>
-        </ToolTip>
-      </div>
+    <div className={styles.navbar_container} >
+      <nav className={styles.nav}>
+        <div onClick={event => handleCharacterPage(event)} >
+          <ToolTip content={'Characters'} >
+            <li> <NavLink to="/" onClick={event => handleCharacterPage(event)}> <GiCardDraw/> </NavLink></li>
+          </ToolTip>
+        </div>
 
-      <div onClick={event => handleClick(event, 'profile')}>
-        <ToolTip content={'Profile'} >
-          <li> <NavLink to="/" onClick={event => handleClick(event, 'profile')} > <CgProfile/> </NavLink></li>
-        </ToolTip>
-      </div>
+        <div onClick={event => handleClick(event, 'profile')}>
+          <ToolTip content={'Profile'} >
+            <li> <NavLink to="/" onClick={event => handleClick(event, 'profile')} > <CgProfile/> </NavLink></li>
+          </ToolTip>
+        </div>
 
-      <div onClick={event => handleClick(event, 'books')}>
-        <ToolTip content={'Books'} >
-          <li> <NavLink to="/" onClick={event => handleClick(event, 'books')} > <GiBookshelf/> </NavLink></li>
-        </ToolTip>
-      </div>
+        <div onClick={event => handleClick(event, 'books')}>
+          <ToolTip content={'Books'} >
+            <li> <NavLink to="/" onClick={event => handleClick(event, 'books')} > <GiBookshelf/> </NavLink></li>
+          </ToolTip>
+        </div>
 
-      <div onClick={event => handleClick(event, 'polls')}>
-        <ToolTip content={'Polls'}>
-          <li> <NavLink to='/' onClick={event => handleClick(event, 'polls')} > <BsQuestionSquareFill/> </NavLink> </li>
-        </ToolTip>
-      </div>
+        <div onClick={event => handleClick(event, 'polls')}>
+          <ToolTip content={'Polls'}>
+            <li> <NavLink to='/' onClick={event => handleClick(event, 'polls')} > <BsQuestionSquareFill/> </NavLink> </li>
+          </ToolTip>
+        </div>
 
-      <div>
-        <ToolTip content={'Logout'} >
-          <li> <LogoutButton /> </li>
-        </ToolTip>
-      </div>
-    </nav>
+        <div>
+          <ToolTip content={'Logout'} >
+            <li> <LogoutButton /> </li>
+          </ToolTip>
+        </div>
+      </nav>
+    </div>
   );
 
   }
@@ -106,7 +108,7 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
 
 // if the user is NOT logged in
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav_notloggedin}>
       <div className={styles.login} onClick={event => handleLogin(event)}>
         <ToolTip content={'Login'} >
           <li> <NavLink to='/login' onClick={event => handleLogin(event)}> <FiLogIn /> </NavLink> </li>

@@ -1,12 +1,19 @@
 
+.navbar_container {
+  box-sizing: border-box;
+  position: absolute;
+  right: 20vw;
+}
+
+
 
 .nav {
   background-color: black;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  flex-wrap: wrap;
   align-content: center;
   padding: 15px;
 }
@@ -20,6 +27,25 @@
 
 
 
+.nav_notloggedin {
+  background-color: black;
+  display: flex;
+  padding: 15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+.nav_notloggedin li {
+  padding: 8px;
+}
+
+
+
 .login {
   padding: 10px;
 }
@@ -28,6 +54,15 @@
 
 .login:hover {
   cursor: pointer;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+
+
+.login:hover svg {
+  color: blue;
 }
 
 
@@ -41,4 +76,13 @@
 
 .signup:hover {
   cursor: pointer;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+
+
+.signup:hover svg {
+  color: blue;
 }
