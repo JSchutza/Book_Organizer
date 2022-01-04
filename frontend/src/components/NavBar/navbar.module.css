@@ -1,4 +1,16 @@
 
+.hamburger_icon {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+
 .navbar_container {
   box-sizing: border-box;
   position: absolute;

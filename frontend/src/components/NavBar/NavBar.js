@@ -77,7 +77,7 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
   if (isUser) {
   return (
     <>
-    <div>
+    <div className={styles.hamburger_icon} >
       <NavLink to='/' onClick={handleOpenMenu} > <VscChecklist />  </NavLink>
     </div>
 
