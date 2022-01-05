@@ -7,6 +7,9 @@
   align-content: center;
   justify-content: flex-end;
   align-items: center;
+  background-color: cadetblue;
+  padding: 15px;
+  border-radius: 10px;
 }
 
 
@@ -21,7 +24,7 @@
 
 
 .nav {
-  background-color: black;
+  background-color: cadetblue;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -29,6 +32,8 @@
   flex-wrap: wrap;
   align-content: center;
   padding: 15px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 
