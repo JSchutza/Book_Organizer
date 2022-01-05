@@ -39,6 +39,7 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     event.preventDefault();
     setLogin(true);
     setOpenModal(true);
+    setOpenNav(false);
   }
 
 
@@ -47,6 +48,7 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     event.preventDefault();
     setSignup(true);
     setOpenModal(true);
+    setOpenNav(false);
   }
 
 
@@ -55,9 +57,11 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     event.preventDefault();
     if(!globalFunc) {
       history.push('/characters');
+      setOpenNav(false);
       return;
     } else {
       globalFunc.setterFunc(false);
+      setOpenNav(false);
     }
   };
 
@@ -67,6 +71,7 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     event.preventDefault();
     dispatch(clearSetters());
     history.push(`/${route}`);
+    setOpenNav(false);
   };
 
 
