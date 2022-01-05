@@ -25,7 +25,7 @@ const LogoutButton = () => {
 
 
 
-  return ( <NavLink to='/' onClick={(event) => onLogout(event)}><FiLogOut /></NavLink> );
+  return ( <NavLink to='/' onClick={(event) => onLogout(event)}> <FiLogOut /> Logout </NavLink> );
 };
 
 export default LogoutButton;

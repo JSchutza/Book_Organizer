@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink, useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux"
@@ -7,6 +8,8 @@ import { ImUserPlus } from "react-icons/im";
 import { GiBookshelf, GiCardDraw } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import { BsQuestionSquareFill } from "react-icons/bs";
+import { VscChecklist } from "react-icons/vsc";
+
 
 import { useUser } from "../../context/UserContext";
 import { clearSetters } from "../../store/actions/global.js";
@@ -22,7 +25,13 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
   const { isUser } = useUser();
   const history = useHistory();
   const dispatch = useDispatch();
+  const [ opennav, setOpenNav ] = useState(false);
 
+
+  const handleOpenMenu = event => {
+    event.preventDefault();
+    setOpenNav(!opennav);
+  }
 
 
 
@@ -30,6 +39,7 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     event.preventDefault();
     setLogin(true);
     setOpenModal(true);
+    setOpenNav(false);
   }
 
 
@@ -38,6 +48,7 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     event.preventDefault();
     setSignup(true);
     setOpenModal(true);
+    setOpenNav(false);
   }
 
 
@@ -46,9 +57,11 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     event.preventDefault();
     if(!globalFunc) {
       history.push('/characters');
+      setOpenNav(false);
       return;
     } else {
       globalFunc.setterFunc(false);
+      setOpenNav(false);
     }
   };
 
@@ -58,6 +71,7 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
     event.preventDefault();
     dispatch(clearSetters());
     history.push(`/${route}`);
+    setOpenNav(false);
   };
 
 
@@ -67,37 +81,38 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
 
   if (isUser) {
   return (
-    <nav className={styles.nav}>
-      <div onClick={event => handleCharacterPage(event)} >
-        <ToolTip content={'Characters'} >
-          <li> <NavLink to="/" onClick={event => handleCharacterPage(event)}> <GiCardDraw/> </NavLink></li>
-        </ToolTip>
-      </div>
+    <>
+    <div className={styles.hamburger_icon} >
+      <NavLink to='/' onClick={handleOpenMenu} > <VscChecklist />  </NavLink>
+    </div>
 
-      <div onClick={event => handleClick(event, 'profile')}>
-        <ToolTip content={'Profile'} >
-          <li> <NavLink to="/" onClick={event => handleClick(event, 'profile')} > <CgProfile/> </NavLink></li>
-        </ToolTip>
-      </div>
+    {opennav ?
+    <div className={styles.navbar_container} >
+      <nav className={styles.nav}>
+        <div onClick={event => handleCharacterPage(event)} >
+            <li> <NavLink to="/" onClick={event => handleCharacterPage(event)}> <GiCardDraw/> Characters </NavLink></li>
+        </div>
 
-      <div onClick={event => handleClick(event, 'books')}>
-        <ToolTip content={'Books'} >
-          <li> <NavLink to="/" onClick={event => handleClick(event, 'books')} > <GiBookshelf/> </NavLink></li>
-        </ToolTip>
-      </div>
+        <div onClick={event => handleClick(event, 'profile')}>
+            <li> <NavLink to="/" onClick={event => handleClick(event, 'profile')} > <CgProfile/> Profile </NavLink></li>
+        </div>
 
-      <div onClick={event => handleClick(event, 'polls')}>
-        <ToolTip content={'Polls'}>
-          <li> <NavLink to='/' onClick={event => handleClick(event, 'polls')} > <BsQuestionSquareFill/> </NavLink> </li>
-        </ToolTip>
-      </div>
+        <div onClick={event => handleClick(event, 'books')}>
+            <li> <NavLink to="/" onClick={event => handleClick(event, 'books')} > <GiBookshelf/> Books </NavLink></li>
+        </div>
 
-      <div>
-        <ToolTip content={'Logout'} >
-          <li> <LogoutButton /> </li>
-        </ToolTip>
-      </div>
-    </nav>
+        <div onClick={event => handleClick(event, 'polls')}>
+            <li> <NavLink to='/' onClick={event => handleClick(event, 'polls')} > <BsQuestionSquareFill/> Polls </NavLink> </li>
+        </div>
+
+        <div>
+            <li> <LogoutButton /> </li>
+        </div>
+      </nav>
+    </div>
+    : null }
+
+    </>
   );
 
   }
@@ -106,7 +121,7 @@ const NavBar = ({ setOpenModal, setLogin, setSignup }) => {
 
 // if the user is NOT logged in
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav_notloggedin}>
       <div className={styles.login} onClick={event => handleLogin(event)}>
         <ToolTip content={'Login'} >
           <li> <NavLink to='/login' onClick={event => handleLogin(event)}> <FiLogIn /> </NavLink> </li>

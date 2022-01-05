@@ -25,6 +25,7 @@ import SignUpForm from "../SignupForm";
 import EachPage from "../EachPage";
 import EachPriChar from "../EachPriChar";
 
+import styles from './mainrouter.module.css';
 
 
 
@@ -56,47 +57,69 @@ const MainRouter = () => {
 
         <Switch>
           <Route path="/profile" exact>
-            <Profile />
+            <div className={styles.main_wraper} >
+              <Profile />
+            </div>
           </Route>
 
           <Route path="/user/:searchId">
-            <EachUsersProfile />
+            <div className={styles.main_wraper} >
+              <EachUsersProfile />
+            </div>
           </Route>
 
           <Route path="/characters" exact>
-            <CharacterPage />
+            <div className={styles.main_wraper} >
+              <CharacterPage />
+            </div>
           </Route>
 
           <Route path="/characters/:searchId" exact>
-            <SearchResults />
+            <div className={styles.main_wraper} >
+              <SearchResults />
+            </div>
           </Route>
 
           <Route path='/books' exact>
-            <BookViewer />
+            <div className={styles.main_wraper} >
+              <BookViewer />
+            </div>
           </Route>
 
           <Route path='/books/:bookId' exact>
-            <EachBook />
+            <div className={styles.main_wraper} >
+              <EachBook />
+            </div>
           </Route>
 
           <Route path='/polls' exact>
-            <Polls />
+            <div className={styles.main_wraper} >
+              <Polls />
+            </div>
           </Route>
 
           <Route path='/comments/:pollId' exact>
-            <Comments />
+            <div className={styles.main_wraper} >
+              <Comments />
+            </div>
           </Route>
 
           <Route path='/books/:bookId/pages/:pageId' exact>
-            <EachPage />
+            <div className={styles.main_wraper} >
+              <EachPage />
+            </div>
           </Route>
 
           <Route path='/books/:bookId/characters/:charId' exact>
-            <EachPriChar />
+            <div className={styles.main_wraper} >
+              <EachPriChar />
+            </div>
           </Route>
 
           <Route>
-            <h2>Page Not Found</h2>
+            <div className={styles.main_wraper} >
+              <h2>Page Not Found</h2>
+            </div>
           </Route>
 
         </Switch>

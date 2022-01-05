@@ -2,9 +2,11 @@
 
 
 .search_wrapper {
-  display: flex;
-  position: relative;
-  left: 20%;
+  position: absolute;
+  background-color: transparent;
+  z-index: 1;
+  top: 1px;
+  left: 15vw;
 }
 
 
@@ -15,9 +17,14 @@
 }
 
 
-.search_icon {
-  font-size: 1.1rem;
+
+.search_input input {
+  color: black;
+  border: solid black .1px;
+  border-radius: 5px;
 }
+
+
 
 
 
