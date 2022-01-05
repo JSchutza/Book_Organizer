@@ -110,6 +110,7 @@
   left: 2%;
   box-sizing: border-box;
   padding: 2%;
+  margin-top: 15px;
 }
 
 
@@ -131,12 +132,8 @@
   position: relative;
   box-sizing: border-box;
   padding: 1%;
-  background-color: b;
-  width: -moz-fit-content;
-  width: fit-content;
   border-radius: 10px;
   border: solid white .1px;
-  border-radius: 15px;
 }
 
 
@@ -153,6 +150,7 @@
   left: 2%;
   box-sizing: border-box;
   padding: 2%;
+  margin-top: 15px;
 }
 
 
