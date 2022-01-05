@@ -3,9 +3,10 @@
 
 .search_wrapper {
   position: absolute;
-  margin-top: 15px;
-  background-color: brown;
+  background-color: transparent;
   z-index: 1;
+  top: 1px;
+  left: 15vw;
 }
 
 
@@ -15,6 +16,13 @@
   right: 1%;
 }
 
+
+
+.search_input input {
+  color: black;
+  border: solid black .1px;
+  border-radius: 5px;
+}
 
 
 
