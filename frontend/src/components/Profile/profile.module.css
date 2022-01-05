@@ -27,7 +27,6 @@
 .user_avatar {
   position: relative;
   display: flex;
-  width: 20%;
 }
 
 
@@ -35,8 +34,11 @@
 .user_avatar img {
   display: flex;
   position: relative;
-  left: 10%;
   background-color: white;
+  object-fit: contain;
+  width: 200px;
+  border-radius: 100px;
+  margin: 10px;
 }
 
 
