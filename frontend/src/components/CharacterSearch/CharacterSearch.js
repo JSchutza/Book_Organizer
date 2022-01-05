@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory, NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 import { thunk_searchForUsersPubChars } from "../../store/thunks/characters.js";
@@ -10,10 +10,8 @@ import { useUser } from "../../context/UserContext.js";
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 
-import ToolTip from "../ToolTip";
 import Errors from "../Errors";
 import ReactModal from 'react-modal';
-import { BsSearch } from "react-icons/bs";
 
 
 import styles from "./charactersearch.module.css";
@@ -74,26 +72,18 @@ const CharacterSearch = () => {
 
 
     <div className={styles.search_wrapper}>
-
       <form onSubmit={handleSearch} >
         <div className={styles.search_input}>
-          <label>
-            Search
-            <input
-              type="text"
-              name="search"
-              value={searchId}
-              onChange={(event) => setSearchId(event.target.value)}
-              />
-          </label>
+          <input
+            type="text"
+            name="search"
+            value={searchId}
+            onChange={(event) => setSearchId(event.target.value)}
+            />
         </div>
 
 
-        <div className={styles.search_icon}>
-          <ToolTip content={"Search"} >
-            <button> <BsSearch /> </button>
-          </ToolTip>
-        </div>
+        <button> Search </button>
       </form>
     </div>
     </>
