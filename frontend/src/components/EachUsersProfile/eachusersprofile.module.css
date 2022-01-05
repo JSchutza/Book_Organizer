@@ -29,7 +29,6 @@
 
 
 
-
 .user_text {
   position: relative;
   left: 2%;
@@ -40,17 +39,20 @@
 
 
 
-.user_text p {
+.user_text li {
   padding: 10px;
-  color: black;
 }
 
 
 
-
-.user_text li {
+.user_text li a {
   color: blue;
-  padding: 10px;
+}
+
+
+
+.user_text:hover li a {
+  cursor: auto;
 }
 
 
@@ -112,29 +114,20 @@
 
 
 .users_characters_wrap {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  padding: 1%;
+
 }
 
 
 .each_character_containter {
-  display: flex;
-  padding: 2%;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  border: solid white .1px;
-  box-sizing: content-box;
-  border-radius: 20px;
+
 }
 
+
+
+.each_character_img img {
+  object-fit: contain;
+  width: 200px;
+}
 
 
 
