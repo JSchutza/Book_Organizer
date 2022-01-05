@@ -155,9 +155,7 @@ const Profile = () => {
                 {Object.keys(followersInfo).length} followers
               </NavLink>
             </li>
-            :
-            <></>
-          }
+            : null }
 
 
           {followingInfo ?
@@ -166,9 +164,7 @@ const Profile = () => {
                 {Object.keys(followingInfo).length} following
               </NavLink>
             </li>
-            :
-            <></>
-          }
+            : null }
         </div>
       </div>
     );

@@ -51,23 +51,23 @@ const EachUsersProfile = () => {
           <img src={each.avatar} alt='avatar' />
         </div>
         <div className={styles.user_text}>
-          <p>Search Id: {each.search_id} </p>
-          <br />
-          <p>Username: {each.user_name}</p>
-          <br />
-          <p>Email: {each.email}</p>
-          <br />
-          <p>Bio: {each.bio} </p>
-          <br />
-          <p>Birthday: {each.birthday} </p>
-          <br />
-          <p>Address: {each.location} </p>
-          <br />
+          <li>Search Id: {each.search_id} </li>
+          <li>Username: {each.user_name}</li>
+          <li>Email: {each.email}</li>
+          <li>Bio: {each.bio} </li>
+          <li>Birthday: {each.birthday} </li>
+          <li>Address: {each.location} </li>
+
           <li>
-            {Object.values(each.followers).length} followers
+            <NavLink to='/' onClick={e=>e.preventDefault()} >
+              {Object.values(each.followers).length} followers
+            </NavLink>
           </li>
+
           <li>
-            {Object.values(each.following).length} following
+            <NavLink to='/' onClick={e=>e.preventDefault()} >
+              {Object.values(each.following).length} following
+            </NavLink>
           </li>
         </div>
       </>
@@ -87,7 +87,7 @@ const EachUsersProfile = () => {
            {Object.values(each.characters).length !== 0 ?
               Object.values(each.characters).map(eachChar => (
                 <div className={styles.each_character_containter}>
-                  <div>
+                  <div className={styles.each_character_img} >
                     <img src={eachChar.avatar} alt={eachChar.name} />
                   </div>
                   <div>

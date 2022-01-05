@@ -27,7 +27,6 @@
 .user_avatar {
   position: relative;
   display: flex;
-  width: 20%;
 }
 
 
@@ -35,8 +34,11 @@
 .user_avatar img {
   display: flex;
   position: relative;
-  left: 10%;
   background-color: white;
+  object-fit: contain;
+  width: 200px;
+  border-radius: 100px;
+  margin: 10px;
 }
 
 
@@ -45,10 +47,22 @@
 .user_text {
   position: relative;
   left: 2%;
-  color: white;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
 }
 
 
+
+.user_text li {
+  padding: 10px;
+}
+
+
+
+.user_text li a {
+  color: blue;
+}
 
 
 
@@ -98,6 +112,7 @@
   left: 2%;
   box-sizing: border-box;
   padding: 2%;
+  margin-top: 15px;
 }
 
 
@@ -119,13 +134,11 @@
   position: relative;
   box-sizing: border-box;
   padding: 1%;
-  background-color: b;
-  width: -moz-fit-content;
-  width: fit-content;
   border-radius: 10px;
   border: solid white .1px;
-  border-radius: 15px;
 }
+
+
 
 .each_book_link h3:hover {
   color: blue;
@@ -139,6 +152,7 @@
   left: 2%;
   box-sizing: border-box;
   padding: 2%;
+  margin-top: 15px;
 }
 
 
