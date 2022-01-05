@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap");
+
+
+
+
+
 body {
   font-family: "JetBrains Mono", monospace;
   background-color: black;
@@ -11,14 +16,18 @@ body {
   align-items: center;
 }
 
+
+
 li {
   list-style: none;
 }
 
 
+
 p, h1, h2, h3, h4, h5, h6, label{
   color: white;
 }
+
 
 
 button {
@@ -29,10 +38,14 @@ button {
   font-family: "JetBrains Mono", monospace;
 }
 
+
+
 button:hover {
   color: blue;
   cursor: pointer;
 }
+
+
 
 a {
   text-decoration: none;
@@ -40,16 +53,22 @@ a {
   font-family: "JetBrains Mono", monospace;
 }
 
+
+
 a:hover {
   color: blue;
   cursor: pointer;
 }
+
+
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
+
+
 
 nav {
   background: black;
@@ -64,9 +83,13 @@ img {
   width: 294px;
 }
 
+
+
 svg {
   font-size: 30px;
 }
+
+
 
 input {
   background-color: transparent;
@@ -77,10 +100,12 @@ input {
 }
 
 
+
 textarea {
   background-color: transparent;
   color: white;
 }
+
 
 
 .hide {
