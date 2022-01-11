@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { thunk_getAllPages } from "../../store/thunks/books.js";
 
@@ -25,6 +25,7 @@ const EachPage = () => {
 
   return pageInfo && (
     <>
+      <Link to={`/books/${bookId}`} > Back </Link>
       <h3> book: {pageInfo[pageId].book_title} </h3>
       <h1> {pageInfo[pageId].title} </h1>
       <p> {pageInfo[pageId].text} </p>
