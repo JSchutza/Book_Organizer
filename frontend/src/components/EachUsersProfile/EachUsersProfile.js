@@ -116,7 +116,7 @@ const EachUsersProfile = () => {
      return (
        <>
          <div className={styles.users_polls_header}>
-           <h2> {each.user_name}'s Polls </h2>
+           <h4> {each.user_name}'s Polls </h4>
          </div>
 
          <div className={styles.users_polls_wrap}>
