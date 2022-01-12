@@ -125,13 +125,12 @@ const EachUsersProfile = () => {
               <div className={styles.each_poll_containter}>
                 <NavLink to='/' onClick={event => handlePollClick(event, eachPoll.id)}>
                   <p> {eachPoll.created_at} </p>
-                  <h3> {eachPoll.title} </h3>
-                  <p> <b> <i> {eachPoll.question_text} </i> </b> </p>
+                  <p> <b> <i> {eachPoll.title} </i> </b> </p>
                 </NavLink>
               </div>
             ))
            :
-            <h3> {each.user_name} currently does not have any polls. </h3>
+            <h4> {each.user_name} currently does not have any polls. </h4>
            }
          </div>
        </>

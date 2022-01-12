@@ -150,19 +150,21 @@
 
 
 .users_polls_wrap {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: flex-start;
+  width: 50vw;
 }
 
 
 
 
 .each_poll_containter {
-  padding: 1%;
+  padding: 10px;
   box-sizing: border-box;
-  border: solid white .1px;
-  border-radius: 10px;
-  width: 70vw;
+}
+
+
+
+
+.each_poll_containter p {
+  word-break: break-all;
+  white-space: normal;
 }
