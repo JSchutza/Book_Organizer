@@ -51,12 +51,18 @@ const EachUsersProfile = () => {
           <img src={each.avatar} alt='avatar' />
         </div>
         <div className={styles.user_text}>
-          <li>Search Id: {each.search_id} </li>
-          <li>Username: {each.user_name}</li>
-          <li>Email: {each.email}</li>
-          <li>Bio: {each.bio} </li>
-          <li>Birthday: {each.birthday} </li>
-          <li>Address: {each.location} </li>
+
+          <li> Search Id: {each.search_id} </li>
+
+          <li> Username: {each.user_name}</li>
+
+          <li> Email: {each.email}</li>
+
+          <li> Bio: {each.bio} </li>
+
+          <li> Birthday: {each.birthday} </li>
+
+          <li> Address: {each.location} </li>
 
           <li>
             <NavLink to='/' onClick={e=>e.preventDefault()} >

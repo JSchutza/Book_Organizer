@@ -30,8 +30,6 @@
 
 
 .user_text {
-  position: relative;
-  left: 2%;
   color: black;
   background-color: white;
   border-radius: 10px;
@@ -41,6 +39,7 @@
 
 .user_text li {
   padding: 10px;
+  width: 50vw;
 }
 
 
