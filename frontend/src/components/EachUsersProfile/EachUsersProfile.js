@@ -86,7 +86,7 @@ const EachUsersProfile = () => {
      return (
        <>
          <div className={styles.users_characters_header}>
-           <h2>{each.user_name}'s Characters</h2>
+           <h4>{each.user_name}'s Characters</h4>
          </div>
 
          <div className={styles.users_characters_wrap}>
