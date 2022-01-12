@@ -3,13 +3,13 @@
 
 
 .characters_header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    padding: 2%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
 }
 
 
@@ -17,33 +17,32 @@
 
 
 .page_wrapper {
-    display: flex;
-    flex-flow: wrap;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    align-items: stretch;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
 }
 
 
 
 
 .each_card {
-    position: relative;
-    box-sizing: border-box;
-    padding: 5%;
-    box-sizing: border-box;
-    border-radius: 30px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 5%;
+  box-sizing: border-box;
+  border-radius: 30px;
 }
 
 
+
 .each_img {
-    position: relative;
-    display: flex;
-    box-sizing: border-box;
-    border: solid white 1.1px;
-    border-radius: 30px;
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
 }
 
 
@@ -62,6 +61,8 @@
   left: 80%;
 }
 
+
+
 .each_detail_text {
   display: block;
   position: relative;
@@ -74,31 +75,33 @@
 
 
 .users_character_button_wrap {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    background: cornflowerblue;
-    height: 100%;
-    padding: 1%;
-    border: solid white .1px;
-    box-sizing: content-box;
-    border-radius: 15px;
-    box-shadow: 0px 0px 13px rgb(121, 78, 161);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1%;
+  box-sizing: content-box;
 }
 
 
 
 .each_button {
-    display: flex;
-    position: relative;
-    width: 60px;
-    justify-content: center;
-    padding: 1%;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
+  display: flex;
+  position: relative;
+  width: 60px;
+  justify-content: center;
+  padding: 1%;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+
+
+
+.each_button svg {
+  color: blue;
 }

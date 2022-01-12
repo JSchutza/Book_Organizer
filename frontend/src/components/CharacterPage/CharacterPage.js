@@ -12,7 +12,6 @@ import { useUser } from "../../context/UserContext.js";
 import { useModalStyle } from "../../context/ReactModalStylesContext.js";
 
 import { RiDeleteBinFill } from "react-icons/ri";
-import { GrUpdate } from "react-icons/gr";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 
 import SpecificPubChar from "../SpecificPubChar";
@@ -215,9 +214,7 @@ const CharacterPage = () => {
 
         <li className={styles.each_detail} key={eachChar.id}>
           <div className={styles.each_detail_text}>
-          <b> {eachChar.username} </b>
             <p> {eachChar.character_name} </p>
-            <p> {eachChar.character_label} </p>
           </div>
         </li>
 
@@ -240,7 +237,7 @@ const CharacterPage = () => {
                   user_id: eachChar.user_id,
                   username: eachChar.username,
                   search_id: eachChar.search_id
-                })}> <GrUpdate /> </NavLink>
+                })}> <BsFillPlusSquareFill /> </NavLink>
               </ToolTip>
             </div>
 
@@ -250,8 +247,7 @@ const CharacterPage = () => {
               </ToolTip>
             </div>
           </div>
-        :
-        <></>
+        : null
         }
       </div>
       ))}
