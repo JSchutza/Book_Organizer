@@ -51,12 +51,18 @@ const EachUsersProfile = () => {
           <img src={each.avatar} alt='avatar' />
         </div>
         <div className={styles.user_text}>
-          <li>Search Id: {each.search_id} </li>
-          <li>Username: {each.user_name}</li>
-          <li>Email: {each.email}</li>
-          <li>Bio: {each.bio} </li>
-          <li>Birthday: {each.birthday} </li>
-          <li>Address: {each.location} </li>
+
+          <li> Search Id: {each.search_id} </li>
+
+          <li> Username: {each.user_name}</li>
+
+          <li> Email: {each.email}</li>
+
+          <li> Bio: {each.bio} </li>
+
+          <li> Birthday: {each.birthday} </li>
+
+          <li> Address: {each.location} </li>
 
           <li>
             <NavLink to='/' onClick={e=>e.preventDefault()} >
@@ -80,7 +86,7 @@ const EachUsersProfile = () => {
      return (
        <>
          <div className={styles.users_characters_header}>
-           <h2>{each.user_name}'s Characters</h2>
+           <h4>{each.user_name}'s Characters</h4>
          </div>
 
          <div className={styles.users_characters_wrap}>
@@ -90,7 +96,7 @@ const EachUsersProfile = () => {
                   <div className={styles.each_character_img} >
                     <img src={eachChar.avatar} alt={eachChar.name} />
                   </div>
-                  <div>
+                  <div className={styles.each_char_detail} >
                     <p> <b> {eachChar.character_name} </b> </p>
                     <p>{eachChar.character_label}</p>
                   </div>
@@ -110,7 +116,7 @@ const EachUsersProfile = () => {
      return (
        <>
          <div className={styles.users_polls_header}>
-           <h2> {each.user_name}'s Polls </h2>
+           <h4> {each.user_name}'s Polls </h4>
          </div>
 
          <div className={styles.users_polls_wrap}>
