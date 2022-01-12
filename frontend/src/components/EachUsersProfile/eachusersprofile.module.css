@@ -124,6 +124,12 @@
 
 
 
+.each_char_detail {
+  padding: 15px;
+}
+
+
+
 .each_character_img img {
   object-fit: contain;
   width: 200px;

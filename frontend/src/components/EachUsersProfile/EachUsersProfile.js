@@ -96,7 +96,7 @@ const EachUsersProfile = () => {
                   <div className={styles.each_character_img} >
                     <img src={eachChar.avatar} alt={eachChar.name} />
                   </div>
-                  <div>
+                  <div className={styles.each_char_detail} >
                     <p> <b> {eachChar.character_name} </b> </p>
                     <p>{eachChar.character_label}</p>
                   </div>
