@@ -168,3 +168,9 @@
   word-break: break-all;
   white-space: normal;
 }
+
+
+
+.each_poll_containter:hover {
+  background-color: blue;
+}
