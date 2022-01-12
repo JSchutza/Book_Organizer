@@ -58,42 +58,24 @@
   flex-direction: row;
   flex-wrap: nowrap;
   position: relative;
-  justify-content: space-evenly;
-  border-radius: 10px;
-  background: cornflowerblue;
-  border: solid white .1px;
-  border-radius: 15px;    width: 50%;
-  left: 25%;
+  justify-content: space-around;
+  padding: 10px;
 }
 
 
 
 
 .delete_button {
-  display: flex;
   box-sizing: border-box;
-  padding: 1%;
-  align-items: center;
-  width: 10%;
-  align-content: center;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: center;
-  height: 10%;
+  padding: 10px;
+  background-color: red;
 }
 
 
 
 
 .update_button {
-  display: flex;
   box-sizing: border-box;
-  padding: 1%;
-  align-items: center;
-  width: 10%;
-  align-content: center;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: center;
-  height: 10%;
+  padding: 10px;
+  background-color: blue;
 }
