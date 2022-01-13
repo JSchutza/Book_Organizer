@@ -170,9 +170,9 @@ const BookViewer = () => {
         >
 
         <div className={styles.each_book_link}>
-        <li>
-          <NavLink to='/' onClick={(event) => handleBookClick(event, eachBook.id)}> { eachBook.the_title } </NavLink>
-        </li>
+          <li>
+            <NavLink to='/' onClick={(event) => handleBookClick(event, eachBook.id)}> { eachBook.the_title } </NavLink>
+          </li>
         </div>
 
 
