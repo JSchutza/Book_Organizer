@@ -43,6 +43,14 @@
 
 
 
+.profile_button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+
+
 .specific_char_containter {
   display: flex;
   flex-direction: column;
@@ -64,22 +72,18 @@
 
 
 .specific_char_userprofile_button {
-  display: flex;
-  padding: 1%;
-  border: solid white .1px;
-  border-radius: 10px;
   position: relative;
   left: 20%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 
 
 
 .specific_char_follow_unfollow_button {
-  display: flex;
-  padding: 1%;
-  border: solid white .1px;
-  border-radius: 10px;
   position: relative;
   left: 20%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

@@ -109,7 +109,7 @@ const SpecificPubChar = ({ theChar=false, followingInfo=false, hideSpecificChar,
         {/* if the selected character belongs to the currently logged-in user */}
         {theChar.user_id === isUser.id ?
           <>
-            <div>
+            <div className={styles.profile_button} >
               <NavLink to='/' onClick={event => toProfile(event)}> Profile </NavLink>
             </div>
 
