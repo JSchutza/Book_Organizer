@@ -1,20 +1,11 @@
-from flask import Blueprint, session, request
-from app.models import User, db
-from app.forms import LoginForm
-from app.forms import SignUpForm
-from flask_login import current_user, login_user, logout_user, login_required
-from app.aws import allowed_file, get_unique_filename, upload_file, get_s3_location
+
 from random import randint
 
+from flask import Blueprint, request
+from flask_login import current_user, login_user, logout_user
 
 
 auth_routes = Blueprint('auth', __name__)
-
-
-
-
-
-
 
 
 @auth_routes.route('/')
@@ -29,13 +20,9 @@ def authenticate():
     return ""
 
 
-
-
-
-
 @auth_routes.route('/login', methods=['POST'])
 def login():
-    errors = [ "Invalid login, please try again." ]
+    errors = ["Invalid login, please try again."]
     form = LoginForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -44,10 +31,7 @@ def login():
         login_user(user)
         return user.to_dict()
 
-    return { 'errors': errors }
-
-
-
+    return {'errors': errors}
 
 
 @auth_routes.route('/logout')
@@ -56,19 +40,14 @@ def logout():
     return ''
 
 
-
-
-
-
-
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
-    errors = [ "Invalid sign-up, please try again." ]
+    errors = ["Invalid sign-up, please try again."]
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if "image" not in request.files:
-        return { "errors": errors }
+        return {"errors": errors}
 
     image = request.files["image"]
     username = request.form['username']
@@ -76,35 +55,31 @@ def sign_up():
     password = request.form['password']
 
     if not allowed_file(image.filename):
-        return { "errors": errors }
+        return {"errors": errors}
 
-    image.filename = get_unique_filename(image.filename)
+    image.filename = app.aws.get_unique_filename(image.filename)
 
     if form.validate_on_submit():
         upload = upload_file(image)
 
         if "url" not in upload:
-            return { "errors": errors }
+            return {"errors": errors}
 
         url = upload["url"]
         user = User(the_search_id=f'{randint(1, 100)}{randint(1, 10000000000)}',
-            user_name=username,
-            email=email,
-            password=password,
-            avatar=url
-        )
+                    user_name=username,
+                    email=email,
+                    password=password,
+                    avatar=url
+                    )
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return user.to_dict()
 
-    return { "errors": errors }
-
-
-
-
+    return {"errors": errors}
 
 
 @auth_routes.route('/unauthorized')
 def unauthorized():
-    return {'errors': ['You are not authorized to access this.'] }
+    return {'errors': ['You are not authorized to access this.']}
