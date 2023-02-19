@@ -3,6 +3,7 @@ import sqlalchemy
 
 # IAM database user parameter (IAM user's email)
 IAM_USER = "js.joshua.schutza@gmail.com"
+INSTANCE_CONNECTION_NAME = "book-organizer-44fd3:us-central1:bookorganizerdb"
 
 # initialize connector
 connector = Connector()
@@ -21,10 +22,7 @@ def getconn():
 
 
 # create connection pool
-pool = sqlalchemy.create_engine(
-    "postgresql+pg8000://",
-    creator=getconn,
-)
+pool = sqlalchemy.create_engine("postgresql+pg8000://", creator=getconn)
 
 # connect to connection pool
 with pool.connect() as db_conn:
