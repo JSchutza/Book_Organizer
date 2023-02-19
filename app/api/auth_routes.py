@@ -4,6 +4,10 @@ from random import randint
 from flask import Blueprint, request
 from flask_login import current_user, login_user, logout_user
 
+from app.aws import allowed_file, upload_file
+from app.forms import SignUpForm
+from app.models.db import db
+from app.models.user import User
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -13,9 +17,9 @@ def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
 
-    # can NOT return none -- need to return an empty string because if its an
+    # can NOT return none -- need to return an empty string because if it's a
     # dict which turns to JSON it messes with the implementation of my frontend.
-    # also can not return none because my cookies dont show in the browser which
+    # also can not return none because my cookies don't show in the browser which
     # breaks things
     return ""
 
