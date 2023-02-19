@@ -117,4 +117,4 @@ dmypy.json
 heroku_config_vars.txt
 
 # cloud GOOGLE_APPLICATION_CREDENTIALS needed on local machine but not on GitHub
-./app/cloud_credentials/*
+./app/cloud_credentials
