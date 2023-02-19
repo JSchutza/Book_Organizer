@@ -1,15 +1,16 @@
-FROM node:12 AS build-stage
+#FROM node:12 AS build-stage
 
-WORKDIR /frontend
-COPY frontend/. .
+#WORKDIR /frontend
+#COPY frontend/. .
 
 # You have to set this because it should be set during build time.
-ENV REACT_APP_BASE_URL=https://book-organizer.herokuapp.com/
+#ENV REACT_APP_BASE_URL=https://book-organizer.herokuapp.com/
 
 # Build our React App
-RUN npm install
-RUN npm run build
+#RUN npm install
+#RUN npm run build
 
+# backend install
 FROM python:3.8
 
 # Setup Flask environment
@@ -21,11 +22,12 @@ EXPOSE 8000
 
 WORKDIR /var/www
 COPY . .
-COPY --from=build-stage /frontend/build/* app/static/
+#COPY --from=build-stage /frontend/build/* app/static/
 
 # Install Python Dependencies
 RUN pip install -r requirements.txt
 RUN pip install psycopg2
 
 # Run flask environment
+# todo change this main.py now is the entrypoint
 CMD gunicorn app:app

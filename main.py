@@ -3,7 +3,7 @@ import os
 from flask import Flask, request, redirect
 from flask_cors import CORS
 from flask_login import LoginManager
-# from flask_migrate import Migrate
+from flask_migrate import Migrate
 from flask_wtf.csrf import generate_csrf
 
 from app.api.auth_routes import auth_routes
@@ -23,12 +23,12 @@ app = Flask(__name__)
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
-
 # configure Flask-SQLAlchemy to use Python Connector
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql+pg8000://"
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     "creator": getconn
 }
+
 
 @login.user_loader
 def load_user(id):
@@ -47,7 +47,7 @@ app.register_blueprint(resource_routes, url_prefix='/api/book')
 app.register_blueprint(poll_routes, url_prefix='/api/polls')
 
 db.init_app(app)
-# Migrate(app, db)
+Migrate(app, db)
 CORS(app)
 
 

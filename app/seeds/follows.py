@@ -1,6 +1,8 @@
 
-from app.models import db, User
 from random import randint
+
+from app.models.db import db
+from app.models.user import User
 
 
 def seed_follows():

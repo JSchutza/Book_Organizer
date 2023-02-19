@@ -1,8 +1,9 @@
 
-from app.models import db, Comment
 from faker import Faker
 from random import randint
 
+from app.models.comment import Comment
+from app.models.db import db
 
 fake = Faker()
 

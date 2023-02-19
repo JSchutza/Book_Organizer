@@ -1,16 +1,15 @@
-
 from flask import Blueprint, request
 from flask_login import login_required, current_user
+
+from app.models.db import db
+from app.models.user import User
 from app.validators import check_if_empty, check_right_length, check_lengths
-from app.models import db, User
 from app.forms import UpdateUserForm
 from app.aws import allowed_file, get_unique_filename, upload_file, get_s3_location, purge_aws_resource
-
 
 # from app.models.user import follower_to_followee
 
 user_routes = Blueprint('users', __name__)
-
 
 
 # /api/users/:userId
@@ -19,7 +18,7 @@ user_routes = Blueprint('users', __name__)
 def update_user_info(user_id):
     errors = ["An error occurred while updating your profile."]
     if "new_avatar" not in request.files:
-        return { "errors":  errors }
+        return {"errors": errors}
 
     form = UpdateUserForm()
     name = form.data['new_name']
@@ -31,37 +30,33 @@ def update_user_info(user_id):
     avatar = request.files["new_avatar"]
 
     if not allowed_file(avatar.filename):
-        return { "errors":  errors }
-
+        return {"errors": errors}
 
     avatar.filename = get_unique_filename(avatar.filename)
     form['csrf_token'].data = request.cookies['csrf_token']
 
-
     if int(user_id) == int(current_user.get_id()):
         if check_lengths(name, email, password, bio, location, birthdate):
-            return { "errors":  errors }
+            return {"errors": errors}
 
         if form.validate_on_submit():
             upload = upload_file(avatar)
 
             if "url" not in upload:
-                return { "errors":  errors }
+                return {"errors": errors}
 
             url = upload["url"]
             key = current_user.get_url()
-            if(key.startswith(get_s3_location())):
+            if key.startswith(get_s3_location()):
                 key = key[39:]
                 purge_aws_resource(key)
 
             current_user.update_user(name, email, password, bio, location, url, birthdate)
             db.session.add(current_user)
             db.session.commit()
-            return { "user": current_user.to_dict() }
+            return {"user": current_user.to_dict()}
 
-    return { "errors":  errors }
-
-
+    return {"errors": errors}
 
 
 # /api/users/:userId
@@ -71,35 +66,23 @@ def delete_user(user_id):
     errors = ["An error occurred while deleting your profile."]
     if int(user_id) == int(current_user.get_id()):
         key = current_user.get_url()
-        if(key.startswith(get_s3_location())):
+        if key.startswith(get_s3_location()):
             key = key[39:]
             purge_aws_resource(key)
 
         db.session.delete(current_user)
         db.session.commit()
-        return { "success": "Your accont was successfully deleted." }
+        return {"success": "Your accont was successfully deleted."}
     else:
-        return { "errors" : errors }
-
-
-
-
-
-
+        return {"errors": errors}
 
 
 # /api/users/
 @user_routes.route('/')
 @login_required
 def index():
-    errors = [ "You need to enter a search id to search.", "Please try again." ]
-    return {"errors":  errors }
-
-
-
-
-
-
+    errors = ["You need to enter a search id to search.", "Please try again."]
+    return {"errors": errors}
 
 
 #  /api/users/:searchId
@@ -116,21 +99,21 @@ def search_for_user(searchId):
 
         if int(current_user.the_search_id) == int(searchId):
             result = current_user.get_users_public_characters()
-            public_characters = { each["id"]: each   for each in result["public_characters"] }
-            return { "public_characters": public_characters }
+            public_characters = {each["id"]: each for each in result["public_characters"]}
+            return {"public_characters": public_characters}
         else:
             searched_user = User.query.filter_by(search_id=str(searchId)).first()
             if searched_user is None:
                 errors.append("You entered the wrong search id.")
-                return { "errors": errors }
+                return {"errors": errors}
             else:
                 result = searched_user.get_users_public_characters()
-                public_characters = { each["id"]: each   for each in result["public_characters"] }
-                return { "public_characters": public_characters }
+                public_characters = {each["id"]: each for each in result["public_characters"]}
+                return {"public_characters": public_characters}
 
     except ValueError:
         errors = ["You need to enter a search id to search.", "Please try again."]
-        return { "errors":  errors }
+        return {"errors": errors}
 
 
 #  /api/users/search/:searchId
@@ -141,17 +124,9 @@ def get_specific_user(searchId):
     searched_user = User.query.filter_by(search_id=str(searchId)).first()
     if searched_user is None:
         errors.append("You entered the wrong search id.")
-        return { "errors": errors }
+        return {"errors": errors}
     else:
-        return { "searchedUser": searched_user.to_dict() }
-
-
-
-
-
-
-
-
+        return {"searchedUser": searched_user.to_dict()}
 
 
 #  /api/users/followers
@@ -161,23 +136,11 @@ def followers():
     return current_user.get_users_followers()
 
 
-
-
 #  /api/users/following
 @user_routes.route('/following')
 @login_required
 def following():
     return current_user.get_people_they_follow()
-
-
-
-
-
-
-
-
-
-
 
 
 #  /api/users/:userId/following
@@ -190,9 +153,9 @@ def check_if_following(userId):
         current_user.following.remove(searched_user)
         searched_user.followers.remove(current_user)
         db.session.commit()
-        return { "message": ["User has been unfollowed."] }
+        return {"message": ["User has been unfollowed."]}
     else:
         current_user.following.append(searched_user)
         searched_user.followers.append(current_user)
         db.session.commit()
-        return { "message": ["User has been followed."] }
+        return {"message": ["User has been followed."]}

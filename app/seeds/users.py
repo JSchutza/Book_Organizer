@@ -1,9 +1,10 @@
 import requests
-from app.models import db, User
 from app.hash import gen_search_id
 from faker import Faker
 from random import randint
 
+from app.models.db import db
+from app.models.user import User
 
 fake = Faker()
 
@@ -19,9 +20,6 @@ def get_avatars():
         result.append(json_result)
         count += 1
     return result
-
-
-
 
 
 # Adds a demo user, you can add other users here if you want
@@ -233,9 +231,10 @@ def seed_users():
     address = fake.profile()["address"]
     birthday = fake.profile()["birthdate"]
 
-    demo = User(user_name='Demo', email='demo@aa.io', password='password', bio='is my awesome bio', avatar=images[randint(1, 4)],
-        location=address, birthday=birthday
-    )
+    demo = User(user_name='Demo', email='demo@aa.io', password='password', bio='is my awesome bio',
+                avatar=images[randint(1, 4)],
+                location=address, birthday=birthday
+                )
     db.session.add(demo)
     db.session.commit()
 
@@ -249,9 +248,8 @@ def seed_users():
         address = fake.profile()["address"]
         birthday = fake.profile()["birthdate"]
         result.append(User(search_id=new_id, user_name=each, email=fake.company_email(), password='password',
-            bio='is my awesome bio', avatar=images[randint(1, 4)], location=address, birthday=birthday
-        ))
-
+                           bio='is my awesome bio', avatar=images[randint(1, 4)], location=address, birthday=birthday
+                           ))
 
     for user in result:
         db.session.add(user)
@@ -259,7 +257,7 @@ def seed_users():
 
 
 # Uses a raw SQL query to TRUNCATE the users table.
-# SQLAlchemy doesn't have a built in function to do this
+# SQLAlchemy doesn't have a built-in function to do this
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_users():
