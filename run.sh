@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source secret_values.sh
-cd ../
+source ./app/scripts/secret_values.sh
+
 export GOOGLE_APPLICATION_CREDENTIALS="/Users/mindybraasch/Documents/joshua/work/Book_Organizer/app/cloud_credentials/book-organizer-credentials.json"
-python3 cloud_sql_connecter.py
+python3 main.py

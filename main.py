@@ -14,7 +14,7 @@ from app.api.poll_routes import poll_routes
 from app.api.user_routes import user_routes
 from app.config import Config
 from app.models.user import User
-from app.models.db import db, getconn
+from app.models.db import getconn, DynamicDatabase
 from app.seeds import seed_commands
 
 app = Flask(__name__)
@@ -46,8 +46,6 @@ app.register_blueprint(book_routes, url_prefix='/api/books')
 app.register_blueprint(resource_routes, url_prefix='/api/book')
 app.register_blueprint(poll_routes, url_prefix='/api/polls')
 
-db.init_app(app)
-Migrate(app, db)
 CORS(app)
 
 

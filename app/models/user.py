@@ -1,56 +1,59 @@
-from .db import db
+from sqlalchemy import Column, Integer, ForeignKey, String, Text, DateTime
+from sqlalchemy.orm import relationship, backref
+
+from .db import db, Base
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 from app.hash import gen_search_id
 from random import randint
 
-follower_to_followee = db.Table("follower_to_followee",
-                                db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
-                                db.Column("followee_id", db.Integer, db.ForeignKey("users.id")),
-                                )
+follower_to_followee = relationship("follower_to_followee",
+                                    Column("follower_id", Integer, ForeignKey("users.id")),
+                                    Column("followee_id", Integer, ForeignKey("users.id")),
+                                    )
 
-followee_to_follower = db.Table("followee_to_follower",
-                                db.Column("followee_id", db.Integer, db.ForeignKey("users.id")),
-                                db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
-                                )
+followee_to_follower = relationship("followee_to_follower",
+                                    Column("followee_id", Integer, ForeignKey("users.id")),
+                                    Column("follower_id", Integer, ForeignKey("users.id")),
+                                    )
 
 
-class User(db.Model, UserMixin):
+class User(Base, UserMixin):
     __tablename__ = "users"
 
-    id = db.Column(db.Integer, primary_key=True)
-    search_id = db.Column(db.String(6), nullable=False, unique=True,
-                          default=gen_search_id(f'{randint(1, 100)}{randint(1, 10000000000)}'))
-    user_name = db.Column(db.String(45), nullable=False)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
-    bio = db.Column(db.Text)
-    location = db.Column(db.String(100))
-    avatar = db.Column(db.Text)
-    birthday = db.Column(db.DateTime)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    id = Column(Integer, primary_key=True)
+    search_id = Column(String(6), nullable=False, unique=True,
+                       default=gen_search_id(f'{randint(1, 100)}{randint(1, 10000000000)}'))
+    user_name = Column(String(45), nullable=False)
+    email = Column(String(255), nullable=False, unique=True)
+    hashed_password = Column(String(255), nullable=False)
+    bio = Column(Text)
+    location = Column(String(100))
+    avatar = Column(Text)
+    birthday = Column(DateTime)
+    created_at = Column(DateTime, nullable=False, default=datetime.now)
 
-    public_characters = db.relationship("PublicCharacter", backref="users", cascade="all, delete")
-    books = db.relationship("Book", backref="users", cascade="all, delete")
-    polls = db.relationship("Poll", backref="users", cascade="all, delete")
-    comments = db.relationship("Comment", backref="users", cascade="all, delete")
+    public_characters = relationship("PublicCharacter", backref="users", cascade="all, delete")
+    books = relationship("Book", backref="users", cascade="all, delete")
+    polls = relationship("Poll", backref="users", cascade="all, delete")
+    comments = relationship("Comment", backref="users", cascade="all, delete")
 
-    followers = db.relationship("User",
-                                secondary=follower_to_followee,
-                                primaryjoin=id == follower_to_followee.c.follower_id,
-                                secondaryjoin=id == follower_to_followee.c.followee_id,
-                                backref=db.backref("follower_to_followee", lazy="joined"),
-                                lazy="joined",
-                                )
-
-    following = db.relationship("User",
-                                secondary=followee_to_follower,
-                                primaryjoin=id == followee_to_follower.c.followee_id,
-                                secondaryjoin=id == followee_to_follower.c.follower_id,
-                                backref=db.backref("followee_to_follower", lazy="joined"),
-                                lazy="joined",
-                                )
+    # followers = relationship("User",
+    #                          secondary=follower_to_followee,
+    #                          primaryjoin=id == follower_to_followee.c.follower_id,
+    #                          secondaryjoin=id == follower_to_followee.c.followee_id,
+    #                          backref=backref("follower_to_followee", lazy="joined"),
+    #                          lazy="joined",
+    #                          )
+    #
+    # following = relationship("User",
+    #                          secondary=followee_to_follower,
+    #                          primaryjoin=id == followee_to_follower.c.followee_id,
+    #                          secondaryjoin=id == followee_to_follower.c.follower_id,
+    #                          backref=backref("followee_to_follower", lazy="joined"),
+    #                          lazy="joined",
+    #                          )
 
     def follow_or_unfollow(self, user_to_search):
         if user_to_search in self.following:

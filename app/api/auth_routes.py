@@ -1,11 +1,11 @@
-
 from random import randint
 
+import sqlalchemy
 from flask import Blueprint, request
 from flask_login import current_user, login_user, logout_user
 
-from app.aws import allowed_file, upload_file
-from app.forms import SignUpForm
+from app.aws import allowed_file, upload_file, get_unique_filename
+from app.forms import SignUpForm, LoginForm
 from app.models.db import db
 from app.models.user import User
 
@@ -61,7 +61,7 @@ def sign_up():
     if not allowed_file(image.filename):
         return {"errors": errors}
 
-    image.filename = app.aws.get_unique_filename(image.filename)
+    image.filename = get_unique_filename(image.filename)
 
     if form.validate_on_submit():
         upload = upload_file(image)
@@ -87,3 +87,9 @@ def sign_up():
 @auth_routes.route('/unauthorized')
 def unauthorized():
     return {'errors': ['You are not authorized to access this.']}
+
+
+@auth_routes.route("/time", methods=["GET"])
+def create():
+    results = db.execute()
+    return {"message": results[0]}

@@ -1,22 +1,28 @@
-from google.cloud.sql.connector import Connector
+from google.cloud.sql.connector import Connector, IPTypes
 import sqlalchemy
 
-# IAM database user parameter (IAM user's email)
-IAM_USER = "js.joshua.schutza@gmail.com"
-INSTANCE_CONNECTION_NAME = "book-organizer-44fd3:us-central1:bookorganizerdb"
+from config import Config
+
+USER = Config.USER
+PASSWORD = Config.PASSWORD
+INSTANCE_CONNECTION_NAME = Config.INSTANCE_CONNECTION_NAME
+DB = Config.DB
 
 # initialize connector
 connector = Connector()
 
 
-# getconn now using IAM user and requiring no password with IAM Auth enabled
 def getconn():
+    if INSTANCE_CONNECTION_NAME is None:
+        print("An issue occurred with the connection values.")
+        exit()
     conn = connector.connect(
         INSTANCE_CONNECTION_NAME,
         "pg8000",
-        user=IAM_USER,
-        db="postgres",
-        enable_iam_auth=True
+        user=USER,
+        password=PASSWORD,
+        db=DB,
+        ip_type=IPTypes.PUBLIC
     )
     return conn
 

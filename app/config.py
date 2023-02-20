@@ -9,3 +9,8 @@ class Config:
     AWS_USERNAME = os.environ.get("AWS_USERNAME")
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    USER = os.environ.get("USER")
+    PASSWORD = os.environ.get("PASSWORD")
+    INSTANCE_CONNECTION_NAME = os.environ.get("INSTANCE_CONNECTION_NAME")
+    DB = os.environ.get("DB")
+

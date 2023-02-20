@@ -1,9 +1,9 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .pub_chars import seed_pub_chars, undo_pub_chars
-from .books import  seed_books, undo_books
+from .books import seed_books, undo_books
 from .pri_chars import seed_pri_chars, undo_pri_chars
-from .pages import  seed_pages, undo_pages
+from .pages import seed_pages, undo_pages
 from .polls import seed_polls, undo_polls
 from .comments import seed_comments, undo_comments
 from .follows import seed_follows, undo_follows
@@ -23,7 +23,6 @@ def seed():
     seed_polls()
     seed_comments()
     seed_follows()
-
 
 
 # Creates the `flask seed undo` command

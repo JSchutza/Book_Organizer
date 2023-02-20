@@ -120,3 +120,5 @@ heroku_config_vars.txt
 app/cloud_credentials/book-organizer-credentials.json
 app/cloud_credentials/*.json
 app/cloud_credentials
+
+app/scripts/secret_values.sh
