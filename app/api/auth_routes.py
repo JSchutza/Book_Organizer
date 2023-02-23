@@ -90,6 +90,6 @@ def unauthorized():
 
 
 @auth_routes.route("/time", methods=["GET"])
-def create():
+def get_time():
     results = db.execute()
-    return {"message": results[0]}
+    return {"current_time": results[0]}
